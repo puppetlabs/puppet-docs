@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 57ba660ddc3e3265bc2e492b9a3149bfe2fb5c64
+built_from_commit: d84d913905eea6e8180e6aef203edf1d8bf16dfd
 title: Configuration Reference
 toc: columns
 canonical: "/puppet/latest/configuration.html"
@@ -431,13 +431,17 @@ This is useful for embedding a pre-shared key for autosigning policy executables
 ("challenge password") OID.
 
 Extension requests will be permanently embedded in the final certificate.
-Extension OIDs must be in the "ppRegCertExt" (`1.3.6.1.4.1.34380.1.1`) or
-"ppPrivCertExt" (`1.3.6.1.4.1.34380.1.2`) OID arcs. The ppRegCertExt arc is
+Extension OIDs must be in the "ppRegCertExt" (`1.3.6.1.4.1.34380.1.1`),
+"ppPrivCertExt" (`1.3.6.1.4.1.34380.1.2`), or
+"ppAuthCertExt" (`1.3.6.1.4.1.34380.1.3`) OID arcs. The ppRegCertExt arc is
 reserved for four of the most common pieces of data to embed: `pp_uuid` (`.1`),
 `pp_instance_id` (`.2`), `pp_image_name` (`.3`), and `pp_preshared_key` (`.4`)
 --- in the YAML file, these can be referred to by their short descriptive names
 instead of their full OID. The ppPrivCertExt arc is unregulated, and can be used
-for site-specific extensions.
+for site-specific extensions. The ppAuthCert arc is reserved for two pieces of
+data to embed: `pp_authorization` (`.1`) and `pp_auth_role` (`.13`). As with
+ppRegCertExt, in the YAML file, these can be referred to by their short
+descriptive name instead of their full OID.
 
 - *Default*: $confdir/csr_attributes.yaml
 
@@ -718,7 +722,7 @@ For more info, see [the ENC documentation](https://puppet.com/docs/puppet/latest
 
 Whether to enable a pre-Facter 4.0 release of Facter (distributed as
 the "facter-ng" gem). This is not necessary if Facter 3.x or later is installed.
-This setting is still experimental and has been only included on Windows builds
+This setting is still experimental.
 
 - *Default*: false
 
@@ -941,7 +945,7 @@ This setting can be a time interval in seconds (30 or 30s), minutes (30m), hours
 
 The HTTP User-Agent string to send when making network requests.
 
-- *Default*: Puppet/6.12.0 Ruby/2.5.1-p57 (x86_64-darwin17)
+- *Default*: Puppet/6.13.0 Ruby/2.5.1-p57 (x86_64-darwin17)
 
 ### ignoremissingtypes
 
@@ -1284,7 +1288,9 @@ and sets the 'hostname', 'fqdn' and 'domain' facts for use in the manifest,
 in particular for determining which 'node' statement applies to the client.
 Possible values are 'cert' (use the subject's CN in the client's
 certificate) and 'facter' (use the hostname that the client
-reported in its facts)
+reported in its facts).
+
+This setting is deprecated, please use explicit fact matching for classification.
 
 - *Default*: cert
 
@@ -1874,9 +1880,12 @@ causing the run to fail if the retrieved catalog does not match it.
 
 Whether to only search for the complete
 hostname as it is in the certificate when searching for node information
-in the catalogs.
+in the catalogs or to match dot delimited segments of the cert's certname
+and the hostname, fqdn, and/or domain facts.
 
-- *Default*: false
+This setting is deprecated and will be removed in a future release.
+
+- *Default*: true
 
 ### strict_variables
 
@@ -2003,6 +2012,14 @@ difference is that modules in the `basemodulepath` are pluginsynced, while
 vendored modules are not
 
 - *Default*: /opt/puppetlabs/puppet/vendor_modules
+
+### versioned_environment_dirs
+
+Whether or not to look for versioned environment directories,
+symlinked from `$environmentpath/<environment>`. This is an experimental
+feature and should be used with caution.
+
+- *Default*: false
 
 ### waitforcert
 

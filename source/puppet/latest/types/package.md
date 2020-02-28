@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 4c1b0ace7275f9646c9f6630e11f41556d88d2ac
+built_from_commit: d84d913905eea6e8180e6aef203edf1d8bf16dfd
 title: 'Resource Type: package'
 canonical: "/puppet/latest/types/package.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2019-09-06 09:16:04 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2020-02-28 15:12:08 -0800
 
 package
 -----
@@ -52,9 +52,11 @@ resource will autorequire those files.
   <a href="#package-attribute-category">category</a>             =&gt; <em># A read-only parameter set by the...</em>
   <a href="#package-attribute-configfiles">configfiles</a>          =&gt; <em># Whether to keep or replace modified config files </em>
   <a href="#package-attribute-description">description</a>          =&gt; <em># A read-only parameter set by the...</em>
-  <a href="#package-attribute-flavor">flavor</a>               =&gt; <em># OpenBSD supports 'flavors', which are further...</em>
+  <a href="#package-attribute-flavor">flavor</a>               =&gt; <em># OpenBSD and DNF modules support 'flavors', which </em>
+  <a href="#package-attribute-install_only">install_only</a>         =&gt; <em># It should be set for packages that should only...</em>
   <a href="#package-attribute-install_options">install_options</a>      =&gt; <em># An array of additional options to pass when...</em>
   <a href="#package-attribute-instance">instance</a>             =&gt; <em># A read-only parameter set by the...</em>
+  <a href="#package-attribute-mark">mark</a>                 =&gt; <em># Set to hold to tell Debian apt/Solaris pkg to...</em>
   <a href="#package-attribute-package_settings">package_settings</a>     =&gt; <em># Settings that can change the contents or...</em>
   <a href="#package-attribute-platform">platform</a>             =&gt; <em># A read-only parameter set by the...</em>
   <a href="#package-attribute-reinstall_on_refresh">reinstall_on_refresh</a> =&gt; <em># Whether this resource should respond to refresh...</em>
@@ -286,8 +288,30 @@ A read-only parameter set by the package.
 
 <h4 id="package-attribute-flavor">flavor</h4>
 
-OpenBSD supports 'flavors', which are further specifications for
-which type of package you want.
+_(**Property:** This attribute represents concrete state on the target system.)_
+
+OpenBSD and DNF modules support 'flavors', which are
+further specifications for which type of package you want.
+
+Requires features supports_flavors.
+
+([↑ Back to package attributes](#package-attributes))
+
+<h4 id="package-attribute-install_only">install_only</h4>
+
+It should be set for packages that should only ever be installed,
+never updated. Kernels in particular fall into this category.
+
+Default: `false`
+
+Allowed values:
+
+* `true`
+* `false`
+* `yes`
+* `no`
+
+Requires features install_only.
 
 ([↑ Back to package attributes](#package-attributes))
 
@@ -321,6 +345,28 @@ Requires features install_options.
 <h4 id="package-attribute-instance">instance</h4>
 
 A read-only parameter set by the package.
+
+([↑ Back to package attributes](#package-attributes))
+
+<h4 id="package-attribute-mark">mark</h4>
+
+_(**Property:** This attribute represents concrete state on the target system.)_
+
+Set to hold to tell Debian apt/Solaris pkg to hold the package version
+
+#{mark_doc}
+Default is "none". Mark can be specified with or without `ensure`,
+if `ensure` is missing will default to "present".
+
+Mark cannot be specified together with "purged", "absent" or "held"
+values for `ensure`.
+
+Allowed values:
+
+* `hold`
+* `none`
+
+Requires features holdable.
 
 ([↑ Back to package attributes](#package-attributes))
 
@@ -907,12 +953,14 @@ string or a hash.
 
 Available features:
 
-* `holdable` --- The provider is capable of placing packages on hold such that they are not automatically upgraded as a result of other package dependencies unless explicit action is taken by a user or another package. Held is considered a superset of installed.
+* `holdable` --- The provider is capable of placing packages on hold such that they are not automatically upgraded as a result of other package dependencies unless explicit action is taken by a user or another package.
+* `install_only` --- The provider accepts options to only install packages never update (kernels, etc.)
 * `install_options` --- The provider accepts options to be passed to the installer command.
 * `installable` --- The provider can install packages.
 * `package_settings` --- The provider accepts package_settings to be ensured for the given package. The meaning and format of these settings is provider-specific.
 * `purgeable` --- The provider can purge packages.  This generally means that all traces of the package are removed, including existing configuration files.  This feature is thus destructive and should be used with the utmost care.
 * `reinstallable` --- The provider can reinstall packages.
+* `supports_flavors` --- The provider accepts flavors, which are specific variants of packages.
 * `targetable` --- The provider accepts a targeted package management command.
 * `uninstall_options` --- The provider accepts options to be passed to the uninstaller command.
 * `uninstallable` --- The provider can uninstall packages.
@@ -927,11 +975,13 @@ Provider support:
     <tr>
       <th>Provider</th>
       <th>holdable</th>
+      <th>install only</th>
       <th>install options</th>
       <th>installable</th>
       <th>package settings</th>
       <th>purgeable</th>
       <th>reinstallable</th>
+      <th>supports flavors</th>
       <th>targetable</th>
       <th>uninstall options</th>
       <th>uninstallable</th>
@@ -943,6 +993,8 @@ Provider support:
   <tbody>
     <tr>
       <td>aix</td>
+      <td> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -970,9 +1022,13 @@ Provider support:
       <td> </td>
       <td> </td>
       <td> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>apple</td>
+      <td> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -989,20 +1045,24 @@ Provider support:
     <tr>
       <td>apt</td>
       <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
       <td> </td>
       <td><em>X</em> </td>
       <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
     </tr>
     <tr>
       <td>aptitude</td>
+      <td> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -1018,6 +1078,8 @@ Provider support:
     </tr>
     <tr>
       <td>aptrpm</td>
+      <td> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -1045,11 +1107,15 @@ Provider support:
       <td> </td>
       <td> </td>
       <td> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>dnf</td>
       <td> </td>
       <td><em>X</em> </td>
+      <td><em>X</em> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -1060,6 +1126,23 @@ Provider support:
       <td> </td>
       <td><em>X</em> </td>
       <td><em>X</em> </td>
+    </tr>
+    <tr>
+      <td>dnfmodule</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>dpkg</td>
@@ -1075,9 +1158,13 @@ Provider support:
       <td> </td>
       <td> </td>
       <td> </td>
+      <td> </td>
+      <td><em>X</em> </td>
     </tr>
     <tr>
       <td>fink</td>
+      <td> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -1105,11 +1192,15 @@ Provider support:
       <td> </td>
       <td> </td>
       <td> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>gem</td>
       <td> </td>
+      <td> </td>
       <td><em>X</em> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -1135,12 +1226,16 @@ Provider support:
       <td> </td>
       <td> </td>
       <td> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>macports</td>
       <td> </td>
       <td> </td>
+      <td> </td>
       <td><em>X</em> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -1163,17 +1258,21 @@ Provider support:
       <td> </td>
       <td> </td>
       <td> </td>
+      <td> </td>
+      <td> </td>
       <td><em>X</em> </td>
       <td> </td>
     </tr>
     <tr>
       <td>openbsd</td>
       <td> </td>
+      <td> </td>
       <td><em>X</em> </td>
       <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
+      <td><em>X</em> </td>
       <td> </td>
       <td><em>X</em> </td>
       <td> </td>
@@ -1195,11 +1294,15 @@ Provider support:
       <td> </td>
       <td> </td>
       <td> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>pacman</td>
       <td> </td>
+      <td> </td>
       <td><em>X</em> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -1214,8 +1317,10 @@ Provider support:
     <tr>
       <td>pip</td>
       <td> </td>
+      <td> </td>
       <td><em>X</em> </td>
       <td><em>X</em> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -1229,8 +1334,10 @@ Provider support:
     <tr>
       <td>pip3</td>
       <td> </td>
+      <td> </td>
       <td><em>X</em> </td>
       <td><em>X</em> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -1244,7 +1351,9 @@ Provider support:
     <tr>
       <td>pkg</td>
       <td><em>X</em> </td>
+      <td> </td>
       <td><em>X</em> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -1270,12 +1379,16 @@ Provider support:
       <td> </td>
       <td> </td>
       <td> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>pkgin</td>
       <td> </td>
       <td> </td>
+      <td> </td>
       <td><em>X</em> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -1288,6 +1401,8 @@ Provider support:
     </tr>
     <tr>
       <td>pkgng</td>
+      <td> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -1315,15 +1430,19 @@ Provider support:
       <td> </td>
       <td> </td>
       <td> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>portage</td>
       <td> </td>
+      <td> </td>
       <td><em>X</em> </td>
       <td> </td>
       <td> </td>
       <td><em>X</em> </td>
       <td><em>X</em> </td>
+      <td> </td>
       <td> </td>
       <td><em>X</em> </td>
       <td> </td>
@@ -1333,6 +1452,8 @@ Provider support:
     </tr>
     <tr>
       <td>ports</td>
+      <td> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -1360,11 +1481,15 @@ Provider support:
       <td> </td>
       <td> </td>
       <td> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>puppet_gem</td>
       <td> </td>
+      <td> </td>
       <td><em>X</em> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -1380,6 +1505,8 @@ Provider support:
       <td>rpm</td>
       <td> </td>
       <td><em>X</em> </td>
+      <td><em>X</em> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -1403,13 +1530,17 @@ Provider support:
       <td> </td>
       <td> </td>
       <td> </td>
+      <td> </td>
+      <td> </td>
       <td><em>X</em> </td>
       <td> </td>
     </tr>
     <tr>
       <td>sun</td>
       <td> </td>
+      <td> </td>
       <td><em>X</em> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -1435,11 +1566,15 @@ Provider support:
       <td> </td>
       <td> </td>
       <td> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>tdnf</td>
       <td> </td>
+      <td> </td>
       <td><em>X</em> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -1465,9 +1600,13 @@ Provider support:
       <td> </td>
       <td> </td>
       <td> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>urpmi</td>
+      <td> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -1484,8 +1623,10 @@ Provider support:
     <tr>
       <td>windows</td>
       <td> </td>
+      <td> </td>
       <td><em>X</em> </td>
       <td><em>X</em> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -1500,6 +1641,8 @@ Provider support:
       <td>yum</td>
       <td> </td>
       <td><em>X</em> </td>
+      <td><em>X</em> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -1514,7 +1657,9 @@ Provider support:
     <tr>
       <td>zypper</td>
       <td> </td>
+      <td> </td>
       <td><em>X</em> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -1531,4 +1676,4 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2019-09-06 09:16:04 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2020-02-28 15:12:08 -0800

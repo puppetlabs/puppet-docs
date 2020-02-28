@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 4c1b0ace7275f9646c9f6630e11f41556d88d2ac
+built_from_commit: d84d913905eea6e8180e6aef203edf1d8bf16dfd
 title: 'Resource Type: group'
 canonical: "/puppet/latest/types/group.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2019-09-06 09:16:04 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2020-02-28 15:12:08 -0800
 
 group
 -----
@@ -138,16 +138,20 @@ Allowed values:
 <h4 id="group-attribute-forcelocal">forcelocal</h4>
 
 Forces the management of local accounts when accounts are also
-being managed by some other NSS.
+being managed by some other Name Switch Service (NSS). For AIX, refer to the `ia_load_module` parameter.
+
+This option relies on your operating system's implementation of `luser*` commands, such as `luseradd` , `lgroupadd`, and `lusermod`. The `forcelocal` option could behave unpredictably in some circumstances. If the tools it depends on are not available, it might have no effect at all.
 
 Default: `false`
 
 Allowed values:
 
-* `true` or `yes`
-* `false` or `no`
+* `true`
+* `false`
+* `yes`
+* `no`
 
-Requires features libuser.
+Requires features manages_local_users_and_groups.
 
 ([↑ Back to group attributes](#group-attributes))
 
@@ -168,7 +172,8 @@ identifier (SID).
 
 <h4 id="group-attribute-ia_load_module">ia_load_module</h4>
 
-The name of the I&A module to use to manage this user
+The name of the I&A module to use to manage this group.
+This should be set to `files` if managing local groups.
 
 Requires features manages_aix_lam.
 
@@ -211,8 +216,10 @@ Default: `false`
 
 Allowed values:
 
-* `true` or `yes`
-* `false` or `no`
+* `true`
+* `false`
+* `yes`
+* `no`
 
 ([↑ Back to group attributes](#group-attributes))
 
@@ -281,8 +288,8 @@ Additionally, local groups can contain domain users.
 
 Available features:
 
-* `libuser` --- Allows local groups to be managed on systems that also use some other remote NSS method of managing accounts.
 * `manages_aix_lam` --- The provider can manage AIX Loadable Authentication Module (LAM) system.
+* `manages_local_users_and_groups` --- Allows local groups to be managed on systems that also use some other remote Name Switch Service (NSS) method of managing accounts.
 * `manages_members` --- For directories where membership is an attribute of groups not users.
 * `system_groups` --- The provider allows you to create system groups with lower GIDs.
 
@@ -292,8 +299,8 @@ Provider support:
   <thead>
     <tr>
       <th>Provider</th>
-      <th>libuser</th>
       <th>manages aix lam</th>
+      <th>manages local users and groups</th>
       <th>manages members</th>
       <th>system groups</th>
     </tr>
@@ -301,7 +308,7 @@ Provider support:
   <tbody>
     <tr>
       <td>aix</td>
-      <td> </td>
+      <td><em>X</em> </td>
       <td><em>X</em> </td>
       <td><em>X</em> </td>
       <td> </td>
@@ -315,10 +322,10 @@ Provider support:
     </tr>
     <tr>
       <td>groupadd</td>
-      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>ldap</td>
@@ -346,4 +353,4 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2019-09-06 09:16:04 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2020-02-28 15:12:08 -0800

@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 4c1b0ace7275f9646c9f6630e11f41556d88d2ac
+built_from_commit: d84d913905eea6e8180e6aef203edf1d8bf16dfd
 title: 'Resource Type: file'
 canonical: "/puppet/latest/types/file.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2019-09-06 09:16:04 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2020-02-28 15:12:08 -0800
 
 file
 -----
@@ -269,8 +269,10 @@ Default: `false`
 
 Allowed values:
 
-* `true` or `yes`
-* `false` or `no`
+* `true`
+* `false`
+* `yes`
+* `no`
 
 ([↑ Back to file attributes](#file-attributes))
 
@@ -448,8 +450,10 @@ Default: `false`
 
 Allowed values:
 
-* `true` or `yes`
-* `false` or `no`
+* `true`
+* `false`
+* `yes`
+* `no`
 
 ([↑ Back to file attributes](#file-attributes))
 
@@ -528,8 +532,10 @@ Default: `true`
 
 Allowed values:
 
-* `true` or `yes`
-* `false` or `no`
+* `true`
+* `false`
+* `yes`
+* `no`
 
 ([↑ Back to file attributes](#file-attributes))
 
@@ -541,7 +547,12 @@ seltype, and selrange). In general, you should leave this set at its
 default and only set it to true when you need Puppet to not try to fix
 SELinux labels automatically.
 
-Valid values are `true`, `false`.
+Default: `false`
+
+Allowed values:
+
+* `true`
+* `false`
 
 ([↑ Back to file attributes](#file-attributes))
 
@@ -606,8 +617,10 @@ Default: `true`
 
 Allowed values:
 
-* `true` or `yes`
-* `false` or `no`
+* `true`
+* `false`
+* `yes`
+* `no`
 
 ([↑ Back to file attributes](#file-attributes))
 
@@ -622,7 +635,7 @@ mount points.
 * Fully qualified paths to locally available files (including files on NFS
 shares or Windows mapped drives).
 * `file:` URIs, which behave the same as local file paths.
-* `http:` URIs, which point to files served by common web servers
+* `http:` URIs, which point to files served by common web servers.
 
 The normal form of a `puppet:` URI is:
 
@@ -840,4 +853,4 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2019-09-06 09:16:04 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2020-02-28 15:12:08 -0800

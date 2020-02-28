@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 0bddb3e47d69a64cc2e3221ec4dcf2cc71d01b88
+built_from_commit: 3f092a884e43635aa6d2d95363a9801af729e5f8
 title: 'Facter: Core Facts'
 toc: columns
 canonical: "/puppet/latest/core_facts.html"
@@ -613,6 +613,8 @@ Return information about the host operating system.
     * `full` (string) --- The full operating system release.
     * `major` (string) --- The major release of the operating system.
     * `minor` (string) --- The minor release of the operating system.
+    * `patchlevel` (string) --- The patchlevel of the operating system.
+    * `branch` (string) --- The branch the operating system was cut from.
 * `selinux` (map) --- Represents information about Security-Enhanced Linux (SELinux).
     * `config_mode` (string) --- The configured SELinux mode.
     * `config_policy` (string) --- The configured SELinux policy.

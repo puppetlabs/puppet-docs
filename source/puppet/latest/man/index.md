@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 922313f3b1cc7f14c799bddb4e354e45b29be180
+built_from_commit: d84d913905eea6e8180e6aef203edf1d8bf16dfd
 title: Puppet Man Pages
 canonical: "/puppet/latest/man/index.html"
 ---
@@ -16,7 +16,6 @@ These subcommands form the core of Puppet's tool set, and every user should unde
 
 - [puppet agent](./agent.html)
 - [puppet apply](./apply.html)
-- [puppet cert](./cert.html)
 - [puppet lookup](./lookup.html)
 - [puppet module](./module.html)
 - [puppet resource](./resource.html)

@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 321d3fb313ee6513c02dac363ae3b122b6168281
+built_from_commit: d84d913905eea6e8180e6aef203edf1d8bf16dfd
 title: 'Resource Type: user'
 canonical: "/puppet/latest/types/user.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2019-09-06 09:16:04 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2020-02-28 15:12:08 -0800
 
 user
 -----
@@ -205,7 +205,9 @@ Requires features manages_expiry.
 <h4 id="user-attribute-forcelocal">forcelocal</h4>
 
 Forces the management of local accounts when accounts are also
-being managed by some other NSS
+being managed by some other Name Service Switch (NSS). For AIX, refer to the `ia_load_module` parameter.
+
+This option relies on your operating system's implementation of `luser*` commands, such as `luseradd` , and `lgroupadd`, `lusermod`. The `forcelocal` option could behave unpredictably in some circumstances. If the tools it depends on are not available, it might have no effect at all.
 
 Default: `false`
 
@@ -216,7 +218,7 @@ Allowed values:
 * `yes`
 * `no`
 
-Requires features libuser.
+Requires features manages_local_users_and_groups.
 
 ([↑ Back to user attributes](#user-attributes))
 
@@ -254,6 +256,7 @@ separately and is not currently checked for existence.
 <h4 id="user-attribute-ia_load_module">ia_load_module</h4>
 
 The name of the I&A module to use to manage this user.
+This should be set to `files` if managing local users.
 
 Requires features manages_aix_lam.
 
@@ -707,10 +710,10 @@ Local user management for Windows.
 Available features:
 
 * `allows_duplicates` --- The provider supports duplicate users with the same UID.
-* `libuser` --- Allows local users to be managed on systems that also use some other remote NSS method of managing accounts.
 * `manages_aix_lam` --- The provider can manage AIX Loadable Authentication Module (LAM) system.
 * `manages_expiry` --- The provider can manage the expiry date for a user.
 * `manages_homedir` --- The provider can create and remove home directories.
+* `manages_local_users_and_groups` --- Allows local users to be managed on systems that also use some other remote Name Service Switch (NSS) method of managing accounts.
 * `manages_loginclass` --- The provider can manage the login class for a user.
 * `manages_password_age` --- The provider can set age requirements and restrictions for passwords.
 * `manages_password_salt` --- The provider can set a password salt. This is for providers that implement PBKDF2 passwords with salt properties.
@@ -726,10 +729,10 @@ Provider support:
     <tr>
       <th>Provider</th>
       <th>allows duplicates</th>
-      <th>libuser</th>
       <th>manages aix lam</th>
       <th>manages expiry</th>
       <th>manages homedir</th>
+      <th>manages local users and groups</th>
       <th>manages loginclass</th>
       <th>manages password age</th>
       <th>manages password salt</th>
@@ -743,7 +746,7 @@ Provider support:
     <tr>
       <td>aix</td>
       <td> </td>
-      <td> </td>
+      <td><em>X</em> </td>
       <td><em>X</em> </td>
       <td><em>X</em> </td>
       <td><em>X</em> </td>
@@ -775,8 +778,8 @@ Provider support:
       <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
       <td><em>X</em> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -804,9 +807,9 @@ Provider support:
       <td>openbsd</td>
       <td> </td>
       <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
       <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -819,9 +822,9 @@ Provider support:
       <td>pw</td>
       <td><em>X</em> </td>
       <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
       <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -835,8 +838,8 @@ Provider support:
       <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
       <td><em>X</em> </td>
+      <td> </td>
       <td> </td>
       <td><em>X</em> </td>
       <td> </td>
@@ -849,24 +852,24 @@ Provider support:
       <td>useradd</td>
       <td><em>X</em> </td>
       <td> </td>
-      <td> </td>
       <td><em>X</em> </td>
       <td><em>X</em> </td>
       <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>windows_adsi</td>
       <td> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
       <td><em>X</em> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -880,4 +883,4 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2019-09-06 09:16:04 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2020-02-28 15:12:08 -0800

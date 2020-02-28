@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 4c1b0ace7275f9646c9f6630e11f41556d88d2ac
+built_from_commit: d84d913905eea6e8180e6aef203edf1d8bf16dfd
 title: 'Resource Types: Index'
 canonical: "/puppet/latest/types/index.html"
 ---
@@ -156,12 +156,14 @@ The following types are contained in modules that are maintained, but are not re
 The following types were deprecated with Puppet 6.0.0. They are available in modules, but are not updated. If you need to use them, you must install the modules separately.
 
 - [`computer`](https://forge.puppet.com/puppetlabs/macdslocal_core)
-- [`interface`](https://forge.puppet.com/puppetlabs/cisco_ios)
+- [`interface`](https://github.com/puppetlabs/puppetlabs-network_device_core) (Use the updated [`cisco_ios module`](https://forge.puppet.com/puppetlabs/cisco_ios/readme) instead.
 - [`macauthorization`](https://forge.puppet.com/puppetlabs/macdslocal_core)
 - [`mcx`](https://forge.puppet.com/puppetlabs/macdslocal_core)
 - [The Nagios types](https://forge.puppet.com/puppetlabs/nagios_core)
-- [`router`](https://forge.puppet.com/puppetlabs/cisco_ios)
-- [`vlan`](https://forge.puppet.com/puppetlabs/cisco_ios)
+- [`router`](https://github.com/puppetlabs/puppetlabs-network_device_core) (Use the updated [`cisco_ios module`](https://forge.puppet.com/puppetlabs/cisco_ios/readme) instead.
+- [`vlan`](https://github.com/puppetlabs/puppetlabs-network_device_core) (Use the updated [`cisco_ios module`](https://forge.puppet.com/puppetlabs/cisco_ios/readme) instead.
+
+
 
 ## Puppet core types
 

@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 922313f3b1cc7f14c799bddb4e354e45b29be180
+built_from_commit: d84d913905eea6e8180e6aef203edf1d8bf16dfd
 title: 'Man Page: puppet node'
 canonical: "/puppet/latest/man/node.html"
 ---

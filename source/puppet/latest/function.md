@@ -1,13 +1,13 @@
 ---
 layout: default
-built_from_commit: db86fe9ef121365ed4c2822c56fc35f2fe28f5cb
+built_from_commit: d84d913905eea6e8180e6aef203edf1d8bf16dfd
 title: List of built-in functions
 canonical: "/puppet/latest/function.html"
 toc_levels: 2
 toc: columns
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2019-12-06 11:15:56 -0800
+> **NOTE:** This page was generated from the Puppet source code on 2020-02-28 15:12:08 -0800
 
 This page is a list of Puppet's built-in functions, with descriptions of what they do and how to use them.
 
@@ -27,10 +27,6 @@ The `<DATA TYPE>` is a [Puppet data type value](./lang_data_type.html), like `St
 
 
 ## `abs`
-
-`abs(Numeric $val)`
-
-`abs(String $val)`
 
 Returns the absolute value of a Numeric value, for example -34.56 becomes
 34.56. Takes a single `Integer` or `Float` value as an argument.
@@ -62,7 +58,19 @@ Integer($strval, 16, true) # Converts to absolute Integer using base 16 (hex)
 Float($strval, true)       # Converts to absolute Float
 ```
 
+
+Signature 1
+
+`abs(Numeric $val)`
+
+Signature 2
+
+`abs(String $val)`
+
 ## `alert`
+
+Logs a message on the server at level `alert`.
+
 
 `alert(Any *$values)`
 
@@ -72,17 +80,7 @@ Float($strval, true)       # Converts to absolute Float
 
 Return type(s): `Undef`. 
 
-Logs a message on the server at level `alert`.
-
 ## `all`
-
-`all(Hash[Any, Any] $hash, Callable[2,2] &$block)`
-
-`all(Hash[Any, Any] $hash, Callable[1,1] &$block)`
-
-`all(Iterable $enumerable, Callable[2,2] &$block)`
-
-`all(Iterable $enumerable, Callable[1,1] &$block)`
 
 Runs a [lambda](https://puppet.com/docs/puppet/latest/lang_lambdas.html)
 repeatedly using each value in a data structure until the lambda returns a non "truthy" value which
@@ -135,13 +133,24 @@ For an general examples that demonstrates iteration, see the Puppet
 [iteration](https://puppet.com/docs/puppet/latest/lang_iteration.html)
 documentation.
 
+
+Signature 1
+
+`all(Hash[Any, Any] $hash, Callable[2,2] &$block)`
+
+Signature 2
+
+`all(Hash[Any, Any] $hash, Callable[1,1] &$block)`
+
+Signature 3
+
+`all(Iterable $enumerable, Callable[2,2] &$block)`
+
+Signature 4
+
+`all(Iterable $enumerable, Callable[1,1] &$block)`
+
 ## `annotate`
-
-`annotate(Type[Annotation] $type, Any $value, Optional[Callable[0, 0]] &$block)`
-
-`annotate(Type[Annotation] $type, Any $value, Variant[Enum[clear],Hash[Pcore::MemberName,Any]] $annotation_hash)`
-
-`annotate(Type[Pcore] $type, Any $value, Hash[Type[Annotation], Hash[Pcore::MemberName,Any]] $annotations)`
 
 Handles annotations on objects. The function can be used in four different ways.
 
@@ -196,15 +205,20 @@ is initialized with the nested hash for the respective type. The annotated objec
   })
 ```
 
+
+Signature 1
+
+`annotate(Type[Annotation] $type, Any $value, Optional[Callable[0, 0]] &$block)`
+
+Signature 2
+
+`annotate(Type[Annotation] $type, Any $value, Variant[Enum[clear],Hash[Pcore::MemberName,Any]] $annotation_hash)`
+
+Signature 3
+
+`annotate(Type[Pcore] $type, Any $value, Hash[Type[Annotation], Hash[Pcore::MemberName,Any]] $annotations)`
+
 ## `any`
-
-`any(Hash[Any, Any] $hash, Callable[2,2] &$block)`
-
-`any(Hash[Any, Any] $hash, Callable[1,1] &$block)`
-
-`any(Iterable $enumerable, Callable[2,2] &$block)`
-
-`any(Iterable $enumerable, Callable[1,1] &$block)`
 
 Runs a [lambda](https://puppet.com/docs/puppet/latest/lang_lambdas.html)
 repeatedly using each value in a data structure until the lambda returns a "truthy" value which
@@ -262,11 +276,24 @@ For an general examples that demonstrates iteration, see the Puppet
 [iteration](https://puppet.com/docs/puppet/latest/lang_iteration.html)
 documentation.
 
+
+Signature 1
+
+`any(Hash[Any, Any] $hash, Callable[2,2] &$block)`
+
+Signature 2
+
+`any(Hash[Any, Any] $hash, Callable[1,1] &$block)`
+
+Signature 3
+
+`any(Iterable $enumerable, Callable[2,2] &$block)`
+
+Signature 4
+
+`any(Iterable $enumerable, Callable[1,1] &$block)`
+
 ## `assert_type`
-
-`assert_type(Type $type, Any $value, Optional[Callable[Type, Type]] &$block)`
-
-`assert_type(String $type_string, Any $value, Optional[Callable[Type, Type]] &$block)`
 
 Returns the given value if it is of the given
 [data type](https://puppet.com/docs/puppet/latest/lang_data.html), or
@@ -314,9 +341,16 @@ $valid_username = assert_type(String[1], $raw_username) |$expected, $actual| {
 For more information about data types, see the
 [documentation](https://puppet.com/docs/puppet/latest/lang_data.html).
 
-## `binary_file`
 
-`binary_file(String $path)`
+Signature 1
+
+`assert_type(Type $type, Any $value, Optional[Callable[Type, Type]] &$block)`
+
+Signature 2
+
+`assert_type(String $type_string, Any $value, Optional[Callable[Type, Type]] &$block)`
+
+## `binary_file`
 
 Loads a binary file from a module or file system and returns its contents as a `Binary`.
 The argument to this function should be a `<MODULE NAME>/<FILE>`
@@ -333,9 +367,10 @@ To search for the existence of files, use the `find_file()` function.
 
 - since 4.8.0
 
-## `break`
 
-`break()`
+`binary_file(String $path)`
+
+## `break`
 
 Breaks an innermost iteration as if it encountered an end of input.
 This function does not return to the caller.
@@ -364,11 +399,10 @@ Would notice the value `[10]`
 
 * Also see functions `next` and `return`
 
+
+`break()`
+
 ## `call`
-
-`call(String $function_name, Any *$arguments, Optional[Callable] &$block)`
-
-`call(Deferred $deferred)`
 
 Calls an arbitrary Puppet function by name.
 
@@ -417,13 +451,16 @@ Would notice the value of `$facts['processors']['count']` at the time when the `
 
 * Deferred values supported since Puppet 5.6.0
 
+
+Signature 1
+
+`call(String $function_name, Any *$arguments, Optional[Callable] &$block)`
+
+Signature 2
+
+`call(Deferred $deferred)`
+
 ## `camelcase`
-
-`camelcase(Numeric $arg)`
-
-`camelcase(String $arg)`
-
-`camelcase(Iterable[Variant[String, Numeric]] $arg)`
 
 Creates a Camel Case version of a String
 
@@ -448,18 +485,25 @@ camelcase('hello_friend')
 Would both result in `"HelloFriend"`
 
 ```puppet
-['abc_def', 'bcd_xyz'].capitalize()
-capitalize(['abc_def', 'bcd_xyz'])
+['abc_def', 'bcd_xyz'].camelcase()
+camelcase(['abc_def', 'bcd_xyz'])
 ```
 Would both result in `['AbcDef', 'BcdXyz']`
 
+
+Signature 1
+
+`camelcase(Numeric $arg)`
+
+Signature 2
+
+`camelcase(String $arg)`
+
+Signature 3
+
+`camelcase(Iterable[Variant[String, Numeric]] $arg)`
+
 ## `capitalize`
-
-`capitalize(Numeric $arg)`
-
-`capitalize(String $arg)`
-
-`capitalize(Iterable[Variant[String, Numeric]] $arg)`
 
 Capitalizes the first character of a String, or the first character of every String in an Iterable value (such as an Array).
 
@@ -488,11 +532,20 @@ capitalize(['abc', 'bcd'])
 ```
 Would both result in ['Abc', 'Bcd']
 
+
+Signature 1
+
+`capitalize(Numeric $arg)`
+
+Signature 2
+
+`capitalize(String $arg)`
+
+Signature 3
+
+`capitalize(Iterable[Variant[String, Numeric]] $arg)`
+
 ## `ceiling`
-
-`ceiling(Numeric $val)`
-
-`ceiling(String $val)`
 
 Returns the smallest `Integer` greater or equal to the argument.
 Takes a single numeric value as an argument.
@@ -505,13 +558,16 @@ is deprecated.
 In general convert string input to `Numeric` before calling this function
 to have full control over how the conversion is done.
 
+
+Signature 1
+
+`ceiling(Numeric $val)`
+
+Signature 2
+
+`ceiling(String $val)`
+
 ## `chomp`
-
-`chomp(Numeric $arg)`
-
-`chomp(String $arg)`
-
-`chomp(Iterable[Variant[String, Numeric]] $arg)`
 
 Returns a new string with the record separator character(s) removed.
 The record separator is the line ending characters `\r` and `\n`.
@@ -536,13 +592,20 @@ chomp(["hello\r\n", "hi\r\n"])
 ```
 Would both result in `['hello', 'hi']`
 
+
+Signature 1
+
+`chomp(Numeric $arg)`
+
+Signature 2
+
+`chomp(String $arg)`
+
+Signature 3
+
+`chomp(Iterable[Variant[String, Numeric]] $arg)`
+
 ## `chop`
-
-`chop(Numeric $arg)`
-
-`chop(String $arg)`
-
-`chop(Iterable[Variant[String, Numeric]] $arg)`
 
 Returns a new string with the last character removed.
 If the string ends with `\r\n`, both characters are removed. Applying chop to an empty
@@ -576,19 +639,20 @@ chop(["hello\r\n", "hi\r\n"])
 ```
 Would both result in `['hello', 'hi']`
 
+
+Signature 1
+
+`chop(Numeric $arg)`
+
+Signature 2
+
+`chop(String $arg)`
+
+Signature 3
+
+`chop(Iterable[Variant[String, Numeric]] $arg)`
+
 ## `compare`
-
-`compare(Numeric $a, Numeric $b)`
-
-`compare(String $a, String $b, Optional[Boolean] $ignore_case)`
-
-`compare(Semver $a, Semver $b)`
-
-`compare(Numeric $a, Variant[Timespan, Timestamp] $b)`
-
-`compare(Timestamp $a, Variant[Timestamp, Numeric] $b)`
-
-`compare(Timespan $a, Variant[Timespan, Numeric] $b)`
 
 Compares two values and returns -1, 0 or 1 if first value is smaller, equal or larger than the second value.
 The compare function accepts arguments of the data types `String`, `Numeric`, `Timespan`, `Timestamp`, and `Semver`,
@@ -601,9 +665,32 @@ When comparing two `String` values the comparison can be made to consider case b
 boolean `false` value - the default is `true` which ignores case as the comparison operators
 in the Puppet Language.
 
-## `contain`
 
-`contain(Any *$names)`
+Signature 1
+
+`compare(Numeric $a, Numeric $b)`
+
+Signature 2
+
+`compare(String $a, String $b, Optional[Boolean] $ignore_case)`
+
+Signature 3
+
+`compare(Semver $a, Semver $b)`
+
+Signature 4
+
+`compare(Numeric $a, Variant[Timespan, Timestamp] $b)`
+
+Signature 5
+
+`compare(Timestamp $a, Variant[Timestamp, Numeric] $b)`
+
+Signature 6
+
+`compare(Timespan $a, Variant[Timespan, Numeric] $b)`
+
+## `contain`
 
 Makes one or more classes be contained inside the current class.
 If any of these classes are undeclared, they will be declared as if
@@ -625,9 +712,10 @@ allowing the function call to `contain` to directly continue.
 - Since 4.0.0 support for `Class` and `Resource` `Type`-values, absolute names
 - Since 4.7.0 a value of type `Array[Type[Class[n]]]` is returned with all the contained classes
 
-## `convert_to`
 
-`convert_to(Any $value, Type $type, Optional[Any] *$args, Optional[Callable[1,1]] &$block)`
+`contain(Any *$names)`
+
+## `convert_to`
 
 The `convert_to(value, type)` is a convenience function that does the same as `new(type, value)`.
 The difference in the argument ordering allows it to be used in chained style for
@@ -646,9 +734,10 @@ returns what the lambda returns, otherwise the converted value.
   "abc".convert_to(Array).map |$i,$v| { [$i, $v] }.convert_to(Hash)
 ```
 
-## `create_resources`
 
-`create_resources()`
+`convert_to(Any $value, Type $type, Optional[Any] *$args, Optional[Callable[1,1]] &$block)`
+
+## `create_resources`
 
 Converts a hash into a set of resources and adds them to the catalog.
 
@@ -698,7 +787,13 @@ data binding and puppet default value expressions are considered (in that order)
 final value of a parameter (just as when setting a parameter to `undef` in a puppet language
 resource declaration).
 
+
+`create_resources()`
+
 ## `crit`
+
+Logs a message on the server at level `crit`.
+
 
 `crit(Any *$values)`
 
@@ -708,9 +803,10 @@ resource declaration).
 
 Return type(s): `Undef`. 
 
-Logs a message on the server at level `crit`.
-
 ## `debug`
+
+Logs a message on the server at level `debug`.
+
 
 `debug(Any *$values)`
 
@@ -720,11 +816,7 @@ Logs a message on the server at level `crit`.
 
 Return type(s): `Undef`. 
 
-Logs a message on the server at level `debug`.
-
 ## `defined`
-
-`defined(Variant[String, Type[CatalogEntry], Type[Type[CatalogEntry]]] *$vals)`
 
 Determines whether a given class or resource type is defined and returns a Boolean
 value. You can also use `defined` to determine whether a specific resource is defined,
@@ -816,9 +908,10 @@ defined(File['/tmp/file3'])
 defined('$tmp_file2')
 ```
 
-## `dig`
 
-`dig(Optional[Collection] $data, Any *$arg)`
+`defined(Variant[String, Type[CatalogEntry], Type[Type[CatalogEntry]]] *$vals)`
+
+## `dig`
 
 Returns a value for a sequence of given keys/indexes into a structure, such as
 an array or hash.
@@ -845,21 +938,17 @@ of the final key (`'x'`) is `undef`. The `dig` function will return `undef`,
 rather than failing catalog compilation. This allows you to check if data
 exists in a structure without mandating that it always exists.
 
-## `digest`
 
-`digest()`
+`dig(Optional[Collection] $data, Any *$arg)`
+
+## `digest`
 
 Returns a hash value from a provided string using the digest_algorithm setting from the Puppet config file.
 
+
+`digest()`
+
 ## `downcase`
-
-`downcase(Numeric $arg)`
-
-`downcase(String $arg)`
-
-`downcase(Array[StringData] $arg)`
-
-`downcase(Hash[StringData, StringData] $arg)`
 
 Converts a String, Array or Hash (recursively) into lower case.
 
@@ -902,15 +991,24 @@ Would result in `{'a' => 'hello', 'b' => 'goodbye'}`
 ```
 Would result in `['a', 'b', ['c', ['d']], {'x' => 'y'}]`
 
+
+Signature 1
+
+`downcase(Numeric $arg)`
+
+Signature 2
+
+`downcase(String $arg)`
+
+Signature 3
+
+`downcase(Array[StringData] $arg)`
+
+Signature 4
+
+`downcase(Hash[StringData, StringData] $arg)`
+
 ## `each`
-
-`each(Hash[Any, Any] $hash, Callable[2,2] &$block)`
-
-`each(Hash[Any, Any] $hash, Callable[1,1] &$block)`
-
-`each(Iterable $enumerable, Callable[2,2] &$block)`
-
-`each(Iterable $enumerable, Callable[1,1] &$block)`
 
 Runs a [lambda](https://puppet.com/docs/puppet/latest/lang_lambdas.html)
 repeatedly using each value in a data structure, then returns the values unchanged.
@@ -996,7 +1094,27 @@ see the Puppet
 [iteration](https://puppet.com/docs/puppet/latest/lang_iteration.html)
 documentation.
 
+
+Signature 1
+
+`each(Hash[Any, Any] $hash, Callable[2,2] &$block)`
+
+Signature 2
+
+`each(Hash[Any, Any] $hash, Callable[1,1] &$block)`
+
+Signature 3
+
+`each(Iterable $enumerable, Callable[2,2] &$block)`
+
+Signature 4
+
+`each(Iterable $enumerable, Callable[1,1] &$block)`
+
 ## `emerg`
+
+Logs a message on the server at level `emerg`.
+
 
 `emerg(Any *$values)`
 
@@ -1006,19 +1124,7 @@ documentation.
 
 Return type(s): `Undef`. 
 
-Logs a message on the server at level `emerg`.
-
 ## `empty`
-
-`empty(Collection $coll)`
-
-`empty(String $str)`
-
-`empty(Numeric $num)`
-
-`empty(Binary $bin)`
-
-`empty(Undef $x)`
 
 Returns `true` if the given argument is an empty collection of values.
 
@@ -1039,9 +1145,28 @@ notice(empty([]))
 # would both notice 'true'
 ```
 
-## `epp`
 
-`epp(String $path, Optional[Hash[Pattern[/^\w+$/], Any]] $parameters)`
+Signature 1
+
+`empty(Collection $coll)`
+
+Signature 2
+
+`empty(String $str)`
+
+Signature 3
+
+`empty(Numeric $num)`
+
+Signature 4
+
+`empty(Binary $bin)`
+
+Signature 5
+
+`empty(Undef $x)`
+
+## `epp`
 
 Evaluates an Embedded Puppet (EPP) template file and returns the rendered text
 result as a String.
@@ -1051,12 +1176,12 @@ result as a String.
 The first argument to this function should be a `<MODULE NAME>/<TEMPLATE FILE>`
 reference, which loads `<TEMPLATE FILE>` from `<MODULE NAME>`'s `templates`
 directory. In most cases, the last argument is optional; if used, it should be a
-[hash](/puppet/latest/reference/lang_data_hash.html) that contains parameters to
+[hash](https://puppet.com/docs/puppet/latest/lang_data_hash.html) that contains parameters to
 pass to the template.
 
-- See the [template](/puppet/latest/reference/lang_template.html) documentation
-for general template usage information.
-- See the [EPP syntax](/puppet/latest/reference/lang_template_epp.html)
+- See the [template](https://puppet.com/docs/puppet/latest/lang_template.html)
+documentation for general template usage information.
+- See the [EPP syntax](https://puppet.com/docs/puppet/latest/lang_template_epp.html)
 documentation for examples of EPP.
 
 For example, to call the apache module's `templates/vhost/_docroot.epp`
@@ -1077,7 +1202,13 @@ Parameters are required only if they are declared in the called template's
 parameter tag without default values. Puppet produces an error if the `epp`
 function fails to pass any required parameter.
 
+
+`epp(String $path, Optional[Hash[Pattern[/^\w+$/], Any]] $parameters)`
+
 ## `err`
+
+Logs a message on the server at level `err`.
+
 
 `err(Any *$values)`
 
@@ -1087,26 +1218,24 @@ function fails to pass any required parameter.
 
 Return type(s): `Undef`. 
 
-Logs a message on the server at level `err`.
-
 ## `eyaml_lookup_key`
-
-`eyaml_lookup_key(String[1] $key, Hash[String[1],Any] $options, Puppet::LookupContext $context)`
 
 The `eyaml_lookup_key` is a hiera 5 `lookup_key` data provider function.
 See [the configuration guide documentation](https://puppet.com/docs/puppet/latest/hiera_config_yaml_5.html#configuring-a-hierarchy-level-hiera-eyaml) for
 how to use this function.
 
-## `fail`
 
-`fail()`
+`eyaml_lookup_key(String[1] $key, Hash[String[1],Any] $options, Puppet::LookupContext $context)`
+
+## `fail`
 
 Fail with a parse error. Any parameters will be stringified,
 concatenated, and passed to the exception-handler.
 
-## `file`
 
-`file()`
+`fail()`
+
+## `file`
 
 Loads a file from a module and returns its contents as a string.
 
@@ -1121,15 +1250,10 @@ This function can also accept:
 * Multiple arguments, which will return the contents of the **first** file
 found, skipping any files that don't exist.
 
+
+`file()`
+
 ## `filter`
-
-`filter(Hash[Any, Any] $hash, Callable[2,2] &$block)`
-
-`filter(Hash[Any, Any] $hash, Callable[1,1] &$block)`
-
-`filter(Iterable $enumerable, Callable[2,2] &$block)`
-
-`filter(Iterable $enumerable, Callable[1,1] &$block)`
 
 Applies a [lambda](https://puppet.com/docs/puppet/latest/lang_lambdas.html)
 to every value in a data structure and returns an array or hash containing any elements
@@ -1189,32 +1313,99 @@ $filtered_data = $data.filter |$keys, $values| { $keys =~ /berry$/ and $values <
 # $filtered_data = {blueberry => 1}
 ```
 
+
+Signature 1
+
+`filter(Hash[Any, Any] $hash, Callable[2,2] &$block)`
+
+Signature 2
+
+`filter(Hash[Any, Any] $hash, Callable[1,1] &$block)`
+
+Signature 3
+
+`filter(Iterable $enumerable, Callable[2,2] &$block)`
+
+Signature 4
+
+`filter(Iterable $enumerable, Callable[1,1] &$block)`
+
 ## `find_file`
-
-`find_file(String *$paths)`
-
-`find_file(Array[String] *$paths_array)`
 
 Finds an existing file from a module and returns its path.
 
-The argument to this function should be a String as a `<MODULE NAME>/<FILE>`
-reference, which will search for `<FILE>` relative to a module's `files`
+This function accepts an argument that is a String as a `<MODULE NAME>/<FILE>`
+reference, which searches for `<FILE>` relative to a module's `files`
 directory. (For example, the reference `mysql/mysqltuner.pl` will search for the
 file `<MODULES DIRECTORY>/mysql/files/mysqltuner.pl`.)
 
 This function can also accept:
 
-* An absolute String path, which will check for the existence of a file from anywhere on disk.
-* Multiple String arguments, which will return the path of the **first** file
-  found, skipping non existing files.
-* An array of string paths, which will return the path of the **first** file
-  found from the given paths in the array, skipping non existing files.
+* An absolute String path, which checks for the existence of a file from anywhere on disk.
+* Multiple String arguments, which returns the path of the **first** file
+  found, skipping nonexistent files.
+* An array of string paths, which returns the path of the **first** file
+  found from the given paths in the array, skipping nonexistent files.
 
-The function returns `undef` if none of the given paths were found
+The function returns `undef` if none of the given paths were found.
+
+
+Signature 1
+
+`find_file(String *$paths)`
+
+Signature 2
+
+`find_file(Array[String] *$paths_array)`
+
+## `find_template`
+
+Finds an existing template from a module and returns its path.
+
+This function accepts an argument that is a String as a `<MODULE NAME>/<TEMPLATE>`
+reference, which searches for `<TEMPLATE>` relative to a module's `templates`
+directory on the master. (For example, the reference `mymod/secret.conf.epp`
+will search for the file `<MODULES DIRECTORY>/mymod/templates/secret.conf.epp`.)
+
+The primary use case is for agent-side template rendering with late-bound variables
+resolved, such as from secret stores inaccessible to the master, such as
+
+```
+$variables = {
+  'password' => Deferred('vault_lookup::lookup',
+                  ['secret/mymod', 'https://vault.example.com:8200']),
+}
+
+# compile the template source into the catalog
+file { '/etc/secrets.conf':
+  ensure  => file,
+  content => Deferred('inline_epp',
+               [find_template('mymod/secret.conf.epp').file, $variables]),
+}
+```
+
+
+
+This function can also accept:
+
+* An absolute String path, which checks for the existence of a template from anywhere on disk.
+* Multiple String arguments, which returns the path of the **first** template
+  found, skipping nonexistent files.
+* An array of string paths, which returns the path of the **first** template
+  found from the given paths in the array, skipping nonexistent files.
+
+The function returns `undef` if none of the given paths were found.
+
+
+Signature 1
+
+`find_template(String *$paths)`
+
+Signature 2
+
+`find_template(Array[String] *$paths_array)`
 
 ## `flatten`
-
-`flatten(Any *$args)`
 
 Returns a flat Array produced from its possibly deeply nested given arguments.
 
@@ -1261,11 +1452,10 @@ flatten([42])
 # Would also return [42]
 ```
 
+
+`flatten(Any *$args)`
+
 ## `floor`
-
-`floor(Numeric $val)`
-
-`floor(String $val)`
 
 Returns the largest `Integer` less or equal to the argument.
 Takes a single numeric value as an argument.
@@ -1278,9 +1468,16 @@ is deprecated.
 In general convert string input to `Numeric` before calling this function
 to have full control over how the conversion is done.
 
-## `fqdn_rand`
 
-`fqdn_rand()`
+Signature 1
+
+`floor(Numeric $val)`
+
+Signature 2
+
+`floor(String $val)`
+
+## `fqdn_rand`
 
 Usage: `fqdn_rand(MAX, [SEED])`. MAX is required and must be a positive
 integer; SEED is optional and may be any number or string.
@@ -1297,9 +1494,10 @@ have more than one such task and need several unrelated random numbers per
 node. (For example, `fqdn_rand(30)`, `fqdn_rand(30, 'expensive job 1')`, and
 `fqdn_rand(30, 'expensive job 2')` will produce totally different numbers.)
 
-## `generate`
 
-`generate()`
+`fqdn_rand()`
+
+## `generate`
 
 Calls an external command on the Puppet master and returns
 the results of the command. Any arguments are passed to the external command as
@@ -1313,9 +1511,10 @@ generators, so all shell metacharacters are passed directly to
 the generator, and all metacharacters are returned by the function.
 Consider cleaning white space from any string generated.
 
-## `get`
 
-`get(Any $value, String $dotted_string, Optional[Any] $default_value, Optional[Callable[1,1]] &$block)`
+`generate()`
+
+## `get`
 
 Digs into a value with dot notation to get a value from within a structure.
 
@@ -1422,9 +1621,10 @@ Also see:
 * `dig()` function which is similar but uses an
   array of navigation values instead of a dot notation string.
 
-## `getvar`
 
-`getvar(Pattern[/\A(?:::)?(?:[a-z]\w*::)*[a-z_]\w*(?:\.|\Z)/] $get_string, Optional[Any] $default_value, Optional[Callable[1,1]] &$block)`
+`get(Any $value, String $dotted_string, Optional[Any] $default_value, Optional[Callable[1,1]] &$block)`
+
+## `getvar`
 
 Digs into a variable with dot notation to get a value from a structure.
 
@@ -1465,7 +1665,16 @@ getvar('x.2.1.name', 'not waldo')
 For further examples and how to perform error handling, see the `get()` function
 which this function delegates to after having resolved the variable value.
 
+
+`getvar(Pattern[/\A(?:::)?(?:[a-z]\w*::)*[a-z_]\w*(?:\.|\Z)/] $get_string, Optional[Any] $default_value, Optional[Callable[1,1]] &$block)`
+
 ## `group_by`
+
+Groups the collection by result of the block. Returns a hash where the keys are the evaluated result from the block
+and the values are arrays of elements in the collection that correspond to the key.
+
+
+Signature 1
 
 `group_by(Collection $collection, Callable[1,1] &$block)`
 
@@ -1478,24 +1687,31 @@ Return type(s): `Hash`.
 ## Examples
 
 Group array of strings by length, results in e.g. { 1 => [a, b], 2 => [ab] }
-`[a, b, ab].group_by |$s| { $s.length }`
+
+[a, b, ab].group_by |$s| { $s.length }
+
 Group array of strings by length and index, results in e.g. {1 => ['a'], 2 => ['b', 'ab']}
-`[a, b, ab].group_by |$i, $s| { $i%2 + $s.length }`
+
+[a, b, ab].group_by |$i, $s| { $i%2 + $s.length }
+
 Group hash iterating by key-value pair, results in e.g. { 2 => [['a', [1, 2]]], 1 => [['b', [1]]] }
-`{ a => [1, 2], b => [1] }.group_by |$kv| { $kv[1].length }`
+
+{ a => [1, 2], b => [1] }.group_by |$kv| { $kv[1].length }
+
 Group hash iterating by key and value, results in e.g. { 2 => [['a', [1, 2]]], 1 => [['b', [1]]] }
-`{ a => [1, 2], b => [1] }.group_by |$k, $v| { $v.length }`
+
+{ a => [1, 2], b => [1] }.group_by |$k, $v| { $v.length }
+
+
+Signature 2
 
 `group_by(Array $array, Callable[2,2] &$block)`
 
+Signature 3
+
 `group_by(Collection $collection, Callable[2,2] &$block)`
 
-Groups the collection by result of the block. Returns a hash where the keys are the evaluated result from the block
-and the values are arrays of elements in the collection that correspond to the key.
-
 ## `hiera`
-
-`hiera()`
 
 Performs a standard priority lookup of the hierarchy and returns the most specific value
 for a given key. The returned value can be any type of data.
@@ -1575,9 +1791,10 @@ Also see
 [the 'Using the deprecated hiera functions' documentation](https://puppet.com/docs/puppet/latest/hiera_automatic.html)
 for more information about the Hiera 3 functions.
 
-## `hiera_array`
 
-`hiera_array()`
+`hiera()`
+
+## `hiera_array`
 
 Finds all matches of a key throughout the hierarchy and returns them as a single flattened
 array of unique values. If any of the matched values are arrays, they're flattened and
@@ -1645,9 +1862,10 @@ Also see
 [the 'Using the deprecated hiera functions' documentation](https://puppet.com/docs/puppet/latest/hiera_automatic.html)
 for more information about the Hiera 3 functions.
 
-## `hiera_hash`
 
-`hiera_hash()`
+`hiera_array()`
+
+## `hiera_hash`
 
 Finds all matches of a key throughout the hierarchy and returns them in a merged hash.
 
@@ -1726,9 +1944,10 @@ Also see
 [the 'Using the deprecated hiera functions' documentation](https://puppet.com/docs/puppet/latest/hiera_automatic.html)
 for more information about the Hiera 3 functions.
 
-## `hiera_include`
 
-`hiera_include()`
+`hiera_hash()`
+
+## `hiera_include`
 
 Assigns classes to a node using an
 [array merge lookup](https://puppet.com/docs/hiera/latest/lookup_types.html#array-merge)
@@ -1812,9 +2031,10 @@ Also see
 [the 'Using the deprecated hiera functions' documentation](https://puppet.com/docs/puppet/latest/hiera_automatic.html)
 for more information about the Hiera 3 functions.
 
-## `hocon_data`
 
-`hocon_data(Struct[{path=>String[1]}] $options, Puppet::LookupContext $context)`
+`hiera_include()`
+
+## `hocon_data`
 
 The `hocon_data` is a hiera 5 `data_hash` data provider function.
 See [the configuration guide documentation](https://puppet.com/docs/puppet/latest/hiera_config_yaml_5.html#configuring-a-hierarchy-level-built-in-backends) for
@@ -1822,15 +2042,17 @@ how to use this function.
 
 Note that this function is not supported without a hocon library being present.
 
-## `import`
 
-`import(Any *$args)`
+`hocon_data(Struct[{path=>String[1]}] $options, Puppet::LookupContext $context)`
+
+## `import`
 
 The import function raises an error when called to inform the user that import is no longer supported.
 
-## `include`
 
-`include(Any *$names)`
+`import(Any *$args)`
+
+## `include`
 
 Declares one or more classes, causing the resources in them to be
 evaluated and added to the catalog. Accepts a class name, an array of class
@@ -1860,19 +2082,10 @@ the resource and relationship expressions.
 - Since 4.0.0 support for class and resource type values, absolute names
 - Since 4.7.0 returns an `Array[Type[Class]]` of all included classes
 
+
+`include(Any *$names)`
+
 ## `index`
-
-`index(Hash[Any, Any] $hash, Callable[2,2] &$block)`
-
-`index(Hash[Any, Any] $hash, Callable[1,1] &$block)`
-
-`index(Iterable $enumerable, Callable[2,2] &$block)`
-
-`index(Iterable $enumerable, Callable[1,1] &$block)`
-
-`index(String $str, Variant[String,Regexp] $match)`
-
-`index(Iterable $enumerable, Any $match)`
 
 Returns the index (or key in a hash) to a first-found value in an `Iterable` value.
 
@@ -1949,7 +2162,35 @@ For an general examples that demonstrates iteration, see the Puppet
 [iteration](https://puppet.com/docs/puppet/latest/lang_iteration.html)
 documentation.
 
+
+Signature 1
+
+`index(Hash[Any, Any] $hash, Callable[2,2] &$block)`
+
+Signature 2
+
+`index(Hash[Any, Any] $hash, Callable[1,1] &$block)`
+
+Signature 3
+
+`index(Iterable $enumerable, Callable[2,2] &$block)`
+
+Signature 4
+
+`index(Iterable $enumerable, Callable[1,1] &$block)`
+
+Signature 5
+
+`index(String $str, Variant[String,Regexp] $match)`
+
+Signature 6
+
+`index(Iterable $enumerable, Any $match)`
+
 ## `info`
+
+Logs a message on the server at level `info`.
+
 
 `info(Any *$values)`
 
@@ -1959,11 +2200,7 @@ documentation.
 
 Return type(s): `Undef`. 
 
-Logs a message on the server at level `info`.
-
 ## `inline_epp`
-
-`inline_epp(String $template, Optional[Hash[Pattern[/^\w+$/], Any]] $parameters)`
 
 Evaluates an Embedded Puppet (EPP) template string and returns the rendered
 text result as a String.
@@ -1972,12 +2209,12 @@ text result as a String.
 
 The first argument to this function should be a string containing an EPP
 template. In most cases, the last argument is optional; if used, it should be a
-[hash](/puppet/latest/reference/lang_data_hash.html) that contains parameters to
+[hash](https://puppet.com/docs/puppet/latest/lang_data_hash.html) that contains parameters to
 pass to the template.
 
-- See the [template](/puppet/latest/reference/lang_template.html) documentation
-for general template usage information.
-- See the [EPP syntax](/puppet/latest/reference/lang_template_epp.html)
+- See the [template](https://puppet.com/docs/puppet/latest/lang_template.html)
+documentation for general template usage information.
+- See the [EPP syntax](https://puppet.com/docs/puppet/latest/lang_template_epp.html)
 documentation for examples of EPP.
 
 For example, to evaluate an inline EPP template and pass it the `docroot` and
@@ -1995,7 +2232,7 @@ parameter tag without default values. Puppet produces an error if the
 `inline_epp` function fails to pass any required parameter.
 
 An inline EPP template should be written as a single-quoted string or
-[heredoc](/puppet/latest/reference/lang_data_string.html#heredocs).
+[heredoc](https://puppet.com/docs/puppet/latest/lang_data_string.html#heredocs).
 A double-quoted string is subject to expression interpolation before the string
 is parsed as an EPP template.
 
@@ -2010,18 +2247,20 @@ Hello <%= $x %> <%= $y %>!
 END
 ```
 
-## `inline_template`
 
-`inline_template()`
+`inline_epp(String $template, Optional[Hash[Pattern[/^\w+$/], Any]] $parameters)`
+
+## `inline_template`
 
 Evaluate a template string and return its value.  See
 [the templating docs](https://puppet.com/docs/puppet/latest/lang_template.html) for
 more information. Note that if multiple template strings are specified, their
 output is all concatenated and returned as the output of the function.
 
-## `join`
 
-`join(Array $arg, Optional[String] $delimiter)`
+`inline_template()`
+
+## `join`
 
 Joins the values of an Array into a string with elements separated by a delimiter.
 
@@ -2061,17 +2300,19 @@ For more detailed control over the formatting (including indentations and line b
 and hash entries, between key/values in hash entries, and individual formatting of values in the array)
 see the `new` function for `String` and its formatting options for `Array` and `Hash`.
 
-## `json_data`
 
-`json_data(Struct[{path=>String[1]}] $options, Puppet::LookupContext $context)`
+`join(Array $arg, Optional[String] $delimiter)`
+
+## `json_data`
 
 The `json_data` is a hiera 5 `data_hash` data provider function.
 See [the configuration guide documentation](https://puppet.com/docs/puppet/latest/hiera_config_yaml_5.html#configuring-a-hierarchy-level-built-in-backends) for
 how to use this function.
 
-## `keys`
 
-`keys(Hash $hsh)`
+`json_data(Struct[{path=>String[1]}] $options, Puppet::LookupContext $context)`
+
+## `keys`
 
 Returns the keys of a hash as an Array
 
@@ -2087,13 +2328,10 @@ keys($hsh)
 * For an empty hash, an empty array is returned.
 * The order of the keys is the same as the order in the hash (typically the order in which they were added).
 
+
+`keys(Hash $hsh)`
+
 ## `length`
-
-`length(Collection $arg)`
-
-`length(String $arg)`
-
-`length(Binary $arg)`
 
 Returns the length of an Array, Hash, String, or Binary value.
 
@@ -2109,9 +2347,20 @@ length("violets")       # 7
 {a => 1, b => 3}.length # 2
 ```
 
-## `lest`
 
-`lest(Any $arg, Callable[0,0] &$block)`
+Signature 1
+
+`length(Collection $arg)`
+
+Signature 2
+
+`length(String $arg)`
+
+Signature 3
+
+`length(Binary $arg)`
+
+## `lest`
 
 Calls a [lambda](https://puppet.com/docs/puppet/latest/lang_lambdas.html)
 without arguments if the value given to `lest` is `undef`.
@@ -2150,17 +2399,10 @@ notice $data.dig(a, b, c)
 
 Would notice the value `20`
 
+
+`lest(Any $arg, Callable[0,0] &$block)`
+
 ## `lookup`
-
-`lookup(NameType $name, Optional[ValueType] $value_type, Optional[MergeType] $merge)`
-
-`lookup(NameType $name, Optional[ValueType] $value_type, Optional[MergeType] $merge, DefaultValueType $default_value)`
-
-`lookup(NameType $name, Optional[ValueType] $value_type, Optional[MergeType] $merge, BlockType &$block)`
-
-`lookup(OptionsWithName $options_hash, Optional[BlockType] &$block)`
-
-`lookup(Variant[String,Array[String]] $name, OptionsWithoutName $options_hash, Optional[BlockType] &$block)`
 
 Uses the Puppet lookup system to retrieve a value for a given key. By default,
 this returns the first value found (and fails compilation if no values are
@@ -2268,13 +2510,28 @@ but can adjust the merge with additional options. The available options are:
     * `'merge_hash_arrays'` (boolean) --- Whether to merge hashes within arrays.
     Defaults to `false`.
 
+
+Signature 1
+
+`lookup(NameType $name, Optional[ValueType] $value_type, Optional[MergeType] $merge)`
+
+Signature 2
+
+`lookup(NameType $name, Optional[ValueType] $value_type, Optional[MergeType] $merge, DefaultValueType $default_value)`
+
+Signature 3
+
+`lookup(NameType $name, Optional[ValueType] $value_type, Optional[MergeType] $merge, BlockType &$block)`
+
+Signature 4
+
+`lookup(OptionsWithName $options_hash, Optional[BlockType] &$block)`
+
+Signature 5
+
+`lookup(Variant[String,Array[String]] $name, OptionsWithoutName $options_hash, Optional[BlockType] &$block)`
+
 ## `lstrip`
-
-`lstrip(Numeric $arg)`
-
-`lstrip(String $arg)`
-
-`lstrip(Iterable[Variant[String, Numeric]] $arg)`
 
 Strips leading spaces from a String
 
@@ -2300,15 +2557,20 @@ lstrip(["\n\thello", "\n\thi"])
 ```
 Would both result in `['hello', 'hi']`
 
+
+Signature 1
+
+`lstrip(Numeric $arg)`
+
+Signature 2
+
+`lstrip(String $arg)`
+
+Signature 3
+
+`lstrip(Iterable[Variant[String, Numeric]] $arg)`
+
 ## `map`
-
-`map(Hash[Any, Any] $hash, Callable[2,2] &$block)`
-
-`map(Hash[Any, Any] $hash, Callable[1,1] &$block)`
-
-`map(Iterable $enumerable, Callable[2,2] &$block)`
-
-`map(Iterable $enumerable, Callable[1,1] &$block)`
 
 Applies a [lambda](https://puppet.com/docs/puppet/latest/lang_lambdas.html)
 to every value in a data structure and returns an array containing the results.
@@ -2366,11 +2628,24 @@ $transformed_data = $data.map |$key,$value| { $value }
 # $transformed_data contains [1,2,3]
 ```
 
+
+Signature 1
+
+`map(Hash[Any, Any] $hash, Callable[2,2] &$block)`
+
+Signature 2
+
+`map(Hash[Any, Any] $hash, Callable[1,1] &$block)`
+
+Signature 3
+
+`map(Iterable $enumerable, Callable[2,2] &$block)`
+
+Signature 4
+
+`map(Iterable $enumerable, Callable[1,1] &$block)`
+
 ## `match`
-
-`match(String $string, Variant[Any, Type] $pattern)`
-
-`match(Array[String] $string, Variant[Any, Type] $pattern)`
 
 Matches a regular expression against a string and returns an array containing the match
 and any matched capturing groups.
@@ -2400,21 +2675,16 @@ $matches = ["abc123","def456"].match(/([a-z]+)([1-9]+)/)
 # $matches contains [[abc123, abc, 123], [def456, def, 456]]
 ```
 
+
+Signature 1
+
+`match(String $string, Variant[Any, Type] $pattern)`
+
+Signature 2
+
+`match(Array[String] $string, Variant[Any, Type] $pattern)`
+
 ## `max`
-
-`max(Numeric *$values)`
-
-`max(String *$values)`
-
-`max(Array[Numeric] $values, Optional[Callable[2,2]] &$block)`
-
-`max(Array[String] $values, Optional[Callable[2,2]] &$block)`
-
-`max(Array $values, Optional[Callable[2,2]] &$block)`
-
-`max(Any *$values, Callable[2,2] &$block)`
-
-`max(Any *$values)`
 
 Returns the highest value among a variable number of arguments.
 Takes at least one argument.
@@ -2483,27 +2753,43 @@ Would notice "2" as higher since it is lexicographically higher/after the other 
 lambda the stdlib compatible (deprecated) behavior would have been to return "100" since number conversion
 kicks in.
 
-## `md5`
 
-`md5()`
+Signature 1
+
+`max(Numeric *$values)`
+
+Signature 2
+
+`max(String *$values)`
+
+Signature 3
+
+`max(Array[Numeric] $values, Optional[Callable[2,2]] &$block)`
+
+Signature 4
+
+`max(Array[String] $values, Optional[Callable[2,2]] &$block)`
+
+Signature 5
+
+`max(Array $values, Optional[Callable[2,2]] &$block)`
+
+Signature 6
+
+`max(Any *$values, Callable[2,2] &$block)`
+
+Signature 7
+
+`max(Any *$values)`
+
+## `md5`
 
 Returns a MD5 hash value from a provided string.
 
+
+`md5()`
+
 ## `min`
-
-`min(Numeric *$values)`
-
-`min(String *$values)`
-
-`min(Array[Numeric] $values, Optional[Callable[2,2]] &$block)`
-
-`min(Array[String] $values, Optional[Callable[2,2]] &$block)`
-
-`min(Array $values, Optional[Callable[2,2]] &$block)`
-
-`min(Any *$values, Callable[2,2] &$block)`
-
-`min(Any *$values)`
 
 Returns the lowest value among a variable number of arguments.
 Takes at least one argument.
@@ -2571,11 +2857,36 @@ notice(min("2", "10", "100") |$a, $b| { compare($a, $b) })
 Would notice "10" as lower since it is lexicographically lower/before the other values. Without the
 lambda the stdlib compatible (deprecated) behavior would have been to return "2" since number conversion kicks in.
 
+
+Signature 1
+
+`min(Numeric *$values)`
+
+Signature 2
+
+`min(String *$values)`
+
+Signature 3
+
+`min(Array[Numeric] $values, Optional[Callable[2,2]] &$block)`
+
+Signature 4
+
+`min(Array[String] $values, Optional[Callable[2,2]] &$block)`
+
+Signature 5
+
+`min(Array $values, Optional[Callable[2,2]] &$block)`
+
+Signature 6
+
+`min(Any *$values, Callable[2,2] &$block)`
+
+Signature 7
+
+`min(Any *$values)`
+
 ## `module_directory`
-
-`module_directory(String *$names)`
-
-`module_directory(Array[String] *$names)`
 
 Finds an existing module and returns the path to its root directory.
 
@@ -2593,9 +2904,16 @@ This function can also accept:
 
 The function returns `undef` if none of the given modules were found
 
-## `new`
 
-`new(Type $type, Any *$args, Optional[Callable] &$block)`
+Signature 1
+
+`module_directory(String *$names)`
+
+Signature 2
+
+`module_directory(Array[String] *$names)`
+
+## `new`
 
 Creates a new instance/object of a given data type.
 
@@ -3545,14 +3863,21 @@ $fmt = Init[String,'%#x']
 notice($fmt(256)) # will notice '0x100'
 ```
 
-## `next`
 
-`next(Optional[Any] $value)`
+`new(Type $type, Any *$args, Optional[Callable] &$block)`
+
+## `next`
 
 Makes iteration continue with the next value, optionally with a given value for this iteration.
 If a value is not given it defaults to `undef`
 
+
+`next(Optional[Any] $value)`
+
 ## `notice`
+
+Logs a message on the server at level `notice`.
+
 
 `notice(Any *$values)`
 
@@ -3562,9 +3887,13 @@ If a value is not given it defaults to `undef`
 
 Return type(s): `Undef`. 
 
-Logs a message on the server at level `notice`.
-
 ## `partition`
+
+Returns two arrays, the first containing the elements of enum for which the block evaluates to true,
+the second containing the rest.
+
+
+Signature 1
 
 `partition(Collection $collection, Callable[1,1] &$block)`
 
@@ -3577,24 +3906,31 @@ Return type(s): `Tuple[Array, Array]`.
 ## Examples
 
 Partition array of empty strings, results in e.g. [[''], [b, c]]
-`['', b, c].partition |$s| { $s.empty }`
+
+['', b, c].partition |$s| { $s.empty }
+
 Partition array of strings using index, results in e.g. [['', 'ab'], ['b']]
-`['', b, ab].partition |$i, $s| { $i == 2 or $s.empty }`
+
+['', b, ab].partition |$i, $s| { $i == 2 or $s.empty }
+
 Partition hash of strings by key-value pair, results in e.g. [[['b', []]], [['a', [1, 2]]]]
-`{ a => [1, 2], b => [] }.partition |$kv| { $kv[1].empty }`
+
+{ a => [1, 2], b => [] }.partition |$kv| { $kv[1].empty }
+
 Partition hash of strings by key and value, results in e.g. [[['b', []]], [['a', [1, 2]]]]
-`{ a => [1, 2], b => [] }.partition |$k, $v| { $v.empty }`
+
+{ a => [1, 2], b => [] }.partition |$k, $v| { $v.empty }
+
+
+Signature 2
 
 `partition(Array $array, Callable[2,2] &$block)`
 
+Signature 3
+
 `partition(Collection $collection, Callable[2,2] &$block)`
 
-Returns two arrays, the first containing the elements of enum for which the block evaluates to true,
-the second containing the rest.
-
 ## `realize`
-
-`realize()`
 
 Make a virtual object real.  This is useful
 when you want to know the name of the virtual object and don't want to
@@ -3602,11 +3938,10 @@ bother with a full collection.  It is slightly faster than a collection,
 and, of course, is a bit shorter.  You must pass the object using a
 reference; e.g.: `realize User[luke]`.
 
+
+`realize()`
+
 ## `reduce`
-
-`reduce(Iterable $enumerable, Callable[2,2] &$block)`
-
-`reduce(Iterable $enumerable, Any $memo, Callable[2,2] &$block)`
 
 Applies a [lambda](https://puppet.com/docs/puppet/latest/lang_lambdas.html)
 to every value in a data structure from the first argument, carrying over the returned
@@ -3727,7 +4062,21 @@ $merged = $data.reduce( {} ) |$memo, $x| {
 # $memo + { $x[0] => $defaults + $data[$x[0]] }.
 ```
 
+
+Signature 1
+
+`reduce(Iterable $enumerable, Callable[2,2] &$block)`
+
+Signature 2
+
+`reduce(Iterable $enumerable, Any $memo, Callable[2,2] &$block)`
+
 ## `regsubst`
+
+Performs regexp replacement on a string or array of strings.
+
+
+Signature 1
 
 `regsubst(Variant[Array[String],String] $target, String $pattern, Variant[String,Hash[String,String]] $replacement, Optional[Optional[Pattern[/^[GEIM]*$/]]] $flags, Optional[Enum['N','E','S','U']] $encoding)`
 
@@ -3762,9 +4111,13 @@ Return type(s): `Array[String]`, `String`. The result of the substitution. Resul
 ## Examples
 
 Get the third octet from the node's IP address:
-````puppet
+
+```puppet
 $i3 = regsubst($ipaddress,'^(\\d+)\\.(\\d+)\\.(\\d+)\\.(\\d+)$','\\3')
-````
+```
+
+
+Signature 2
 
 `regsubst(Variant[Array[String],String] $target, Variant[Regexp,Type[Regexp]] $pattern, Variant[String,Hash[String,String]] $replacement, Optional[Pattern[/^G?$/]] $flags)`
 
@@ -3799,15 +4152,13 @@ Return type(s): `Array[String]`, `String`. The result of the substitution. Resul
 ## Examples
 
 Put angle brackets around each octet in the node's IP address:
-````puppet
-$x = regsubst($ipaddress, /([0-9]+)/, '<\\1>', 'G')
-````
 
-Performs regexp replacement on a string or array of strings.
+```puppet
+$x = regsubst($ipaddress, /([0-9]+)/, '<\\1>', 'G')
+```
+
 
 ## `require`
-
-`require(Any *$names)`
 
 Requires the specified classes.
 Evaluate one or more classes, adding the required class as a dependency.
@@ -3845,18 +4196,18 @@ resource and relationship expressions.
 - Since 4.0.0 Class and Resource types, absolute names
 - Since 4.7.0 Returns an Array[Type[Class]] with references to the required classes
 
-## `return`
 
-`return(Optional[Any] $value)`
+`require(Any *$names)`
+
+## `return`
 
 Makes iteration continue with the next value, optionally with a given value for this iteration.
 If a value is not given it defaults to `undef`
 
+
+`return(Optional[Any] $value)`
+
 ## `reverse_each`
-
-`reverse_each(Iterable $iterable)`
-
-`reverse_each(Iterable $iterable, Callable[1,1] &$block)`
 
 Reverses the order of the elements of something that is iterable and optionally runs a
 [lambda](https://puppet.com/docs/puppet/latest/lang_lambdas.html) for each
@@ -3922,9 +4273,16 @@ $transformed_data = map(reverse_each($data)) |$item| { $item * 10 }
 # $transformed_data is set to [30,20,10]
 ```
 
-## `round`
 
-`round(Numeric $val)`
+Signature 1
+
+`reverse_each(Iterable $iterable)`
+
+Signature 2
+
+`reverse_each(Iterable $iterable, Callable[1,1] &$block)`
+
+## `round`
 
 Returns an `Integer` value rounded to the nearest value.
 Takes a single `Numeric` value as an argument.
@@ -3935,13 +4293,10 @@ notice(round(2.1)) # would notice 2
 notice(round(-2.9)) # would notice -3
 ```
 
+
+`round(Numeric $val)`
+
 ## `rstrip`
-
-`rstrip(Numeric $arg)`
-
-`rstrip(String $arg)`
-
-`rstrip(Iterable[Variant[String, Numeric]] $arg)`
 
 Strips trailing spaces from a String
 
@@ -3967,9 +4322,20 @@ lstrip(["hello\n\t", "hi\n\t"])
 ```
 Would both result in `['hello', 'hi']`
 
-## `scanf`
 
-`scanf(String $data, String $format, Optional[Callable] &$block)`
+Signature 1
+
+`rstrip(Numeric $arg)`
+
+Signature 2
+
+`rstrip(String $arg)`
+
+Signature 3
+
+`rstrip(Iterable[Variant[String, Numeric]] $arg)`
+
+## `scanf`
 
 Scans a string and returns an array of one or more converted values based on the given format string.
 See the documentation of Ruby's String#scanf method for details about the supported formats (which
@@ -3992,21 +4358,24 @@ You can also optionally pass a lambda to scanf, to do additional validation or p
       $x[0]
     }
 
-## `sha1`
 
-`sha1()`
+`scanf(String $data, String $format, Optional[Callable] &$block)`
+
+## `sha1`
 
 Returns a SHA1 hash value from a provided string.
 
-## `sha256`
 
-`sha256()`
+`sha1()`
+
+## `sha256`
 
 Returns a SHA256 hash value from a provided string.
 
-## `shellquote`
 
-`shellquote()`
+`sha256()`
+
+## `shellquote`
 
 \
 Quote and concatenate arguments for use in Bourne shell.
@@ -4018,17 +4387,17 @@ it possible to have an array of arguments and pass that array to
 shellquote instead of having to specify each argument
 individually in the call.
 
-## `size`
 
-`size(Variant[Collection, String, Binary] $arg)`
+`shellquote()`
+
+## `size`
 
 The same as length() - returns the size of an Array, Hash, String, or Binary value.
 
+
+`size(Variant[Collection, String, Binary] $arg)`
+
 ## `slice`
-
-`slice(Hash[Any, Any] $hash, Integer[1, default] $slice_size, Optional[Callable] &$block)`
-
-`slice(Iterable $enumerable, Integer[1, default] $slice_size, Optional[Callable] &$block)`
 
 Slices an array or hash into pieces of a given size.
 
@@ -4066,11 +4435,16 @@ to empty arrays for a hash.
     $a.slice(2) |$first, $second| { ... }
 ```
 
+
+Signature 1
+
+`slice(Hash[Any, Any] $hash, Integer[1, default] $slice_size, Optional[Callable] &$block)`
+
+Signature 2
+
+`slice(Iterable $enumerable, Integer[1, default] $slice_size, Optional[Callable] &$block)`
+
 ## `sort`
-
-`sort(String $string_value, Optional[Callable[2,2]] &$block)`
-
-`sort(Array $array_value, Optional[Callable[2,2]] &$block)`
 
 Sorts an Array numerically or lexicographically or the characters of a String lexicographically.
 Please note: This function is based on Ruby String comparison and as such may not be entirely UTF8 compatible.
@@ -4115,13 +4489,16 @@ notice(sort(['b', 3, 'a', 2]) |$a, $b| {
 ```
 Would notice [2,3,'a','b']
 
+
+Signature 1
+
+`sort(String $string_value, Optional[Callable[2,2]] &$block)`
+
+Signature 2
+
+`sort(Array $array_value, Optional[Callable[2,2]] &$block)`
+
 ## `split`
-
-`split(String $str, String $pattern)`
-
-`split(String $str, Regexp $pattern)`
-
-`split(String $str, Type[Regexp] $pattern)`
 
 Splits a string into an array using a given pattern.
 The pattern can be a string, regexp or regexp type.
@@ -4142,9 +4519,20 @@ a regexp meta-character (`.`), which must be escaped.  A simple
 way to do that for a single character is to enclose it in square
 brackets; a backslash will also escape a single character.
 
-## `sprintf`
 
-`sprintf()`
+Signature 1
+
+`split(String $str, String $pattern)`
+
+Signature 2
+
+`split(String $str, Regexp $pattern)`
+
+Signature 3
+
+`split(String $str, Type[Regexp] $pattern)`
+
+## `sprintf`
 
 Perform printf-style formatting of text.
 
@@ -4161,11 +4549,10 @@ notice sprintf(\"%<x>s : %<y>d\", { 'x' => 'value is', 'y' => 42 })
 
 This statement produces a notice of `value is : 42`.
 
+
+`sprintf()`
+
 ## `step`
-
-`step(Iterable $iterable, Integer[1] $step)`
-
-`step(Iterable $iterable, Integer[1] $step, Callable[1,1] &$block)`
 
 When no block is given, Puppet returns a new `Iterable` which allows it to be directly chained into
 another function that takes an `Iterable` as an argument.
@@ -4186,13 +4573,16 @@ $transformed_data = map(step($data, 5)) |$item| { $item * 10 }
 $transformed_data contains [0,50,100,150,200]
 ```
 
+
+Signature 1
+
+`step(Iterable $iterable, Integer[1] $step)`
+
+Signature 2
+
+`step(Iterable $iterable, Integer[1] $step, Callable[1,1] &$block)`
+
 ## `strftime`
-
-`strftime(Timespan $time_object, String $format)`
-
-`strftime(Timestamp $time_object, String $format, Optional[String] $timezone)`
-
-`strftime(String $format, Optional[String] $timezone)`
 
 Formats timestamp or timespan according to the directives in the given format string. The directives begins with a percent (%) character.
 Any text not listed as a directive will be passed through to the output string.
@@ -4368,13 +4758,20 @@ notice($duration.strftime('%M:%S')) # outputs '200:30'
 
 - Since 4.8.0
 
+
+Signature 1
+
+`strftime(Timespan $time_object, String $format)`
+
+Signature 2
+
+`strftime(Timestamp $time_object, String $format, Optional[String] $timezone)`
+
+Signature 3
+
+`strftime(String $format, Optional[String] $timezone)`
+
 ## `strip`
-
-`strip(Numeric $arg)`
-
-`strip(String $arg)`
-
-`strip(Iterable[Variant[String, Numeric]] $arg)`
 
 Strips leading and trailing spaces from a String
 
@@ -4400,25 +4797,38 @@ lstrip([" hello\n\t", " hi\n\t"])
 ```
 Would both result in `['hello', 'hi']`
 
-## `tag`
 
-`tag()`
+Signature 1
+
+`strip(Numeric $arg)`
+
+Signature 2
+
+`strip(String $arg)`
+
+Signature 3
+
+`strip(Iterable[Variant[String, Numeric]] $arg)`
+
+## `tag`
 
 Add the specified tags to the containing class
 or definition.  All contained objects will then acquire that tag, also.
 
-## `tagged`
 
-`tagged()`
+`tag()`
+
+## `tagged`
 
 A boolean function that
 tells you whether the current container is tagged with the specified tags.
 The tags are ANDed, so that all of the specified tags must be included for
 the function to return true.
 
-## `template`
 
-`template()`
+`tagged()`
+
+## `template`
 
 Loads an ERB template from a module, evaluates it, and returns the resulting
 value as a string.
@@ -4434,9 +4844,10 @@ This function can also accept:
 * Multiple arguments, which will evaluate all of the specified templates and
 return their outputs concatenated into a single string.
 
-## `then`
 
-`then(Any $arg, Callable[1,1] &$block)`
+`template()`
+
+## `then`
 
 Calls a [lambda](https://puppet.com/docs/puppet/latest/lang_lambdas.html)
 with the given argument unless the argument is `undef`.
@@ -4500,13 +4911,10 @@ was not a String.
 
 * Since 4.5.0
 
+
+`then(Any $arg, Callable[1,1] &$block)`
+
 ## `tree_each`
-
-`tree_each(Variant[Iterator, Array, Hash, Object] $tree, Optional[OptionsType] $options, Callable[2,2] &$block)`
-
-`tree_each(Variant[Iterator, Array, Hash, Object] $tree, Optional[OptionsType] $options, Callable[1,1] &$block)`
-
-`tree_each(Variant[Iterator, Array, Hash, Object] $tree, Optional[OptionsType] $options)`
 
 Runs a [lambda](https://puppet.com/docs/puppet/latest/lang_lambdas.html)
 recursively and repeatedly using values from a data structure, then returns the unchanged data structure, or if
@@ -4636,13 +5044,20 @@ For general examples that demonstrates iteration see the Puppet
 [iteration](https://puppet.com/docs/puppet/latest/lang_iteration.html)
 documentation.
 
+
+Signature 1
+
+`tree_each(Variant[Iterator, Array, Hash, Object] $tree, Optional[OptionsType] $options, Callable[2,2] &$block)`
+
+Signature 2
+
+`tree_each(Variant[Iterator, Array, Hash, Object] $tree, Optional[OptionsType] $options, Callable[1,1] &$block)`
+
+Signature 3
+
+`tree_each(Variant[Iterator, Array, Hash, Object] $tree, Optional[OptionsType] $options)`
+
 ## `type`
-
-`type(Any $value, Optional[Enum[detailed]] $inference_method)`
-
-`type(Any $value, Enum[reduced] $inference_method)`
-
-`type(Any $value, Enum[generalized] $inference_method)`
 
 Returns the data type of a given value with a given degree of generality.
 
@@ -4682,15 +5097,20 @@ Would notice the four values:
 3. 'Tuple[Float[3.14], Integer[42,42]]]'
 4. 'Tuple[Float[3.14], Integer[42,42]]]'
 
+
+Signature 1
+
+`type(Any $value, Optional[Enum[detailed]] $inference_method)`
+
+Signature 2
+
+`type(Any $value, Enum[reduced] $inference_method)`
+
+Signature 3
+
+`type(Any $value, Enum[generalized] $inference_method)`
+
 ## `unique`
-
-`unique(String $string, Optional[Callable[String]] &$block)`
-
-`unique(Hash $hash, Optional[Callable[Any]] &$block)`
-
-`unique(Array $array, Optional[Callable[Any]] &$block)`
-
-`unique(Iterable $iterable, Optional[Callable[Any]] &$block)`
 
 Produces a unique set of values from an `Iterable` argument.
 
@@ -4763,9 +5183,24 @@ Hash(Array("abc").map |$i,$v| { [$i, $v]})
 "abc".to(Array).map |$i,$v| { [$i, $v]}.to(Hash)
 ```
 
-## `unwrap`
 
-`unwrap(Sensitive $arg, Optional[Callable] &$block)`
+Signature 1
+
+`unique(String $string, Optional[Callable[String]] &$block)`
+
+Signature 2
+
+`unique(Hash $hash, Optional[Callable[Any]] &$block)`
+
+Signature 3
+
+`unique(Array $array, Optional[Callable[Any]] &$block)`
+
+Signature 4
+
+`unique(Iterable $iterable, Optional[Callable[Any]] &$block)`
+
+## `unwrap`
 
 Unwraps a Sensitive value and returns the wrapped object.
 
@@ -4790,15 +5225,10 @@ $pw.unwrap |$unwrapped| {
 # $unwrapped is now out of scope
 ```
 
+
+`unwrap(Sensitive $arg, Optional[Callable] &$block)`
+
 ## `upcase`
-
-`upcase(Numeric $arg)`
-
-`upcase(String $arg)`
-
-`upcase(Array[StringData] $arg)`
-
-`upcase(Hash[StringData, StringData] $arg)`
 
 Converts a String, Array or Hash (recursively) into upper case.
 
@@ -4841,9 +5271,24 @@ Would result in `{'A' => 'HELLO', 'B' => 'GOODBYE'}`
 ```
 Would result in `['A', 'B', ['C', ['D']], {'X' => 'Y'}]`
 
-## `values`
 
-`values(Hash $hsh)`
+Signature 1
+
+`upcase(Numeric $arg)`
+
+Signature 2
+
+`upcase(String $arg)`
+
+Signature 3
+
+`upcase(Array[StringData] $arg)`
+
+Signature 4
+
+`upcase(Hash[StringData, StringData] $arg)`
+
+## `values`
 
 Returns the values of a hash as an Array
 
@@ -4859,9 +5304,10 @@ values($hsh)
 * For an empty hash, an empty array is returned.
 * The order of the values is the same as the order in the hash (typically the order in which they were added).
 
-## `versioncmp`
 
-`versioncmp(String $a, String $b)`
+`values(Hash $hsh)`
+
+## `versioncmp`
 
 Compares two version numbers.
 
@@ -4880,7 +5326,13 @@ This function returns:
 This function uses the same version comparison algorithm used by Puppet's
 `package` type.
 
+
+`versioncmp(String $a, String $b)`
+
 ## `warning`
+
+Logs a message on the server at level `warning`.
+
 
 `warning(Any *$values)`
 
@@ -4890,11 +5342,7 @@ This function uses the same version comparison algorithm used by Puppet's
 
 Return type(s): `Undef`. 
 
-Logs a message on the server at level `warning`.
-
 ## `with`
-
-`with(Any *$arg, Callable &$block)`
 
 Calls a [lambda](https://puppet.com/docs/puppet/latest/lang_lambdas.html)
 with the given arguments and returns the result.
@@ -4914,12 +5362,16 @@ $check_var = $x
 # $check_var is undefined, as the value of $x is local to the lambda.
 ```
 
-## `yaml_data`
 
-`yaml_data(Struct[{path=>String[1]}] $options, Puppet::LookupContext $context)`
+`with(Any *$arg, Callable &$block)`
+
+## `yaml_data`
 
 The `yaml_data` is a hiera 5 `data_hash` data provider function.
 See [the configuration guide documentation](https://puppet.com/docs/puppet/latest/hiera_config_yaml_5.html#configuring-a-hierarchy-level-built-in-backends) for
 how to use this function.
 
-> **NOTE:** This page was generated from the Puppet source code on 2019-12-06 11:15:56 -0800
+
+`yaml_data(Struct[{path=>String[1]}] $options, Puppet::LookupContext $context)`
+
+> **NOTE:** This page was generated from the Puppet source code on 2020-02-28 15:12:08 -0800

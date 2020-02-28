@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 4c1b0ace7275f9646c9f6630e11f41556d88d2ac
+built_from_commit: d84d913905eea6e8180e6aef203edf1d8bf16dfd
 title: 'Resource Type: service'
 canonical: "/puppet/latest/types/service.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2019-09-06 09:16:04 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2020-02-28 15:12:08 -0800
 
 service
 -----
@@ -44,7 +44,7 @@ can be configured:
 
 <pre><code>service { 'resource title':
   <a href="#service-attribute-name">name</a>       =&gt; <em># <strong>(namevar)</strong> The name of the service to run.  This name is...</em>
-  <a href="#service-attribute-ensure">ensure</a>     =&gt; <em># Whether a service should be running.  Allowed...</em>
+  <a href="#service-attribute-ensure">ensure</a>     =&gt; <em># Whether a service should be running. Default...</em>
   <a href="#service-attribute-binary">binary</a>     =&gt; <em># The path to the daemon.  This is only used for...</em>
   <a href="#service-attribute-control">control</a>    =&gt; <em># The control variable used to manage services...</em>
   <a href="#service-attribute-enable">enable</a>     =&gt; <em># Whether a service should be enabled to start at...</em>
@@ -80,7 +80,7 @@ rather than "Automatic Updates.")
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-Whether a service should be running.
+Whether a service should be running. Default values depend on the platform.
 
 Allowed values:
 
@@ -113,9 +113,9 @@ underscores, for those providers that support the `controllable` feature.
 _(**Property:** This attribute represents concrete state on the target system.)_
 
 Whether a service should be enabled to start at boot.
-This property behaves quite differently depending on the platform;
+This property behaves differently depending on the platform;
 wherever possible, it relies on local tools to enable or disable
-a given service.
+a given service. Default values depend on the platform.
 
 Allowed values:
 
@@ -123,6 +123,7 @@ Allowed values:
 * `false`
 * `manual`
 * `mask`
+* `delayed`
 
 Requires features enableable.
 
@@ -562,17 +563,8 @@ may be omitted.  Other unit types (such as `.path`) may be managed by
 providing the proper suffix.
 
 * Required binaries: `systemctl`
-* Default for
-  * `osfamily` == `archlinux`
-  * `operatingsystemmajrelease` == `7` and `osfamily` == `redhat`
-  * `operatingsystem` == `fedora` and `osfamily` == `redhat`
-  * `osfamily` == `suse`
-  * `osfamily` == `coreos`
-  * `operatingsystem` == `amazon` and `operatingsystemmajrelease` == `2`
-  * `operatingsystem` == `debian` and `operatingsystemmajrelease` == `8, stretch/sid, 9, buster/sid`
-  * `operatingsystem` == `ubuntu` and `operatingsystemmajrelease` == `15.04, 15.10, 16.04, 16.10, 17.04, 17.10, 18.04`
-  * `operatingsystem` == `cumuluslinux` and `operatingsystemmajrelease` == `3`.
-* Supported features: `enableable`, `maskable`, `refreshable`
+* Confined to: `true == Puppet::FileSystem.exist?('/proc/1/comm') && Puppet::FileSystem.read('/proc/1/comm').include?('systemd')`
+* Default for: `["osfamily", "[:archlinux]"] == `, `["osfamily", "redhat"] == ["operatingsystemmajrelease", "[\"7\", \"8\"]"]`, `["osfamily", "redhat"] == ["operatingsystem", "fedora"]`, `["osfamily", "suse"] == `, `["osfamily", "coreos"] == `, `["operatingsystem", "amazon"] == ["operatingsystemmajrelease", "[\"2\"]"]`, `["operatingsystem", "debian"] == `, `["operatingsystem", "LinuxMint"] == `, `["operatingsystem", "ubuntu"] == `, `["operatingsystem", "cumuluslinux"] == ["operatingsystemmajrelease", "[\"3\", \"4\"]"]`
 
 <h4 id="service-provider-upstart">upstart</h4>
 
@@ -621,7 +613,7 @@ Available features:
 
 * `configurable_timeout` --- The provider can specify a minumum timeout for syncing service properties
 * `controllable` --- The provider uses a control variable.
-* `enableable` --- The provider can enable and disable the service
+* `enableable` --- The provider can enable and disable the service.
 * `flaggable` --- The provider can pass flags to the service.
 * `maskable` --- The provider can 'mask' the service.
 * `refreshable` --- The provider can restart the service.
@@ -632,6 +624,7 @@ Provider support:
   <thead>
     <tr>
       <th>Provider</th>
+      <th>configurable timeout</th>
       <th>controllable</th>
       <th>enableable</th>
       <th>flaggable</th>
@@ -646,47 +639,53 @@ Provider support:
       <td> </td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>bsd</td>
       <td> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>daemontools</td>
       <td> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>debian</td>
       <td> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>freebsd</td>
       <td> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>gentoo</td>
       <td> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>init</td>
@@ -694,10 +693,12 @@ Provider support:
       <td> </td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>launchd</td>
+      <td> </td>
       <td> </td>
       <td><em>X</em> </td>
       <td> </td>
@@ -707,47 +708,51 @@ Provider support:
     <tr>
       <td>openbsd</td>
       <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
+      <td> </td>
       <td> </td>
       <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>openrc</td>
       <td> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>openwrt</td>
       <td> </td>
+      <td> </td>
       <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>rcng</td>
       <td> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>redhat</td>
       <td> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>runit</td>
       <td> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
       <td><em>X</em> </td>
@@ -758,12 +763,14 @@ Provider support:
       <td> </td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>smf</td>
       <td> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
       <td><em>X</em> </td>
@@ -771,7 +778,8 @@ Provider support:
     <tr>
       <td>src</td>
       <td> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
       <td><em>X</em> </td>
@@ -779,23 +787,26 @@ Provider support:
     <tr>
       <td>systemd</td>
       <td> </td>
-      <td><em>X</em> </td>
       <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>upstart</td>
       <td> </td>
+      <td> </td>
       <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>windows</td>
-      <td> </td>
       <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
       <td><em>X</em> </td>
@@ -804,4 +815,5 @@ Provider support:
 </table>
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2019-09-06 09:16:04 -0700
+
+> **NOTE:** This page was generated from the Puppet source code on 2020-02-28 15:12:08 -0800
