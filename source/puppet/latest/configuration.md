@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 4e37b34522a55bc9a10407daa83f4f81a055cd03
+built_from_commit: 57ba660ddc3e3265bc2e492b9a3149bfe2fb5c64
 title: Configuration Reference
 toc: columns
 canonical: "/puppet/latest/configuration.html"
@@ -714,6 +714,14 @@ For more info, see [the ENC documentation](https://puppet.com/docs/puppet/latest
 
 - *Default*: none
 
+### facterng
+
+Whether to enable a pre-Facter 4.0 release of Facter (distributed as
+the "facter-ng" gem). This is not necessary if Facter 3.x or later is installed.
+This setting is still experimental and has been only included on Windows builds
+
+- *Default*: false
+
 ### factpath
 
 Where Puppet should look for facts.  Multiple directories should
@@ -891,9 +899,10 @@ This setting can be a time interval in seconds (30 or 30s), minutes (30m), hours
 
 ### http_proxy_host
 
-The HTTP proxy host to use for outgoing connections.  Note: You
+The HTTP proxy host to use for outgoing connections. The proxy will be bypassed if
+the server's hostname matches the NO_PROXY environment variable or `no_proxy` setting. Note: You
 may need to use a FQDN for the server hostname when using a proxy. Environment variable
-http_proxy or HTTP_PROXY will override this value
+http_proxy or HTTP_PROXY will override this value.
 
 - *Default*: none
 
@@ -932,7 +941,7 @@ This setting can be a time interval in seconds (30 or 30s), minutes (30m), hours
 
 The HTTP User-Agent string to send when making network requests.
 
-- *Default*: Puppet/6.10.1 Ruby/2.5.1-p57 (x86_64-darwin17)
+- *Default*: Puppet/6.12.0 Ruby/2.5.1-p57 (x86_64-darwin17)
 
 ### ignoremissingtypes
 
@@ -1119,7 +1128,6 @@ The directory in which to store log files
 ### manage_internal_file_permissions
 
 Whether Puppet should manage the owner, group, and mode of files it uses internally.
-
 **Note**: For Windows agents, the default is `false` for versions 4.10.13 and greater, versions 5.5.6 and greater, and versions 6.0 and greater.
 
 - *Default*: true
@@ -1190,6 +1198,19 @@ This setting can be a time interval in seconds (30 or 30s), minutes (30m), hours
 
 - *Default*: unlimited
 
+### merge_dependency_warnings
+
+Whether to merge class-level dependency failure warnings.
+
+When a class has a failed dependency, every resource in the class
+generates a notice level message about the dependency failure,
+and a warning level message about skipping the resource.
+
+If true, all messages caused by a class dependency failure are merged
+into one message associated with the class.
+
+- *Default*: false
+
 ### mkusers
 
 Whether to create the necessary user and group that puppet agent will run as.
@@ -1245,7 +1266,7 @@ Default is `prime256v1`.
 
 ### no_proxy
 
-List of domain names that should not go through `http_proxy_host`. Environment variable no_proxy or NO_PROXY will override this value.
+List of host or domain names that should not go through `http_proxy_host`. Environment variable no_proxy or NO_PROXY will override this value. Names can be specified as an FQDN `host.example.com`, wildcard `*.example.com`, dotted domain `.example.com`, or suffix `example.com`.
 
 - *Default*: localhost, 127.0.0.1
 
@@ -1468,6 +1489,13 @@ The public key directory.
 
 - *Default*: $ssldir/public_keys
 
+### puppet_trace
+
+Whether to print the Puppet stack trace on some errors.
+This is a noop if `trace` is also set.
+
+- *Default*: false
+
 ### puppetdlog
 
 The fallback log file. This is only used when the `--logdest` option
@@ -1559,6 +1587,12 @@ rest indirections.  This can be used as a fine-grained authorization system for
 uses its own auth.conf that must be placed within its configuration directory.
 
 - *Default*: $confdir/auth.conf
+
+### resubmit_facts
+
+Whether to send updated facts after every transaction.
+
+- *Default*: false
 
 ### rich_data
 
@@ -1890,7 +1924,8 @@ Do not change this setting.
 
 ### trace
 
-Whether to print stack traces on some errors
+Whether to print stack traces on some errors. Will print
+internal Ruby stack trace interleaved with Puppet function frames.
 
 - *Default*: false
 
@@ -1901,6 +1936,18 @@ transactions for the purposes of infering information (such as
 corrective_change) on new data received.
 
 - *Default*: $statedir/transactionstore.yaml
+
+### trusted_external_command
+
+The external trusted facts script to use.
+This setting's value can be set to the path to an executable command that
+can produce external trusted facts. The command must:
+
+* Take the name of a node as a command-line argument.
+* Return a JSON hash with the external trusted facts for this node.
+* For unknown or invalid nodes, exit with a non-zero exit code.
+
+- *Default*: 
 
 ### trusted_oid_mapping_file
 
