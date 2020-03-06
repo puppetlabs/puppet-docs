@@ -175,22 +175,6 @@ documents:
       subdirectory: container-reg
     hide: true
 
-  /pe/2016.4:
-    doc: pe
-    version: "2016.4"
-    nav: ./_pe_toc.html
-    external_source:
-      repo: git@github.com:puppetlabs/pe-docs-private.git
-      commit: origin/pe2016.4.15
-      subdirectory: source
-    my_versions:
-      puppet: "4.10"
-      facter: "3.6"
-      hiera: "3.3"
-      puppetserver: "2.6"
-      puppetdb: "4.2"
-    hide: true
-
   /puppet/latest:
     doc: puppet
     version: "latest"
@@ -232,16 +216,6 @@ documents:
       puppetserver: "5.3"
     hide: true
 
-  /puppet/4.10:
-    doc: puppet
-    version: "4.10"
-    nav: ./_puppet_toc.html
-    my_versions:
-      facter: "3.6"
-      hiera: "3.3"
-      puppetserver: "2.6"
-    hide: true
-
   /es/puppet/5.3:
     doc: puppet_es
     version: "5.3"
@@ -268,12 +242,6 @@ documents:
     doc: pdk
     version: "1.0"
     nav: ./_pdk_toc.html
-    hide: true
-
-  /hiera/3.3:
-    doc: hiera
-    version: "3.3"
-    nav: ./_hiera_toc.html
     hide: true
 
   /hiera/3.2:
