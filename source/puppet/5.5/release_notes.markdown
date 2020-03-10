@@ -20,6 +20,48 @@ Read the [Puppet 5.1](https://github.com/puppetlabs/docs-archive/blob/master/pup
 
 Also of interest: the [Puppet 4.10 release notes](../4.10/release_notes.html) and [Puppet 4.9 release notes](https://github.com/puppetlabs/docs-archive/blob/master/puppet/4.9/release_notes.markdown).
 
+## Puppet 5.5.19
+
+Released 10 March 2020
+
+### New features
+
+- When managing a user or group resource with a forcelocal set, Puppet reads `/etc/passwd` or `/etc/group` for each parameter of the resource. Files are read once per managed resource. [PUP-10117](https://tickets.puppetlabs.com/browse/PUP-10117)
+
+- Previously, when `puppetserver` returned a 429 or 503 to an agent after the agent tried to make an HTTP request, the agent would keep the HTTP connection open during the sleep. Now the connection closes before the sleep, and retries the connection after, to reduce the resource load on the `puppetserver`. [PUP-10227](https://tickets.puppetlabs.com/browse/PUP-10227)
+
+- The `flavor` package parameter has been changed into a property and can now be changed after it's initially set. Supported providers are `dnfmodule` and `openbsd`. [PUP-10171](https://tickets.puppetlabs.com/browse/PUP-10171)
+
+- If a `/opt/puppetlabs/server/pe_version` file exists on an agent, the file will be read and added to the server facts under the name `pe_serverversion`. [PUP-9750](https://tickets.puppetlabs.com/browse/PUP-9750)
+
+- Puppet Agent now ships FFI on AIX packages. [PA-3061](https://tickets.puppetlabs.com/browse/PA-3061)
+
+- The RedHat 7 FIPS package now ships OpenSSL 1.1.1, instead of relying on the version provided by the operating system. [PA-3027](https://tickets.puppetlabs.com/browse/PA-3027)
+
+- FIPS mode is now enforced on OpenSSL, vendored in Windows FIPS platform. [PA-3025](https://tickets.puppetlabs.com/browse/PA-3025)
+
+- The installer package for the Windows Puppet agent has a new installation option. [PA-2253](https://tickets.puppetlabs.com/browse/PA-2253)
+
+### Resolved issues
+
+- This release updates OpenSSL to 1.0.2u, as a result of [CVE-2019-1551](https://www.openssl.org/news/vulnerabilities.html#2019-1551). [PA-306](https://tickets.puppetlabs.com/browse/PA-3062)
+
+- Due to Apple changing user management in macOS 10.15, Puppet could no longer manage user passwords on that version. Puppet now uses the `dsimport` utility to manage passwords on macOS 10.15 or higher. [PUP-10246](https://tickets.puppetlabs.com/browse/PUP-10246)
+
+- This release fixes an issue where Puppet would try to parse an XML property list file as ASCII instead of UTF-8. [PUP-10241](https://tickets.puppetlabs.com/browse/PUP-10241)
+
+- This commit adds the missing `ppAuthCertExt` oid and updates docs to reference it. [PUP-10234](https://tickets.puppetlabs.com/browse/PUP-10234)
+
+- The Yum package provider now accepts an array of strings to be specified for the `install_options` parameter, in addition to the previous implementation which only accepted an array of hashes. This fix was provided by community contributor Corey Osman. [PUP-10177](https://tickets.puppetlabs.com/browse/PUP-10177)
+
+- The Puppet language supports calling functions using prefix or chained syntax, for example, `each($var)` and `$var.each`. Using the latter syntax is now much faster, especially when `$var` is a large hash, such as `$facts` from the node. [PUP-10113](https://tickets.puppetlabs.com/browse/PUP-10113)
+
+- This release fixes an issue with large environment blocks on Windows, which caused a Ruby error.. [PA-3113](https://tickets.puppetlabs.com/browse/PA-3113).
+
+- This release adds the `mark` property with Debian and Solaris instead of setting the ensure attribute to held. The `held` value for `ensure` is deprecated. Allowed values for `mark` are `hold` or `none`, and it defaults to `none`. You can specify `mark` along with ensure. If ensure is missing, `mark` defaults to `present`. You cannot use the `mark` property together with `purged`, `absent`, or `held` values for `ensure`. [PUP-1537](https://tickets.puppetlabs.com/browse/PUP-1537).
+
+- To avoid the Puppet changing the `mailalias` resource, do not use comma in the `mailalias` record field separator when surrounded by double quotes. [PUP-10287](https://tickets.puppetlabs.com/browse/PUP-10287)
+
 ## Puppet 5.5.18
 
 Released 14 January 2020
