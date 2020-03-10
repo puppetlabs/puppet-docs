@@ -7,6 +7,21 @@ These are the new features, resolved issues, and deprecations in this version of
 
 > For Facter releases later than version 3.11.x, release notes are included in the corresponding Puppet documentation set. For the most recent Facter documentation, see the [Facter](https://puppet.com/docs/puppet/latest/facter.html) page.
 
+## Facter 3.11.12
+
+Released 10 March 2020 and shipped with Puppet Platform 5.5.19
+
+### New features 
+
+-  You can now cache external facts using external facts filename as cache group [FACT-2307](https://tickets.puppetlabs.com/browse/FACT-2307).
+- New ssh fact on Windows (available when OpenSSH is present). [FACT-1934](https://tickets.puppetlabs.com/browse/FACT-1934)
+
+### Resolved issues
+
+- Facter no longer crashes if the user has a numeric hostname. [FACT-2346](https://tickets.puppetlabs.com/browse/FACT-2346)
+- Facter correctly displays ssh host key fact, in case the host key file does not contain a comment. [FACT-1833](https://tickets.puppetlabs.com/browse/FACT-1833)
+- The `facter --puppet` command no longer throws a deprecation warning. [FACT-2260](https://tickets.puppetlabs.com/browse/FACT-2260)
+
 ## Facter 3.11.11
 
 Released 14 January 2020
