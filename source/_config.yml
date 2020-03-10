@@ -226,6 +226,34 @@ documents:
       puppetserver: "2.6"
     hide: true
 
+  /puppet/3.8:
+    doc: puppet
+    version: "3.8"
+    nav: /_includes/puppet_3_8.html
+    my_versions:
+      facter: "2.4"
+      hiera: "1"
+      puppetserver: "1.1"
+  
+  /puppetserver/1.1:
+    doc: puppetserver
+    version: "1.1"
+    nav: /_includes/puppet_3_8.html
+    external_source:
+      repo: git://github.com/puppetlabs/puppetserver.git
+      commit: bbc73f6da0a17eac4fbf84758b477ec9dd4cebb2
+      subdirectory: documentation
+
+  /hiera/1:
+    doc: hiera
+    version: "1"
+    nav: /_includes/hiera1.html
+
+  /facter/2.4:
+    doc: facter
+    version: "2.4"
+    nav: /_includes/facter24.html
+
   /es/puppet/5.3:
     doc: puppet_es
     version: "5.3"
@@ -371,6 +399,20 @@ documents:
       puppet: "5.5"
       facter: "3.11"
       hiera: "3.4"
+    hide: true
+
+  /puppetserver/2.6:
+    doc: puppetserver
+    version: "2.6"
+    nav: /puppet/4.6/_puppet_toc.html
+    external_source:
+      repo: git://github.com/puppetlabs/puppetserver.git
+      commit: 2d3bc286bc5822f35ff04273156f8921e1603d19
+      subdirectory: documentation
+    my_versions:
+      puppet: "4.6"
+      facter: "3.3"
+      hiera: "3.2"
     hide: true
 
   /puppetdb/latest:
