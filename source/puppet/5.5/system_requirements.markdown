@@ -42,10 +42,10 @@ For platforms supported in Puppet Enterprise, see its [system requirements]({{pe
 | SUSE Linux Enterprise Server               | 11 (5.5.10 and earlier), 12 (5.5.10 and earlier), 15                                        |                         |
 | Debian                                     | Jessie (8), Stretch (9)               |                         |
 | Ubuntu                                     | 14.04, 16.04, 18.04 (5.5.2 and later)                 |                         |
-| Fedora                                     | 26 (5.5.7 and earlier), 27 (5.5.8 and earlier), 28, 29 (5.5.10 and later)                                        |                         |
+| Fedora                                     | 26 (5.5.7 and earlier), 27 (5.5.8 and earlier), 28 (5.5.18 and earlier), 29 (5.5.19 and later)                                         |                         |
 | Microsoft Windows (Server OS)              | 2008R2, 2012R2, 2016, 2019                        | 2008, 2012, 2019 (5.5.7 and later)              |
 | Microsoft Windows (Consumer OS)            | 10 Enterprise                                     | 7, 8, 10         |
-| macOS                                      | 10.12 Sierra, 10.13 High Sierra, 10.14 Mojave |                         |
+| macOS                                      | 10.14 Mojave, 10.15 Catalina |                         |
 
 Red Hat Enterprise Linux derivatives include Amazon Linux v1 (using RHEL 6 packages) and v2 (using RHEL 7 packages).
 
