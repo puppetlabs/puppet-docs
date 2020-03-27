@@ -124,7 +124,7 @@ Used for any hierarchy level that doesn't specify its own. This must be one of:
 -   `data_dig` - produces values key by key (for a more advanced data provider)
 -   `hiera3_backend` - a data provider that calls out to a legacy Hiera 3 backend (global layer only)
 
-For the built-in data providers - YAML, JSON, and HOCON - the key is always `data_hash` and the value is one of `yaml_data`, `json_data`, or `hocon_data`. To set a custom data provider as the default, see the data provider documentation. Whichever key you use, the value must be the name of the custom Puppet function that implements the the lookup function.
+For the built-in data providers - YAML, JSON, and HOCON - the key is always `data_hash` and the value is one of `yaml_data`, `json_data`, or `hocon_data`. To set a custom data provider as the default, see the data provider documentation. Whichever key you use, the value must be the name of the custom Puppet function that implements the lookup function.
 
 Related topics: [custom backends][backends], [custom Puppet function][].
 
