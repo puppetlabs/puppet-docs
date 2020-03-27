@@ -55,7 +55,7 @@ This guide assumes that you have already [written a useful Puppet module][fundam
 
 Because many users have published their own versions of modules with common names ("mysql," "bacula," etc.), the Puppet Forge (Forge) requires module names to have a username prefix. That is, if a user named "puppetlabs" maintained a "mysql" module, it would be known to the Forge as "puppetlabs-mysql". **Be sure to use this long name in your module's [metadata.json file][inpage_metadata].**
 
-However, your module's directory on disk must use the short name, without the username prefix. (Module directory names cannot contain dashes or periods; only letters, numbers, and underscores). Using the the build action will do the right thing as long as the metadata.json is correct.
+However, your module's directory on disk must use the short name, without the username prefix. (Module directory names cannot contain dashes or periods; only letters, numbers, and underscores). Using the build action will do the right thing as long as the metadata.json is correct.
 
 ### Another note on module names
 
