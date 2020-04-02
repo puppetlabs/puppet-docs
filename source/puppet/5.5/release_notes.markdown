@@ -44,7 +44,7 @@ Released 10 March 2020
 
 ### Resolved issues
 
-- This release fixes arbitrary catalog retrieval [(CVE-2020-7942)](https://puppet.com/security/cve/CVE-2020-7942/) by defaulting to `strict_hostname_checking=true`. To return to the previous behavior, set the Puppet setting to false. [PUP-10238](https://tickets.puppetlabs.com/browse/PUP-10238).
+- This release fixes [CVE-2020-7942](https://puppet.com/security/cve/CVE-2020-7942/) by defaulting to `strict_hostname_checking=true`. To return to the previous behavior, set the Puppet setting to false. [PUP-10238](https://tickets.puppetlabs.com/browse/PUP-10238).
 
 - This release updates OpenSSL to 1.0.2u, as a result of [CVE-2019-1551](https://www.openssl.org/news/vulnerabilities.html#2019-1551). [PA-306](https://tickets.puppetlabs.com/browse/PA-3062)
 
