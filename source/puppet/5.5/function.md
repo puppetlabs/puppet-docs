@@ -2869,11 +2869,9 @@ and the data structure's first value. Otherwise, Puppet passes the structure's f
 values to the lambda.
 
 Puppet calls the lambda for each of the data structure's remaining values. For each
-call, it passes the result of the previous call as the first parameter ($memo in the
+call, it passes the result of the previous call as the first parameter (`$memo` in the
 above examples) and the next value from the data structure as the second parameter
-($value).
-
-If the structure has one value, Puppet returns the value and does not call the lambda.
+(`$value`).
 
 ```puppet
 # Reduce the array $data, returning the sum of all values in the array.
