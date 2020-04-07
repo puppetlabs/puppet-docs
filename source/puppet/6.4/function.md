@@ -3638,7 +3638,6 @@ call, it passes the result of the previous call as the first parameter ($memo in
 above examples) and the next value from the data structure as the second parameter
 ($value).
 
-If the structure has one value, Puppet returns the value and does not call the lambda.
 
 ```puppet
 # Reduce the array $data, returning the sum of all values in the array.
