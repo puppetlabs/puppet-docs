@@ -42,6 +42,8 @@ Released 10 March 2020
 
 - The installer package for the Windows Puppet agent has a new installation option. [PA-2253](https://tickets.puppetlabs.com/browse/PA-2253)
 
+- This release of the `puppet-agent` package removes support for macOS 10.12, macOS 10.13 and Fedora 28. [PUP-10244](https://tickets.puppetlabs.com/browse/PUP-10244), [PUP-10245](https://tickets.puppetlabs.com/browse/PUP-10245), [PUP-10242](https://tickets.puppetlabs.com/browse/PUP-10242). 
+
 ### Resolved issues
 
 - This release fixes [CVE-2020-7942](https://puppet.com/security/cve/CVE-2020-7942/) by defaulting to `strict_hostname_checking=true`. To return to the previous behavior, set the Puppet setting to false. [PUP-10238](https://tickets.puppetlabs.com/browse/PUP-10238).
