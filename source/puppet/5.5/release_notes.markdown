@@ -20,6 +20,20 @@ Read the [Puppet 5.1](https://github.com/puppetlabs/docs-archive/blob/master/pup
 
 Also of interest: the [Puppet 4.10 release notes](../4.10/release_notes.html) and [Puppet 4.9 release notes](https://github.com/puppetlabs/docs-archive/blob/master/puppet/4.9/release_notes.markdown).
 
+## Puppet 5.5.20
+
+Released 14 April 2020
+
+### New features
+
+- The dnfmodule package provider now supports enabling DNF modules, in addition to installing them. This is done by default on modules with no default installation profile. To enable modules with profiles, set the `enable_only` parameter to `true` in the manifest. [PUP-10235](https://tickets.puppetlabs.com/browse/PUP-10235)
+
+### Resolved issues
+
+- The `pkgng` provider now parses the latest versions for packages correctly. Fix provided by community contributor Martijn De Gouw (https://github.com/martijndegouw). [PUP-10382](https://tickets.puppetlabs.com/browse/PUP-10382)
+
+- The `pkgng` provider now supports `install_options`. Fix provided by community contributor Martijn De Gouw. (https://github.com/martijndegouw)) [PUP-10380](https://tickets.puppetlabs.com/browse/PUP-10380).
+
 ## Puppet 5.5.19
 
 Released 10 March 2020
