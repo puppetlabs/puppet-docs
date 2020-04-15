@@ -6,12 +6,11 @@ title: "Writing custom facts"
 A typical fact in Facter is an assemblage of a few different elements and composed either
 as a simple value ("flat" fact) or structured data ("structured" fact).
 
-This page shows you how to write and format custom facts correctly. The format of a fact is important because of the way that Factor evaluates them — by reading *all* the fact definitions. If formatting incorrectly, it may invoke code too early. 
+This page shows you how to write and format custom facts. The format of a fact is important because of the way that Factor evaluates them — by reading *all* the fact definitions. If formatting incorrectly, Facter can execute code too early. 
 
 >Note: It's important to distinguish between **facts** and **resolutions**. A fact is a piece of information about a given node, while a resolution is a way of obtaining that information from the system. That means every fact needs to have **at least one** resolution, and facts that can run on different operating systems may need to have different resolutions for each one. Facts and resolutions are conceptually different, but have similarities. Declaring a second (or more) resolution for a fact looks just like declaring a completely new fact, only with the same name as an existing fact.
 
-You need some familiarity with Ruby to understand most of these examples.
-For an introduction to custom facts, see the [Custom facts overview](./custom_facts.html).
+You need some familiarity with Ruby to understand most of these examples. For an introduction to custom facts, see the [Custom facts overview](./custom_facts.html).
 
 ## Writing facts with simple resolutions
 
@@ -100,8 +99,7 @@ Facter.add('phi') do
 end
 ```
 
-In this example, the `Facter.value('theta')` call is outside of the guarded `setcode` block and into the unguarded part of the `Facter.add` block. This means that the statement will always execute, on every system, regardless of confine, weight, or which resolution of `phi` is appropriate. Any code with possible side-effects, or code pertaining to figuring out the value of a fact, should be kept inside the setcode block. The only code left outside setcode should be code that helps Facter pick which possible resolution of a fact to use, if there is more than one option.
-
+In this example, the `Facter.value('theta')` call is outside of the guarded `setcode` block and in the unguarded part of the `Facter.add` block. This means that the statement will always execute, on every system, regardless of confine, weight, or which resolution of `phi` is appropriate. Any code with possible side-effects, or code pertaining to figuring out the value of a fact, should be kept inside the setcode block. The only code left outside `setcode` is code that helps Facter choose which resolution of a fact to use.
 
 ## Writing structured facts
 
