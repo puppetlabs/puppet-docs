@@ -4,9 +4,9 @@ title: "Writing custom facts"
 ---
 
 A typical fact in Facter is an assemblage of a few different elements and composed either
-as a simple value ("flat" fact) or structured data ("structured" fact).
+as a simple value ("flat" fact) or structured data ("structured" fact). 
 
-This page shows you how to write and format custom facts. The format of a fact is important because of the way that Factor evaluates them — by reading *all* the fact definitions. If formatting incorrectly, Facter can execute code too early. 
+This page shows you how to write and format facts correctly.
 
 >Note: It's important to distinguish between **facts** and **resolutions**. A fact is a piece of information about a given node, while a resolution is a way of obtaining that information from the system. That means every fact needs to have **at least one** resolution, and facts that can run on different operating systems may need to have different resolutions for each one. Facts and resolutions are conceptually different, but have similarities. Declaring a second (or more) resolution for a fact looks just like declaring a completely new fact, only with the same name as an existing fact.
 
@@ -41,9 +41,55 @@ Facts are typically made up of the following parts:
     * Can execute shell commands within a `setcode` block, using the `Facter::Core::Execution.exec` function.
     * If multiple `setcode` statements are evaluated for a single resolution, only the last `setcode` block is used. 
 
-Set all code inside the sections outlined above ⁠— there should not be any code outside `setcode` and `confine` blocks other than an optional `has_weight` statement in a custom fact.  
+Set all code inside the sections outlined above ⁠— there should not be any code outside `setcode` and `confine` blocks other than an optional `has_weight` statement in a custom fact. 
 
-#### Examples
+
+### How to format facts
+
+The format of a fact is important because of the way that Factor evaluates them — by reading *all* the fact definitions. If formatting incorrectly, Facter can execute code too early. You need to use the `setcode` correctly. Below is a *good* example and a *bad* example of a fact, showing you where to place the `setcode`. 
+
+#### Good
+
+The following is an example of how to structure a fact correctly: 
+
+```
+Facter.add('phi') do
+  confine :owner => "BTO"
+  confine :kernel do |value|
+    value == "Linux"
+  end
+ 
+  setcode do
+    bar=Facter.value('theta')
+    bar + 1
+  end
+end
+```
+
+In this example, the `bar=Facter.value('theta')` call is guarded by `setcode`, which means it won't be executed unless or until it is appropriate to do so. Facter will load all `Facter.add` blocks first, use any OS or confine/weight information to decide which facts to evaluate, and once it chooses, it will selectively execute `setcode` blocks for each fact that it needs.
+
+#### Bad
+
+The following is an example of how **not** to structure a fact: 
+
+```
+Facter.add('phi') do
+  confine :owner => "BTO"
+  confine :kernel do |value|
+    value == "Linux"
+  end
+  
+  bar = Facter.value('theta')
+ 
+  setcode do
+    bar + 1
+  end
+end
+```
+
+In this example, the `Facter.value('theta')` call is outside of the guarded `setcode` block and in the unguarded part of the `Facter.add` block. This means that the statement will always execute, on every system, regardless of confine, weight, or which resolution of `phi` is appropriate. Any code with possible side-effects, or code pertaining to figuring out the value of a fact, should be kept inside the setcode block. The only code left outside `setcode` is code that helps Facter choose which resolution of a fact to use.
+
+### Examples
 
 The following example shows a minimal fact that relies on a single shell command:
 
@@ -81,25 +127,6 @@ Facter.add(:jruby_installed) do
   end
 end
 ```
-
-The following is an example of how *not* to structure a fact: 
-
-```
-Facter.add('phi') do
-  confine :owner => "BTO"
-  confine :kernel do |value|
-    value == "Linux"
-  end
-  
-  bar = Facter.value('theta')
- 
-  setcode do
-    bar + 1
-  end
-end
-```
-
-In this example, the `Facter.value('theta')` call is outside of the guarded `setcode` block and in the unguarded part of the `Facter.add` block. This means that the statement will always execute, on every system, regardless of confine, weight, or which resolution of `phi` is appropriate. Any code with possible side-effects, or code pertaining to figuring out the value of a fact, should be kept inside the setcode block. The only code left outside `setcode` is code that helps Facter choose which resolution of a fact to use.
 
 ## Writing structured facts
 
