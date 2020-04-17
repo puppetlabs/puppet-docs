@@ -20,7 +20,7 @@ title: "Language: Relationships and ordering"
 [lambdas]: ./lang_lambdas.html
 [containment]: ./lang_containment.html
 
-By default, Puppet applies resources in the order they're declared in their manifest. However, if a group of resources must _always_ be managed in a specific order, you should explicitly declare such relationships with relationship metaparameters, chaining arrows, and the `require` function.
+Resources are included and applied in the order they are defined in their manifest, but only if the resource has no implicit relationship with another resource, as this can affect the declared order. To manage a group of resources in a specific order, explicitly declare such relationships with relationship metaparameters, chaining arrows, and the require function.
 
 > **Aside: Default ordering**
 >
