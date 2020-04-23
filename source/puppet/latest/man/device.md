@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: d84d913905eea6e8180e6aef203edf1d8bf16dfd
+built_from_commit: 5c9738d96e0f4ffdaf2e8f9284d22388136641f6
 title: 'Man Page: puppet device'
 canonical: "/puppet/latest/man/device.html"
 ---
@@ -92,7 +92,7 @@ format.</p></dd>
 <dt class="flush">--apply</dt><dd><p>Apply a manifest against a remote target. Target must be specified.</p></dd>
 <dt class="flush">--facts</dt><dd><p>Displays the facts of a remote target. Target must be specified.</p></dd>
 <dt>--resource</dt><dd><p>Displays a resource state as Puppet code, roughly equivalent to
-<code>puppet resource</code>.  Can be filterd by title. Requires --target be specified.</p></dd>
+<code>puppet resource</code>.  Can be filtered by title. Requires --target be specified.</p></dd>
 <dt>--target</dt><dd><p>Target a specific device/certificate in the device.conf. Doing so will perform a
 device run against only that device/certificate.</p></dd>
 <dt>--to_yaml</dt><dd><p>Output found resources in yaml format, suitable to use with Hiera and

@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: d84d913905eea6e8180e6aef203edf1d8bf16dfd
+built_from_commit: 5c9738d96e0f4ffdaf2e8f9284d22388136641f6
 title: 'Resource Type: notify'
 canonical: "/puppet/latest/types/notify.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2020-02-28 15:12:08 -0800
+> **NOTE:** This page was generated from the Puppet source code on 2020-04-23 09:17:32 -0700
 
 notify
 -----
@@ -58,4 +58,4 @@ Allowed values:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2020-02-28 15:12:08 -0800
+> **NOTE:** This page was generated from the Puppet source code on 2020-04-23 09:17:32 -0700

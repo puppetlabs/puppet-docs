@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: d84d913905eea6e8180e6aef203edf1d8bf16dfd
+built_from_commit: 5c9738d96e0f4ffdaf2e8f9284d22388136641f6
 title: Configuration Reference
 toc: columns
 canonical: "/puppet/latest/configuration.html"
@@ -124,7 +124,7 @@ user can use the `puppetserver ca sign` command to manually sign it, or can dele
 the request.
 
 For info on autosign configuration files, see
-[the guide to Puppet's config files](https://puppet.com/docs/puppet/latest/config_about_settings.html).
+[the guide to Puppet's config files](https://puppet.com/docs/puppet/latest/config_file_autosign.html).
 
 - *Default*: $confdir/autosign.conf
 
@@ -894,6 +894,13 @@ Whether to write HTTP request and responses to stderr. This should never be used
 
 - *Default*: false
 
+### http_extra_headers
+
+The list of extra headers that will be sent with http requests to the master.
+The header definition consists of a name and a value separated by a colon.
+
+- *Default*: []
+
 ### http_keepalive_timeout
 
 The maximum amount of time a persistent HTTP connection can remain idle in the connection pool, before it is closed.  This timeout should be shorter than the keepalive timeout used on the HTTP server, e.g. Apache KeepAliveTimeout directive.
@@ -945,7 +952,7 @@ This setting can be a time interval in seconds (30 or 30s), minutes (30m), hours
 
 The HTTP User-Agent string to send when making network requests.
 
-- *Default*: Puppet/6.13.0 Ruby/2.5.1-p57 (x86_64-darwin17)
+- *Default*: Puppet/6.14.0 Ruby/2.5.1-p57 (x86_64-darwin17)
 
 ### ignoremissingtypes
 

@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: d84d913905eea6e8180e6aef203edf1d8bf16dfd
+built_from_commit: 5c9738d96e0f4ffdaf2e8f9284d22388136641f6
 title: 'Man Page: puppet agent'
 canonical: "/puppet/latest/man/agent.html"
 ---
@@ -13,7 +13,7 @@ canonical: "/puppet/latest/man/agent.html"
 
 <h2 id="SYNOPSIS">SYNOPSIS</h2>
 
-<p>Retrieves the client configuration from the puppet master and applies it to
+<p>Retrieves the client configuration from the Puppet master and applies it to
 the local host.</p>
 
 <p>This service may be run as a daemon, run periodically using cron (or something
@@ -91,8 +91,9 @@ Values must be comma-separated.</p>
 
 <p>Note that any Puppet setting that's valid in the configuration file is also a
 valid long argument. For example, 'server' is a valid setting, so you can
-specify '--server <var>servername</var>' as an argument. Boolean settings translate into
-'--setting' and '--no-setting' pairs.</p>
+specify '--server <var>servername</var>' as an argument. Boolean settings accept a '--no-'
+prefix to turn off a behavior, translating into '--setting' and '--no-setting'
+pairs, such as <code>--daemonize</code> and <code>--no-daemonize</code>.</p>
 
 <p>See the configuration file documentation at
 https://puppet.com/docs/puppet/latest/configuration.html for the
@@ -153,8 +154,8 @@ than one 'puppet agent' process is working at a time.</p>
 <li><p>--enable:
 Enable working on the local system. This removes any lock file,
 causing 'puppet agent' to start managing the local system again
-(although it will continue to use its normal scheduling, so it might
-not start for another half hour).</p>
+However, it continues to use its normal scheduling, so it might
+not start for another half hour.</p>
 
 <p>'puppet agent' exits after executing this.</p></li>
 <li><p>--evaltrace:
@@ -186,7 +187,7 @@ The port on which to contact the puppet master.
 (This is a Puppet setting, and can go in puppet.conf.)</p></li>
 <li><p>--noop:
 Use 'noop' mode where the daemon runs in a no-op or dry-run mode. This
-is useful for seeing what changes Puppet will make without actually
+is useful for seeing what changes Puppet would make without actually
 executing the changes.
 (This is a Puppet setting, and can go in puppet.conf. Note the special 'no-'
 prefix for boolean settings on the command line.)</p></li>
@@ -216,8 +217,7 @@ causes 'puppet agent' to connect to the server every 2 minutes and ask
 it to sign a certificate request. This is useful for the initial setup
 of a puppet client. You can turn off waiting for certificates by
 specifying a time of 0.
-(This is a Puppet setting, and can go in puppet.conf. Note the special 'no-'
-prefix for boolean settings on the command line.)</p></li>
+(This is a Puppet setting, and can go in puppet.conf.)</p></li>
 </ul>
 
 

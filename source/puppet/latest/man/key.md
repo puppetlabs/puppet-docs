@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: d84d913905eea6e8180e6aef203edf1d8bf16dfd
+built_from_commit: 5c9738d96e0f4ffdaf2e8f9284d22388136641f6
 title: 'Man Page: puppet key'
 canonical: "/puppet/latest/man/key.html"
 ---

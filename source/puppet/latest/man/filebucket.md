@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: d84d913905eea6e8180e6aef203edf1d8bf16dfd
+built_from_commit: 5c9738d96e0f4ffdaf2e8f9284d22388136641f6
 title: 'Man Page: puppet filebucket'
 canonical: "/puppet/latest/man/filebucket.html"
 ---
@@ -57,6 +57,21 @@ running as a user with valid Puppet certificates. Alternatively, you can
 use your local file bucket by specifying '--local', or by specifying
 '--bucket' with a local path.</p>
 
+<blockquote><p><strong>Note</strong>: Enabling and using the backup option, and by extension the
+  filebucket resource, requires appropriate planning and management to ensure
+  that sufficient disk space is available for the file backups. Generally, you
+  can implement this using one of the following two options:
+  - Use a <code>find</code> command and <code>crontab</code> entry to retain only the last X days
+  of file backups. For example:</p></blockquote>
+
+<pre><code class="``shell">  find /opt/puppetlabs/server/data/puppetserver/bucket -type f -mtime +45 -atime +45 -print0 | xargs -0 rm
+</code></pre>
+
+<ul>
+<li>Restrict the directory to a maximum size after which the oldest items are removed.</li>
+</ul>
+
+
 <h2 id="OPTIONS">OPTIONS</h2>
 
 <p>Note that any setting that's valid in the configuration
@@ -83,7 +98,7 @@ path instead.</p></dd>
 <dt>--remote</dt><dd><p>Use a remote filebucket. This uses the default configuration
 information and the bucket located at the '$bucketdir' setting
 by default.</p></dd>
-<dt>--server_list</dt><dd><p>A list of comma seperated servers; only the first entry is used for file storage.
+<dt>--server_list</dt><dd><p>A list of comma separated servers; only the first entry is used for file storage.
 This setting takes precidence over <code>server</code>.</p></dd>
 <dt>--server</dt><dd><p>The server to use for file storage. This setting is only used if <code>server_list</code>
 is not set.</p></dd>

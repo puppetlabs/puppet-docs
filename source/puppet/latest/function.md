@@ -1,13 +1,13 @@
 ---
 layout: default
-built_from_commit: d84d913905eea6e8180e6aef203edf1d8bf16dfd
+built_from_commit: 5c9738d96e0f4ffdaf2e8f9284d22388136641f6
 title: List of built-in functions
 canonical: "/puppet/latest/function.html"
 toc_levels: 2
 toc: columns
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2020-02-28 15:12:08 -0800
+> **NOTE:** This page was generated from the Puppet source code on 2020-04-23 09:17:32 -0700
 
 This page is a list of Puppet's built-in functions, with descriptions of what they do and how to use them.
 
@@ -449,7 +449,7 @@ notice($d.call())
 
 Would notice the value of `$facts['processors']['count']` at the time when the `call` is made.
 
-* Deferred values supported since Puppet 6.0.
+* Deferred values supported since Puppet 5.6.0
 
 
 Signature 1
@@ -3986,6 +3986,7 @@ call, it passes the result of the previous call as the first parameter ($memo in
 above examples) and the next value from the data structure as the second parameter
 ($value).
 
+If the structure has one value, Puppet returns the value and does not call the lambda.
 
 ```puppet
 # Reduce the array $data, returning the sum of all values in the array.
@@ -5373,4 +5374,4 @@ how to use this function.
 
 `yaml_data(Struct[{path=>String[1]}] $options, Puppet::LookupContext $context)`
 
-> **NOTE:** This page was generated from the Puppet source code on 2020-02-28 15:12:08 -0800
+> **NOTE:** This page was generated from the Puppet source code on 2020-04-23 09:17:32 -0700

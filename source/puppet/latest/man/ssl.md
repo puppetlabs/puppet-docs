@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: d84d913905eea6e8180e6aef203edf1d8bf16dfd
+built_from_commit: 5c9738d96e0f4ffdaf2e8f9284d22388136641f6
 title: 'Man Page: puppet ssl'
 canonical: "/puppet/latest/man/ssl.html"
 ---
@@ -24,7 +24,7 @@ to communicate with a puppet infrastructure.</p>
 
 <ul>
 <li><p>--help:
-Print this help messsge.</p></li>
+Print this help message.</p></li>
 <li><p>--verbose:
 Print extra information.</p></li>
 <li><p>--debug:
