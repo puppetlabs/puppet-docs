@@ -46,11 +46,9 @@ Set all code inside the sections outlined above ⁠— there should not be any c
 
 ### How to format facts
 
-The format of a fact is important because of the way that Factor evaluates them — by reading *all* the fact definitions. If formatting incorrectly, Facter can execute code too early. You need to use the `setcode` correctly. Below is a *good* example and a *bad* example of a fact, showing you where to place the `setcode`. 
+The format of a fact is important because of the way that Factor evaluates them — by reading *all* the fact definitions. If formatted incorrectly, Facter can execute code too early. You need to use the `setcode` correctly. Below is a *good* example and a *bad* example of a fact, showing you where to place the `setcode`. 
 
-#### Good
-
-The following is an example of how to structure a fact correctly: 
+Good: 
 
 ```
 Facter.add('phi') do
@@ -68,9 +66,7 @@ end
 
 In this example, the `bar=Facter.value('theta')` call is guarded by `setcode`, which means it won't be executed unless or until it is appropriate to do so. Facter will load all `Facter.add` blocks first, use any OS or confine/weight information to decide which facts to evaluate, and once it chooses, it will selectively execute `setcode` blocks for each fact that it needs.
 
-#### Bad
-
-The following is an example of how **not** to structure a fact: 
+Bad: 
 
 ```
 Facter.add('phi') do
