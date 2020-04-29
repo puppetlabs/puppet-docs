@@ -20,6 +20,27 @@ Read the [Puppet 5.1](https://github.com/puppetlabs/docs-archive/blob/master/pup
 
 Also of interest: the [Puppet 4.10 release notes](../4.10/release_notes.html) and [Puppet 4.9 release notes](https://github.com/puppetlabs/docs-archive/blob/master/puppet/4.9/release_notes.markdown).
 
+## Puppet 5.5.20
+
+Released  30 April 2020
+
+### New features
+
+- Improved performance on the `selmodule` provider. Previously, the `selmodule` provider called `/usr/sbin/semodule —list` once or twice per resource. This resulted in a heavy duplication of effort and increased apply time. In this release, a new cache improves the performance. [PUP-10313](https://tickets.puppetlabs.com/browse/PUP-10313?src=confmacro)
+
+### Resolved issues
+
+- This release fixes an issue where Puppet did not report broken AIX packages during install. [PUP-8937](https://tickets.puppetlabs.com/browse/PUP-8937?src=confmacro)
+- In macOS 10.15, the `-noidme` flag caused `.dmg` package installation to fail. This release removes the `-noidme` flag with `hdiutil` when using the `pkgdmg` package provider. [PUP-10408](https://tickets.puppetlabs.com/browse/PUP-10408)
+- This release upgrades Ruby to 2.4.10 to address security issues: [CVE-2020-10933](https://www.ruby-lang.org/en/news/2020/03/31/heap-exposure-in-socket-cve-2020-10933/)[PA-3179](https://tickets.puppetlabs.com/browse/PA-3179)
+- An issue where RedHat Subscription Manager updates caused `ensure => latest` to do nothing is now fixed. [PUP-10432](https://tickets.puppetlabs.com/browse/PUP-10432)
+- The `pkgng` provider now supports `install_options`. [PUP-10380](https://tickets.puppetlabs.com/browse/PUP-10380).
+- The `pkgng` provider now correctly parses the latest versions for packages. [PUP-10382](https://tickets.puppetlabs.com/browse/PUP-10382)
+- Previously, 5.5.17 agents were failing on interval runs. There were various paths in a Puppet run that did not explicitly return exit code, leading to a `TypeError` exception. With this release, the `exit` argument from `run_in_fork` is unaffected by these errors. [PUP-10366](https://tickets.puppetlabs.com/browse/PUP-10366).
+- Previously, if an Active Directory user was added as member of a local group and then deleted, Puppet did not manage the respective group members. With this release, Puppet will manage the group by showing SID instead of the account name for non-resolvable users. [PUP-10303](https://tickets.puppetlabs.com/browse/PUP-10303).
+- Previously, Windows pidlock could raise access denied. With this release, you can use `SeDebugPrivilege` on Windows when opening a lockfile PID to determine whether the process is a Puppet process. [PUP-10248](https://tickets.puppetlabs.com/browse/PUP-10248).
+- This version upgrades the OpenSSL version to 1.1.1g on non-fips platforms to address security issues: [CVE-2020-1967](https://www.openssl.org/news/secadv/20200421.txt). [PA-3186](https://tickets.puppetlabs.com/browse/PA-3186).
+
 ## Puppet 5.5.19
 
 Released 10 March 2020

@@ -7,6 +7,20 @@ These are the new features, resolved issues, and deprecations in this version of
 
 > For Facter releases later than version 3.11.x, release notes are included in the corresponding Puppet documentation set. For the most recent Facter documentation, see the [Facter](https://puppet.com/docs/puppet/latest/facter.html) page.
 
+## Facter 3.11.13
+
+Released 30 April 2020 and shipped with Puppet Platform 5.5.20.
+
+### New features
+
+- This release moves `cached-custom-facts` to a new section in the`facter.conf` file, called `fact-groups`. [FACT-2544](https://tickets.puppetlabs.com/browse/FACT-2544)
+- This release allows you to cache custom facts based on the `facter.conf` file. Depending on the `ttl` defined under `Facts.ttls`, custom facts defined in `facter.conf` under `Facts.cached-custom-facts` will be cached. [FACT-1575](https://tickets.puppetlabs.com/browse/FACT-1575)
+
+### Resolved issues
+
+- Previously, when the `oslevel -s` command was executed on AIX, redirects `stderr` to `/dev/null` were shown on `stderr` and the `kernel` fact broke. This is now fixed. [FACT-2545](https://tickets.puppetlabs.com/browse/FACT-2545)
+- Previously, when os-specific facts were not resolved, Puppet logged a warning. This release lowers the severity of the logged messages to debug. [FACT-2489](https://tickets.puppetlabs.com/browse/FACT-2489)
+
 ## Facter 3.11.12
 
 Released 10 March 2020 and shipped with Puppet Platform 5.5.19
@@ -33,7 +47,6 @@ Released 14 January 2020
 - Facter can now return the new `scope6` fact to display IPv6 address scope. [FACT-2016](https://tickets.puppetlabs.com/browse/FACT-2016)
 
 - Facter command execution now accepts a Boolean parameter, `expand`. By default, Facter searches the command and expands it to absolute path. When `expand` is set to false, Facter verifies whether the command is a shell command and, if so, passes the command as is.[FACT-1824](https://tickets.puppetlabs.com/browse/FACT-1824)
-
 
 ### Resolved issues
 
