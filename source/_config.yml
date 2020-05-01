@@ -180,13 +180,6 @@ documents:
       puppetserver: "5.1"
     hide: true
   
-  # Other Hiera versions (on the site, but not a Puppet dependency)   
-  /hiera/3.2:
-    doc: hiera
-    version: "3.2"
-    nav: ./_hiera_toc.html
-    hide: true
-  
   # Other PuppetDB versions (on the site, but not a Puppet dependency)  
   /puppetdb/6.3:
     doc: puppetdb
