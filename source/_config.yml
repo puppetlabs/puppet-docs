@@ -57,13 +57,8 @@ document_names:
   puppet: Puppet
   puppetserver: Puppet Server
   puppetdb: PuppetDB
-  hiera: Hiera
   facter: Facter
   pdk: Puppet Development Kit
-  puppet_es: "Puppet (español)"
-  pipelines_for_apps: "Pipelines for Applications"
-  pipelines_for_containers: "Pipelines for Containers"
-  container_reg: "Puppet Container Registry"
 
 # Anatomy of a document:
 #  /pe/2015.3:                    # Base URL for this doc, starting from the root of the site.
@@ -167,17 +162,6 @@ documents:
     my_versions:
       puppet: "5.5"
       facter: "3.11"
-    hide: true
-
-  # Translated docs  
-  /es/puppet/5.3:
-    doc: puppet_es
-    version: "5.3"
-    nav: /_includes/_es_puppet_toc_53.html
-    my_versions:
-      facter: "3.9"
-      hiera: "3.4"
-      puppetserver: "5.1"
     hide: true
   
   # Other PuppetDB versions (on the site, but not a Puppet dependency)  
