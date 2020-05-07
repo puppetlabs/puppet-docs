@@ -117,6 +117,9 @@ This property behaves differently depending on the platform;
 wherever possible, it relies on local tools to enable or disable
 a given service. Default values depend on the platform.
 
+If you don't specify a value for the `enable` attribute, Puppet leaves that aspect of the service alone and your operating system determines the behavior.
+
+
 Allowed values:
 
 * `true`
