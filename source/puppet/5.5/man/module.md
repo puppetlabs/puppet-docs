@@ -297,7 +297,7 @@ Module built: /Users/kelseyhightower/puppetlabs-apache/pkg/puppetlabs-apache-0.0
 </code></pre>
 
 <p>Build the module in the current working directory:</p>	
-<pre></code>
+<pre><code>
 $ cd /Users/kelseyhightower/puppetlabs-apache	
 $ puppet module build	
 notice: Building /Users/kelseyhightower/puppetlabs-apache for release	
@@ -542,7 +542,7 @@ Removed /etc/puppetlabs/code/modules/ssh (v2.0.0)
 
 <p>upgrade an installed module to the latest version</p>
 
-<code><pre>
+<pre><code>
 $ puppet module upgrade puppetlabs-apache
 /etc/puppetlabs/puppet/modules
 └── puppetlabs-apache (v1.0.0 -> v2.4.0)
@@ -566,6 +566,4 @@ $ puppet module upgrade puppetlabs-apache --environment test
 
 <p>Copyright 2012 by Puppet Inc.
 Apache 2 license; see COPYING</p>
-
-</div>
 
