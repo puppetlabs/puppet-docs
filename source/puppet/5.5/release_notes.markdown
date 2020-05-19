@@ -32,7 +32,7 @@ Released  30 April 2020
 
 - This release fixes an issue where Puppet did not report broken AIX packages during install. [PUP-8937](https://tickets.puppetlabs.com/browse/PUP-8937?src=confmacro)
 - In macOS 10.15, the `-noidme` flag caused `.dmg` package installation to fail. This release removes the `-noidme` flag with `hdiutil` when using the `pkgdmg` package provider. [PUP-10408](https://tickets.puppetlabs.com/browse/PUP-10408)
-- This release upgrades Ruby to 2.4.10 to address security issues: [CVE-2020-10933](https://www.ruby-lang.org/en/news/2020/03/31/heap-exposure-in-socket-cve-2020-10933/)[PA-3179](https://tickets.puppetlabs.com/browse/PA-3179)
+- This release upgrades Ruby to 2.4.10 to address security issues: [CVE-2020-10663](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-10663). [PA-3179](https://tickets.puppetlabs.com/browse/PA-3179)
 - An issue where RedHat Subscription Manager updates caused `ensure => latest` to do nothing is now fixed. [PUP-10432](https://tickets.puppetlabs.com/browse/PUP-10432)
 - The `pkgng` provider now supports `install_options`. [PUP-10380](https://tickets.puppetlabs.com/browse/PUP-10380).
 - The `pkgng` provider now correctly parses the latest versions for packages. [PUP-10382](https://tickets.puppetlabs.com/browse/PUP-10382)
