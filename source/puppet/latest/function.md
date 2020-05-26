@@ -1,13 +1,13 @@
 ---
 layout: default
-built_from_commit: 5c9738d96e0f4ffdaf2e8f9284d22388136641f6
+built_from_commit: f03f25066a56ff61ba828f787fa32600f7d1f169
 title: List of built-in functions
 canonical: "/puppet/latest/function.html"
 toc_levels: 2
 toc: columns
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2020-04-23 09:17:32 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2020-05-26 11:40:10 -0700
 
 This page is a list of Puppet's built-in functions, with descriptions of what they do and how to use them.
 
@@ -74,7 +74,7 @@ Logs a message on the server at level `alert`.
 
 `alert(Any *$values)`
 
-## Parameters
+#### Parameters
 
 * `*values` --- The values to log.
 
@@ -449,7 +449,7 @@ notice($d.call())
 
 Would notice the value of `$facts['processors']['count']` at the time when the `call` is made.
 
-* Deferred values supported since Puppet 5.6.0
+* Deferred values supported since Puppet 6.0
 
 
 Signature 1
@@ -797,7 +797,7 @@ Logs a message on the server at level `crit`.
 
 `crit(Any *$values)`
 
-## Parameters
+#### Parameters
 
 * `*values` --- The values to log.
 
@@ -810,7 +810,7 @@ Logs a message on the server at level `debug`.
 
 `debug(Any *$values)`
 
-## Parameters
+#### Parameters
 
 * `*values` --- The values to log.
 
@@ -1118,7 +1118,7 @@ Logs a message on the server at level `emerg`.
 
 `emerg(Any *$values)`
 
-## Parameters
+#### Parameters
 
 * `*values` --- The values to log.
 
@@ -1212,7 +1212,7 @@ Logs a message on the server at level `err`.
 
 `err(Any *$values)`
 
-## Parameters
+#### Parameters
 
 * `*values` --- The values to log.
 
@@ -1678,13 +1678,13 @@ Signature 1
 
 `group_by(Collection $collection, Callable[1,1] &$block)`
 
-## Parameters
+#### Parameters
 
 * `collection` --- A collection of things to group.
 
 Return type(s): `Hash`. 
 
-## Examples
+#### Examples
 
 Group array of strings by length, results in e.g. { 1 => [a, b], 2 => [ab] }
 
@@ -2194,7 +2194,7 @@ Logs a message on the server at level `info`.
 
 `info(Any *$values)`
 
-## Parameters
+#### Parameters
 
 * `*values` --- The values to log.
 
@@ -3881,7 +3881,7 @@ Logs a message on the server at level `notice`.
 
 `notice(Any *$values)`
 
-## Parameters
+#### Parameters
 
 * `*values` --- The values to log.
 
@@ -3897,13 +3897,13 @@ Signature 1
 
 `partition(Collection $collection, Callable[1,1] &$block)`
 
-## Parameters
+#### Parameters
 
 * `collection` --- A collection of things to partition.
 
 Return type(s): `Tuple[Array, Array]`. 
 
-## Examples
+#### Examples
 
 Partition array of empty strings, results in e.g. [[''], [b, c]]
 
@@ -3982,11 +3982,9 @@ and the data structure's first value. Otherwise, Puppet passes the structure's f
 values to the lambda.
 
 Puppet calls the lambda for each of the data structure's remaining values. For each
-call, it passes the result of the previous call as the first parameter ($memo in the
+call, it passes the result of the previous call as the first parameter (`$memo` in the
 above examples) and the next value from the data structure as the second parameter
-($value).
-
-If the structure has one value, Puppet returns the value and does not call the lambda.
+(`$value`).
 
 ```puppet
 # Reduce the array $data, returning the sum of all values in the array.
@@ -4080,7 +4078,7 @@ Signature 1
 
 `regsubst(Variant[Array[String],String] $target, String $pattern, Variant[String,Hash[String,String]] $replacement, Optional[Optional[Pattern[/^[GEIM]*$/]]] $flags, Optional[Enum['N','E','S','U']] $encoding)`
 
-## Parameters
+#### Parameters
 
 * `target` --- The string or array of strings to operate on.  If an array, the replacement will be
 performed on each of the elements in the array, and the return value will be an array.
@@ -4108,7 +4106,7 @@ precompiled regexp). A single-character string with the following values:
 
 Return type(s): `Array[String]`, `String`. The result of the substitution. Result type is the same as for the target parameter.
 
-## Examples
+#### Examples
 
 Get the third octet from the node's IP address:
 
@@ -4121,7 +4119,7 @@ Signature 2
 
 `regsubst(Variant[Array[String],String] $target, Variant[Regexp,Type[Regexp]] $pattern, Variant[String,Hash[String,String]] $replacement, Optional[Pattern[/^G?$/]] $flags)`
 
-## Parameters
+#### Parameters
 
 * `target` --- The string or array of strings to operate on.  If an array, the replacement will be
 performed on each of the elements in the array, and the return value will be an array.
@@ -4149,7 +4147,7 @@ precompiled regexp). A single-character string with the following values:
 
 Return type(s): `Array[String]`, `String`. The result of the substitution. Result type is the same as for the target parameter.
 
-## Examples
+#### Examples
 
 Put angle brackets around each octet in the node's IP address:
 
@@ -5336,7 +5334,7 @@ Logs a message on the server at level `warning`.
 
 `warning(Any *$values)`
 
-## Parameters
+#### Parameters
 
 * `*values` --- The values to log.
 
@@ -5374,4 +5372,4 @@ how to use this function.
 
 `yaml_data(Struct[{path=>String[1]}] $options, Puppet::LookupContext $context)`
 
-> **NOTE:** This page was generated from the Puppet source code on 2020-04-23 09:17:32 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2020-05-26 11:40:10 -0700
