@@ -39,7 +39,7 @@ Install the Puppet agent so that your master can communicate with your Linux nod
 
 5. (Optional) Configure agent settings.
 
-   For example, if your master isn't reachable at the default address, `server = puppet`, set the `server` setting to your Puppet master's hostname.
+   For example, if your master isn't reachable at the default address, `server = puppet`, set the `server` setting to your Puppet master's hostname with the following command: `puppet config set server <MASTER FDQN> --section main`.
 
    For other settings you might want to change, see a [list of agent-related settings][agent_settings].
 
