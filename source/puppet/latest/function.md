@@ -1,7 +1,7 @@
 ---
 layout: default
 built_from_commit: f03f25066a56ff61ba828f787fa32600f7d1f169
-title: List of built-in functions
+title: Built-in function reference
 canonical: "/puppet/latest/function.html"
 toc_levels: 2
 toc: columns
