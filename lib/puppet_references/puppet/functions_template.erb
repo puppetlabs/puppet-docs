@@ -17,6 +17,7 @@ Signature <%= index+1 %>
 if has_parameters -%>
 
 #### Parameters
+
 <% signature['docstring']['tags'].select {|tag| tag['tag_name'] == 'param' && tag['text'] != '' && tag['text'] != nil}.each do |param| -%>
 
 * `<%= param['name'] %>` --- <%= param['text'] %>
@@ -29,6 +30,7 @@ Return type(s): <%= return_types['types'].map {|t| "`#{t}`"}.join(', ') %>. <%= 
 <% end # if return_types
 has_examples = signature['docstring']['tags'].detect {|tag| tag['tag_name'] == 'example' && tag['text'] != '' && tag['text'] != nil }
 if has_examples %>
+
 #### Examples
 
 <% signature['docstring']['tags'].select {|tag| tag['tag_name'] == 'example' && tag['text'] != '' && tag['text'] != nil}.each do |example| -%>

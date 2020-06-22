@@ -27,7 +27,7 @@ module PuppetReferences
         strings_data = PuppetReferences::Puppet::Strings.new
         functions = strings_data['puppet_functions']
         generated_at = "> **NOTE:** This page was generated from the Puppet source code on #{Time.now.to_s}"
-        header_data = {title: 'List of built-in functions',
+        header_data = {title: 'Built-in function reference',
                        canonical: "#{@latest}/function.html",
                        toc_levels: 2,
                        toc: 'columns'}
