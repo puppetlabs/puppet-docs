@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: d84d913905eea6e8180e6aef203edf1d8bf16dfd
+built_from_commit: 2959aff838fdb13a35943fa8a83581fc3c1f0707
 title: 'Resource Type: service'
 canonical: "/puppet/latest/types/service.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2020-04-23 09:17:32 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2020-06-30 08:58:23 +0100
 
 service
 -----
@@ -117,8 +117,9 @@ This property behaves differently depending on the platform;
 wherever possible, it relies on local tools to enable or disable
 a given service. Default values depend on the platform.
 
-If you don't specify a value for the `enable` attribute, Puppet leaves that aspect of the service alone and your operating system determines the behavior.
-
+If you don't specify a value for the `enable` attribute, Puppet leaves
+that aspect of the service alone and your operating system determines
+the behavior.
 
 Allowed values:
 
@@ -387,15 +388,15 @@ Uses `rc-update` for service enabling and disabling.
 
 Standard `init`-style service management.
 
-* Confined to:
+* Confined to: 
 
-  ```
-  true == begin
+```
+true == begin
       os = Facter.value(:operatingsystem).downcase
       family = Facter.value(:osfamily).downcase
       !(os == 'debian' || os == 'ubuntu' || family == 'redhat')
   end
-  ```
+```
 * Supported features: `refreshable`
 
 <h4 id="service-provider-launchd">launchd</h4>
@@ -819,4 +820,4 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2020-04-23 09:17:32 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2020-06-30 08:58:23 +0100

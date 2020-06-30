@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 5c9738d96e0f4ffdaf2e8f9284d22388136641f6
+built_from_commit: 2959aff838fdb13a35943fa8a83581fc3c1f0707
 title: 'Resource Type: file'
 canonical: "/puppet/latest/types/file.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2020-04-23 09:17:32 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2020-06-30 08:58:23 +0100
 
 file
 -----
@@ -177,6 +177,19 @@ centralize the contents of the filebucket. Either configure your load
 balancer to direct all filebucket traffic to a single master, or use
 something like an out-of-band rsync task to synchronize the content on all
 masters.
+
+> **Note**: Enabling and using the backup option, and by extension the
+  filebucket resource, requires appropriate planning and management to ensure
+  that sufficient disk space is available for the file backups. Generally, you
+  can implement this using one of the following two options:
+  - Use a `find` command and `crontab` entry to retain only the last X days
+  of file backups. For example,
+
+  ```shell script
+  find /opt/puppetlabs/server/data/puppetserver/bucket -type f -mtime +45 -atime +45 -print0 | xargs -0 rm
+  ```
+
+  - Restrict the directory to a maximum size after which the oldest items are removed.
 
 Default: `puppet`
 
@@ -659,6 +672,8 @@ ownership or permission details.
 The `http` source uses the server `Content-MD5` header as a checksum to
 determine if the remote file has changed. If the server response does not
 include that header, Puppet defaults to using the `Last-Modified` header.
+Puppet will update the local file if the header is newer than the modified
+time (mtime) of the local file.
 
 Multiple `source` values can be specified as an array, and Puppet will
 use the first source that exists. This can be used to serve different
@@ -853,4 +868,4 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2020-04-23 09:17:32 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2020-06-30 08:58:23 +0100

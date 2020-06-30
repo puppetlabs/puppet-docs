@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: d84d913905eea6e8180e6aef203edf1d8bf16dfd
+built_from_commit: 2959aff838fdb13a35943fa8a83581fc3c1f0707
 title: 'Resource Type: tidy'
 canonical: "/puppet/latest/types/tidy.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2020-02-28 15:12:08 -0800
+> **NOTE:** This page was generated from the Puppet source code on 2020-06-30 08:58:23 +0100
 
 tidy
 -----
@@ -157,4 +157,4 @@ Allowed values:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2020-02-28 15:12:08 -0800
+> **NOTE:** This page was generated from the Puppet source code on 2020-06-30 08:58:23 +0100

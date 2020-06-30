@@ -1,13 +1,13 @@
 ---
 layout: default
-built_from_commit: f03f25066a56ff61ba828f787fa32600f7d1f169
+built_from_commit: 2959aff838fdb13a35943fa8a83581fc3c1f0707
 title: Built-in function reference
 canonical: "/puppet/latest/function.html"
 toc_levels: 2
 toc: columns
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2020-05-26 11:40:10 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2020-06-30 08:58:23 +0100
 
 This page is a list of Puppet's built-in functions, with descriptions of what they do and how to use them.
 
@@ -75,6 +75,7 @@ Logs a message on the server at level `alert`.
 `alert(Any *$values)`
 
 #### Parameters
+
 
 * `*values` --- The values to log.
 
@@ -799,6 +800,7 @@ Logs a message on the server at level `crit`.
 
 #### Parameters
 
+
 * `*values` --- The values to log.
 
 Return type(s): `Undef`. 
@@ -811,6 +813,7 @@ Logs a message on the server at level `debug`.
 `debug(Any *$values)`
 
 #### Parameters
+
 
 * `*values` --- The values to log.
 
@@ -1120,6 +1123,7 @@ Logs a message on the server at level `emerg`.
 
 #### Parameters
 
+
 * `*values` --- The values to log.
 
 Return type(s): `Undef`. 
@@ -1214,6 +1218,7 @@ Logs a message on the server at level `err`.
 
 #### Parameters
 
+
 * `*values` --- The values to log.
 
 Return type(s): `Undef`. 
@@ -1289,6 +1294,7 @@ as an array in the form `[key, value]` and returns a hash containing the results
 $data = { "orange" => 0, "blueberry" => 1, "raspberry" => 2 }
 $filtered_data = $data.filter |$items| { $items[0] =~ /berry$/ }
 # $filtered_data = {blueberry => 1, raspberry => 2}
+```
 
 When the first argument is an array and the lambda has two parameters, Puppet passes the
 array's indexes (enumerated from 0) in the first parameter and its values in the second
@@ -1680,9 +1686,11 @@ Signature 1
 
 #### Parameters
 
+
 * `collection` --- A collection of things to group.
 
 Return type(s): `Hash`. 
+
 
 #### Examples
 
@@ -2195,6 +2203,7 @@ Logs a message on the server at level `info`.
 `info(Any *$values)`
 
 #### Parameters
+
 
 * `*values` --- The values to log.
 
@@ -3883,6 +3892,7 @@ Logs a message on the server at level `notice`.
 
 #### Parameters
 
+
 * `*values` --- The values to log.
 
 Return type(s): `Undef`. 
@@ -3899,9 +3909,11 @@ Signature 1
 
 #### Parameters
 
+
 * `collection` --- A collection of things to partition.
 
 Return type(s): `Tuple[Array, Array]`. 
+
 
 #### Examples
 
@@ -4080,6 +4092,7 @@ Signature 1
 
 #### Parameters
 
+
 * `target` --- The string or array of strings to operate on.  If an array, the replacement will be
 performed on each of the elements in the array, and the return value will be an array.
 
@@ -4105,6 +4118,7 @@ precompiled regexp). A single-character string with the following values:
   - *U*         UTF-8
 
 Return type(s): `Array[String]`, `String`. The result of the substitution. Result type is the same as for the target parameter.
+
 
 #### Examples
 
@@ -4121,6 +4135,7 @@ Signature 2
 
 #### Parameters
 
+
 * `target` --- The string or array of strings to operate on.  If an array, the replacement will be
 performed on each of the elements in the array, and the return value will be an array.
 
@@ -4146,6 +4161,7 @@ precompiled regexp). A single-character string with the following values:
   - *U*         UTF-8
 
 Return type(s): `Array[String]`, `String`. The result of the substitution. Result type is the same as for the target parameter.
+
 
 #### Examples
 
@@ -5336,6 +5352,7 @@ Logs a message on the server at level `warning`.
 
 #### Parameters
 
+
 * `*values` --- The values to log.
 
 Return type(s): `Undef`. 
@@ -5372,4 +5389,4 @@ how to use this function.
 
 `yaml_data(Struct[{path=>String[1]}] $options, Puppet::LookupContext $context)`
 
-> **NOTE:** This page was generated from the Puppet source code on 2020-05-26 11:40:10 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2020-06-30 08:58:23 +0100

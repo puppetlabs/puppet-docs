@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 5c9738d96e0f4ffdaf2e8f9284d22388136641f6
+built_from_commit: 2959aff838fdb13a35943fa8a83581fc3c1f0707
 title: 'Resource Type: package'
 canonical: "/puppet/latest/types/package.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2020-04-23 09:17:32 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2020-06-30 08:58:23 +0100
 
 package
 -----
@@ -42,6 +42,7 @@ resource will autorequire those files.
 <h3 id="package-attributes">Attributes</h3>
 
 <pre><code>package { 'resource title':
+  <a href="#package-attribute-name">name</a>                 =&gt; <em># <strong>(namevar)</strong> The package name.  This is the name that the...</em>
   <a href="#package-attribute-command">command</a>              =&gt; <em># <strong>(namevar)</strong> The targeted command to use when managing a...</em>
   <a href="#package-attribute-name">name</a>                 =&gt; <em># <strong>(namevar)</strong> The package name.  This is the name that the...</em>
   <a href="#package-attribute-provider">provider</a>             =&gt; <em># <strong>(namevar)</strong> The specific backend to use for this `package...</em>
@@ -52,6 +53,7 @@ resource will autorequire those files.
   <a href="#package-attribute-category">category</a>             =&gt; <em># A read-only parameter set by the...</em>
   <a href="#package-attribute-configfiles">configfiles</a>          =&gt; <em># Whether to keep or replace modified config files </em>
   <a href="#package-attribute-description">description</a>          =&gt; <em># A read-only parameter set by the...</em>
+  <a href="#package-attribute-enable_only">enable_only</a>          =&gt; <em># Tells `dnf module` to only enable a specific...</em>
   <a href="#package-attribute-flavor">flavor</a>               =&gt; <em># OpenBSD and DNF modules support 'flavors', which </em>
   <a href="#package-attribute-install_only">install_only</a>         =&gt; <em># It should be set for packages that should only...</em>
   <a href="#package-attribute-install_options">install_options</a>      =&gt; <em># An array of additional options to pass when...</em>
@@ -68,35 +70,6 @@ resource will autorequire those files.
   <a href="#package-attribute-vendor">vendor</a>               =&gt; <em># A read-only parameter set by the...</em>
   # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
-
-<h4 id="package-attribute-command">command</h4>
-
-_(**Namevar:** If omitted, this attribute's value defaults to the resource's title.)_
-
-The targeted command to use when managing a package:
-
-  package { 'mysql':
-    provider => gem,
-  }
-
-  package { 'mysql-opt':
-    name     => 'mysql',
-    provider => gem,
-    command  => '/opt/ruby/bin/gem',
-  }
-
-Each provider defines a package management command; and uses the first
-instance of the command found in the PATH.
-
-Providers supporting the targetable feature allow you to specify the
-absolute path of the package management command; useful when multiple
-instances of the command are installed, or the command is not in the PATH.
-
-Default: `default`
-
-Requires features targetable.
-
-([↑ Back to package attributes](#package-attributes))
 
 <h4 id="package-attribute-name">name</h4>
 
@@ -134,9 +107,30 @@ conditionally:
 
 ([↑ Back to package attributes](#package-attributes))
 
-<h4 id="package-attribute-provider">provider</h4>
+<h4 id="package-attribute-command">command</h4>
 
-_(**Secondary namevar:** This resource type allows you to manage multiple resources with the same name as long as their providers are different.)_
+_(**Namevar:** If omitted, this attribute's value defaults to the resource's title.)_
+
+The targeted command to use when managing a package:
+
+  package { 'mysql':
+    provider => gem,
+  }
+
+  package { 'mysql-opt':
+    name     => 'mysql',
+    provider => gem,
+    command  => '/opt/ruby/bin/gem',
+  }
+
+Each provider defines a package management command; and uses the first
+instance of the command found in the PATH.
+
+Providers supporting the targetable feature allow you to specify the
+absolute path of the package management command; useful when multiple
+instances of the command are installed, or the command is not in the PATH.
+
+Default: `default`
 
 The specific backend to use for this `package`
 resource. You will seldom need to specify this --- Puppet will usually
@@ -203,6 +197,9 @@ patterns are not accepted except for the `gem` package provider. For
 example, to install the bash package from the rpm
 `bash-4.1.2-29.el6.x86_64.rpm`, use the string `'4.1.2-29.el6'`.
 
+On supported providers, version ranges can also be ensured. For example,
+inequalities: `<2.0.0`, or intersections: `>1.0.0 <2.0.0`.
+
 Default: `installed`
 
 Allowed values:
@@ -211,6 +208,7 @@ Allowed values:
 * `absent`
 * `purged`
 * `held`
+* `disabled`
 * `installed`
 * `latest`
 * `/./`
@@ -283,6 +281,28 @@ Allowed values:
 <h4 id="package-attribute-description">description</h4>
 
 A read-only parameter set by the package.
+
+([↑ Back to package attributes](#package-attributes))
+
+<h4 id="package-attribute-enable_only">enable_only</h4>
+
+Tells `dnf module` to only enable a specific module, instead
+of installing its default profile.
+
+Modules with no default profile will be enabled automatically
+without the use of this parameter.
+
+Conflicts with the `flavor` property, which selects a profile
+to install.
+
+Default: `false`
+
+Allowed values:
+
+* `true`
+* `false`
+* `yes`
+* `no`
 
 ([↑ Back to package attributes](#package-attributes))
 
@@ -953,6 +973,7 @@ string or a hash.
 
 Available features:
 
+* `disableable` --- The provider can disable packages. This feature is used by specifying `disabled` as the desired value for the package.
 * `holdable` --- The provider is capable of placing packages on hold such that they are not automatically upgraded as a result of other package dependencies unless explicit action is taken by a user or another package.
 * `install_only` --- The provider accepts options to only install packages never update (kernels, etc.)
 * `install_options` --- The provider accepts options to be passed to the installer command.
@@ -965,6 +986,7 @@ Available features:
 * `uninstall_options` --- The provider accepts options to be passed to the uninstaller command.
 * `uninstallable` --- The provider can uninstall packages.
 * `upgradeable` --- The provider can upgrade to the latest version of a package.  This feature is used by specifying `latest` as the desired value for the package.
+* `version_ranges` --- The provider can ensure version ranges.
 * `versionable` --- The provider is capable of interrogating the package database for installed version(s), and can select which out of a set of available versions of a package to install if asked.
 * `virtual_packages` --- The provider accepts virtual package names for install and uninstall.
 
@@ -1676,4 +1698,4 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2020-04-23 09:17:32 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2020-06-30 08:58:23 +0100

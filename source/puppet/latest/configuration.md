@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 5c9738d96e0f4ffdaf2e8f9284d22388136641f6
+built_from_commit: 2959aff838fdb13a35943fa8a83581fc3c1f0707
 title: Configuration Reference
 toc: columns
 canonical: "/puppet/latest/configuration.html"
@@ -952,7 +952,7 @@ This setting can be a time interval in seconds (30 or 30s), minutes (30m), hours
 
 The HTTP User-Agent string to send when making network requests.
 
-- *Default*: Puppet/6.14.0 Ruby/2.5.1-p57 (x86_64-darwin17)
+- *Default*: Puppet/6.16.0 Ruby/2.3.7-p456 (universal.x86_64-darwin18)
 
 ### ignoremissingtypes
 
@@ -1208,6 +1208,15 @@ to ask for a signed certificate indefinitely.
 This setting can be a time interval in seconds (30 or 30s), minutes (30m), hours (6h), days (2d), or years (5y).
 
 - *Default*: unlimited
+
+### maxwaitforlock
+
+The maximum amount of time the puppet agent should wait for an
+already running puppet agent to finish before starting a new one. This is set by default to 1 minute.
+A value of `unlimited` will cause puppet agent to wait indefinitely.
+This setting can be a time interval in seconds (30 or 30s), minutes (30m), hours (6h), days (2d), or years (5y).
+
+- *Default*: 1m
 
 ### merge_dependency_warnings
 
@@ -1532,6 +1541,17 @@ Whether to send reports after every transaction.
 
 - *Default*: true
 
+### report_include_system_store
+
+Whether the 'http' report processor should include the system
+certificate store when submitting reports to HTTPS URLs. If false, then
+the 'http' processor will only trust HTTPS report servers whose certificates
+are issued by the puppet CA or one of its intermediate CAs. If true, the
+processor will additionally trust CA certificates in the system's
+certificate store.
+
+- *Default*: false
+
 ### report_port
 
 The port to communicate with the report_server.
@@ -1603,7 +1623,14 @@ uses its own auth.conf that must be placed within its configuration directory.
 
 ### resubmit_facts
 
-Whether to send updated facts after every transaction.
+Whether to send updated facts after every transaction. By default
+puppet only submits facts at the beginning of the transaction before applying a
+catalog. Since puppet can modify the state of the system, the value of the facts
+may change after puppet finishes. Therefore, any facts stored in puppetdb may not
+be consistent until the agent next runs, typically in 30 minutes. If this feature
+is enabled, puppet will resubmit facts after applying its catalog, ensuring facts
+for the node stored in puppetdb are current. However, this will double the fact
+submission load on puppetdb, so it is disabled by default.
 
 - *Default*: false
 
@@ -2046,6 +2073,18 @@ puppet agent will exit if it cannot get a cert.
 This setting can be a time interval in seconds (30 or 30s), minutes (30m), hours (6h), days (2d), or years (5y).
 
 - *Default*: 2m
+
+### waitforlock
+
+How frequently puppet agent should try running when there is an
+already ongoing puppet agent instance.
+
+This argument is by default disabled (value set to 0). In this case puppet agent will
+immediatly exit if it cannot run at that moment. When a value other than 0 is set, this
+can also be used in combination with the `maxwaitforlock` argument.
+This setting can be a time interval in seconds (30 or 30s), minutes (30m), hours (6h), days (2d), or years (5y).
+
+- *Default*: 0
 
 ### yamldir
 
