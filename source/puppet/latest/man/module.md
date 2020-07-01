@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 5c9738d96e0f4ffdaf2e8f9284d22388136641f6
+built_from_commit: 2959aff838fdb13a35943fa8a83581fc3c1f0707
 title: 'Man Page: puppet module'
 canonical: "/puppet/latest/man/module.html"
 ---
@@ -170,6 +170,8 @@ Whether to show dependencies as a tree view</p>
 <p>puppet module search <var>search_term</var></p>
 
 <p><code>DESCRIPTION</code></p>
+
+<p>This action has been deprecated. Please use the Puppet Forge to search for modules.</p>
 
 <p>Searches a repository for modules whose names, descriptions, or keywords
 match the provided search term.</p>

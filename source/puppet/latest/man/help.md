@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 5c9738d96e0f4ffdaf2e8f9284d22388136641f6
+built_from_commit: 2959aff838fdb13a35943fa8a83581fc3c1f0707
 title: 'Man Page: puppet help'
 canonical: "/puppet/latest/man/help.html"
 ---
@@ -43,14 +43,17 @@ sometimes available.</dd>
 <dl>
 <dt><code>help</code> - Display help about Puppet subcommands and their actions.</dt><dd><p><code>SYNOPSIS</code></p>
 
-<p>puppet help [--version VERSION] [<var>subcommand</var>] [<var>action</var>]</p>
+<p>puppet help [--version VERSION] [--ronn] [<var>subcommand</var>] [<var>action</var>]</p>
 
 <p><code>DESCRIPTION</code></p>
 
 <p>Display help about Puppet subcommands and their actions.</p>
 
 <p><code>OPTIONS</code>
-<var>--version VERSION</var> -
+<var>--ronn</var> -
+Whether to render the help text in ronn format.</p>
+
+<p><var>--version VERSION</var> -
 The version of the subcommand for which to show help.</p>
 
 <p><code>RETURNS</code></p>
