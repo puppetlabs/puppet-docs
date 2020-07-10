@@ -122,7 +122,6 @@ documents:
     nav: ./_puppet_toc.html
     my_versions:
       puppetserver: "latest"
-
   # Puppet latest dependencies    
   /puppetserver/latest:
     doc: puppetserver
@@ -135,6 +134,17 @@ documents:
     my_versions:
       puppet: "latest"
     hide: true
+  
+  # Puppet 6.16
+  /docs/puppet/6.16:
+    doc: puppet
+    version: "6.16"
+    nav: ./_puppet_toc.html
+    my_versions:
+      puppetserver: "latest"
+    hide: true
+  # Puppet 6.16 dependencies (As of 10 July 2020, this is just server latest. 
+  # If Server ends up cutting a branch for 6.12.x, we'll need to add that here.) 
   
   # Puppet 5.5
   /docs/puppet/5.5:
