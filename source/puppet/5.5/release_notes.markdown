@@ -75,7 +75,7 @@ Released  30 April 2020
 
 ### New features
 
-- Improved performance on the `selmodule` provider. Previously, the `selmodule` provider called `/usr/sbin/semodule Ñlist` once or twice per resource. This resulted in a heavy duplication of effort and increased apply time. In this release, a new cache improves the performance. [PUP-10313](https://tickets.puppetlabs.com/browse/PUP-10313?src=confmacro)
+- Improved performance on the `selmodule` provider. Previously, the `selmodule` provider called `/usr/sbin/semodule -list` once or twice per resource. This resulted in a heavy duplication of effort and increased apply time. In this release, a new cache improves the performance. [PUP-10313](https://tickets.puppetlabs.com/browse/PUP-10313?src=confmacro)
 
 ### Resolved issues
 
@@ -464,7 +464,7 @@ This is a bug-fix release.
 
 - SELinux utilities within the Puppet codebase now recognize that the `tmpfs` supports extended attributes and SELinux labels. The query `selinux_label_support?` returns `true` for a file mounted on `tmpfs`. [PUP-9330]((https://tickets.puppetlabs.com/browse/PUP-9330))
 
-- This release fixes a regression in the string formatting rules that caused a short form for an Array or Hash to not be recognized. For example, `String([1,[2,3],4], '%#a")` would not format with indentation, but would format the long form `String([1,[2,3],4], {Array =&gt; { format =&gt; '%#a"}})`. Now the short form works for Array and Hash as intended.a[PUP-9329]((https://tickets.puppetlabs.com/browse/PUP-9329))
+- This release fixes a regression in the string formatting rules that caused a short form for an Array or Hash to not be recognized. For example, `String([1,[2,3],4], '%#a")` would not format with indentation, but would format the long form `String([1,[2,3],4], {Array =&gt; { format =&gt; '%#a"}})`. Now the short form works for Array and Hash as intended. [PUP-9329]((https://tickets.puppetlabs.com/browse/PUP-9329))
 
 - Prior to this release, the data types `Timestamp` and `Timespan` raised errors if time range was specified with `Integer` or `Float` values. These data types now support time ranges specified with these values. [PUP-9310]((https://tickets.puppetlabs.com/browse/PUP-9310))
 
