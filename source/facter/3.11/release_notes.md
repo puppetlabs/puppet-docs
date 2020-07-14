@@ -13,7 +13,7 @@ Released 14 July 2020 and shipped with Puppet Platform 5.5.21.
 
 ### Resolved issues
 
-- *The `facter -p` command returns NUL character on stdout when called from nested ruby on Windows.* This release fixes an issue where Facter executed a system command using back ticks when called from Ruby. [FACT-2682](https://tickets.puppetlabs.com/browse/FACT-2682)
+- **The `facter -p` command returns NUL character on stdout when called from nested ruby on Windows.** This release fixes an issue where Facter executed a system command using back ticks when called from Ruby. [FACT-2682](https://tickets.puppetlabs.com/browse/FACT-2682)
 
 ## Facter 3.11.13
 
