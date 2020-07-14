@@ -32,20 +32,20 @@ Released  14 July 2020
 
 - **Improved error message when a file resource requires a non-existent directory.** This release improves the error message that occurs when trying to manage a file resource whose parent directory does not exist. [PUP-4442](https://tickets.puppetlabs.com/browse/PUP-4442)
 
-- **Zypper provider does not recognize `--no-gpg-checks` as a global option.** This release allows ``--no-gpg-checks` to be passed as an item to install_options property for the zypper package provider. Note that for backward compatibility `--no-gpg-check` was not removed. [PUP-10433](https://tickets.puppetlabs.com/browse/PUP-10433)
+- **Zypper provider does not recognize `--no-gpg-checks` as a global option.** This release allows `--no-gpg-checks` to be passed as an item to `install_options` property for the zypper package provider. Note that for backward compatibility `--no-gpg-check` was not removed. [PUP-10433](https://tickets.puppetlabs.com/browse/PUP-10433)
 
 ### Resolved issues
 
-- **Puppet agent fails to self-restart with configuration changes or updates.** Previously, when two agent runs were taking place at the same time, under some circumstances, the Puppet agent could get in a restart_requested state. This is now fixed.  [PUP-10351](https://tickets.puppetlabs.com/browse/PUP-10351)
+- **Puppet agent fails to restart with configuration changes or updates.** Previously, when two agent runs were taking place at the same time, the Puppet agent could get in a `restart_requested` state. This is now fixed.  [PUP-10351](https://tickets.puppetlabs.com/browse/PUP-10351)
 
 - **An "unable to set ownership" error with logdest on agents running as root.** Puppet no longer generates an error when using a log file destination. [PUP-10407](https://tickets.puppetlabs.com/browse/PUP-10407)
 
-- **Installer switch service-enable true reports wrong actions in certain conditions.** Previously, the puppet resource command wrongly reporting the enabled state of a systemd service when the ensure parameter was also specified. This is now fixed. [PUP-10479](https://tickets.puppetlabs.com/browse/PUP-10479)
+- **Installer switch `service-enable true` reports wrong actions in certain conditions.** Previously, the Puppet resource command wrongly reporting the enabled state of a systemd service when the ensure parameter was also specified. This is now fixed. [PUP-10479](https://tickets.puppetlabs.com/browse/PUP-10479)
 
 
-- **The pip package provider does not handle pip executable paths with spaces.** Paths containing spaces will now be quoted in the pip package providers. [PUP-10485](https://tickets.puppetlabs.com/browse/PUP-10485)
+- **The `pip` package provider does not handle `pip` executable paths with spaces.** Paths containing spaces will now be quoted in the pip package providers. [PUP-10485](https://tickets.puppetlabs.com/browse/PUP-10485)
 
-- **The purge_ssh_keys parameter requires you to set the home directory in the manifest.** The release fixes an issue where Puppet required you to manage the home directory when purging SSH keys with purge_ssh_keys. [PUP-10506](https://tickets.puppetlabs.com/browse/PUP-10485)
+- **The `purge_ssh_keys` parameter requires you to set the home directory in the manifest.** The release fixes an issue where Puppet required you to manage the home directory when purging SSH keys with `purge_ssh_keys`. [PUP-10506](https://tickets.puppetlabs.com/browse/PUP-10485)
 
 - **Puppet resource service does not return all active services on Ubuntu.** This release fixes an inconsistency in Puppet's behaviour when listing information about a specific service. [PUP-10378](https://tickets.puppetlabs.com/browse/PUP-10378)
 
@@ -57,15 +57,13 @@ Released  14 July 2020
 
 - **Sensitive data type lost when declaring multiple resources using title arrays.** This release fixes support of sensitive data type parameters when declaring multiple resources using title arrays. [PUP-10511](https://tickets.puppetlabs.com/browse/PUP-10511)
 
-- **The `purge_ssh_keys` parameter requires home to be set in the manifest.** This release fixes an issue where Puppet required the home directory to be managed when purging SSH keys with `purge_ssh_keys`. [PUP-10506](https://tickets.puppetlabs.com/browse/PUP-10506)
-
-- **Agent runs failing with `Invalid or unsupported charset:ANSI_X3.4-1968`.** Previously, agent runs failed when the locale settings where unrecognised or in an error state , because leatherman logging always expects a working locale. This release implements a defense for the leatherman logging function. [PA-3254](https://tickets.puppetlabs.com/browse/PA-3254)
+- **Agent runs failing with `Invalid` or `unsupported charset:ANSI_X3.4-1968`.** Previously, agent runs failed when the locale settings where unrecognised or in an error state because leatherman logging expects a working locale. This release implements a defense for the leatherman logging function. [PA-3254](https://tickets.puppetlabs.com/browse/PA-3254)
 
 - **Running `remove_old_postgresql_versions` after upgrade fails.** This release fixes an issue in Puppet's behaviour when listing information about a single specific service and all available ones by showing services in a static state. [PUP-10437](https://tickets.puppetlabs.com/browse/PUP-10437)
 
 - **Puppet does not add correct command flags.** This release fixes an issue where Puppet would not add the correct command flags when ensuring a `user` resource with `managehome` enabled. [PUP-8897](https://tickets.puppetlabs.com/browse/PUP-8897).
 
-- **The systemd provider does not honor documented enabled states.** Previously, enabling indirect services caused an idempotency issue in Puppet. This has been fixed by not allowing users to enable/disable these services and to print a debug log instead. [PUP-7163](https://tickets.puppetlabs.com/browse/PUP-7163)
+- **The `systemd` provider does not honor documented enabled states.** Previously, enabling indirect services caused an idempotency issue in Puppet. This has been fixed by not allowing users to enable/disable these services and to print a debug log instead. [PUP-7163](https://tickets.puppetlabs.com/browse/PUP-7163)
 
 - **User resource expiry incorrect on SLES 11.** On SLES 11, setting a user resource expiry to absent resulted in disabling the user instead. This is now fixed. [PUP-7663](https://tickets.puppetlabs.com/browse/PUP-7663)
 
