@@ -43,7 +43,7 @@ Released  14 July 2020
 - **Installer switch `service-enable true` reports wrong actions in certain conditions.** Previously, the Puppet resource command wrongly reporting the enabled state of a systemd service when the ensure parameter was also specified. This is now fixed. [PUP-10479](https://tickets.puppetlabs.com/browse/PUP-10479)
 
 
-- **The `pip` package provider does not handle `pip` executable paths with spaces.** Paths containing spaces will now be quoted in the pip package providers. [PUP-10485](https://tickets.puppetlabs.com/browse/PUP-10485)
+- **The `pip` package provider does not handle `pip` executable paths with spaces.** Paths containing spaces will now be quoted in the `pip` package providers. [PUP-10485](https://tickets.puppetlabs.com/browse/PUP-10485)
 
 - **The `purge_ssh_keys` parameter requires you to set the home directory in the manifest.** The release fixes an issue where Puppet required you to manage the home directory when purging SSH keys with `purge_ssh_keys`. [PUP-10506](https://tickets.puppetlabs.com/browse/PUP-10485)
 
