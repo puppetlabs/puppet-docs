@@ -7,6 +7,14 @@ These are the new features, resolved issues, and deprecations in this version of
 
 > For Facter releases later than version 3.11.x, release notes are included in the corresponding Puppet documentation set. For the most recent Facter documentation, see the [Facter](https://puppet.com/docs/puppet/latest/facter.html) page.
 
+## Facter 3.11.14
+
+Released 14 July 2020 and shipped with Puppet Platform 5.5.21.
+
+### Resolved issues
+
+- **The `facter -p` command returns NUL character on stdout when called from nested Ruby on Windows.** This release fixes an issue where Facter executed a system command using back ticks when called from Ruby. [FACT-2682](https://tickets.puppetlabs.com/browse/FACT-2682)
+
 ## Facter 3.11.13
 
 Released 30 April 2020 and shipped with Puppet Platform 5.5.20.
