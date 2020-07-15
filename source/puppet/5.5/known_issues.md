@@ -6,6 +6,8 @@ title: "Puppet 5.5 known issues"
 
 As known issues are discovered in Puppet 5.5 and its patch releases, they'll be added here. Once a known issue is resolved, it is listed as a resolved issue in the release notes for that release, and removed from this list.
 
+- Testing modules using rspec-puppet versions earlier than 2.7.10 results in the error "undefined local variable or method `default_env` for Puppet::Util:Module". As a workaround, update rspec-puppet to version 2.7.10. If using PDK, run `pdk bundle update rspec-puppet` or update your PDK package. If not using PDK, run `bundle update`. [PUP-10586](https://tickets.puppetlabs.com/browse/PUP-10586)
+
 - The `host` type supports only one IP address for each hostname. Because of this, you cannot use both an IPv4 and IPv6 address for the same hostname. [PUP-9480](https://tickets.puppetlabs.com/browse/PUP-9480)
 
 - Puppet 5.5.11 adds support for macOS 10.14 Mojave. However to manage users and groups, you must grant Puppet Full Disk Access. To give Puppet access on a machine running macOS 10.14, go to `System Preferences > Security & Privacy > Privacy > Full Disk Access`, and add the path to the Puppet executable. [PA-2226](https://tickets.puppetlabs.com/browse/PA-2226), [PA-2227](https://tickets.puppetlabs.com/browse/PA-2227)
