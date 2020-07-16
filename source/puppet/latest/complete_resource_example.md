@@ -1,11 +1,13 @@
 ---
 layout: default
-title: Complete Resource Example
+title: Complete resource example
 ---
 
-## Resource Creation
+You can write resource types and providers in the Puppet language. This example walks through creating resources in Puppet. Alternatively, you can use the [Puppet Resource API](./create_types_and_providers_resource_api.html) for a simpler and faster way to build types and providers.
 
-Nearly every resource needs to be able to be created and destroyed, and resources have to have names, so we'll start with those two features. Puppet's property support has a helper method called `ensurable` that handles modeling creation and destruction; it creates an `ensure` property and adds `absent` and `present` values for it, which in turn require three methods on the provider, `create`, `destroy`, and `exists?`. Here's the first start to the resource.  We're going to create one called 'file' --- this is an example of how to create a resource for something Puppet already has. 
+## Resource creation
+
+Nearly every resource needs to be able to be created and destroyed, and resources have to have names, so we'll start with those two features. Puppet's property support has a helper method called `ensurable` that handles modeling creation and destruction; it creates an `ensure` property and adds `absent` and `present` values for it, which in turn require three methods on the provider, `create`, `destroy`, and `exists?`. Here's the first start to the resource. We're going to create one called 'file' --- this is an example of how to create a resource for something Puppet already has. 
 
 
     Puppet::Type.newtype(:file) do
@@ -78,11 +80,11 @@ Add this code to the provider to understand modes:
         File.chmod(Integer("0" + value), @resource[:name])
     end
 
-Note that the getter method returns the value, it doesn't attempt to modify the resource itself. Also, when the setter gets passed the value it is supposed to set; it doesn't attempt to figure out the appropriate value to use. This should always be true of how providers are implemented.
+The getter method returns the value, but it doesn't attempt to modify the resource itself. Also, when the setter gets passed the value it is supposed to set, it doesn't attempt to figure out the appropriate value to use. This should always be true of how providers are implemented.
 
-Also notice that the `ensure` property, when created by the `ensurable` method, behaves differently because it uses methods for creation and destruction of the file, whereas normal properties use getter and setter methods. When a resource is being created, Puppet expects the `create` method (or, actually, any changes done within ensure) to make any other necessary changes. This is because most often resources are created already configured correctly, so it doesn't make sense for Puppet to test it manually (for example, useradd support is set up to add all specified properties when useradd is run, so usermod doesn't need to be run afterward).
+Also notice that the `ensure` property, when created by the `ensurable` method, behaves differently because it uses methods for creation and destruction of the file, whereas normal properties use getter and setter methods. When a resource is being created, Puppet expects the `create` method (or, actually, any changes done within `ensure`) to make any other necessary changes. This is because most often resources are created already configured correctly, so it doesn't make sense for Puppet to test it manually (for example, `useradd` support is set up to add all specified properties when `useradd` is run, so `usermod` doesn't need to be run afterward).
 
-You can see how the `absent` and `present` values are defined by looking in the property.rb file; here's the most important snippet:
+You can see how the `absent` and `present` values are defined by looking in the `property.rb` file; here's the most important snippet:
 
     newvalue(:present) do
         if @resource.provider and @resource.provider.respond_to?(:create)
