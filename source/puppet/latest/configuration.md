@@ -298,6 +298,7 @@ Defaults to the node's fully qualified domain name.
 
 - *Default*: the Host's fully qualified domain name, as determined by Facter
 
+**Note**: For full functionality of the `puppet config print` command and other dependent commands, include the certname in the main section of the puppet.conf file.
 ### classfile
 
 The file in which puppet agent stores a list of the classes
