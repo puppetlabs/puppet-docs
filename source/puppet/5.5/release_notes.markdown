@@ -34,6 +34,8 @@ Released  14 July 2020
 
 - **Zypper provider does not recognize `--no-gpg-checks` as a global option.** This release allows `--no-gpg-checks` to be passed as an item to `install_options` property for the zypper package provider. Note that for backward compatibility `--no-gpg-check` was not removed. [PUP-10433](https://tickets.puppetlabs.com/browse/PUP-10433)
 
+- **Boost and `yaml-cpp` in the SLES 15 puppet-agent package.** The boost and yaml-cpp dependencies are now vendored in the SLES 15 agent build. [PA-3006](https://tickets.puppetlabs.com/browse/PA-3006)
+
 ### Resolved issues
 
 - **Puppet agent fails to restart with configuration changes or updates.** Previously, when two agent runs were taking place at the same time, the Puppet agent could get in a `restart_requested` state. This is now fixed.  [PUP-10351](https://tickets.puppetlabs.com/browse/PUP-10351)
@@ -41,7 +43,6 @@ Released  14 July 2020
 - **An "unable to set ownership" error with logdest on agents running as root.** Puppet no longer generates an error when using a log file destination. [PUP-10407](https://tickets.puppetlabs.com/browse/PUP-10407)
 
 - **Installer switch `service-enable true` reports wrong actions in certain conditions.** Previously, the Puppet resource command wrongly reporting the enabled state of a systemd service when the ensure parameter was also specified. This is now fixed. [PUP-10479](https://tickets.puppetlabs.com/browse/PUP-10479)
-
 
 - **The `pip` package provider does not handle `pip` executable paths with spaces.** Paths containing spaces will now be quoted in the `pip` package providers. [PUP-10485](https://tickets.puppetlabs.com/browse/PUP-10485)
 
@@ -66,6 +67,10 @@ Released  14 July 2020
 - **The `systemd` provider does not honor documented enabled states.** Previously, enabling indirect services caused an idempotency issue in Puppet. This has been fixed by not allowing users to enable/disable these services and to print a debug log instead. [PUP-7163](https://tickets.puppetlabs.com/browse/PUP-7163)
 
 - **User resource expiry incorrect on SLES 11.** On SLES 11, setting a user resource expiry to absent resulted in disabling the user instead. This is now fixed. [PUP-7663](https://tickets.puppetlabs.com/browse/PUP-7663)
+
+- **Puppet agent should ignore `nssm.exe` during an upgrade.** Previously, if a puppet-agent upgrade on Windows happened when `nssm.exe` was loaded by EventLog service, certain services were restarted, leading to unreachable machines. This release includes an `nssm` executable for pxp-agent (`nssm-pxp-agent.exe`) and we have remove Windows registry references to the old nssm.exe. [PA-3263](https://tickets.puppetlabs.com/browse/PA-3263)
+
+- **Puppet should ignore system Ruby settings.** Running Puppet using a wrapper script from the puppet-agent package will now ignore the following ruby related environment variables: `GEM_HOME`, `GEM_PATH`, `DLN_LIBRARY_PATH`, `RUBYLIB`, `RUBYLIB_PREFIX`, `RUBYOPT`, `RUBYPATH`, `RUBYSHELL`. [PA-3248](https://tickets.puppetlabs.com/browse/PA-3248)
 
 ## Puppet 5.5.20
 
