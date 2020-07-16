@@ -41,7 +41,7 @@ Hash keys can be any data type, but generally, you should use only strings. You 
 
 ```
 { 'key1' => ['val1','val2'], 
-  'key2 => {  'key3' =>  'val3',  }, 
+  'key2' => {  'key3' =>  'val3',  }, 
   'key4' => true,
   'key5' => 12345,
  }

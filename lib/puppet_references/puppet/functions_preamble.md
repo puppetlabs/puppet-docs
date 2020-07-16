@@ -13,3 +13,7 @@ The `<DATA TYPE>` is a [Puppet data type value](./lang_data_type.html), like `St
 * Any arguments with an `Optional` data type can be omitted from the function call.
 * Arguments that start with an asterisk (like `*$values`) can be repeated any number of times.
 * Arguments that start with an ampersand (like `&$block`) aren't normal arguments; they represent a code block, provided with [Puppet's lambda syntax.](./lang_lambdas.html)
+
+## `undef` values in Puppet 6
+
+In Puppet 6, many Puppet types were moved out of the Puppet codebase, and into modules on the Puppet Forge. The new functions handle `undef` values more strictly than their stdlib counterparts. In Puppet 6, code that relies on `undef` values being implicitly treated as other types will return an evaluation error. For more information on which types were moved into modules, see the [Puppet 6 release notes](https://puppet.com/docs/puppet/6.0/release_notes_puppet.html#select-types-moved-to-modules).

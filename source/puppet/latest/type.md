@@ -762,15 +762,14 @@ masters.
   filebucket resource, requires appropriate planning and management to ensure
   that sufficient disk space is available for the file backups. Generally, you
   can implement this using one of the following two options:
-  - Use a `find` command and `crontab` entry to retain only the last X days
-  of file backups. For example,
+  
+- Restrict the directory to a maximum size after which the oldest items are removed.
+- Use a `find` command and `crontab` entry to retain only the last X days of file backups. For example:
 
-  ```shell script
-  find /opt/puppetlabs/server/data/puppetserver/bucket -type f -mtime +45 -atime +45 -print0 | xargs -0 rm
-  ```
-
-  - Restrict the directory to a maximum size after which the oldest items are removed.
-
+```
+find /opt/puppetlabs/server/data/puppetserver/bucket -type f -mtime +45 -atime +45 -print0 | xargs -0 rm
+```
+  
 Default: `puppet`
 
 ([↑ Back to file attributes](#file-attributes))
@@ -1886,7 +1885,7 @@ notify
 
 <h3 id="notify-description">Description</h3>
 
-Sends an arbitrary message to the agent run-time log. It's important to note that the notify resource type is not idempotent. As a result, notifications are shown as a change on every Puppet run.
+Sends an arbitrary message, specified as a string, to the agent run-time log. It's important to note that the notify resource type is not idempotent. As a result, notifications are shown as a change on every Puppet run.
 
 <h3 id="notify-attributes">Attributes</h3>
 
@@ -1909,7 +1908,7 @@ An arbitrary tag for your own reference; the name of the message.
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-The message to be sent to the log.
+The message to be sent to the log. Note that the value specified must be a string.
 
 ([↑ Back to notify attributes](#notify-attributes))
 
