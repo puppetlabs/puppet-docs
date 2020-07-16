@@ -762,15 +762,14 @@ masters.
   filebucket resource, requires appropriate planning and management to ensure
   that sufficient disk space is available for the file backups. Generally, you
   can implement this using one of the following two options:
-  - Use a `find` command and `crontab` entry to retain only the last X days
-  of file backups. For example,
+  
+- Restrict the directory to a maximum size after which the oldest items are removed.
+- Use a `find` command and `crontab` entry to retain only the last X days of file backups. For example:
 
-  ```shell script
-  find /opt/puppetlabs/server/data/puppetserver/bucket -type f -mtime +45 -atime +45 -print0 | xargs -0 rm
-  ```
-
-  - Restrict the directory to a maximum size after which the oldest items are removed.
-
+```
+find /opt/puppetlabs/server/data/puppetserver/bucket -type f -mtime +45 -atime +45 -print0 | xargs -0 rm
+```
+  
 Default: `puppet`
 
 ([↑ Back to file attributes](#file-attributes))
