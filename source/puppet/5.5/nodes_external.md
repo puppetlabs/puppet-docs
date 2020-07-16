@@ -50,7 +50,7 @@ To tell Puppet Server to use an ENC, you need to set two [settings](./config_abo
       node_terminus = exec
       external_nodes = /usr/local/bin/puppet_node_classifier
 
-For more information about `node_terminus` and `external_nodes`, see the [configuration reference] (./configuration.html) list.
+For more information about `node_terminus` and `external_nodes`, see the [configuration reference](./configuration.html) list.
 
 
 ## ENC output format
