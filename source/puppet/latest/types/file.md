@@ -192,7 +192,6 @@ of file backups. For example:
   -print0 | xargs -0 rm
   ```
 
-
 Default: `puppet`
 
 ([↑ Back to file attributes](#file-attributes))
