@@ -164,6 +164,3 @@ DEPENDENCIES
   vlad (~> 1.4)
   vlad-git (~> 2.1)
   yard (~> 0.9)
-
-BUNDLED WITH
-   2.1.4
