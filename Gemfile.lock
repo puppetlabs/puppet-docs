@@ -1,12 +1,3 @@
-GIT
-  remote: https://github.com/puppetlabs/puppet-strings.git
-  revision: 8f11ae8b3577b07062c0cbd08b4396ca05fb16b0
-  tag: v2.4.0
-  specs:
-    puppet-strings (2.4.0)
-      rgen
-      yard (~> 0.9.5)
-
 PATH
   remote: .
   specs:
@@ -105,6 +96,9 @@ GEM
       semantic_puppet (~> 1.0)
     puppet-resource_api (1.8.13)
       hocon (>= 1.0)
+    puppet-strings (2.5.0)
+      rgen
+      yard (~> 0.9.5)
     rack (2.2.3)
     rake (13.0.1)
     rb-fsevent (0.10.4)
@@ -153,7 +147,7 @@ DEPENDENCIES
   pragmatic_segmenter (~> 0.3)
   punkt-segmenter (~> 0.9)
   puppet (~> 6)
-  puppet-strings!
+  puppet-strings
   puppet_docs!
   rack (~> 2.2, >= 2.2.3)
   rake (~> 13.0, >= 13.0.1)
@@ -164,4 +158,3 @@ DEPENDENCIES
   vlad (~> 1.4)
   vlad-git (~> 2.1)
   yard (~> 0.9)
-  
