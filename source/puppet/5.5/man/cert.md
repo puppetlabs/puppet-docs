@@ -16,6 +16,8 @@ canonical: "/puppet/latest/man/cert.html"
 <p>Standalone certificate authority. Capable of generating certificates,
 but mostly used for signing certificate requests from puppet clients.</p>
 
+<p><strong>Note</strong>: The `puppet-cert` command has been replaced with `puppetserver ca` and `puppet ssl`. Use `puppetserver ca` to manage the CA, such as signing certificate requests and revoking certs. Use `puppet ssl` to manage the private key and client certificate for a single node.</p>
+
 <h2 id="USAGE">USAGE</h2>
 
 <p>puppet cert <var>action</var> [-h|--help] [-V|--version] [-d|--debug] [-v|--verbose]

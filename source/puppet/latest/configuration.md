@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 4c1b0ace7275f9646c9f6630e11f41556d88d2ac
+built_from_commit: 2959aff838fdb13a35943fa8a83581fc3c1f0707
 title: Configuration Reference
 toc: columns
 canonical: "/puppet/latest/configuration.html"
@@ -124,7 +124,7 @@ user can use the `puppetserver ca sign` command to manually sign it, or can dele
 the request.
 
 For info on autosign configuration files, see
-[the guide to Puppet's config files](https://puppet.com/docs/puppet/latest/config_about_settings.html).
+[the guide to Puppet's config files](https://puppet.com/docs/puppet/latest/config_file_autosign.html).
 
 - *Default*: $confdir/autosign.conf
 
@@ -298,6 +298,7 @@ Defaults to the node's fully qualified domain name.
 
 - *Default*: the Host's fully qualified domain name, as determined by Facter
 
+**Note**: For full functionality of the `puppet config print` command and other dependent commands, include the certname in the main section of the puppet.conf file.
 ### classfile
 
 The file in which puppet agent stores a list of the classes
@@ -431,13 +432,17 @@ This is useful for embedding a pre-shared key for autosigning policy executables
 ("challenge password") OID.
 
 Extension requests will be permanently embedded in the final certificate.
-Extension OIDs must be in the "ppRegCertExt" (`1.3.6.1.4.1.34380.1.1`) or
-"ppPrivCertExt" (`1.3.6.1.4.1.34380.1.2`) OID arcs. The ppRegCertExt arc is
+Extension OIDs must be in the "ppRegCertExt" (`1.3.6.1.4.1.34380.1.1`),
+"ppPrivCertExt" (`1.3.6.1.4.1.34380.1.2`), or
+"ppAuthCertExt" (`1.3.6.1.4.1.34380.1.3`) OID arcs. The ppRegCertExt arc is
 reserved for four of the most common pieces of data to embed: `pp_uuid` (`.1`),
 `pp_instance_id` (`.2`), `pp_image_name` (`.3`), and `pp_preshared_key` (`.4`)
 --- in the YAML file, these can be referred to by their short descriptive names
 instead of their full OID. The ppPrivCertExt arc is unregulated, and can be used
-for site-specific extensions.
+for site-specific extensions. The ppAuthCert arc is reserved for two pieces of
+data to embed: `pp_authorization` (`.1`) and `pp_auth_role` (`.13`). As with
+ppRegCertExt, in the YAML file, these can be referred to by their short
+descriptive name instead of their full OID.
 
 - *Default*: $confdir/csr_attributes.yaml
 
@@ -714,6 +719,14 @@ For more info, see [the ENC documentation](https://puppet.com/docs/puppet/latest
 
 - *Default*: none
 
+### facterng
+
+Whether to enable a pre-Facter 4.0 release of Facter (distributed as
+the "facter-ng" gem). This is not necessary if Facter 3.x or later is installed.
+This setting is still experimental.
+
+- *Default*: false
+
 ### factpath
 
 Where Puppet should look for facts.  Multiple directories should
@@ -882,6 +895,13 @@ Whether to write HTTP request and responses to stderr. This should never be used
 
 - *Default*: false
 
+### http_extra_headers
+
+The list of extra headers that will be sent with http requests to the master.
+The header definition consists of a name and a value separated by a colon.
+
+- *Default*: []
+
 ### http_keepalive_timeout
 
 The maximum amount of time a persistent HTTP connection can remain idle in the connection pool, before it is closed.  This timeout should be shorter than the keepalive timeout used on the HTTP server, e.g. Apache KeepAliveTimeout directive.
@@ -891,9 +911,10 @@ This setting can be a time interval in seconds (30 or 30s), minutes (30m), hours
 
 ### http_proxy_host
 
-The HTTP proxy host to use for outgoing connections.  Note: You
+The HTTP proxy host to use for outgoing connections. The proxy will be bypassed if
+the server's hostname matches the NO_PROXY environment variable or `no_proxy` setting. Note: You
 may need to use a FQDN for the server hostname when using a proxy. Environment variable
-http_proxy or HTTP_PROXY will override this value
+http_proxy or HTTP_PROXY will override this value.
 
 - *Default*: none
 
@@ -932,7 +953,7 @@ This setting can be a time interval in seconds (30 or 30s), minutes (30m), hours
 
 The HTTP User-Agent string to send when making network requests.
 
-- *Default*: Puppet/6.8.0 Ruby/2.5.1-p57 (x86_64-darwin17)
+- *Default*: Puppet/6.16.0 Ruby/2.3.7-p456 (universal.x86_64-darwin18)
 
 ### ignoremissingtypes
 
@@ -1119,7 +1140,6 @@ The directory in which to store log files
 ### manage_internal_file_permissions
 
 Whether Puppet should manage the owner, group, and mode of files it uses internally.
-
 **Note**: For Windows agents, the default is `false` for versions 4.10.13 and greater, versions 5.5.6 and greater, and versions 6.0 and greater.
 
 - *Default*: true
@@ -1190,6 +1210,28 @@ This setting can be a time interval in seconds (30 or 30s), minutes (30m), hours
 
 - *Default*: unlimited
 
+### maxwaitforlock
+
+The maximum amount of time the puppet agent should wait for an
+already running puppet agent to finish before starting a new one. This is set by default to 1 minute.
+A value of `unlimited` will cause puppet agent to wait indefinitely.
+This setting can be a time interval in seconds (30 or 30s), minutes (30m), hours (6h), days (2d), or years (5y).
+
+- *Default*: 1m
+
+### merge_dependency_warnings
+
+Whether to merge class-level dependency failure warnings.
+
+When a class has a failed dependency, every resource in the class
+generates a notice level message about the dependency failure,
+and a warning level message about skipping the resource.
+
+If true, all messages caused by a class dependency failure are merged
+into one message associated with the class.
+
+- *Default*: false
+
 ### mkusers
 
 Whether to create the necessary user and group that puppet agent will run as.
@@ -1245,7 +1287,7 @@ Default is `prime256v1`.
 
 ### no_proxy
 
-List of domain names that should not go through `http_proxy_host`. Environment variable no_proxy or NO_PROXY will override this value.
+List of host or domain names that should not go through `http_proxy_host`. Environment variable no_proxy or NO_PROXY will override this value. Names can be specified as an FQDN `host.example.com`, wildcard `*.example.com`, dotted domain `.example.com`, or suffix `example.com`.
 
 - *Default*: localhost, 127.0.0.1
 
@@ -1263,7 +1305,9 @@ and sets the 'hostname', 'fqdn' and 'domain' facts for use in the manifest,
 in particular for determining which 'node' statement applies to the client.
 Possible values are 'cert' (use the subject's CN in the client's
 certificate) and 'facter' (use the hostname that the client
-reported in its facts)
+reported in its facts).
+
+This setting is deprecated, please use explicit fact matching for classification.
 
 - *Default*: cert
 
@@ -1468,6 +1512,13 @@ The public key directory.
 
 - *Default*: $ssldir/public_keys
 
+### puppet_trace
+
+Whether to print the Puppet stack trace on some errors.
+This is a noop if `trace` is also set.
+
+- *Default*: false
+
 ### puppetdlog
 
 The fallback log file. This is only used when the `--logdest` option
@@ -1490,6 +1541,17 @@ or read them online at https://puppet.com/docs/puppet/latest/man/.
 Whether to send reports after every transaction.
 
 - *Default*: true
+
+### report_include_system_store
+
+Whether the 'http' report processor should include the system
+certificate store when submitting reports to HTTPS URLs. If false, then
+the 'http' processor will only trust HTTPS report servers whose certificates
+are issued by the puppet CA or one of its intermediate CAs. If true, the
+processor will additionally trust CA certificates in the system's
+certificate store.
+
+- *Default*: false
 
 ### report_port
 
@@ -1560,6 +1622,19 @@ uses its own auth.conf that must be placed within its configuration directory.
 
 - *Default*: $confdir/auth.conf
 
+### resubmit_facts
+
+Whether to send updated facts after every transaction. By default
+puppet only submits facts at the beginning of the transaction before applying a
+catalog. Since puppet can modify the state of the system, the value of the facts
+may change after puppet finishes. Therefore, any facts stored in puppetdb may not
+be consistent until the agent next runs, typically in 30 minutes. If this feature
+is enabled, puppet will resubmit facts after applying its catalog, ensuring facts
+for the node stored in puppetdb are current. However, this will double the fact
+submission load on puppetdb, so it is disabled by default.
+
+- *Default*: false
+
 ### rich_data
 
 Enables having extended data in the catalog by storing them as a hash with the special key
@@ -1585,8 +1660,7 @@ Where Puppet PID files are kept.
 
 How often puppet agent applies the catalog.
 Note that a runinterval of 0 means "run continuously" rather than
-"never run." If you want puppet agent to never run, you should start
-it with the `--no-client` option. This setting can be a time interval in seconds (30 or 30s), minutes (30m), hours (6h), days (2d), or years (5y).
+"never run." This setting can be a time interval in seconds (30 or 30s), minutes (30m), hours (6h), days (2d), or years (5y).
 
 - *Default*: 30m
 
@@ -1690,7 +1764,7 @@ restarted. This setting can be a time interval in seconds (30 or 30s), minutes (
 
 The domain which will be queried to find the SRV records of servers to use.
 
-- *Default*: vpn.puppet.net
+- *Default*: (the system's own domain)
 
 ### ssl_client_ca_auth
 
@@ -1840,9 +1914,12 @@ causing the run to fail if the retrieved catalog does not match it.
 
 Whether to only search for the complete
 hostname as it is in the certificate when searching for node information
-in the catalogs.
+in the catalogs or to match dot delimited segments of the cert's certname
+and the hostname, fqdn, and/or domain facts.
 
-- *Default*: false
+This setting is deprecated and will be removed in a future release.
+
+- *Default*: true
 
 ### strict_variables
 
@@ -1890,7 +1967,8 @@ Do not change this setting.
 
 ### trace
 
-Whether to print stack traces on some errors
+Whether to print stack traces on some errors. Will print
+internal Ruby stack trace interleaved with Puppet function frames.
 
 - *Default*: false
 
@@ -1901,6 +1979,18 @@ transactions for the purposes of infering information (such as
 corrective_change) on new data received.
 
 - *Default*: $statedir/transactionstore.yaml
+
+### trusted_external_command
+
+The external trusted facts script to use.
+This setting's value can be set to the path to an executable command that
+can produce external trusted facts. The command must:
+
+* Take the name of a node as a command-line argument.
+* Return a JSON hash with the external trusted facts for this node.
+* For unknown or invalid nodes, exit with a non-zero exit code.
+
+- *Default*: 
 
 ### trusted_oid_mapping_file
 
@@ -1957,6 +2047,14 @@ vendored modules are not
 
 - *Default*: /opt/puppetlabs/puppet/vendor_modules
 
+### versioned_environment_dirs
+
+Whether or not to look for versioned environment directories,
+symlinked from `$environmentpath/<environment>`. This is an experimental
+feature and should be used with caution.
+
+- *Default*: false
+
 ### waitforcert
 
 How frequently puppet agent should ask for a signed certificate.
@@ -1975,6 +2073,18 @@ puppet agent will exit if it cannot get a cert.
 This setting can be a time interval in seconds (30 or 30s), minutes (30m), hours (6h), days (2d), or years (5y).
 
 - *Default*: 2m
+
+### waitforlock
+
+How frequently puppet agent should try running when there is an
+already ongoing puppet agent instance.
+
+This argument is by default disabled (value set to 0). In this case puppet agent will
+immediatly exit if it cannot run at that moment. When a value other than 0 is set, this
+can also be used in combination with the `maxwaitforlock` argument.
+This setting can be a time interval in seconds (30 or 30s), minutes (30m), hours (6h), days (2d), or years (5y).
+
+- *Default*: 0
 
 ### yamldir
 

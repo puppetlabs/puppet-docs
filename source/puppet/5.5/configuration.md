@@ -1612,8 +1612,7 @@ Where Puppet PID files are kept.
 
 How often puppet agent applies the catalog.
 Note that a runinterval of 0 means "run continuously" rather than
-"never run." If you want puppet agent to never run, you should start
-it with the `--no-client` option. This setting can be a time interval in seconds (30 or 30s), minutes (30m), hours (6h), days (2d), or years (5y).
+"never run." This setting can be a time interval in seconds (30 or 30s), minutes (30m), hours (6h), days (2d), or years (5y).
 
 - *Default*: 30m
 

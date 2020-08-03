@@ -18,7 +18,6 @@ puppetdocs-latest.tar.gz*
 .bundle
 externalsources
 _cache
-Gemfile.lock
 .*.swo
 .*.swp
 .*.un~
@@ -29,3 +28,4 @@ Gemfile.lock
 link_test_results.yaml
 link_report.txt
 .yardoc
+puppet-docs-build.log

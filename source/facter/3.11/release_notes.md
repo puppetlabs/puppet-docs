@@ -5,6 +5,66 @@ title: "Facter release notes"
 
 These are the new features, resolved issues, and deprecations in this version of Facter. 
 
+> For Facter releases later than version 3.11.x, release notes are included in the corresponding Puppet documentation set. For the most recent Facter documentation, see the [Facter](https://puppet.com/docs/puppet/latest/facter.html) page.
+
+## Facter 3.11.14
+
+Released 14 July 2020 and shipped with Puppet Platform 5.5.21.
+
+### Resolved issues
+
+- **The `facter -p` command returns NUL character on stdout when called from nested Ruby on Windows.** This release fixes an issue where Facter executed a system command using back ticks when called from Ruby. [FACT-2682](https://tickets.puppetlabs.com/browse/FACT-2682)
+
+## Facter 3.11.13
+
+Released 30 April 2020 and shipped with Puppet Platform 5.5.20.
+
+### New features
+
+- This release moves `cached-custom-facts` to a new section in the`facter.conf` file, called `fact-groups`. [FACT-2544](https://tickets.puppetlabs.com/browse/FACT-2544)
+- This release allows you to cache custom facts based on the `facter.conf` file. Depending on the `ttl` defined under `Facts.ttls`, custom facts defined in `facter.conf` under `Facts.cached-custom-facts` will be cached. [FACT-1575](https://tickets.puppetlabs.com/browse/FACT-1575)
+
+### Resolved issues
+
+- Previously, when the `oslevel -s` command was executed on AIX, redirects `stderr` to `/dev/null` were shown on `stderr` and the `kernel` fact broke. This is now fixed. [FACT-2545](https://tickets.puppetlabs.com/browse/FACT-2545)
+- Previously, when os-specific facts were not resolved, Puppet logged a warning. This release lowers the severity of the logged messages to debug. [FACT-2489](https://tickets.puppetlabs.com/browse/FACT-2489)
+
+## Facter 3.11.12
+
+Released 10 March 2020 and shipped with Puppet Platform 5.5.19
+
+### New features 
+
+-  You can now cache external facts using external facts filename as cache group [FACT-2307](https://tickets.puppetlabs.com/browse/FACT-2307).
+- New ssh fact on Windows (available when OpenSSH is present). [FACT-1934](https://tickets.puppetlabs.com/browse/FACT-1934)
+
+### Resolved issues
+
+- Facter no longer crashes if the user has a numeric hostname. [FACT-2346](https://tickets.puppetlabs.com/browse/FACT-2346)
+- Facter correctly displays ssh host key fact, in case the host key file does not contain a comment. [FACT-1833](https://tickets.puppetlabs.com/browse/FACT-1833)
+- The `facter --puppet` command no longer throws a deprecation warning. [FACT-2260](https://tickets.puppetlabs.com/browse/FACT-2260)
+
+## Facter 3.11.11
+
+Released 14 January 2020
+
+### New features
+
+- This release adds support for the `fips_enabled` fact on Windows. The check examines the contents of `HKEY_LOCAL_MACHINE/System/CurrentControlSet/Control/Lsa/FipsAlgorithmPolicy/Enabled`. If the returned value is 1, it means that FIPS mode is enabled. [FACT-2065](https://tickets.puppetlabs.com/browse/FACT-2065)
+
+- Facter can now return the new `scope6` fact to display IPv6 address scope. [FACT-2016](https://tickets.puppetlabs.com/browse/FACT-2016)
+
+- Facter command execution now accepts a Boolean parameter, `expand`. By default, Facter searches the command and expands it to absolute path. When `expand` is set to false, Facter verifies whether the command is a shell command and, if so, passes the command as is.[FACT-1824](https://tickets.puppetlabs.com/browse/FACT-1824)
+
+### Resolved issues
+
+- Facter incorrectly reported disabled CPU cores as physical CPU cores. Now, Facter correctly reports physical and logical CPUs and ignores disabled CPUs. [FACT-1824](https://tickets.puppetlabs.com/browse/FACT-1824)
+
+- In previous releases, Facter did not report the `cloud` fact on Azure. This issue is now fixed. [FACT-2004](https://tickets.puppetlabs.com/browse/FACT-2004)
+
+- In previous versions, Facter could not always determine the primary network interface on Solaris, so it sometimes failed to return any valid interface. This is now fixed. [FACT-2146](https://tickets.puppetlabs.com/browse/FACT-2146)
+
+-In systems using Windows Remote Desktop Services (RDS),  Facter returned an incorrect operating system fact. This was due to a Windows API deprecation that caused issues in mixed 32- and 64-bit application environments, such as RDS. [FACT-2096](https://tickets.puppetlabs.com/browse/FACT-2096)
 
 ## Facter 3.11.10
 

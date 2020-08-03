@@ -16,11 +16,9 @@ These subcommands form the core of Puppet's tool set, and every user should unde
 
 - [puppet agent](./agent.html)
 - [puppet apply](./apply.html)
-- [puppet cert](./cert.html)
 - [puppet lookup](./lookup.html)
 - [puppet module](./module.html)
 - [puppet resource](./resource.html)
-
 
 > Note: The `puppet cert` command is available only in Puppet versions prior to 6.0. For 6.0 and later, use the [`puppetserver cert`command](https://puppet.com/docs/puppet/6.0/puppet_server_ca_cli.html).
 

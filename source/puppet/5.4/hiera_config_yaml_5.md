@@ -27,11 +27,11 @@ There are several hiera.yaml files in a typical deployment. Hiera uses three lay
 
 The configuration file locations for each layer:
 
-Layer       | Location                                        | Example
-------------|-------------------------------------------------|--------
-Global      | [`$confdir`][confdir]`/hiera.yaml`              | `/etc/puppetlabs/puppet/hiera.yaml` `C:\ProgramData\PuppetLabs\puppet\etc\hiera.yaml`
+Layer       | Location                                                                                       | Example
+------------|------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------
+Global      | [`$confdir`][confdir]`/hiera.yaml`                                                             | `/etc/puppetlabs/puppet/hiera.yaml` `C:\ProgramData\PuppetLabs\puppet\etc\hiera.yaml`
 Environment | [`<ENVIRONMENT>`](https://puppet.com/docs/puppet/latest/environments_about.html) `/hiera.yaml` | `/etc/puppetlabs/code/environments/production/hiera.yaml` `C:\ProgramData\PuppetLabs\code\environments\production\hiera.yaml`
-Module      | [`<MODULE>`][module]`/hiera.yaml`                           | `/etc/puppetlabs/code/environments/production/modules/ntp/hiera.yaml` `C:\ProgramData\PuppetLabs\code\environments\production\modules\ntp\hiera.yaml`
+Module      | [`<MODULE>`][module]`/hiera.yaml`                                                              | `/etc/puppetlabs/code/environments/production/modules/ntp/hiera.yaml` `C:\ProgramData\PuppetLabs\code\environments\production\modules\ntp\hiera.yaml`
 
 > Note: You can change the location for the global layer's hiera.yaml with Puppet's `hiera_config` setting.
 
@@ -124,7 +124,7 @@ Used for any hierarchy level that doesn't specify its own. This must be one of:
 -   `data_dig` - produces values key by key (for a more advanced data provider)
 -   `hiera3_backend` - a data provider that calls out to a legacy Hiera 3 backend (global layer only)
 
-For the built-in data providers - YAML, JSON, and HOCON - the key is always `data_hash` and the value is one of `yaml_data`, `json_data`, or `hocon_data`. To set a custom data provider as the default, see the data provider documentation. Whichever key you use, the value must be the name of the custom Puppet function that implements the the lookup function.
+For the built-in data providers - YAML, JSON, and HOCON - the key is always `data_hash` and the value is one of `yaml_data`, `json_data`, or `hocon_data`. To set a custom data provider as the default, see the data provider documentation. Whichever key you use, the value must be the name of the custom Puppet function that implements the lookup function.
 
 Related topics: [custom backends][backends], [custom Puppet function][].
 
@@ -191,13 +191,13 @@ Related topics: [variable interpolation][variables], [YAML][yaml_data], [JSON][j
 
 Options for specifying a file path:
 
-Key     | Data type | Expected value
---------|-----------|---------------
-`path`  | String    | One file path.
-`paths` | Array     | Any number of file paths. This acts like a sub-hierarchy: if multiple files exist, Hiera searches all of them, in the order in which they're written.
-`glob`  | String    | One shell-like glob pattern, which might match any number of files. If multiple files are found, Hiera searches all of them in alphanumerical order.
-`globs` | Array     | Any number of shell-like glob patterns. If multiple files are found, Hiera searches all of them in alphanumerical order (ignoring the order of the globs).
-`mapped_paths` | Array or Hash     | A fact that is a collection (array or hash) of values. Hiera expands these values to produce an array of paths.
+Key            | Data type     | Expected value
+---------------|---------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------
+`path`         | String        | One file path.
+`paths`        | Array         | Any number of file paths. This acts like a sub-hierarchy: if multiple files exist, Hiera searches all of them, in the order in which they're written.
+`glob`         | String        | One shell-like glob pattern, which might match any number of files. If multiple files are found, Hiera searches all of them in alphanumerical order.
+`globs`        | Array         | Any number of shell-like glob patterns. If multiple files are found, Hiera searches all of them in alphanumerical order (ignoring the order of the globs).
+`mapped_paths` | Array or Hash | A fact that is a collection (array or hash) of values. Hiera expands these values to produce an array of paths.
 
 > Note: You can only use one of these keys in a given hierarchy level.
 
@@ -209,21 +209,21 @@ File paths are relative to the `datadir`: if the full datadir is `/etc/puppetlab
 
 Globs are implemented with Ruby's `Dir.glob` method:
 
--   One asterisk (`*`) matches a run of characters.
--   Two asterisks (`**`) matches any depth of nested directories.
--   A question mark (`?`) matches one character.
--   Comma-separated lists in curly braces (`{one,two}`) match any option in the list.
--   Sets of characters in square brackets (`[abcd]`) match any character in the set.
--   A backslash (`\`) escapes special characters.
+* One asterisk (`*`) matches a run of characters.
+* Two asterisks (`**`) matches any depth of nested directories.
+* A question mark (`?`) matches one character.
+* Comma-separated lists in curly braces (`{one,two}`) match any option in the list.
+* Sets of characters in square brackets (`[abcd]`) match any character in the set.
+* A backslash (`\`) escapes special characters.
 
 Example:
 
-``` yaml
 {% raw %}
-- name: "Domain or network segment"
+``` yaml
+  - name: "Domain or network segment"
     glob: "network/**/{%{facts.networking.domain},%{facts.networking.interfaces.en0.bindings.0.network}}.yaml"
-{% endraw %]
 ```
+{% endraw %}
 
 The `mapped_paths` key must contain three string elements, in the following order:
 

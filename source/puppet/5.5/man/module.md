@@ -83,19 +83,21 @@ you can set <code>modulepath</code> in environment.conf. For more info, see
 <p><code>DESCRIPTION</code></p>
 
 <p>Prepares a local module for release on the Puppet Forge by building a
-ready-to-upload archive file.
-Note: Module build uses MD5 checksums, which are prohibited on FIPS enabled systems.</p>
+ready-to-upload archive file.</p>	
+<p>Note: Module build uses MD5 checksums, which are prohibited on FIPS enabled systems.</p>	
 
-<p>This action uses the metadata.json file in the module directory to set metadata
-used by the Forge. See <a href="https://puppet.com/docs/puppet/latest/modules_publishing.html" data-bare-link="true">https://puppet.com/docs/puppet/latest/modules_publishing.html</a> for more
-about writing metadata.json files.</p>
+<p>This action uses the metadata.json file in the module directory to set metadata	
+used by the Forge. See <a href="https://puppet.com/docs/puppet/latest/modules_publishing.html" data-bare-link="true">https://puppet.com/docs/puppet/latest/modules_publishing.html</a> for more	
+about writing metadata.json files.</p>	
 
-<p>After being built, the release archive file can be found in the module's
-<code>pkg</code> directory.</p>
+<p>After being built, the release archive file can be found in the module's	
+<code>pkg</code> directory.</p>	
 
-<p><code>RETURNS</code></p>
+<p><code>RETURNS</code></p>	
 
 <p>Pathname object representing the path to the release archive.</p></dd>
+
+
 <dt><code>changes</code> - Show modified files of an installed module.</dt><dd><p><code>SYNOPSIS</code></p>
 
 <p>puppet module changes <var>path</var></p>
@@ -117,19 +119,20 @@ metadata.json.</p>
 <p><code>DESCRIPTION</code></p>
 
 <p>Generates boilerplate for a new module by creating the directory
-structure and files recommended for the Puppet community's best practices.</p>
+structure and files recommended for the Puppet community's best practices.</p>	
 
-<p>A module may need additional directories beyond this boilerplate
-if it provides plugins, files, or templates.</p>
+<p>A module may need additional directories beyond this boilerplate	
+if it provides plugins, files, or templates.</p>	
 
-<p><code>OPTIONS</code>
-<var>--skip-interview</var> -
-Do not attempt to perform a metadata interview.  Primarily useful for automatic
-execution of <code>puppet module generate</code>.</p>
+<p><code>OPTIONS</code>	
+<var>--skip-interview</var> -	
+Do not attempt to perform a metadata interview.  Primarily useful for automatic	
+execution of <code>puppet module generate</code>.</p>	
 
-<p><code>RETURNS</code></p>
+<p><code>RETURNS</code></p>	
 
 <p>Array of Pathname objects representing paths of generated files.</p></dd>
+
 <dt><code>install</code> - Install a module from the Puppet Forge or a release archive.</dt><dd><p><code>SYNOPSIS</code></p>
 
 <p>puppet module install [--force | -f]
@@ -156,7 +159,7 @@ Implies --ignore-dependencies.</p>
 <p><var>--ignore-dependencies</var> -
 Do not attempt to install dependencies. Implied by --force.</p>
 
-<p><var>--strict-semver</var> -
+<p><var>--strict-semver</var> -	
 Whether version ranges should exclude pre-release versions</p>
 
 <p><var>--target-dir DIR</var> | <var>-i DIR</var> -
@@ -177,7 +180,7 @@ eg '>= 1.0.3'. Defaults to latest version.</p>
 <p>Pathname object representing the path to the installed module.</p></dd>
 <dt><code>list</code> - List installed modules</dt><dd><p><code>SYNOPSIS</code></p>
 
-<p>puppet module list [--tree] [--strict-semver]</p>
+<p>puppet module list [--tree]  [--strict-semver]</p>
 
 <p><code>DESCRIPTION</code></p>
 
@@ -189,8 +192,8 @@ option to change which directories are scanned.</p>
 metadata, including version numbers and unmet module dependencies.</p>
 
 <p><code>OPTIONS</code>
-<var>--strict-semver</var> -
-Whether version ranges should exclude pre-release versions</p>
+<var>--strict-semver</var>
+Whether version ranges should exclude pre-release versions</p>	
 
 <p><var>--tree</var> -
 Whether to show dependencies as a tree view</p>
@@ -232,12 +235,12 @@ changes or the possibility of causing broken dependencies.</p>
 <p><var>--ignore-changes</var> | <var>-c</var> -
 Uninstall an installed module even if there are local changes to it.  (Implied by --force.)</p>
 
-<p><var>--strict-semver</var> -
-Whether version ranges should exclude pre-release versions</p>
-
 <p><var>--version=</var> -
 The version of the module to uninstall. When using this option, a module
 matching the specified version must be installed or else an error is raised.</p>
+
+<p><var>--strict-semver</var> -
+Whether version ranges should exclude pre-release versions</p>
 
 <p><code>RETURNS</code></p>
 
@@ -269,7 +272,8 @@ Upgrade an installed module even if there are local changes to it.  (Implied by 
 Do not attempt to install dependencies. Implied by --force.</p>
 
 <p><var>--strict-semver</var> -
-Whether version ranges should exclude pre-release versions</p>
+Whether version ranges should exclude pre-release versions
+</p>
 
 <p><var>--version=</var> -
 The version of the module to upgrade to.</p>
@@ -282,164 +286,180 @@ The version of the module to upgrade to.</p>
 
 <h2 id="EXAMPLES">EXAMPLES</h2>
 
-<p><code>build</code></p>
+<p><code>build</code></p>	
 
-<p>Build a module release:</p>
+<p>Build a module release:</p>	
 
-<p>$ puppet module build puppetlabs-apache
-notice: Building /Users/kelseyhightower/puppetlabs-apache for release
-Module built: /Users/kelseyhightower/puppetlabs-apache/pkg/puppetlabs-apache-0.0.1.tar.gz</p>
+<pre><code>
+$ puppet module build puppetlabs-apache	
+notice: Building /Users/kelseyhightower/puppetlabs-apache for release	
+Module built: /Users/kelseyhightower/puppetlabs-apache/pkg/puppetlabs-apache-0.0.1.tar.gz
+</code></pre>
 
-<p>Build the module in the current working directory:</p>
-
-<p>$ cd /Users/kelseyhightower/puppetlabs-apache
-$ puppet module build
-notice: Building /Users/kelseyhightower/puppetlabs-apache for release
-Module built: /Users/kelseyhightower/puppetlabs-apache/pkg/puppetlabs-apache-0.0.1.tar.gz</p>
+<p>Build the module in the current working directory:</p>	
+<pre><code>
+$ cd /Users/kelseyhightower/puppetlabs-apache	
+$ puppet module build	
+notice: Building /Users/kelseyhightower/puppetlabs-apache for release	
+Module built: /Users/kelseyhightower/puppetlabs-apache/pkg/puppetlabs-apache-0.0.1.tar.gz
+</code></pre>
 
 <p><code>changes</code></p>
 
 <p>Show modified files of an installed module:</p>
 
-<p>$ puppet module changes /etc/puppetlabs/code/modules/vcsrepo/
+<pre><code>
+$ puppet module changes /etc/puppetlabs/code/modules/vcsrepo/
+
 warning: 1 files modified
-lib/puppet/provider/vcsrepo.rb</p>
+lib/puppet/provider/vcsrepo.rb
+</code></pre>
 
-<p><code>generate</code></p>
+<p><code>generate</code></p>	
 
-<p>Generate a new module in the current directory:</p>
+<p>Generate a new module in the current directory:</p>	
 
-<p>$ puppet module generate puppetlabs-ssh
-We need to create a metadata.json file for this module.  Please answer the
-following questions; if the question is not applicable to this module, feel free
-to leave it blank.</p>
+<pre><code>
+$ puppet module generate puppetlabs-ssh	
+We need to create a metadata.json file for this module.  Please answer the	
+following questions; if the question is not applicable to this module, feel free	
+to leave it blank.	
 
-<p>Puppet uses Semantic Versioning (semver.org) to version modules.
-What version is this module?  [0.1.0]
---></p>
+Puppet uses Semantic Versioning (semver.org) to version modules.	
+What version is this module?  [0.1.0]	
+-->
 
-<p>Who wrote this module?  [puppetlabs]
---></p>
+Who wrote this module?  [puppetlabs]	
+-->
 
-<p>What license does this module code fall under?  [Apache-2.0]
---></p>
+What license does this module code fall under?  [Apache-2.0]	
+-->	
 
-<p>How would you describe this module in a single sentence?
---></p>
+How would you describe this module in a single sentence?	
+-->	
 
-<p>Where is this module's source code repository?
---></p>
+Where is this module's source code repository?	
+-->	
 
-<p>Where can others go to learn more about this module?
---></p>
+Where can others go to learn more about this module?	
+-->	
 
-<p>Where can others go to file issues about this module?
---></p>
+Where can others go to file issues about this module?	
+-->		
 
-<hr />
+{	
+  "name": "puppetlabs-ssh",	
+  "version": "0.1.0",	
+  "author": "puppetlabs",	
+  "summary": null,	
+  "license": "Apache-2.0",	
+  "source": "",	
+  "project_page": null,	
+  "issues_url": null,	
+  "dependencies": [	
+    {	
+      "name": "puppetlabs-stdlib",	
+      "version_requirement": ">= 1.0.0"	
+    }	
+  ]	
+}	
 
-<p>{
-  "name": "puppetlabs-ssh",
-  "version": "0.1.0",
-  "author": "puppetlabs",
-  "summary": null,
-  "license": "Apache-2.0",
-  "source": "",
-  "project_page": null,
-  "issues_url": null,
-  "dependencies": [
-    {
-      "name": "puppetlabs-stdlib",
-      "version_requirement": ">= 1.0.0"
-    }
-  ]</p>
+About to generate this metadata; continue? [n/Y]	
+-->
 
-<h2 id="-">}</h2>
-
-<p>About to generate this metadata; continue? [n/Y]
---></p>
-
-<p>Notice: Generating module at /Users/username/Projects/puppet/puppetlabs-ssh...
-Notice: Populating ERB templates...
-Finished; module generated in puppetlabs-ssh.
-puppetlabs-ssh/manifests
-puppetlabs-ssh/manifests/init.pp
-puppetlabs-ssh/metadata.json
-puppetlabs-ssh/README.md
-puppetlabs-ssh/spec
-puppetlabs-ssh/spec/spec_helper.rb
-puppetlabs-ssh/tests
-puppetlabs-ssh/tests/init.pp</p>
+Notice: Generating module at /Users/username/Projects/puppet/puppetlabs-ssh...	
+Notice: Populating ERB templates...	
+Finished; module generated in puppetlabs-ssh.	
+puppetlabs-ssh/manifests	
+puppetlabs-ssh/manifests/init.pp	
+puppetlabs-ssh/metadata.json	
+puppetlabs-ssh/README.md	
+puppetlabs-ssh/spec	
+puppetlabs-ssh/spec/spec_helper.rb	
+puppetlabs-ssh/tests	
+puppetlabs-ssh/tests/init.pp
+</code></pre>
 
 <p><code>install</code></p>
 
 <p>Install a module:</p>
 
-<p>$ puppet module install puppetlabs-vcsrepo
+<pre><code>
+$ puppet module install puppetlabs-vcsrepo
 Preparing to install into /etc/puppetlabs/code/modules ...
 Downloading from https://forgeapi.puppet.com ...
 Installing -- do not interrupt ...
 /etc/puppetlabs/code/modules
-└── puppetlabs-vcsrepo (v0.0.4)</p>
+└── puppetlabs-vcsrepo (v0.0.4)
+</code></pre>
 
 <p>Install a module to a specific environment:</p>
 
-<p>$ puppet module install puppetlabs-vcsrepo --environment development
+<pre><code>
+$ puppet module install puppetlabs-vcsrepo --environment development
 Preparing to install into /etc/puppetlabs/code/environments/development/modules ...
 Downloading from https://forgeapi.puppet.com ...
 Installing -- do not interrupt ...
 /etc/puppetlabs/code/environments/development/modules
-└── puppetlabs-vcsrepo (v0.0.4)</p>
+└── puppetlabs-vcsrepo (v0.0.4)
+</code></pre>
 
 <p>Install a specific module version:</p>
 
-<p>$ puppet module install puppetlabs-vcsrepo -v 0.0.4
+<pre><code>
+$ puppet module install puppetlabs-vcsrepo -v 0.0.4
 Preparing to install into /etc/puppetlabs/modules ...
 Downloading from https://forgeapi.puppet.com ...
 Installing -- do not interrupt ...
 /etc/puppetlabs/code/modules
-└── puppetlabs-vcsrepo (v0.0.4)</p>
+└── puppetlabs-vcsrepo (v0.0.4)
+</code></pre>
 
 <p>Install a module into a specific directory:</p>
 
-<p>$ puppet module install puppetlabs-vcsrepo --target-dir=/opt/puppetlabs/puppet/modules
+<pre><code>
+$ puppet module install puppetlabs-vcsrepo --target-dir=/opt/puppetlabs/puppet/modules
 Preparing to install into /opt/puppetlabs/puppet/modules ...
 Downloading from https://forgeapi.puppet.com ...
 Installing -- do not interrupt ...
 /opt/puppetlabs/puppet/modules
-└── puppetlabs-vcsrepo (v0.0.4)</p>
-
+└── puppetlabs-vcsrepo (v0.0.4)
+</code></pre>
 <p>Install a module into a specific directory and check for dependencies in other directories:</p>
 
-<p>$ puppet module install puppetlabs-vcsrepo --target-dir=/opt/puppetlabs/puppet/modules --modulepath /etc/puppetlabs/code/modules
+<pre><code>
+$ puppet module install puppetlabs-vcsrepo --target-dir=/opt/puppetlabs/puppet/modules --modulepath /etc/puppetlabs/code/modules
 Preparing to install into /opt/puppetlabs/puppet/modules ...
 Downloading from https://forgeapi.puppet.com ...
 Installing -- do not interrupt ...
 /opt/puppetlabs/puppet/modules
-└── puppetlabs-vcsrepo (v0.0.4)</p>
-
+└── puppetlabs-vcsrepo (v0.0.4)
+</code></pre>
 <p>Install a module from a release archive:</p>
 
-<p>$ puppet module install puppetlabs-vcsrepo-0.0.4.tar.gz
+<pre><code>
+$ puppet module install puppetlabs-vcsrepo-0.0.4.tar.gz
 Preparing to install into /etc/puppetlabs/code/modules ...
 Downloading from https://forgeapi.puppet.com ...
 Installing -- do not interrupt ...
 /etc/puppetlabs/code/modules
-└── puppetlabs-vcsrepo (v0.0.4)</p>
-
+└── puppetlabs-vcsrepo (v0.0.4)
+</code></pre>
 <p>Install a module from a release archive and ignore dependencies:</p>
 
-<p>$ puppet module install puppetlabs-vcsrepo-0.0.4.tar.gz --ignore-dependencies
+<pre><code>
+$ puppet module install puppetlabs-vcsrepo-0.0.4.tar.gz --ignore-dependencies
 Preparing to install into /etc/puppetlabs/code/modules ...
 Installing -- do not interrupt ...
 /etc/puppetlabs/code/modules
-└── puppetlabs-vcsrepo (v0.0.4)</p>
-
+└── puppetlabs-vcsrepo (v0.0.4)
+</code></pre>
 <p><code>list</code></p>
 
 <p>List installed modules:</p>
 
-<p>$ puppet module list
+<pre><code>
+$ puppet module list
   /etc/puppetlabs/code/modules
   ├── bodepd-create_resources (v0.0.1)
   ├── puppetlabs-bacula (v0.0.2)
@@ -447,87 +467,103 @@ Installing -- do not interrupt ...
   ├── puppetlabs-sqlite (v0.0.1)
   └── puppetlabs-stdlib (v2.2.1)
   /opt/puppetlabs/puppet/modules (no modules installed)</p>
+</code></pre>
+<p>List installed modules in a tree view:
 
-<p>List installed modules in a tree view:</p>
-
-<p>$ puppet module list --tree
+<pre><code>
+$ puppet module list --tree
   /etc/puppetlabs/code/modules
   └─┬ puppetlabs-bacula (v0.0.2)
     ├── puppetlabs-stdlib (v2.2.1)
     ├─┬ puppetlabs-mysql (v0.0.1)
     │ └── bodepd-create_resources (v0.0.1)
     └── puppetlabs-sqlite (v0.0.1)
-  /opt/puppetlabs/puppet/modules (no modules installed)</p>
-
+  /opt/puppetlabs/puppet/modules (no modules installed)
+</code></pre>
 <p>List installed modules from a specified environment:</p>
 
-<p>$ puppet module list --environment production
+<pre><code>
+$ puppet module list --environment production
   /etc/puppetlabs/code/modules
   ├── bodepd-create_resources (v0.0.1)
   ├── puppetlabs-bacula (v0.0.2)
   ├── puppetlabs-mysql (v0.0.1)
   ├── puppetlabs-sqlite (v0.0.1)
   └── puppetlabs-stdlib (v2.2.1)
-  /opt/puppetlabs/puppet/modules (no modules installed)</p>
-
+  /opt/puppetlabs/puppet/modules (no modules installed)
+</code></pre>
 <p>List installed modules from a specified modulepath:</p>
 
-<p>$ puppet module list --modulepath /opt/puppetlabs/puppet/modules
-  /opt/puppetlabs/puppet/modules (no modules installed)</p>
-
+<pre><code>
+$ puppet module list --modulepath /opt/puppetlabs/puppet/modules
+  /opt/puppetlabs/puppet/modules (no modules installed)
+</code></pre>
 <p><code>search</code></p>
 
 <p>Search the Puppet Forge for a module:</p>
 
-<p>$ puppet module search puppetlabs
+<pre><code>
+$ puppet module search puppetlabs
 NAME          DESCRIPTION                          AUTHOR             KEYWORDS
 bacula        This is a generic Apache module      @puppetlabs        backups</p>
+</code></pre>
 
 <p><code>uninstall</code></p>
 
 <p>Uninstall a module:</p>
 
-<p>$ puppet module uninstall puppetlabs-ssh
-Removed /etc/puppetlabs/code/modules/ssh (v1.0.0)</p>
+<pre><code>
+$ puppet module uninstall puppetlabs-ssh
+Removed /etc/puppetlabs/code/modules/ssh (v1.0.0)
+</code></pre>
 
 <p>Uninstall a module from a specific directory:</p>
 
-<p>$ puppet module uninstall puppetlabs-ssh --modulepath /opt/puppetlabs/puppet/modules
-Removed /opt/puppetlabs/puppet/modules/ssh (v1.0.0)</p>
+<pre><code>
+$ puppet module uninstall puppetlabs-ssh --modulepath /opt/puppetlabs/puppet/modules
+Removed /opt/puppetlabs/puppet/modules/ssh (v1.0.0)
+</code></pre>
 
 <p>Uninstall a module from a specific environment:</p>
 
-<p>$ puppet module uninstall puppetlabs-ssh --environment development
-Removed /etc/puppetlabs/code/environments/development/modules/ssh (v1.0.0)</p>
+<pre><code>
+$ puppet module uninstall puppetlabs-ssh --environment development
+Removed /etc/puppetlabs/code/environments/development/modules/ssh (v1.0.0)
+</code></pre>
 
-<p>Uninstall a specific version of a module:</p>
-
-<p>$ puppet module uninstall puppetlabs-ssh --version 2.0.0
-Removed /etc/puppetlabs/code/modules/ssh (v2.0.0)</p>
+<p>Uninstall a specific version of a module:
+<pre><code>
+$ puppet module uninstall puppetlabs-ssh --version 2.0.0
+Removed /etc/puppetlabs/code/modules/ssh (v2.0.0)
+</code></pre>
+</p>
 
 <p><code>upgrade</code></p>
 
 <p>upgrade an installed module to the latest version</p>
 
-<p>$ puppet module upgrade puppetlabs-apache
+<pre><code>
+$ puppet module upgrade puppetlabs-apache
 /etc/puppetlabs/puppet/modules
-└── puppetlabs-apache (v1.0.0 -> v2.4.0)</p>
+└── puppetlabs-apache (v1.0.0 -> v2.4.0)
+</code></pre>
 
 <p>upgrade an installed module to a specific version</p>
-
-<p>$ puppet module upgrade puppetlabs-apache --version 2.1.0
+<pre><code>
+$ puppet module upgrade puppetlabs-apache --version 2.1.0
 /etc/puppetlabs/puppet/modules
-└── puppetlabs-apache (v1.0.0 -> v2.1.0)</p>
+└── puppetlabs-apache (v1.0.0 -> v2.1.0)
+</code></pre>
 
 <p>upgrade an installed module for a specific environment</p>
-
-<p>$ puppet module upgrade puppetlabs-apache --environment test
+<pre><code>
+$ puppet module upgrade puppetlabs-apache --environment test
 /etc/puppetlabs/code/environments/test/modules
 └── puppetlabs-apache (v1.0.0 -> v2.4.0)</p>
+</code></pre>
 
 <h2 id="COPYRIGHT-AND-LICENSE">COPYRIGHT AND LICENSE</h2>
 
 <p>Copyright 2012 by Puppet Inc.
 Apache 2 license; see COPYING</p>
 
-</div>

@@ -15,7 +15,7 @@ This problem occurs when different versions of Ruby files, such as resource type
 
 This environment leakage issue does not affect the agent, as agents are only in one environment at any given time.
 
-* For **resource types**, you can avoid environment leaks with the the `puppet generate types` command as described in [environment isolation](./environment_isolation.html#enable-environment-isolation-in-open-source-puppet) documentation. This command generates resource type metadata files to ensure that each environment uses the right version of each type.
+* For **resource types**, you can avoid environment leaks with the `puppet generate types` command as described in [environment isolation](./environment_isolation.html#enable-environment-isolation-in-open-source-puppet) documentation. This command generates resource type metadata files to ensure that each environment uses the right version of each type.
 * For **functions**, this issue occurs only with the legacy `Puppet::Parser::Functions` API. To fix this, rewrite functions with [the modern functions API](./functions_ruby_overview.html), which is not affected by environment leakage. You can include helper code in the function definition, but if helper code is more complex, it should be packaged as a gem and installed for all environments.
 * Report processors and indirector termini are still affected by this problem, and they should probably be in your global Ruby directories rather than in your environments. If they are in your environments, you must ensure they all have the same content.
 

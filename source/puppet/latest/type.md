@@ -145,12 +145,12 @@ The following types are contained in modules that are maintained, but are not re
 The following types were deprecated with Puppet 6.0.0. They are available in modules, but are not updated. If you need to use them, you must install the modules separately.
 
 - [`computer`](https://forge.puppet.com/puppetlabs/macdslocal_core)
-- [`interface`](https://forge.puppet.com/puppetlabs/cisco_ios)
+- [`interface`](https://github.com/puppetlabs/puppetlabs-network_device_core) (Use the updated [`cisco_ios module`](https://forge.puppet.com/puppetlabs/cisco_ios/readme) instead.
 - [`macauthorization`](https://forge.puppet.com/puppetlabs/macdslocal_core)
 - [`mcx`](https://forge.puppet.com/puppetlabs/macdslocal_core)
 - [The Nagios types](https://forge.puppet.com/puppetlabs/nagios_core)
-- [`router`](https://forge.puppet.com/puppetlabs/cisco_ios)
-- [`vlan`](https://forge.puppet.com/puppetlabs/cisco_ios)
+- [`router`](https://github.com/puppetlabs/puppetlabs-network_device_core) (Use the updated [`cisco_ios module`](https://forge.puppet.com/puppetlabs/cisco_ios/readme) instead.
+- [`vlan`](https://github.com/puppetlabs/puppetlabs-network_device_core) (Use the updated [`cisco_ios module`](https://forge.puppet.com/puppetlabs/cisco_ios/readme) instead.
 
 ## Puppet core types
 
@@ -173,9 +173,28 @@ main ways for an exec to be idempotent:
 * The command itself is already idempotent. (For example, `apt-get update`.)
 * The exec has an `onlyif`, `unless`, or `creates` attribute, which prevents
   Puppet from running the command unless some condition is met.
-* The exec has `refreshonly => true`, which allows Puppet to run the command only when some other resource is changed. (See the notes on refreshing below.) 
-        
-The state managed by an `exec` resource represents whether the specified command _needs to be_ executed during the catalog run. The target state is always that the command does not need to be executed. If the initial state is that the command _does_ need to be executed, then successfully executing the command transitions it to the target state.
+* The exec has `refreshonly => true`, which allows Puppet to run the
+  command only when some other resource is changed. (See the notes on refreshing
+  below.)
+
+The state managed by an `exec` resource represents whether the specified command
+_needs to be_ executed during the catalog run. The target state is always that
+the command does not need to be executed. If the initial state is that the
+command _does_ need to be executed, then successfully executing the command
+transitions it to the target state.
+
+The `unless`, `onlyif`, and `creates` properties check the initial state of the
+resource. If one or more of these properties is specified, the exec might not
+need to run. If the exec does not need to run, then the system is already in
+the target state. In such cases, the exec is considered successful without
+actually executing its command.
+
+A caution: There's a widespread tendency to use collections of execs to
+manage resources that aren't covered by an existing resource type. This
+works fine for simple tasks, but once your exec pile gets complex enough
+that you really have to think to understand what's happening, you should
+consider developing a custom resource type instead, as it is much
+more predictable and maintainable.
 
 **Duplication:** Even though `command` is the namevar, Puppet allows
 multiple `exec` resources with the same `command` value.
@@ -185,14 +204,22 @@ multiple `exec` resources with the same `command` value.
 is non-standard, and can be affected by the `refresh` and
 `refreshonly` attributes:
 
+* If `refreshonly` is set to true, the exec runs _only_ when it receives an
+  event. This is the most reliable way to use refresh with execs.
+* If the exec has already run and then receives an event, it runs its
+  command **up to two times.** If an `onlyif`, `unless`, or `creates` condition
+  is no longer met after the first run, the second run does not occur.
+* If the exec has already run, has a `refresh` command, and receives an
+  event, it runs its normal command. Then, if any `onlyif`, `unless`, or `creates`
+  conditions are still met, the exec runs its `refresh` command.
+* If the exec has an `onlyif`, `unless`, or `creates` attribute that prevents it
+  from running, and it then receives an event, it still will not run.
+* If the exec has `noop => true`, would otherwise have run, and receives
+  an event from a non-noop resource, it runs once. However, if it has a `refresh`
+  command, it runs that instead of its normal command.
 
-* If `refreshonly` is set to true, the exec runs _only_ when it receives an event. This is the most reliable way to use refresh with execs.
-* If the exec has already run and then receives an event, it runs its command **up to two times.** If an `onlyif`, `unless`, or `creates` condition is no longer met after the first run, the second run does not occur.
-* If the exec has already run, has a `refresh` command, and receives an event, it runs its normal command. Then, if any `onlyif`, `unless`, or `creates` conditions are still met, the exec runs its `refresh` command.
-* If the exec has an `onlyif`, `unless`, or `creates` attribute that prevents it from running, and it then receives an event, it still will not run.
-* If the exec has `noop => true`, would otherwise have run, and receives an event from a non-noop resource, it runs once. However, if it has a `refresh`command, it runs that instead of its normal command.
-
-In short: If there's a possibility of your exec receiving refresh events, it is extremely important to make sure the run conditions are restricted.
+In short: If there's a possibility of your exec receiving refresh events,
+it is extremely important to make sure the run conditions are restricted.
 
 **Autorequires:** If Puppet is managing an exec's cwd or the executable
 file used in an exec's command, the exec resource autorequires those
@@ -731,6 +758,18 @@ balancer to direct all filebucket traffic to a single master, or use
 something like an out-of-band rsync task to synchronize the content on all
 masters.
 
+> **Note**: Enabling and using the backup option, and by extension the
+  filebucket resource, requires appropriate planning and management to ensure
+  that sufficient disk space is available for the file backups. Generally, you
+  can implement this using one of the following two options:
+  
+- Restrict the directory to a maximum size after which the oldest items are removed.
+- Use a `find` command and `crontab` entry to retain only the last X days of file backups. For example:
+
+```
+find /opt/puppetlabs/server/data/puppetserver/bucket -type f -mtime +45 -atime +45 -print0 | xargs -0 rm
+```
+  
 Default: `puppet`
 
 ([↑ Back to file attributes](#file-attributes))
@@ -822,8 +861,10 @@ Default: `false`
 
 Allowed values:
 
-* `true` or `yes`
-* `false` or `no`
+* `true`
+* `false`
+* `yes`
+* `no`
 
 ([↑ Back to file attributes](#file-attributes))
 
@@ -1001,8 +1042,10 @@ Default: `false`
 
 Allowed values:
 
-* `true` or `yes`
-* `false` or `no`
+* `true`
+* `false`
+* `yes`
+* `no`
 
 ([↑ Back to file attributes](#file-attributes))
 
@@ -1081,8 +1124,10 @@ Default: `true`
 
 Allowed values:
 
-* `true` or `yes`
-* `false` or `no`
+* `true`
+* `false`
+* `yes`
+* `no`
 
 ([↑ Back to file attributes](#file-attributes))
 
@@ -1094,7 +1139,12 @@ seltype, and selrange). In general, you should leave this set at its
 default and only set it to true when you need Puppet to not try to fix
 SELinux labels automatically.
 
-Valid values are `true`, `false`.
+Default: `false`
+
+Allowed values:
+
+* `true`
+* `false`
 
 ([↑ Back to file attributes](#file-attributes))
 
@@ -1159,8 +1209,10 @@ Default: `true`
 
 Allowed values:
 
-* `true` or `yes`
-* `false` or `no`
+* `true`
+* `false`
+* `yes`
+* `no`
 
 ([↑ Back to file attributes](#file-attributes))
 
@@ -1175,7 +1227,7 @@ mount points.
 * Fully qualified paths to locally available files (including files on NFS
 shares or Windows mapped drives).
 * `file:` URIs, which behave the same as local file paths.
-* `http:` URIs, which point to files served by common web servers
+* `http:` URIs, which point to files served by common web servers.
 
 The normal form of a `puppet:` URI is:
 
@@ -1199,6 +1251,8 @@ ownership or permission details.
 The `http` source uses the server `Content-MD5` header as a checksum to
 determine if the remote file has changed. If the server response does not
 include that header, Puppet defaults to using the `Last-Modified` header.
+Puppet will update the local file if the header is newer than the modified
+time (mtime) of the local file.
 
 Multiple `source` values can be specified as an array, and Puppet will
 use the first source that exists. This can be used to serve different
@@ -1391,6 +1445,12 @@ Provider support:
   </tbody>
 </table>
 
+filebucket
+-----
+
+* [Attributes](#filebucket-attributes)
+
+<h3 id="filebucket-description">Description</h3>
 
 A repository for storing and retrieving file content by MD5 checksum. Can
 be local to each agent node, or centralized on a puppet master server. All
@@ -1466,14 +1526,13 @@ setting if `server_list` is not set.
 
 The server providing the remote filebucket service.
 
-This setting is consulted only if the `path` attribute is set to `false`.
+This setting is _only_ consulted if the `path` attribute is set to `false`.
 
 If this attribute is not specified, the first entry in the `server_list`
 configuration setting is used, followed by the value of the `server` setting
 if `server_list` is not set.
 
 ([↑ Back to filebucket attributes](#filebucket-attributes))
-
 
 group
 -----
@@ -1606,16 +1665,20 @@ Allowed values:
 <h4 id="group-attribute-forcelocal">forcelocal</h4>
 
 Forces the management of local accounts when accounts are also
-being managed by some other NSS.
+being managed by some other Name Switch Service (NSS). For AIX, refer to the `ia_load_module` parameter.
+
+This option relies on your operating system's implementation of `luser*` commands, such as `luseradd` , `lgroupadd`, and `lusermod`. The `forcelocal` option could behave unpredictably in some circumstances. If the tools it depends on are not available, it might have no effect at all.
 
 Default: `false`
 
 Allowed values:
 
-* `true` or `yes`
-* `false` or `no`
+* `true`
+* `false`
+* `yes`
+* `no`
 
-Requires features libuser.
+Requires features manages_local_users_and_groups.
 
 ([↑ Back to group attributes](#group-attributes))
 
@@ -1636,7 +1699,8 @@ identifier (SID).
 
 <h4 id="group-attribute-ia_load_module">ia_load_module</h4>
 
-The name of the I&A module to use to manage this user
+The name of the I&A module to use to manage this group.
+This should be set to `files` if managing local groups.
 
 Requires features manages_aix_lam.
 
@@ -1679,8 +1743,10 @@ Default: `false`
 
 Allowed values:
 
-* `true` or `yes`
-* `false` or `no`
+* `true`
+* `false`
+* `yes`
+* `no`
 
 ([↑ Back to group attributes](#group-attributes))
 
@@ -1749,8 +1815,8 @@ Additionally, local groups can contain domain users.
 
 Available features:
 
-* `libuser` --- Allows local groups to be managed on systems that also use some other remote NSS method of managing accounts.
 * `manages_aix_lam` --- The provider can manage AIX Loadable Authentication Module (LAM) system.
+* `manages_local_users_and_groups` --- Allows local groups to be managed on systems that also use some other remote Name Switch Service (NSS) method of managing accounts.
 * `manages_members` --- For directories where membership is an attribute of groups not users.
 * `system_groups` --- The provider allows you to create system groups with lower GIDs.
 
@@ -1760,8 +1826,8 @@ Provider support:
   <thead>
     <tr>
       <th>Provider</th>
-      <th>libuser</th>
       <th>manages aix lam</th>
+      <th>manages local users and groups</th>
       <th>manages members</th>
       <th>system groups</th>
     </tr>
@@ -1769,7 +1835,7 @@ Provider support:
   <tbody>
     <tr>
       <td>aix</td>
-      <td> </td>
+      <td><em>X</em> </td>
       <td><em>X</em> </td>
       <td><em>X</em> </td>
       <td> </td>
@@ -1783,10 +1849,10 @@ Provider support:
     </tr>
     <tr>
       <td>groupadd</td>
-      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>ldap</td>
@@ -1819,7 +1885,7 @@ notify
 
 <h3 id="notify-description">Description</h3>
 
-Sends an arbitrary message to the agent run-time log. It's important to note that the notify resource type is not idempotent. As a result, notifications are shown as a change on every Puppet run.
+Sends an arbitrary message, specified as a string, to the agent run-time log. It's important to note that the notify resource type is not idempotent. As a result, notifications are shown as a change on every Puppet run.
 
 <h3 id="notify-attributes">Attributes</h3>
 
@@ -1842,7 +1908,7 @@ An arbitrary tag for your own reference; the name of the message.
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-The message to be sent to the log.
+The message to be sent to the log. Note that the value specified must be a string.
 
 ([↑ Back to notify attributes](#notify-attributes))
 
@@ -1858,7 +1924,6 @@ Allowed values:
 * `false`
 
 ([↑ Back to notify attributes](#notify-attributes))
-
 
 package
 -----
@@ -1895,6 +1960,7 @@ resource will autorequire those files.
 <h3 id="package-attributes">Attributes</h3>
 
 <pre><code>package { 'resource title':
+  <a href="#package-attribute-name">name</a>                 =&gt; <em># <strong>(namevar)</strong> The package name.  This is the name that the...</em>
   <a href="#package-attribute-command">command</a>              =&gt; <em># <strong>(namevar)</strong> The targeted command to use when managing a...</em>
   <a href="#package-attribute-name">name</a>                 =&gt; <em># <strong>(namevar)</strong> The package name.  This is the name that the...</em>
   <a href="#package-attribute-provider">provider</a>             =&gt; <em># <strong>(namevar)</strong> The specific backend to use for this `package...</em>
@@ -1905,9 +1971,12 @@ resource will autorequire those files.
   <a href="#package-attribute-category">category</a>             =&gt; <em># A read-only parameter set by the...</em>
   <a href="#package-attribute-configfiles">configfiles</a>          =&gt; <em># Whether to keep or replace modified config files </em>
   <a href="#package-attribute-description">description</a>          =&gt; <em># A read-only parameter set by the...</em>
-  <a href="#package-attribute-flavor">flavor</a>               =&gt; <em># OpenBSD supports 'flavors', which are further...</em>
+  <a href="#package-attribute-enable_only">enable_only</a>          =&gt; <em># Tells `dnf module` to only enable a specific...</em>
+  <a href="#package-attribute-flavor">flavor</a>               =&gt; <em># OpenBSD and DNF modules support 'flavors', which </em>
+  <a href="#package-attribute-install_only">install_only</a>         =&gt; <em># It should be set for packages that should only...</em>
   <a href="#package-attribute-install_options">install_options</a>      =&gt; <em># An array of additional options to pass when...</em>
   <a href="#package-attribute-instance">instance</a>             =&gt; <em># A read-only parameter set by the...</em>
+  <a href="#package-attribute-mark">mark</a>                 =&gt; <em># Set to hold to tell Debian apt/Solaris pkg to...</em>
   <a href="#package-attribute-package_settings">package_settings</a>     =&gt; <em># Settings that can change the contents or...</em>
   <a href="#package-attribute-platform">platform</a>             =&gt; <em># A read-only parameter set by the...</em>
   <a href="#package-attribute-reinstall_on_refresh">reinstall_on_refresh</a> =&gt; <em># Whether this resource should respond to refresh...</em>
@@ -1919,35 +1988,6 @@ resource will autorequire those files.
   <a href="#package-attribute-vendor">vendor</a>               =&gt; <em># A read-only parameter set by the...</em>
   # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
-
-<h4 id="package-attribute-command">command</h4>
-
-_(**Namevar:** If omitted, this attribute's value defaults to the resource's title.)_
-
-The targeted command to use when managing a package:
-
-  package { 'mysql':
-    provider => gem,
-  }
-
-  package { 'mysql-opt':
-    name     => 'mysql',
-    provider => gem,
-    command  => '/opt/ruby/bin/gem',
-  }
-
-Each provider defines a package management command; and uses the first
-instance of the command found in the PATH.
-
-Providers supporting the targetable feature allow you to specify the
-absolute path of the package management command; useful when multiple
-instances of the command are installed, or the command is not in the PATH.
-
-Default: `default`
-
-Requires features targetable.
-
-([↑ Back to package attributes](#package-attributes))
 
 <h4 id="package-attribute-name">name</h4>
 
@@ -1985,9 +2025,30 @@ conditionally:
 
 ([↑ Back to package attributes](#package-attributes))
 
-<h4 id="package-attribute-provider">provider</h4>
+<h4 id="package-attribute-command">command</h4>
 
-_(**Secondary namevar:** This resource type allows you to manage multiple resources with the same name as long as their providers are different.)_
+_(**Namevar:** If omitted, this attribute's value defaults to the resource's title.)_
+
+The targeted command to use when managing a package:
+
+  package { 'mysql':
+    provider => gem,
+  }
+
+  package { 'mysql-opt':
+    name     => 'mysql',
+    provider => gem,
+    command  => '/opt/ruby/bin/gem',
+  }
+
+Each provider defines a package management command; and uses the first
+instance of the command found in the PATH.
+
+Providers supporting the targetable feature allow you to specify the
+absolute path of the package management command; useful when multiple
+instances of the command are installed, or the command is not in the PATH.
+
+Default: `default`
 
 The specific backend to use for this `package`
 resource. You will seldom need to specify this --- Puppet will usually
@@ -2054,6 +2115,9 @@ patterns are not accepted except for the `gem` package provider. For
 example, to install the bash package from the rpm
 `bash-4.1.2-29.el6.x86_64.rpm`, use the string `'4.1.2-29.el6'`.
 
+On supported providers, version ranges can also be ensured. For example,
+inequalities: `<2.0.0`, or intersections: `>1.0.0 <2.0.0`.
+
 Default: `installed`
 
 Allowed values:
@@ -2062,6 +2126,7 @@ Allowed values:
 * `absent`
 * `purged`
 * `held`
+* `disabled`
 * `installed`
 * `latest`
 * `/./`
@@ -2137,10 +2202,54 @@ A read-only parameter set by the package.
 
 ([↑ Back to package attributes](#package-attributes))
 
+<h4 id="package-attribute-enable_only">enable_only</h4>
+
+Tells `dnf module` to only enable a specific module, instead
+of installing its default profile.
+
+Modules with no default profile will be enabled automatically
+without the use of this parameter.
+
+Conflicts with the `flavor` property, which selects a profile
+to install.
+
+Default: `false`
+
+Allowed values:
+
+* `true`
+* `false`
+* `yes`
+* `no`
+
+([↑ Back to package attributes](#package-attributes))
+
 <h4 id="package-attribute-flavor">flavor</h4>
 
-OpenBSD supports 'flavors', which are further specifications for
-which type of package you want.
+_(**Property:** This attribute represents concrete state on the target system.)_
+
+OpenBSD and DNF modules support 'flavors', which are
+further specifications for which type of package you want.
+
+Requires features supports_flavors.
+
+([↑ Back to package attributes](#package-attributes))
+
+<h4 id="package-attribute-install_only">install_only</h4>
+
+It should be set for packages that should only ever be installed,
+never updated. Kernels in particular fall into this category.
+
+Default: `false`
+
+Allowed values:
+
+* `true`
+* `false`
+* `yes`
+* `no`
+
+Requires features install_only.
 
 ([↑ Back to package attributes](#package-attributes))
 
@@ -2174,6 +2283,28 @@ Requires features install_options.
 <h4 id="package-attribute-instance">instance</h4>
 
 A read-only parameter set by the package.
+
+([↑ Back to package attributes](#package-attributes))
+
+<h4 id="package-attribute-mark">mark</h4>
+
+_(**Property:** This attribute represents concrete state on the target system.)_
+
+Set to hold to tell Debian apt/Solaris pkg to hold the package version
+
+#{mark_doc}
+Default is "none". Mark can be specified with or without `ensure`,
+if `ensure` is missing will default to "present".
+
+Mark cannot be specified together with "purged", "absent" or "held"
+values for `ensure`.
+
+Allowed values:
+
+* `hold`
+* `none`
+
+Requires features holdable.
 
 ([↑ Back to package attributes](#package-attributes))
 
@@ -2760,16 +2891,20 @@ string or a hash.
 
 Available features:
 
-* `holdable` --- The provider is capable of placing packages on hold such that they are not automatically upgraded as a result of other package dependencies unless explicit action is taken by a user or another package. Held is considered a superset of installed.
+* `disableable` --- The provider can disable packages. This feature is used by specifying `disabled` as the desired value for the package.
+* `holdable` --- The provider is capable of placing packages on hold such that they are not automatically upgraded as a result of other package dependencies unless explicit action is taken by a user or another package.
+* `install_only` --- The provider accepts options to only install packages never update (kernels, etc.)
 * `install_options` --- The provider accepts options to be passed to the installer command.
 * `installable` --- The provider can install packages.
 * `package_settings` --- The provider accepts package_settings to be ensured for the given package. The meaning and format of these settings is provider-specific.
 * `purgeable` --- The provider can purge packages.  This generally means that all traces of the package are removed, including existing configuration files.  This feature is thus destructive and should be used with the utmost care.
 * `reinstallable` --- The provider can reinstall packages.
+* `supports_flavors` --- The provider accepts flavors, which are specific variants of packages.
 * `targetable` --- The provider accepts a targeted package management command.
 * `uninstall_options` --- The provider accepts options to be passed to the uninstaller command.
 * `uninstallable` --- The provider can uninstall packages.
 * `upgradeable` --- The provider can upgrade to the latest version of a package.  This feature is used by specifying `latest` as the desired value for the package.
+* `version_ranges` --- The provider can ensure version ranges.
 * `versionable` --- The provider is capable of interrogating the package database for installed version(s), and can select which out of a set of available versions of a package to install if asked.
 * `virtual_packages` --- The provider accepts virtual package names for install and uninstall.
 
@@ -2780,11 +2915,13 @@ Provider support:
     <tr>
       <th>Provider</th>
       <th>holdable</th>
+      <th>install only</th>
       <th>install options</th>
       <th>installable</th>
       <th>package settings</th>
       <th>purgeable</th>
       <th>reinstallable</th>
+      <th>supports flavors</th>
       <th>targetable</th>
       <th>uninstall options</th>
       <th>uninstallable</th>
@@ -2796,6 +2933,8 @@ Provider support:
   <tbody>
     <tr>
       <td>aix</td>
+      <td> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -2823,9 +2962,13 @@ Provider support:
       <td> </td>
       <td> </td>
       <td> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>apple</td>
+      <td> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -2842,20 +2985,24 @@ Provider support:
     <tr>
       <td>apt</td>
       <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
       <td> </td>
       <td><em>X</em> </td>
       <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
     </tr>
     <tr>
       <td>aptitude</td>
+      <td> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -2871,6 +3018,8 @@ Provider support:
     </tr>
     <tr>
       <td>aptrpm</td>
+      <td> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -2898,11 +3047,15 @@ Provider support:
       <td> </td>
       <td> </td>
       <td> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>dnf</td>
       <td> </td>
       <td><em>X</em> </td>
+      <td><em>X</em> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -2913,6 +3066,23 @@ Provider support:
       <td> </td>
       <td><em>X</em> </td>
       <td><em>X</em> </td>
+    </tr>
+    <tr>
+      <td>dnfmodule</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>dpkg</td>
@@ -2928,9 +3098,13 @@ Provider support:
       <td> </td>
       <td> </td>
       <td> </td>
+      <td> </td>
+      <td><em>X</em> </td>
     </tr>
     <tr>
       <td>fink</td>
+      <td> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -2958,11 +3132,15 @@ Provider support:
       <td> </td>
       <td> </td>
       <td> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>gem</td>
       <td> </td>
+      <td> </td>
       <td><em>X</em> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -2988,12 +3166,16 @@ Provider support:
       <td> </td>
       <td> </td>
       <td> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>macports</td>
       <td> </td>
       <td> </td>
+      <td> </td>
       <td><em>X</em> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -3016,17 +3198,21 @@ Provider support:
       <td> </td>
       <td> </td>
       <td> </td>
+      <td> </td>
+      <td> </td>
       <td><em>X</em> </td>
       <td> </td>
     </tr>
     <tr>
       <td>openbsd</td>
       <td> </td>
+      <td> </td>
       <td><em>X</em> </td>
       <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
+      <td><em>X</em> </td>
       <td> </td>
       <td><em>X</em> </td>
       <td> </td>
@@ -3048,11 +3234,15 @@ Provider support:
       <td> </td>
       <td> </td>
       <td> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>pacman</td>
       <td> </td>
+      <td> </td>
       <td><em>X</em> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -3067,8 +3257,10 @@ Provider support:
     <tr>
       <td>pip</td>
       <td> </td>
+      <td> </td>
       <td><em>X</em> </td>
       <td><em>X</em> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -3082,8 +3274,10 @@ Provider support:
     <tr>
       <td>pip3</td>
       <td> </td>
+      <td> </td>
       <td><em>X</em> </td>
       <td><em>X</em> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -3097,7 +3291,9 @@ Provider support:
     <tr>
       <td>pkg</td>
       <td><em>X</em> </td>
+      <td> </td>
       <td><em>X</em> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -3123,12 +3319,16 @@ Provider support:
       <td> </td>
       <td> </td>
       <td> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>pkgin</td>
       <td> </td>
       <td> </td>
+      <td> </td>
       <td><em>X</em> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -3141,6 +3341,8 @@ Provider support:
     </tr>
     <tr>
       <td>pkgng</td>
+      <td> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -3168,15 +3370,19 @@ Provider support:
       <td> </td>
       <td> </td>
       <td> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>portage</td>
       <td> </td>
+      <td> </td>
       <td><em>X</em> </td>
       <td> </td>
       <td> </td>
       <td><em>X</em> </td>
       <td><em>X</em> </td>
+      <td> </td>
       <td> </td>
       <td><em>X</em> </td>
       <td> </td>
@@ -3186,6 +3392,8 @@ Provider support:
     </tr>
     <tr>
       <td>ports</td>
+      <td> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -3213,11 +3421,15 @@ Provider support:
       <td> </td>
       <td> </td>
       <td> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>puppet_gem</td>
       <td> </td>
+      <td> </td>
       <td><em>X</em> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -3233,6 +3445,8 @@ Provider support:
       <td>rpm</td>
       <td> </td>
       <td><em>X</em> </td>
+      <td><em>X</em> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -3256,13 +3470,17 @@ Provider support:
       <td> </td>
       <td> </td>
       <td> </td>
+      <td> </td>
+      <td> </td>
       <td><em>X</em> </td>
       <td> </td>
     </tr>
     <tr>
       <td>sun</td>
       <td> </td>
+      <td> </td>
       <td><em>X</em> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -3288,11 +3506,15 @@ Provider support:
       <td> </td>
       <td> </td>
       <td> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>tdnf</td>
       <td> </td>
+      <td> </td>
       <td><em>X</em> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -3318,9 +3540,13 @@ Provider support:
       <td> </td>
       <td> </td>
       <td> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>urpmi</td>
+      <td> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -3337,8 +3563,10 @@ Provider support:
     <tr>
       <td>windows</td>
       <td> </td>
+      <td> </td>
       <td><em>X</em> </td>
       <td><em>X</em> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -3353,6 +3581,8 @@ Provider support:
       <td>yum</td>
       <td> </td>
       <td><em>X</em> </td>
+      <td><em>X</em> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -3367,7 +3597,9 @@ Provider support:
     <tr>
       <td>zypper</td>
       <td> </td>
+      <td> </td>
       <td><em>X</em> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -3381,7 +3613,6 @@ Provider support:
     </tr>
   </tbody>
 </table>
-
 
 resources
 -----
@@ -3453,7 +3684,6 @@ Accepts integers, integer strings, and arrays of integers or integer strings.
 To specify a range of uids, consider using the range() function from stdlib.
 
 ([↑ Back to resources attributes](#resources-attributes))
-
 
 schedule
 -----
@@ -3657,7 +3887,6 @@ at 2 AM on Saturday.
 
 ([↑ Back to schedule attributes](#schedule-attributes))
 
-
 service
 -----
 
@@ -3695,7 +3924,7 @@ can be configured:
 
 <pre><code>service { 'resource title':
   <a href="#service-attribute-name">name</a>       =&gt; <em># <strong>(namevar)</strong> The name of the service to run.  This name is...</em>
-  <a href="#service-attribute-ensure">ensure</a>     =&gt; <em># Whether a service should be running.  Allowed...</em>
+  <a href="#service-attribute-ensure">ensure</a>     =&gt; <em># Whether a service should be running. Default...</em>
   <a href="#service-attribute-binary">binary</a>     =&gt; <em># The path to the daemon.  This is only used for...</em>
   <a href="#service-attribute-control">control</a>    =&gt; <em># The control variable used to manage services...</em>
   <a href="#service-attribute-enable">enable</a>     =&gt; <em># Whether a service should be enabled to start at...</em>
@@ -3731,7 +3960,7 @@ rather than "Automatic Updates.")
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-Whether a service should be running.
+Whether a service should be running. Default values depend on the platform.
 
 Allowed values:
 
@@ -3764,9 +3993,13 @@ underscores, for those providers that support the `controllable` feature.
 _(**Property:** This attribute represents concrete state on the target system.)_
 
 Whether a service should be enabled to start at boot.
-This property behaves quite differently depending on the platform;
+This property behaves differently depending on the platform;
 wherever possible, it relies on local tools to enable or disable
-a given service.
+a given service. Default values depend on the platform.
+
+If you don't specify a value for the `enable` attribute, Puppet leaves
+that aspect of the service alone and your operating system determines
+the behavior.
 
 Allowed values:
 
@@ -3774,6 +4007,7 @@ Allowed values:
 * `false`
 * `manual`
 * `mask`
+* `delayed`
 
 Requires features enableable.
 
@@ -4034,15 +4268,15 @@ Uses `rc-update` for service enabling and disabling.
 
 Standard `init`-style service management.
 
-* Confined to:
+* Confined to: 
 
-  ```
-  true == begin
+```
+true == begin
       os = Facter.value(:operatingsystem).downcase
       family = Facter.value(:osfamily).downcase
       !(os == 'debian' || os == 'ubuntu' || family == 'redhat')
   end
-  ```
+```
 * Supported features: `refreshable`
 
 <h4 id="service-provider-launchd">launchd</h4>
@@ -4213,17 +4447,8 @@ may be omitted.  Other unit types (such as `.path`) may be managed by
 providing the proper suffix.
 
 * Required binaries: `systemctl`
-* Default for
-  * `osfamily` == `archlinux`
-  * `operatingsystemmajrelease` == `7` and `osfamily` == `redhat`
-  * `operatingsystem` == `fedora` and `osfamily` == `redhat`
-  * `osfamily` == `suse`
-  * `osfamily` == `coreos`
-  * `operatingsystem` == `amazon` and `operatingsystemmajrelease` == `2`
-  * `operatingsystem` == `debian` and `operatingsystemmajrelease` == `8, stretch/sid, 9, buster/sid`
-  * `operatingsystem` == `ubuntu` and `operatingsystemmajrelease` == `15.04, 15.10, 16.04, 16.10, 17.04, 17.10, 18.04`
-  * `operatingsystem` == `cumuluslinux` and `operatingsystemmajrelease` == `3`.
-* Supported features: `enableable`, `maskable`, `refreshable`
+* Confined to: `true == Puppet::FileSystem.exist?('/proc/1/comm') && Puppet::FileSystem.read('/proc/1/comm').include?('systemd')`
+* Default for: `["osfamily", "[:archlinux]"] == `, `["osfamily", "redhat"] == ["operatingsystemmajrelease", "[\"7\", \"8\"]"]`, `["osfamily", "redhat"] == ["operatingsystem", "fedora"]`, `["osfamily", "suse"] == `, `["osfamily", "coreos"] == `, `["operatingsystem", "amazon"] == ["operatingsystemmajrelease", "[\"2\"]"]`, `["operatingsystem", "debian"] == `, `["operatingsystem", "LinuxMint"] == `, `["operatingsystem", "ubuntu"] == `, `["operatingsystem", "cumuluslinux"] == ["operatingsystemmajrelease", "[\"3\", \"4\"]"]`
 
 <h4 id="service-provider-upstart">upstart</h4>
 
@@ -4272,7 +4497,7 @@ Available features:
 
 * `configurable_timeout` --- The provider can specify a minumum timeout for syncing service properties
 * `controllable` --- The provider uses a control variable.
-* `enableable` --- The provider can enable and disable the service
+* `enableable` --- The provider can enable and disable the service.
 * `flaggable` --- The provider can pass flags to the service.
 * `maskable` --- The provider can 'mask' the service.
 * `refreshable` --- The provider can restart the service.
@@ -4414,9 +4639,7 @@ Provider support:
       <td> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
+      <td><em>X</em> </td>
     </tr>
     <tr>
       <td>service</td>
@@ -4518,7 +4741,6 @@ The name of the stage. Use this as the value for the `stage` metaparameter
 when assigning classes to this stage.
 
 ([↑ Back to stage attributes](#stage-attributes))
-
 
 tidy
 -----
@@ -4665,7 +4887,6 @@ Allowed values:
 * `ctime`
 
 ([↑ Back to tidy attributes](#tidy-attributes))
-
 
 user
 -----
@@ -4865,7 +5086,9 @@ Requires features manages_expiry.
 <h4 id="user-attribute-forcelocal">forcelocal</h4>
 
 Forces the management of local accounts when accounts are also
-being managed by some other NSS
+being managed by some other Name Service Switch (NSS). For AIX, refer to the `ia_load_module` parameter.
+
+This option relies on your operating system's implementation of `luser*` commands, such as `luseradd` , and `lgroupadd`, `lusermod`. The `forcelocal` option could behave unpredictably in some circumstances. If the tools it depends on are not available, it might have no effect at all.
 
 Default: `false`
 
@@ -4876,7 +5099,7 @@ Allowed values:
 * `yes`
 * `no`
 
-Requires features libuser.
+Requires features manages_local_users_and_groups.
 
 ([↑ Back to user attributes](#user-attributes))
 
@@ -4914,6 +5137,7 @@ separately and is not currently checked for existence.
 <h4 id="user-attribute-ia_load_module">ia_load_module</h4>
 
 The name of the I&A module to use to manage this user.
+This should be set to `files` if managing local users.
 
 Requires features manages_aix_lam.
 
@@ -5367,10 +5591,10 @@ Local user management for Windows.
 Available features:
 
 * `allows_duplicates` --- The provider supports duplicate users with the same UID.
-* `libuser` --- Allows local users to be managed on systems that also use some other remote NSS method of managing accounts.
 * `manages_aix_lam` --- The provider can manage AIX Loadable Authentication Module (LAM) system.
 * `manages_expiry` --- The provider can manage the expiry date for a user.
 * `manages_homedir` --- The provider can create and remove home directories.
+* `manages_local_users_and_groups` --- Allows local users to be managed on systems that also use some other remote Name Service Switch (NSS) method of managing accounts.
 * `manages_loginclass` --- The provider can manage the login class for a user.
 * `manages_password_age` --- The provider can set age requirements and restrictions for passwords.
 * `manages_password_salt` --- The provider can set a password salt. This is for providers that implement PBKDF2 passwords with salt properties.
@@ -5386,10 +5610,10 @@ Provider support:
     <tr>
       <th>Provider</th>
       <th>allows duplicates</th>
-      <th>libuser</th>
       <th>manages aix lam</th>
       <th>manages expiry</th>
       <th>manages homedir</th>
+      <th>manages local users and groups</th>
       <th>manages loginclass</th>
       <th>manages password age</th>
       <th>manages password salt</th>
@@ -5403,7 +5627,7 @@ Provider support:
     <tr>
       <td>aix</td>
       <td> </td>
-      <td> </td>
+      <td><em>X</em> </td>
       <td><em>X</em> </td>
       <td><em>X</em> </td>
       <td><em>X</em> </td>
@@ -5435,8 +5659,8 @@ Provider support:
       <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
       <td><em>X</em> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -5464,9 +5688,9 @@ Provider support:
       <td>openbsd</td>
       <td> </td>
       <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
       <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -5479,9 +5703,9 @@ Provider support:
       <td>pw</td>
       <td><em>X</em> </td>
       <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
       <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -5495,8 +5719,8 @@ Provider support:
       <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
       <td><em>X</em> </td>
+      <td> </td>
       <td> </td>
       <td><em>X</em> </td>
       <td> </td>
@@ -5509,9 +5733,9 @@ Provider support:
       <td>useradd</td>
       <td><em>X</em> </td>
       <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
       <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -5525,8 +5749,8 @@ Provider support:
       <td> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
       <td><em>X</em> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -5537,4 +5761,3 @@ Provider support:
     </tr>
   </tbody>
 </table>
-

@@ -117,7 +117,7 @@ defaults:
   datadir: data
 ```
 
-...then in a lookup for the the `ntp::servers` key, thrush.example.com would use the following combined hierarchy:
+...then in a lookup for the `ntp::servers` key, thrush.example.com would use the following combined hierarchy:
 
 * `<CONFDIR>/data/selfserve/thrush.example.com.json`
 * `<CODEDIR>/environments/production/data/nodes/thrush.example.com.yaml`

@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 4c1b0ace7275f9646c9f6630e11f41556d88d2ac
+built_from_commit: 2959aff838fdb13a35943fa8a83581fc3c1f0707
 title: 'Resource Type: notify'
 canonical: "/puppet/latest/types/notify.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2019-09-06 09:16:04 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2020-06-30 08:58:23 +0100
 
 notify
 -----
@@ -14,7 +14,7 @@ notify
 
 <h3 id="notify-description">Description</h3>
 
-Sends an arbitrary message to the agent run-time log. It's important to note that the notify resource type is not idempotent. As a result, notifications are shown as a change on every Puppet run.
+Sends an arbitrary message, specified as a string, to the agent run-time log. It's important to note that the notify resource type is not idempotent. As a result, notifications are shown as a change on every Puppet run.
 
 <h3 id="notify-attributes">Attributes</h3>
 
@@ -37,7 +37,7 @@ An arbitrary tag for your own reference; the name of the message.
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-The message to be sent to the log.
+The message to be sent to the log. Note that the value specified must be a string.
 
 ([↑ Back to notify attributes](#notify-attributes))
 
@@ -58,4 +58,4 @@ Allowed values:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2019-09-06 09:16:04 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2020-06-30 08:58:23 +0100

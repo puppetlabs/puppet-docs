@@ -76,7 +76,7 @@ Environment leaks is one of the limitations of environments.
  
 1. Use one of the following methods to avoid environmental leaks:
  
-* For resource types, you can avoid environment leaks with the the `puppet generate types` command as described in environment isolation documentation. This command generates resource type metadata files to ensure that each environment uses the right version of each type.
+* For resource types, you can avoid environment leaks with the `puppet generate types` command as described in environment isolation documentation. This command generates resource type metadata files to ensure that each environment uses the right version of each type.
 
 * This issue occurs only with the `Puppet::Parser::Functions` API. To fix this, rewrite functions with the modern functions API, which is not affected by environment leakage. You can include helper code in the function definition, but if helper code is more complex, it should be packaged as a gem and installed for all environments.
 

@@ -316,15 +316,26 @@ There are two parts here. The `:parent => Puppet::Parameter::Boolean` part confi
 
 ### Automatic relationships
 
-Your type can specify automatic relationships it can have with resources. You can use autorequire, autobefore, autonotify, and autosubscribe, which all require a resource type as an argument, and your code should return a list of resource names that your resource could be related to.
+By default, Puppet includes and processes resources in the order they are defined in their manifest. However, there are times when resources need to be applied in a different order. The Puppet language provides ways to express explicit ordering such as relationship metaparameters (`require`, `before`, etc), chaining arrows and the `require` and `contain` functions.
 
-``` ruby
-  autorequire(:user) do
-      self[:user]
-  end
+Sometimes there is a natural relationship between your custom type and other resource types. For example, ssh authorized keys can only be managed after you create the home directory and you can only manage files after you create their parent directories. You can add explicit relationships for these, but doing so can be restrictive for others who may want to use your custom type. Automatic relationships provide a way to define implicit ordering. For example, to automatically add a `require` relationship from your custom type to a configuration file that it depends on, add the following to your custom type:
+ 
+ ```
+autorequire(:file) do
+  ['/path/to/file'']
+end
+ ```
+ 
+The Ruby symbol `:file` refers to the type of resource you want to `require`, and the array contains resource title(s) with which to create the `require` relationship(s). The effect is nearly equivalent to using an explicit `require` relationship:
+ 
+ ```
+custom { 'a custom resource':
+  ensure => present,
+  require => File['/path/to/file']
+}
 ```
 
-Note that this won't throw an error if resources with those names do not exist; the purpose of this hook is to make sure that if any required resources are being managed, they get applied before the requiring resource.
+An important difference between automatic and explicit relationships is that automatic relationships do not require the other resources to exist, while explicit relationships do.
 
 ### Agent-side pre-run resource validation (Puppet 3.7 and later)
 
