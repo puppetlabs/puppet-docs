@@ -846,20 +846,17 @@ Provider support:
     <tr>
       <td>useradd</td>
       <td><em>X</em> </td>
-      <td><em>X</em> </td>
       <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td><em>X</em> </td>
       <td><em>X</em> </td>
       <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
       <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>windows_adsi</td>
