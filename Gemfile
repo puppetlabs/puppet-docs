@@ -8,7 +8,7 @@ gem 'git', '~> 1.7'
 gem 'json', '~> 2.3', '>= 2.3.1'
 
 group(:build_site) do
-  gem 'jekyll', '~> 3.8' # See https://jekyllrb.com/docs/upgrading/3-to-4/ before going to '~> 4.1'
+  gem 'jekyll', '~> 3.9' # See https://jekyllrb.com/docs/upgrading/3-to-4/ before going to '~> 4.1'
   gem 'kramdown', '~> 1.17'
   gem 'vlad', '~> 1.4'
   gem 'vlad-git', '~> 2.1'
