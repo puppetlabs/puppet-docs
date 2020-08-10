@@ -2556,13 +2556,13 @@ The function does the following:
 
 ```puppet
 "\n\thello".lstrip()
-camelcase("\n\thello")
+lstrip("\n\thello ")
 ```
 Would both result in `"hello"`
 
 ```puppet
-["\n\thello", "\n\thi"].lstrip()
-lstrip(["\n\thello", "\n\thi"])
+["\n\thello ", "\n\thi "].lstrip()
+lstrip(["\n\thello ", "\n\thi "])
 ```
 Would both result in `['hello', 'hi']`
 
@@ -4325,14 +4325,14 @@ The function does the following:
 * An error is raised for all other data types.
 
 ```puppet
-"hello\n\t".lstrip()
-camelcase("hello\n\t")
+"hello\n\t".rstrip()
+rstrip(" hello\n\t")
 ```
 Would both result in `"hello"`
 
 ```puppet
-["hello\n\t", "hi\n\t"].lstrip()
-lstrip(["hello\n\t", "hi\n\t"])
+[" hello\n\t", " hi\n\t"].rstrip()
+rstrip([" hello\n\t", " hi\n\t"])
 ```
 Would both result in `['hello', 'hi']`
 
@@ -4800,14 +4800,14 @@ The function does the following:
 * An error is raised for all other data types.
 
 ```puppet
-" hello\n\t".lstrip()
-camelcase(" hello\n\t")
+" hello\n\t".strip()
+strip(" hello\n\t")
 ```
 Would both result in `"hello"`
 
 ```puppet
-[" hello\n\t", " hi\n\t"].lstrip()
-lstrip([" hello\n\t", " hi\n\t"])
+[" hello\n\t", " hi\n\t"].strip()
+strip([" hello\n\t", " hi\n\t"])
 ```
 Would both result in `['hello', 'hi']`
 
@@ -4887,7 +4887,7 @@ $data = {a => { b => [{x => 10, y => 20}, {not_x => 100, why => 200}]}}
 notice $data.dig(a, b, 1, x).then |$x| { $x * 2 }
 ```
 
-Which would notice `undef` since the last lookup of 'x' results in `undef` which
+Which would notice `undef` since the last up of 'x' results in `undef` which
 is returned (without calling the lambda given to the `then` function).
 
 As a result there is no need for conditional logic or a temporary (non local)
