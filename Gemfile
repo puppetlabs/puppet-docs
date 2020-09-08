@@ -20,7 +20,7 @@ group(:generate_references) do
   gem 'yard', '~> 0.9'
   gem 'rdoc', '~> 6.2'
   gem 'rgen', '~> 0.8'
-  gem 'puppet-strings', :git => 'https://github.com/puppetlabs/puppet-strings.git', :tag => 'v2.4.0'
+  gem 'puppet-strings'
   gem 'puppet', '~> 6'
   gem 'nokogiri', '~> 1.10'
   gem 'pragmatic_segmenter', '~> 0.3'
