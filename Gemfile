@@ -29,7 +29,7 @@ end
 
 group(:unknown) do
   gem 'maruku', '~> 0.7'
-  gem 'activerecord', '~>3'
+  gem 'activerecord', '~>6'
 end
 
 # group(:debug) do
