@@ -8,7 +8,7 @@ gem 'git', '~> 1.7'
 gem 'json', '~> 2.3', '>= 2.3.1'
 
 group(:build_site) do
-  gem 'jekyll', '~> 4.0' # See https://jekyllrb.com/docs/upgrading/3-to-4/ before going to '~> 4.1'
+  gem 'jekyll', '~> 4.1' # See https://jekyllrb.com/docs/upgrading/3-to-4/ before going to '~> 4.1'
   gem 'kramdown', '~> 2.3'
   gem 'vlad', '~> 1.4'
   gem 'vlad-git', '~> 2.1'
@@ -29,7 +29,7 @@ end
 
 group(:unknown) do
   gem 'maruku', '~> 0.7'
-  gem 'activerecord', '~>3'
+  gem 'activerecord', '~>6'
 end
 
 # group(:debug) do
