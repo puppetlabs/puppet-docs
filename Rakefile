@@ -6,6 +6,12 @@ require 'pathname'
 require 'fileutils'
 require 'yaml'
 require 'puppet_docs/config'
+require 'rake/clean'
+
+
+CLOBBER.include('output')
+CLOBBER.include('externalsources')
+CLOBBER.include('references_output')
 
 top_dir = Dir.pwd
 
