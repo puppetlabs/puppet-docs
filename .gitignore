@@ -29,3 +29,4 @@ link_test_results.yaml
 link_report.txt
 .yardoc
 puppet-docs-build.log
+source/.jekyll-cache/
