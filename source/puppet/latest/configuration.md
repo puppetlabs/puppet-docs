@@ -1692,8 +1692,8 @@ The directory in which serialized data is stored, usually in a subdirectory.
 
 ### server_list
 
-The list of puppet master servers to which the puppet agent should connect,
-in the order that they will be tried.
+The list of Puppet master servers to which the Puppet agent should connect,
+in the order that they will be tried. Values must be comma-separated. Default is an empty string. 
 
 - *Default*: []
 
