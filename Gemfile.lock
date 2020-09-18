@@ -6,6 +6,7 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
+    CFPropertyList (2.3.6)
     activemodel (6.0.3.2)
       activesupport (= 6.0.3.2)
     activerecord (6.0.3.2)
@@ -98,6 +99,18 @@ GEM
       multi_json (~> 1.10)
       puppet-resource_api (~> 1.5)
       semantic_puppet (~> 1.0)
+    puppet (6.18.0-universal-darwin)
+      CFPropertyList (~> 2.2)
+      concurrent-ruby (~> 1.0)
+      deep_merge (~> 1.0)
+      facter (> 2.0.1, < 5)
+      fast_gettext (~> 1.1)
+      hiera (>= 3.2.1, < 4)
+      httpclient (~> 2.8)
+      locale (~> 2.1)
+      multi_json (~> 1.10)
+      puppet-resource_api (~> 1.5)
+      semantic_puppet (~> 1.0)
     puppet-resource_api (1.8.13)
       hocon (>= 1.0)
     puppet-strings (2.5.0)
@@ -142,6 +155,7 @@ GEM
 
 PLATFORMS
   ruby
+  x86_64-darwin-18
 
 DEPENDENCIES
   activerecord (~> 6)
@@ -166,3 +180,6 @@ DEPENDENCIES
   vlad (~> 1.4)
   vlad-git (~> 2.1)
   yard (~> 0.9)
+
+BUNDLED WITH
+   2.1.4

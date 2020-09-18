@@ -1,13 +1,13 @@
 ---
 layout: default
-built_from_commit: 2959aff838fdb13a35943fa8a83581fc3c1f0707
+built_from_commit: 383816102aa1e875b85649986158e30bc4c2f184
 title: Built-in function reference
 canonical: "/puppet/latest/function.html"
 toc_levels: 2
 toc: columns
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2020-06-30 08:58:23 +0100
+> **NOTE:** This page was generated from the Puppet source code on 2020-09-18 15:51:17 +0100
 
 This page is a list of Puppet's built-in functions, with descriptions of what they do and how to use them.
 
@@ -24,6 +24,10 @@ The `<DATA TYPE>` is a [Puppet data type value](./lang_data_type.html), like `St
 * Any arguments with an `Optional` data type can be omitted from the function call.
 * Arguments that start with an asterisk (like `*$values`) can be repeated any number of times.
 * Arguments that start with an ampersand (like `&$block`) aren't normal arguments; they represent a code block, provided with [Puppet's lambda syntax.](./lang_lambdas.html)
+
+## `undef` values in Puppet 6
+
+In Puppet 6, many Puppet types were moved out of the Puppet codebase, and into modules on the Puppet Forge. The new functions handle `undef` values more strictly than their stdlib counterparts. In Puppet 6, code that relies on `undef` values being implicitly treated as other types will return an evaluation error. For more information on which types were moved into modules, see the [Puppet 6 release notes](https://puppet.com/docs/puppet/6.0/release_notes_puppet.html#select-types-moved-to-modules).
 
 
 ## `abs`
@@ -742,6 +746,10 @@ returns what the lambda returns, otherwise the converted value.
 
 Converts a hash into a set of resources and adds them to the catalog.
 
+**Note**: Use this function selectively. It's generally better to write resources in
+ [Puppet](https://puppet.com/docs/puppet/latest/lang_resources.html), as
+ resources created with `create_resource` are difficult to read and troubleshoot.
+
 This function takes two mandatory arguments: a resource type, and a hash describing
 a set of resources. The hash should be in the form `{title => {parameters} }`:
 
@@ -774,7 +782,7 @@ This function can be used to create defined resources and classes, as well
 as native resources.
 
 Virtual and Exported resources may be created by prefixing the type name
-with @ or @@ respectively.  For example, the $myusers hash may be exported
+with @ or @@ respectively. For example, the $myusers hash may be exported
 in the following manner:
 
     create_resources("@@user", $myusers)
@@ -783,9 +791,9 @@ The $myusers may be declared as virtual resources using:
 
     create_resources("@user", $myusers)
 
-Note that `create_resources` will filter out parameter values that are `undef` so that normal
-data binding and puppet default value expressions are considered (in that order) for the
-final value of a parameter (just as when setting a parameter to `undef` in a puppet language
+Note that `create_resources` filters out parameter values that are `undef` so that normal
+data binding and Puppet default value expressions are considered (in that order) for the
+final value of a parameter (just as when setting a parameter to `undef` in a Puppet language
 resource declaration).
 
 
@@ -2555,7 +2563,7 @@ The function does the following:
 * An error is raised for all other data types.
 
 ```puppet
-"\n\thello".lstrip()
+"\n\thello ".lstrip()
 lstrip("\n\thello ")
 ```
 Would both result in `"hello"`
@@ -4325,7 +4333,7 @@ The function does the following:
 * An error is raised for all other data types.
 
 ```puppet
-"hello\n\t".rstrip()
+" hello\n\t".rstrip()
 rstrip(" hello\n\t")
 ```
 Would both result in `"hello"`
@@ -4887,7 +4895,7 @@ $data = {a => { b => [{x => 10, y => 20}, {not_x => 100, why => 200}]}}
 notice $data.dig(a, b, 1, x).then |$x| { $x * 2 }
 ```
 
-Which would notice `undef` since the last up of 'x' results in `undef` which
+Which would notice `undef` since the last lookup of 'x' results in `undef` which
 is returned (without calling the lambda given to the `then` function).
 
 As a result there is no need for conditional logic or a temporary (non local)
@@ -5389,4 +5397,4 @@ how to use this function.
 
 `yaml_data(Struct[{path=>String[1]}] $options, Puppet::LookupContext $context)`
 
-> **NOTE:** This page was generated from the Puppet source code on 2020-06-30 08:58:23 +0100
+> **NOTE:** This page was generated from the Puppet source code on 2020-09-18 15:51:17 +0100

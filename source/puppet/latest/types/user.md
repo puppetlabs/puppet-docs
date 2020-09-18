@@ -5,7 +5,7 @@ title: 'Resource Type: user'
 canonical: "/puppet/latest/types/user.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2020-06-30 08:58:23 +0100
+> **NOTE:** This page was generated from the Puppet source code on 2020-09-18 15:51:17 +0100
 
 user
 -----
@@ -547,7 +547,7 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 The roles the user has.  Multiple roles should be
 specified as an array.
 
-Requires features manages_solaris_rbac.
+Requires features manages_roles.
 
 ([↑ Back to user attributes](#user-attributes))
 
@@ -619,8 +619,7 @@ User management for AIX.
 
 * Required binaries: `/usr/sbin/lsuser`, `/usr/bin/mkuser`, `/usr/sbin/rmuser`, `/usr/bin/chuser`, `/bin/chpasswd`
 * Confined to: `operatingsystem == aix`
-* Default for `operatingsystem` == `aix`.
-* Supported features: `manages_aix_lam`, `manages_expiry`, `manages_homedir`, `manages_password_age`, `manages_passwords`, `manages_shell`.
+* Default for: `["operatingsystem", "aix"] == `
 
 <h4 id="user-provider-directoryservice">directoryservice</h4>
 
@@ -628,8 +627,7 @@ User management on OS X.
 
 * Required binaries: `/usr/bin/uuidgen`, `/usr/bin/dsimport`, `/usr/bin/dscl`, `/usr/bin/dscacheutil`
 * Confined to: `operatingsystem == darwin`, `feature == cfpropertylist`
-* Default for `operatingsystem` == `darwin`.
-* Supported features: `manages_password_salt`, `manages_passwords`, `manages_shell`.
+* Default for: `["operatingsystem", "darwin"] == `
 
 <h4 id="user-provider-hpuxuseradd">hpuxuseradd</h4>
 
@@ -641,8 +639,7 @@ resetting password expirations under trusted computing.
 
 * Required binaries: `/usr/sam/lbin/usermod.sam`, `/usr/sam/lbin/userdel.sam`, `/usr/sam/lbin/useradd.sam`
 * Confined to: `operatingsystem == hp-ux`
-* Default for `operatingsystem` == `hp-ux`.
-* Supported features: `allows_duplicates`, `manages_homedir`, `manages_passwords`.
+* Default for: `["operatingsystem", "hp-ux"] == `
 
 <h4 id="user-provider-ldap">ldap</h4>
 
@@ -658,7 +655,6 @@ you do not specify one, but it is a potentially expensive operation,
 as it iterates across all existing users to pick the appropriate next one.
 
 * Confined to: `feature == ldap`, `false == (Puppet[:ldapuser] == "")`
-* Supported features: `manages_passwords`, `manages_shell`.
 
 <h4 id="user-provider-openbsd">openbsd</h4>
 
@@ -668,8 +664,7 @@ will need to install Ruby's shadow password library (package known as
 
 * Required binaries: `useradd`, `userdel`, `usermod`, `passwd`
 * Confined to: `operatingsystem == openbsd`
-* Default for `operatingsystem` == `openbsd`.
-* Supported features: `manages_expiry`, `manages_homedir`, `manages_shell`, `system_users`.
+* Default for: `["operatingsystem", "openbsd"] == `
 
 <h4 id="user-provider-pw">pw</h4>
 
@@ -677,16 +672,14 @@ User management via `pw` on FreeBSD and DragonFly BSD.
 
 * Required binaries: `pw`
 * Confined to: `operatingsystem == [:freebsd, :dragonfly]`
-* Default for `operatingsystem` == `freebsd, dragonfly`.
-* Supported features: `allows_duplicates`, `manages_expiry`, `manages_homedir`, `manages_passwords`, `manages_shell`.
+* Default for: `["operatingsystem", "[:freebsd, :dragonfly]"] == `
 
 <h4 id="user-provider-user_role_add">user_role_add</h4>
 
 User and role management on Solaris, via `useradd` and `roleadd`.
 
 * Required binaries: `useradd`, `userdel`, `usermod`, `passwd`, `roleadd`, `roledel`, `rolemod`
-* Default for `osfamily` == `solaris`.
-* Supported features: `allows_duplicates`, `manages_homedir`, `manages_password_age`, `manages_passwords`, `manages_shell`, `manages_solaris_rbac`.
+* Default for: `["osfamily", "solaris"] == `
 
 <h4 id="user-provider-useradd">useradd</h4>
 
@@ -695,15 +688,13 @@ install Ruby's shadow password library (often known as `ruby-libshadow`)
 if you wish to manage user passwords.
 
 * Required binaries: `useradd`, `userdel`, `usermod`, `chage`
-* Supported features: `allows_duplicates`, `manages_expiry`, `manages_homedir`, `manages_shell`, `system_users`.
 
 <h4 id="user-provider-windows_adsi">windows_adsi</h4>
 
 Local user management for Windows.
 
 * Confined to: `operatingsystem == windows`
-* Default for `operatingsystem` == `windows`.
-* Supported features: `manages_homedir`, `manages_passwords`.
+* Default for: `["operatingsystem", "windows"] == `
 
 <h3 id="user-provider-features">Provider Features</h3>
 
@@ -718,8 +709,9 @@ Available features:
 * `manages_password_age` --- The provider can set age requirements and restrictions for passwords.
 * `manages_password_salt` --- The provider can set a password salt. This is for providers that implement PBKDF2 passwords with salt properties.
 * `manages_passwords` --- The provider can modify user passwords, by accepting a password hash.
+* `manages_roles` --- The provider can manage roles
 * `manages_shell` --- The provider allows for setting shell and validates if possible
-* `manages_solaris_rbac` --- The provider can manage roles and normal users
+* `manages_solaris_rbac` --- The provider can manage normal users
 * `system_users` --- The provider allows you to create system users with lower UIDs.
 
 Provider support:
@@ -883,4 +875,4 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2020-06-30 08:58:23 +0100
+> **NOTE:** This page was generated from the Puppet source code on 2020-09-18 15:51:17 +0100

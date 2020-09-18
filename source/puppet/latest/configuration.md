@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 2959aff838fdb13a35943fa8a83581fc3c1f0707
+built_from_commit: 383816102aa1e875b85649986158e30bc4c2f184
 title: Configuration Reference
 toc: columns
 canonical: "/puppet/latest/configuration.html"
@@ -294,11 +294,12 @@ for more details.)
 * The special value `ca` is reserved, and can't be used as the certname
   for a normal node.
 
+  **Note:** You must set the certname in the main section of the puppet.conf file. Setting it in a different section causes errors.
+
 Defaults to the node's fully qualified domain name.
 
 - *Default*: the Host's fully qualified domain name, as determined by Facter
 
-**Note**: For full functionality of the `puppet config print` command and other dependent commands, include the certname in the main section of the puppet.conf file.
 ### classfile
 
 The file in which puppet agent stores a list of the classes
@@ -347,7 +348,6 @@ in the user's home directory.
 
 Whether to use colors when logging to the console.  Valid values are
 `ansi` (equivalent to `true`), `html`, and `false`, which produces no color.
-Defaults to false on Windows, as its console does not support ansi colors.
 
 - *Default*: ansi
 
@@ -953,7 +953,15 @@ This setting can be a time interval in seconds (30 or 30s), minutes (30m), hours
 
 The HTTP User-Agent string to send when making network requests.
 
-- *Default*: Puppet/6.16.0 Ruby/2.3.7-p456 (universal.x86_64-darwin18)
+- *Default*: Puppet/6.18.0 Ruby/2.5.1-p57 (x86_64-darwin18)
+
+### ignore_plugin_errors
+
+Whether the puppet run should ignore errors during pluginsync. If the setting
+is false and there are errors during pluginsync, then the agent will abort the run and
+submit a report containing information about the failed run.
+
+- *Default*: true
 
 ### ignoremissingtypes
 
@@ -1449,6 +1457,13 @@ be used here.
 
 - *Default*: puppet:///plugins
 
+### pluginsync
+
+Whether plugins should be synced with the central server. This setting is
+deprecated.
+
+- *Default*: true
+
 ### postrun_command
 
 A command to run after every agent run.  If this command returns a non-zero
@@ -1692,8 +1707,8 @@ The directory in which serialized data is stored, usually in a subdirectory.
 
 ### server_list
 
-The list of Puppet master servers to which the Puppet agent should connect,
-in the order that they will be tried. Values must be comma-separated. Default is an empty string. 
+The list of puppet master servers to which the puppet agent should connect,
+in the order that they will be tried.
 
 - *Default*: []
 
@@ -1815,6 +1830,16 @@ A lock file to indicate that the ssl bootstrap process is currently in progress.
 The setting is deprecated and has no effect. Ensure all root and
 intermediate certificate authorities used to issue client certificates are
 contained in the server's `cacert` file on the server.
+
+- *Default*: 
+
+### ssl_trust_store
+
+A file containing CA certificates in PEM format that puppet should trust
+when making HTTPS requests. This **only** applies to https requests to non-puppet
+infrastructure, such as retrieving file metadata and content from https file sources,
+puppet module tool and the 'http' report processor. This setting is ignored when
+making requests to puppet:// URLs such as catalog and report requests.
 
 - *Default*: 
 
@@ -1982,13 +2007,21 @@ corrective_change) on new data received.
 
 ### trusted_external_command
 
-The external trusted facts script to use.
+The external trusted facts script or directory to use.
 This setting's value can be set to the path to an executable command that
-can produce external trusted facts. The command must:
+can produce external trusted facts or to a directory containing those
+executable commands. The command(s) must:
 
 * Take the name of a node as a command-line argument.
 * Return a JSON hash with the external trusted facts for this node.
 * For unknown or invalid nodes, exit with a non-zero exit code.
+
+If the setting points to an executable command, then the external trusted
+facts will be stored in the 'external' key of the trusted facts hash. Otherwise
+for each executable file in the directory, the external trusted facts will be
+stored in the `<basename>` key of the `trusted['external']` hash. For example,
+if the files foo.rb and bar.sh are in the directory, then `trusted['external']`
+will be the hash `{ 'foo' => <foo.rb output>, 'bar' => <bar.sh output> }`.
 
 - *Default*: 
 
@@ -2080,7 +2113,7 @@ How frequently puppet agent should try running when there is an
 already ongoing puppet agent instance.
 
 This argument is by default disabled (value set to 0). In this case puppet agent will
-immediatly exit if it cannot run at that moment. When a value other than 0 is set, this
+immediately exit if it cannot run at that moment. When a value other than 0 is set, this
 can also be used in combination with the `maxwaitforlock` argument.
 This setting can be a time interval in seconds (30 or 30s), minutes (30m), hours (6h), days (2d), or years (5y).
 

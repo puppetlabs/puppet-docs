@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 2959aff838fdb13a35943fa8a83581fc3c1f0707
+built_from_commit: 383816102aa1e875b85649986158e30bc4c2f184
 title: 'Resource Type: exec'
 canonical: "/puppet/latest/types/exec.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2020-06-30 08:58:23 +0100
+> **NOTE:** This page was generated from the Puppet source code on 2020-09-18 15:51:17 +0100
 
 exec
 -----
@@ -214,15 +214,13 @@ exit code of 0 (success).
 
 The search path used for command execution.
 Commands must be fully qualified if no path is specified.  Paths
-can be specified as an array or as a ':' separated list.
+can be specified as an array or as a seperated list.
 
 ([↑ Back to exec attributes](#exec-attributes))
 
 <h4 id="exec-attribute-provider">provider</h4>
 
-The specific backend to use for this `exec`
-resource. You will seldom need to specify this --- Puppet will usually
-discover the appropriate provider for your platform.
+The specific backend to use for this `exec` resource. You will seldom need to specify this --- Puppet will usually discover the appropriate provider for your platform.
 
 Available providers are:
 
@@ -394,7 +392,7 @@ to execute most commands, but prevents the use of globbing and shell
 built-ins (including control logic like "for" and "if" statements).
 
 * Confined to: `feature == posix`
-* Default for: `feature` == `posix`
+* Default for: `["feature", "posix"] == `
 
 <h4 id="exec-provider-shell">shell</h4>
 
@@ -441,4 +439,4 @@ command:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2020-06-30 08:58:23 +0100
+> **NOTE:** This page was generated from the Puppet source code on 2020-09-18 15:51:17 +0100

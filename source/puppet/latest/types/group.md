@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 2959aff838fdb13a35943fa8a83581fc3c1f0707
+built_from_commit: 383816102aa1e875b85649986158e30bc4c2f184
 title: 'Resource Type: group'
 canonical: "/puppet/latest/types/group.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2020-06-30 08:58:23 +0100
+> **NOTE:** This page was generated from the Puppet source code on 2020-09-18 15:51:17 +0100
 
 group
 -----
@@ -193,9 +193,7 @@ Requires features manages_members.
 
 <h4 id="group-attribute-provider">provider</h4>
 
-The specific backend to use for this `group`
-resource. You will seldom need to specify this --- Puppet will usually
-discover the appropriate provider for your platform.
+The specific backend to use for this `group` resource. You will seldom need to specify this --- Puppet will usually discover the appropriate provider for your platform.
 
 Available providers are:
 
@@ -353,4 +351,4 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2020-06-30 08:58:23 +0100
+> **NOTE:** This page was generated from the Puppet source code on 2020-09-18 15:51:17 +0100

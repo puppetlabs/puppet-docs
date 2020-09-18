@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 2959aff838fdb13a35943fa8a83581fc3c1f0707
+built_from_commit: 383816102aa1e875b85649986158e30bc4c2f184
 title: 'Man Page: puppet agent'
 canonical: "/puppet/latest/man/agent.html"
 ---
@@ -168,7 +168,9 @@ digest algorithm used.</p></li>
 Print this help message</p></li>
 <li><p>--job-id:
 Attach the specified job id to the catalog request and the report used for
-this agent run. This option only works when '--onetime' is used.</p></li>
+this agent run. This option only works when '--onetime' is used.  When using
+Puppet Enterprise this flag should not be used as the orchestrator sets the
+job-id for you and it must be unique.</p></li>
 <li><p>--logdest:
 Where to send log messages. Choose between 'syslog' (the POSIX syslog
 service), 'eventlog' (the Windows Event Log), 'console', or the path to a log

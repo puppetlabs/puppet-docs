@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 2959aff838fdb13a35943fa8a83581fc3c1f0707
+built_from_commit: 383816102aa1e875b85649986158e30bc4c2f184
 title: 'Resource Type: file'
 canonical: "/puppet/latest/types/file.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2020-06-30 08:58:23 +0100
+> **NOTE:** This page was generated from the Puppet source code on 2020-09-18 15:51:17 +0100
 
 file
 -----
@@ -178,19 +178,18 @@ balancer to direct all filebucket traffic to a single master, or use
 something like an out-of-band rsync task to synchronize the content on all
 masters.
 
-Enabling and using the backup option, and by extension the
-filebucket resource, requires appropriate planning and management to ensure
-that sufficient disk space is available for the file backups. Generally, you
-can implement this using one of the following two options:
-
-- Restrict the directory to a maximum size after which the oldest items are removed.
-- Use a `find` command and `crontab` entry to retain only the last X days
-of file backups. For example:
+> **Note**: Enabling and using the backup option, and by extension the
+  filebucket resource, requires appropriate planning and management to ensure
+  that sufficient disk space is available for the file backups. Generally, you
+  can implement this using one of the following two options:
+  - Use a `find` command and `crontab` entry to retain only the last X days
+  of file backups. For example:
 
   ```
-  find /opt/puppetlabs/server/data/puppetserver/bucket -type f -mtime +45 -atime +45
-  -print0 | xargs -0 rm
+  find /opt/puppetlabs/server/data/puppetserver/bucket -type f -mtime +45 -atime +45 -print0 | xargs -0 rm
   ```
+
+  - Restrict the directory to a maximum size after which the oldest items are removed.
 
 Default: `puppet`
 
@@ -204,16 +203,7 @@ The default checksum type is md5.
 
 Allowed values:
 
-* `md5`
-* `md5lite`
-* `sha224`
-* `sha256`
-* `sha256lite`
-* `sha384`
-* `sha512`
-* `mtime`
-* `ctime`
-* `none`
+* `Puppet::Util::Checksums.known_checksum_types`
 
 ([↑ Back to file attributes](#file-attributes))
 
@@ -427,9 +417,7 @@ will always appear out of sync.)
 
 <h4 id="file-attribute-provider">provider</h4>
 
-The specific backend to use for this `file`
-resource. You will seldom need to specify this --- Puppet will usually
-discover the appropriate provider for your platform.
+The specific backend to use for this `file` resource. You will seldom need to specify this --- Puppet will usually discover the appropriate provider for your platform.
 
 Available providers are:
 
@@ -668,14 +656,28 @@ specify whether to recreate links or follow them.
 _HTTP_ URIs cannot be used to recursively synchronize whole directory
 trees. You cannot use `source_permissions` values other than `ignore`
 because HTTP servers do not transfer any metadata that translates to
-ownership or permission details. 
+ownership or permission details.
 
-Puppet determines if file content is synchronized by computing a checksum for the local file and comparing it against the `checksum_value` parameter. If the `checksum_value` parameter is not specified for `puppet` and `file` sources, Puppet computes a checksum based on its `Puppet[:digest_algorithm]`. For `http(s)` sources, Puppet uses the
-first HTTP header it recognizes out of the following list: `X-Checksum-Sha256`, `X-Checksum-Sha1`, `X-Checksum-Md5` or `Content-MD5`. If the server response does not include one of these headers, Puppet defaults to using the `Last-Modified` header. Puppet updates the localfile if the header is newer than the modified time (mtime) of the local file. 
+Puppet determines if file content is synchronized by computing a checksum
+for the local file and comparing it against the `checksum_value`
+parameter. If the `checksum_value` parameter is not specified for
+`puppet` and `file` sources, Puppet computes a checksum based on its
+`Puppet[:digest_algorithm]`. For `http(s)` sources, Puppet uses the
+first HTTP header it recognizes out of the following list:
+`X-Checksum-Sha256`, `X-Checksum-Sha1`, `X-Checksum-Md5` or `Content-MD5`.
+If the server response does not include one of these headers, Puppet
+defaults to using the `Last-Modified` header. Puppet updates the local
+file if the header is newer than the modified time (mtime) of the local
+file.
 
-HTTP URIs can include a user information component so that Puppet can retrieve file metadata and content from HTTP servers that require HTTP Basic authentication. For example `https://<user>:<pass>@<server>:<port>/path/to/file.` 
+_HTTP_ URIs can include a user information component so that Puppet can
+retrieve file metadata and content from HTTP servers that require HTTP Basic
+authentication. For example `https://<user>:<pass>@<server>:<port>/path/to/file.`
 
-When connecting to HTTPS servers, Puppet trusts CA certificates in the `puppet-agent` certificate bundle and the Puppet CA. You can configure Puppet to trust additional CA certificates using the `Puppet[:ssl_trust_store]` setting.
+When connecting to _HTTPS_ servers, Puppet trusts CA certificates in the
+puppet-agent certificate bundle and the Puppet CA. You can configure Puppet
+to trust additional CA certificates using the `Puppet[:ssl_trust_store]`
+setting.
 
 Multiple `source` values can be specified as an array, and Puppet will
 use the first source that exists. This can be used to serve different
@@ -870,4 +872,4 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2020-06-30 08:58:23 +0100
+> **NOTE:** This page was generated from the Puppet source code on 2020-09-18 15:51:17 +0100

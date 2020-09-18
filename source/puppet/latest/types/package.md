@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 2959aff838fdb13a35943fa8a83581fc3c1f0707
+built_from_commit: 383816102aa1e875b85649986158e30bc4c2f184
 title: 'Resource Type: package'
 canonical: "/puppet/latest/types/package.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2020-06-30 08:58:23 +0100
+> **NOTE:** This page was generated from the Puppet source code on 2020-09-18 15:51:17 +0100
 
 package
 -----
@@ -849,8 +849,8 @@ gems needed by the ruby provided in the puppet-agent package.
 
 RPM packaging support; should work anywhere with a working `rpm` binary.
 
-    This provider supports the `install_options` and `uninstall_options`
-    attributes, which allow command-line flags to be passed to rpm.
+This provider supports the `install_options` and `uninstall_options`
+attributes, which allow command-line flags to be passed to rpm.
 These options should be specified as an array where each element is either a string or a hash.
 
 * Required binaries: `rpm`
