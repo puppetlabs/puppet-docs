@@ -120,20 +120,6 @@ documents:
     doc: puppet
     version: "latest"
     nav: ./_puppet_toc.html
-    my_versions:
-      puppetserver: "latest"
-  # Puppet latest dependencies    
-  /puppetserver/latest:
-    doc: puppetserver
-    version: "latest"
-    nav: /puppet/latest/_puppet_toc.html
-    external_source:
-      repo: git://github.com/puppetlabs/puppetserver.git
-      commit: 6.x
-      subdirectory: documentation
-    my_versions:
-      puppet: "latest"
-    hide: true
   
   # Puppet 5.5
   /docs/puppet/5.5:
