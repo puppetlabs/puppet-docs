@@ -135,26 +135,6 @@ documents:
       puppet: "latest"
     hide: true
   
-  # Puppet 6.17
-  /docs/puppet/6.17:
-    doc: puppet
-    version: "6.17"
-    nav: ./_puppet_toc.html
-    my_versions:
-      puppetserver: "6.12.2"
-    hide: true
-  /puppetserver/6.12.2:
-    doc: puppetserver
-    version: "6.12.2"
-    nav: /puppet/latest/_puppet_toc.html
-    external_source:
-      repo: git://github.com/puppetlabs/puppetserver.git
-      commit: 6.12.2
-      subdirectory: documentation
-    my_versions:
-      puppet: "6.17"
-    hide: true
-  
   # Puppet 5.5
   /docs/puppet/5.5:
     doc: puppet
