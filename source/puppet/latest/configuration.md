@@ -1708,7 +1708,7 @@ The directory in which serialized data is stored, usually in a subdirectory.
 ### server_list
 
 The list of Puppet master servers to which the Puppet agent should connect,
-in the order that they will be tried. Each value should be a fully qualified domain name, followed by an optional ':' and port number. If a port is omitted, Puppet uses masterport for that host.
+in the order that they will be tried. Each value should be a fully qualified domain name, followed by an optional `:` and port number. If a port is omitted, Puppet uses masterport for that host.
 
 - *Default*: []
 
