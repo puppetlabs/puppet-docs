@@ -20,13 +20,43 @@ Read the [Puppet 5.1](https://github.com/puppetlabs/docs-archive/blob/master/pup
 
 Also of interest: the [Puppet 4.10 release notes](../4.10/release_notes.html) and [Puppet 4.9 release notes](https://github.com/puppetlabs/docs-archive/blob/master/puppet/4.9/release_notes.markdown).
 
+## Puppet 5.5.22
+
+Released 20 October 2020
+
+### Resolved issues
+
+- **Performance regression with large hashes using lookup**
+This release fixes a performance regression in 5.5.x and 6.0x which affected Hiera lookups in large hashes. [PUP-10628](https://tickets.puppetlabs.com/browse/PUP-10628)
+
+- **Puppet::Util.default_env method unintentionally removed in 6.17.0**
+Testing modules using rspec-puppet versions earlier than 2.7.10 resulted in an undefined local variable error or method 'default_env' for Puppet::Util:Module. This is now fixed. [PUP-10586](https://tickets.puppetlabs.com/browse/PUP-10586). 
+
+- **An error is logged during an agent run if Puppet Server does not have at least one <module>/lib dir in its modules directory**
+If Puppet Server does not have at least one modules directory, the `file_metadatas` REST API for the plugins, pluginfacts and locales mounts returns file metadata for `/etc/puppetlabs/code`, instead of returning HTTP 404. [PUP-2608](https://tickets.puppetlabs.com/browse/PUP-2608)
+
+- **Puppet run continues despite failed Pluginsync**
+Previously, Puppet agents ignored pluginsync errors and applied the catalog with incorrect facts and plugin versions, leading to obscure errors or data corruption. This release adds a new setting — `ignore_plugin_errors`. If set to false, the agent aborts the run if pluginsync fails. The setting defaults to `true` so the old behavior is preserved. [PUP-1763](https://tickets.puppetlabs.com/browse/PUP-1763)
+
+- **Puppet agent fails to install on a Windows VM if the Windows installer is not used**
+This release fixes a regression introduced in 6.17.0. You can now install packages when `HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Installer\UserData\S-1-5-18\Components` does not exist. [PA-3351](https://tickets.puppetlabs.com/browse/PA-3351)
+
+- **Upgrade on AIX nodes does not trigger a second Puppet run**
+This release fixes an issue where the Puppet service stopped running after upgrading on SysV-based RPM distributions and AIX. [PA-3405](https://tickets.puppetlabs.com/browse/PA-3405)
+
+- **Data type casts cause Puppet Server to retain compiler instances**
+This issue is now fixed when running under JRuby. [PUP-10659](https://tickets.puppetlabs.com/browse/PUP-10659)
+
+- **Resource collector overrides cause Puppet Server to retain compiler instances**
+This issue is now fixed when running under JRuby. [PUP-10657](https://tickets.puppetlabs.com/browse/PUP-10657)
+
 ## Puppet 5.5.21
 
-Released  14 July 2020
+Released 14 July 2020
 
 ### New features
 
-- **Updated permissions for files in `/cache/state/`.** This release updates the permission for `state.yaml` and `transactionstore.yaml` to remove the group write access. [PUP-8922}(https://tickets.puppetlabs.com/browse/PUP-8922)
+- **Updated permissions for files in `/cache/state/`.** This release updates the permission for `state.yaml` and `transactionstore.yaml` to remove the group write access. [PUP-8922](https://tickets.puppetlabs.com/browse/PUP-8922)
 
 - **New disabled value in dnfmodule package provider.** This release adds a disabled value to the ensure field in the dnf module provider. [PUP-10419](https://tickets.puppetlabs.com/browse/PUP-10419)
 
@@ -74,7 +104,7 @@ Released  14 July 2020
 
 ## Puppet 5.5.20
 
-Released  30 April 2020
+Released 30 April 2020
 
 ### New features
 
