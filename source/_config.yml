@@ -121,6 +121,12 @@ documents:
     version: "latest"
     nav: ./_puppet_toc.html
   
+  # Puppet 6.19
+  /puppet/6.19:
+    doc: puppet
+    version: "6.19"
+    nav: ./_puppet_toc.html
+
   # Puppet 5.5
   /docs/puppet/5.5:
     doc: puppet
