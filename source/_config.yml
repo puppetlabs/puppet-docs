@@ -98,7 +98,7 @@ documents:
     hide: true
   /puppetdb/6.y:
     doc: puppetdb
-    version: "6.y"
+    version: "6.13"
     nav: ./_puppetdb_nav.html
     external_source:
       repo: git://github.com/puppetlabs/puppetdb.git
