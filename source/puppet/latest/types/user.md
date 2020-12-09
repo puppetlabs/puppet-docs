@@ -5,7 +5,7 @@ title: 'Resource Type: user'
 canonical: "/puppet/latest/types/user.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2020-09-18 15:51:17 +0100
+> **NOTE:** This page was generated from the Puppet source code on 2020-12-08 17:56:54 +0000
 
 user
 -----
@@ -481,9 +481,7 @@ Requires features manages_solaris_rbac.
 
 <h4 id="user-attribute-provider">provider</h4>
 
-The specific backend to use for this `user`
-resource. You will seldom need to specify this --- Puppet will usually
-discover the appropriate provider for your platform.
+The specific backend to use for this `user` resource. You will seldom need to specify this --- Puppet will usually discover the appropriate provider for your platform.
 
 Available providers are:
 
@@ -729,6 +727,7 @@ Provider support:
       <th>manages password age</th>
       <th>manages password salt</th>
       <th>manages passwords</th>
+      <th>manages roles</th>
       <th>manages shell</th>
       <th>manages solaris rbac</th>
       <th>system users</th>
@@ -746,6 +745,7 @@ Provider support:
       <td><em>X</em> </td>
       <td> </td>
       <td><em>X</em> </td>
+      <td> </td>
       <td><em>X</em> </td>
       <td> </td>
       <td> </td>
@@ -875,4 +875,4 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2020-09-18 15:51:17 +0100
+> **NOTE:** This page was generated from the Puppet source code on 2020-12-08 17:56:54 +0000

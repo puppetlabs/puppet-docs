@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 2959aff838fdb13a35943fa8a83581fc3c1f0707
+built_from_commit: 07afb30deb4ab5a3cbba330556fc3d5722e7a020
 title: 'Resource Type: service'
 canonical: "/puppet/latest/types/service.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2020-06-30 08:58:23 +0100
+> **NOTE:** This page was generated from the Puppet source code on 2020-12-08 17:56:54 +0000
 
 service
 -----
@@ -43,23 +43,25 @@ can be configured:
 <h3 id="service-attributes">Attributes</h3>
 
 <pre><code>service { 'resource title':
-  <a href="#service-attribute-name">name</a>       =&gt; <em># <strong>(namevar)</strong> The name of the service to run.  This name is...</em>
-  <a href="#service-attribute-ensure">ensure</a>     =&gt; <em># Whether a service should be running. Default...</em>
-  <a href="#service-attribute-binary">binary</a>     =&gt; <em># The path to the daemon.  This is only used for...</em>
-  <a href="#service-attribute-control">control</a>    =&gt; <em># The control variable used to manage services...</em>
-  <a href="#service-attribute-enable">enable</a>     =&gt; <em># Whether a service should be enabled to start at...</em>
-  <a href="#service-attribute-flags">flags</a>      =&gt; <em># Specify a string of flags to pass to the startup </em>
-  <a href="#service-attribute-hasrestart">hasrestart</a> =&gt; <em># Specify that an init script has a `restart...</em>
-  <a href="#service-attribute-hasstatus">hasstatus</a>  =&gt; <em># Declare whether the service's init script has a...</em>
-  <a href="#service-attribute-manifest">manifest</a>   =&gt; <em># Specify a command to config a service, or a path </em>
-  <a href="#service-attribute-path">path</a>       =&gt; <em># The search path for finding init scripts....</em>
-  <a href="#service-attribute-pattern">pattern</a>    =&gt; <em># The pattern to search for in the process table...</em>
-  <a href="#service-attribute-provider">provider</a>   =&gt; <em># The specific backend to use for this `service...</em>
-  <a href="#service-attribute-restart">restart</a>    =&gt; <em># Specify a *restart* command manually.  If left...</em>
-  <a href="#service-attribute-start">start</a>      =&gt; <em># Specify a *start* command manually.  Most...</em>
-  <a href="#service-attribute-status">status</a>     =&gt; <em># Specify a *status* command manually.  This...</em>
-  <a href="#service-attribute-stop">stop</a>       =&gt; <em># Specify a *stop* command...</em>
-  <a href="#service-attribute-timeout">timeout</a>    =&gt; <em># Specify an optional minimum timeout (in seconds) </em>
+  <a href="#service-attribute-name">name</a>          =&gt; <em># <strong>(namevar)</strong> The name of the service to run.  This name is...</em>
+  <a href="#service-attribute-ensure">ensure</a>        =&gt; <em># Whether a service should be running. Default...</em>
+  <a href="#service-attribute-binary">binary</a>        =&gt; <em># The path to the daemon.  This is only used for...</em>
+  <a href="#service-attribute-control">control</a>       =&gt; <em># The control variable used to manage services...</em>
+  <a href="#service-attribute-enable">enable</a>        =&gt; <em># Whether a service should be enabled to start at...</em>
+  <a href="#service-attribute-flags">flags</a>         =&gt; <em># Specify a string of flags to pass to the startup </em>
+  <a href="#service-attribute-hasrestart">hasrestart</a>    =&gt; <em># Specify that an init script has a `restart...</em>
+  <a href="#service-attribute-hasstatus">hasstatus</a>     =&gt; <em># Declare whether the service's init script has a...</em>
+  <a href="#service-attribute-logonaccount">logonaccount</a>  =&gt; <em># Specify an account for service...</em>
+  <a href="#service-attribute-logonpassword">logonpassword</a> =&gt; <em># Specify a password for service logon. Default...</em>
+  <a href="#service-attribute-manifest">manifest</a>      =&gt; <em># Specify a command to config a service, or a path </em>
+  <a href="#service-attribute-path">path</a>          =&gt; <em># The search path for finding init scripts....</em>
+  <a href="#service-attribute-pattern">pattern</a>       =&gt; <em># The pattern to search for in the process table...</em>
+  <a href="#service-attribute-provider">provider</a>      =&gt; <em># The specific backend to use for this `service...</em>
+  <a href="#service-attribute-restart">restart</a>       =&gt; <em># Specify a *restart* command manually.  If left...</em>
+  <a href="#service-attribute-start">start</a>         =&gt; <em># Specify a *start* command manually.  Most...</em>
+  <a href="#service-attribute-status">status</a>        =&gt; <em># Specify a *status* command manually.  This...</em>
+  <a href="#service-attribute-stop">stop</a>          =&gt; <em># Specify a *stop* command...</em>
+  <a href="#service-attribute-timeout">timeout</a>       =&gt; <em># Specify an optional minimum timeout (in seconds) </em>
   # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
 
@@ -149,8 +151,6 @@ Specify that an init script has a `restart` command.  If this is
 false and you do not specify a command in the `restart` attribute,
 the init script's `stop` and `start` commands will be used.
 
-Defaults to false.
-
 Allowed values:
 
 * `true`
@@ -186,6 +186,24 @@ Allowed values:
 
 ([↑ Back to service attributes](#service-attributes))
 
+<h4 id="service-attribute-logonaccount">logonaccount</h4>
+
+_(**Property:** This attribute represents concrete state on the target system.)_
+
+Specify an account for service logon
+
+Requires features manages_logon_credentials.
+
+([↑ Back to service attributes](#service-attributes))
+
+<h4 id="service-attribute-logonpassword">logonpassword</h4>
+
+Specify a password for service logon. Default value is an empty string (when logonaccount is specified).
+
+Requires features manages_logon_credentials.
+
+([↑ Back to service attributes](#service-attributes))
+
 <h4 id="service-attribute-manifest">manifest</h4>
 
 Specify a command to config a service, or a path to a manifest to do so.
@@ -215,9 +233,7 @@ be quoted without enclosing slashes).
 
 <h4 id="service-attribute-provider">provider</h4>
 
-The specific backend to use for this `service`
-resource. You will seldom need to specify this --- Puppet will usually
-discover the appropriate provider for your platform.
+The specific backend to use for this `service` resource. You will seldom need to specify this --- Puppet will usually discover the appropriate provider for your platform.
 
 Available providers are:
 
@@ -304,7 +320,6 @@ service.  As with `init`-style services, it is preferable to specify start,
 stop, and status commands.
 
 * Required binaries: `kill`
-* Supported features: `refreshable`
 
 <h4 id="service-provider-bsd">bsd</h4>
 
@@ -313,7 +328,6 @@ Generic BSD form of `init`-style service management with `rc.d`.
 Uses `rc.conf.d` for service enabling and disabling.
 
 * Confined to: `operatingsystem == [:freebsd, :dragonfly]`
-* Supported features: `enableable`, `refreshable`.
 
 <h4 id="service-provider-daemontools">daemontools</h4>
 
@@ -352,7 +366,6 @@ If a service has `ensure => "stopped"`, it will only shut down the service, not
 remove the `/path/to/service` link.
 
 * Required binaries: `/usr/bin/svc`, `/usr/bin/svstat`
-* Supported features: `enableable`, `refreshable`
 
 <h4 id="service-provider-debian">debian</h4>
 
@@ -364,15 +377,13 @@ services via `update-rc.d` and the ability to determine enabled status via
 
 * Required binaries: `/usr/sbin/update-rc.d`, `/usr/sbin/invoke-rc.d`, `/usr/sbin/service`
 * Default for: `["operatingsystem", "cumuluslinux"] == ["operatingsystemmajrelease", "['1','2']"]`, `["operatingsystem", "debian"] == ["operatingsystemmajrelease", "['5','6','7']"]`, `["operatingsystem", "devuan"] == `
-* Supported features: `enableable`, `refreshable`.
 
 <h4 id="service-provider-freebsd">freebsd</h4>
 
 Provider for FreeBSD and DragonFly BSD. Uses the `rcvar` argument of init scripts and parses/edits rc files.
 
 * Confined to: `operatingsystem == [:freebsd, :dragonfly]`
-* Default for `operatingsystem` == `freebsd, dragonfly`.
-* Supported features: `enableable`, `refreshable`.
+* Default for: `["operatingsystem", "[:freebsd, :dragonfly]"] == `
 
 <h4 id="service-provider-gentoo">gentoo</h4>
 
@@ -382,22 +393,16 @@ Uses `rc-update` for service enabling and disabling.
 
 * Required binaries: `/sbin/rc-update`
 * Confined to: `operatingsystem == gentoo`
-* Supported features: `enableable`, `refreshable`
 
 <h4 id="service-provider-init">init</h4>
 
 Standard `init`-style service management.
 
-* Confined to: 
-
-```
-true == begin
+* Confined to: `true == begin
       os = Facter.value(:operatingsystem).downcase
       family = Facter.value(:osfamily).downcase
       !(os == 'debian' || os == 'ubuntu' || family == 'redhat')
-  end
-```
-* Supported features: `refreshable`
+  end`
 
 <h4 id="service-provider-launchd">launchd</h4>
 
@@ -438,8 +443,7 @@ Note that this provider does not support overriding 'restart'
 
 * Required binaries: `/bin/launchctl`
 * Confined to: `operatingsystem == darwin`, `feature == cfpropertylist`
-* Default for `operatingsystem` == `darwin`
-* Supported features: `enableable`, `refreshable`
+* Default for: `["operatingsystem", "darwin"] == `
 
 <h4 id="service-provider-openbsd">openbsd</h4>
 
@@ -447,8 +451,7 @@ Provider for OpenBSD's rc.d daemon control scripts
 
 * Required binaries: `/usr/sbin/rcctl`
 * Confined to: `operatingsystem == openbsd`
-* Default for `operatingsystem` == `openbsd`
-* Supported features: `enableable`, `flaggable`, `refreshable`
+* Default for: `["operatingsystem", "openbsd"] == `
 
 <h4 id="service-provider-openrc">openrc</h4>
 
@@ -457,8 +460,7 @@ Support for Gentoo's OpenRC initskripts
 Uses rc-update, rc-status and rc-service to manage services.
 
 * Required binaries: `/sbin/rc-service`, `/sbin/rc-update`
-* Default for `operatingsystem` == `gentoo`, `operatingsystem` == `funtoo`.
-* Supported features: `enableable`, `refreshable`
+* Default for: `["operatingsystem", "gentoo"] == `, `["operatingsystem", "funtoo"] == `
 
 <h4 id="service-provider-openwrt">openwrt</h4>
 
@@ -467,16 +469,14 @@ Support for OpenWrt flavored init scripts.
 Uses /etc/init.d/service_name enable, disable, and enabled.
 
 * Confined to: `operatingsystem == openwrt`
-* Default for `operatingsystem` == `openwrt`
-* Supported features: `enableable`, `refreshable`
+* Default for: `["operatingsystem", "openwrt"] == `
 
 <h4 id="service-provider-rcng">rcng</h4>
 
 RCng service management with rc.d
 
 * Confined to: `operatingsystem == [:netbsd, :cargos]`
-* Default for `operatingsystem` == `netbsd, cargos`
-* Supported features: `enableable`, `refreshable`
+* Default for: `["operatingsystem", "[:netbsd, :cargos]"] == `
 
 <h4 id="service-provider-redhat">redhat</h4>
 
@@ -484,8 +484,7 @@ Red Hat's (and probably many others') form of `init`-style service
 management. Uses `chkconfig` for service enabling and disabling.
 
 * Required binaries: `/sbin/chkconfig`, `/sbin/service`
-* Default for `osfamily` == `redhat`, `operatingsystemmajrelease` == `10, 11` and `osfamily` == `suse`
-* Supported features: `enableable`, `refreshable`
+* Default for: `["osfamily", "redhat"] == `, `["osfamily", "suse"] == ["operatingsystemmajrelease", "[\"10\", \"11\"]"]`
 
 <h4 id="service-provider-runit">runit</h4>
 
@@ -518,29 +517,30 @@ This provider supports out of the box:
 * status
 
 * Required binaries: `/usr/bin/sv`
-* Supported features: `enableable`, `refreshable`
 
 <h4 id="service-provider-service">service</h4>
 
 The simplest form of service support.
 
-* Supported features: `refreshable`
-
 <h4 id="service-provider-smf">smf</h4>
 
 Support for Sun's new Service Management Framework.
 
-Starting a service is effectively equivalent to enabling it, so there is
-only support for starting and stopping services, which also enables and
-disables them, respectively.
+When managing the enable property, this provider will try to preserve
+the previous ensure state per the enableable semantics. On Solaris,
+enabling a service starts it up while disabling a service stops it. Thus,
+there's a chance for this provider to execute two operations when managing
+the enable property. For example, if enable is set to true and the ensure
+state is stopped, this provider will manage the service using two operations:
+one to enable the service which will start it up, and another to stop the
+service (without affecting its enabled status).
 
 By specifying `manifest => "/path/to/service.xml"`, the SMF manifest will
 be imported if it does not exist.
 
 * Required binaries: `/usr/sbin/svcadm`, `/usr/bin/svcs`, `/usr/sbin/svccfg`
 * Confined to: `osfamily == solaris`
-* Default for `osfamily` == `solaris`
-* Supported features: `enableable`, `refreshable`
+* Default for: `["osfamily", "solaris"] == `
 
 <h4 id="service-provider-src">src</h4>
 
@@ -553,10 +553,8 @@ Enabling and disabling services is not supported, as it requires
 modifications to `/etc/inittab`. Starting and stopping groups of subsystems
 is not yet supported.
 
-* Required binaries: `/usr/bin/lssrc`, `/usr/bin/refresh`, `/usr/bin/startsrc`, `/usr/bin/stopsrc`, `/usr/sbin/chitab`, `/usr/sbin/lsitab`, `/usr/sbin/mkitab`, `/usr/sbin/rmitab`
 * Confined to: `operatingsystem == aix`
-* Default for `operatingsystem` == `aix`
-* Supported features: `enableable`, `refreshable`
+* Default for: `["operatingsystem", "aix"] == `
 
 <h4 id="service-provider-systemd">systemd</h4>
 
@@ -578,24 +576,13 @@ This provider manages `upstart` jobs on Ubuntu. For `upstart` documentation,
 see <http://upstart.ubuntu.com/>.
 
 * Required binaries: `/sbin/start`, `/sbin/stop`, `/sbin/restart`, `/sbin/status`, `/sbin/initctl`
-* Confined to:
-
-  ```
-  any == [
+* Confined to: `any == [
     Facter.value(:operatingsystem) == 'Ubuntu',
     (Facter.value(:osfamily) == 'RedHat' and Facter.value(:operatingsystemrelease) =~ /^6\./),
     (Facter.value(:operatingsystem) == 'Amazon' and Facter.value(:operatingsystemmajrelease) =~ /\d{4}/),
     Facter.value(:operatingsystem) == 'LinuxMint',
-  ]`, `true == lambda { has_initctl? }
-  ```
-
-  ```
-  exists == /var/run/upstart-socket-bridge.pid
-  ```
-  
+  ]`, `true == lambda { has_initctl? }`
 * Default for: `["operatingsystem", "ubuntu"] == ["operatingsystemmajrelease", "[\"10.04\", \"12.04\", \"14.04\", \"14.10\"]"]`, `["operatingsystem", "LinuxMint"] == ["operatingsystemmajrelease", "[\"10\", \"11\", \"12\", \"13\", \"14\", \"15\", \"16\", \"17\"]"]`
-
-* Supported features: `enableable`, `refreshable`
 
 <h4 id="service-provider-windows">windows</h4>
 
@@ -606,10 +593,8 @@ status methods for all services.
 Control of service groups (dependencies) is not yet supported, nor is running
 services as a specific user.
 
-* Required binaries: `net.exe`
 * Confined to: `operatingsystem == windows`
-* Default for `operatingsystem` == `windows`
-* Supported features: `enableable`, `refreshable`
+* Default for: `["operatingsystem", "windows"] == `
 
 <h3 id="service-provider-features">Provider Features</h3>
 
@@ -619,6 +604,7 @@ Available features:
 * `controllable` --- The provider uses a control variable.
 * `enableable` --- The provider can enable and disable the service.
 * `flaggable` --- The provider can pass flags to the service.
+* `manages_logon_credentials` --- The provider can specify the logon credentials used for a service
 * `maskable` --- The provider can 'mask' the service.
 * `refreshable` --- The provider can restart the service.
 
@@ -632,6 +618,7 @@ Provider support:
       <th>controllable</th>
       <th>enableable</th>
       <th>flaggable</th>
+      <th>manages logon credentials</th>
       <th>maskable</th>
       <th>refreshable</th>
     </tr>
@@ -820,4 +807,4 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2020-06-30 08:58:23 +0100
+> **NOTE:** This page was generated from the Puppet source code on 2020-12-08 17:56:54 +0000

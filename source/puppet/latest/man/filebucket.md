@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 383816102aa1e875b85649986158e30bc4c2f184
+built_from_commit: 07afb30deb4ab5a3cbba330556fc3d5722e7a020
 title: 'Man Page: puppet filebucket'
 canonical: "/puppet/latest/man/filebucket.html"
 ---
@@ -26,14 +26,14 @@ canonical: "/puppet/latest/man/filebucket.html"
 
 <p>backup:
   Send one or more files to the specified file bucket. Each sent file is
-  printed with its resulting md5 sum.</p>
+  printed with its resulting sha256 sum.</p>
 
 <p>get:
-  Return the text associated with an md5 sum. The text is printed to
+  Return the text associated with an sha256 sum. The text is printed to
   stdout, and only one file can be retrieved at a time.</p>
 
 <p>restore:
-  Given a file path and an md5 sum, store the content associated with
+  Given a file path and an sha256 sum, store the content associated with
   the sum into the specified file path. You can specify an entirely new
   path to this argument; you are not restricted to restoring the content
   to its original location.</p>
@@ -157,8 +157,8 @@ $ puppet filebucket -b /tmp/TestBucket backup /tmp/TestFile2
 $ puppet filebucket -b /tmp/TestBucket list
 d41d8cd98f00b204e9800998ecf8427e 2015-05-11 09:33:22 /tmp/TestFile2
 
-## From a Puppet master, list files in the master bucketdir
-$ puppet filebucket -b $(puppet config print bucketdir --section master) list
+## From a Puppet Server, list files in the server bucketdir
+$ puppet filebucket -b $(puppet config print bucketdir --section server) list
 d43a6ecaa892a1962398ac9170ea9bf2 2015-05-11 09:27:56 /tmp/TestFile
 7ae322f5791217e031dc60188f4521ef 2015-05-11 09:52:15 /tmp/TestFile
 </code></pre>

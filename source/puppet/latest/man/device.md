@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 383816102aa1e875b85649986158e30bc4c2f184
+built_from_commit: 07afb30deb4ab5a3cbba330556fc3d5722e7a020
 title: 'Man Page: puppet device'
 canonical: "/puppet/latest/man/device.html"
 ---

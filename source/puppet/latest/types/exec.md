@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 383816102aa1e875b85649986158e30bc4c2f184
+built_from_commit: 07afb30deb4ab5a3cbba330556fc3d5722e7a020
 title: 'Resource Type: exec'
 canonical: "/puppet/latest/types/exec.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2020-09-18 15:51:17 +0100
+> **NOTE:** This page was generated from the Puppet source code on 2020-12-08 17:56:54 +0000
 
 exec
 -----
@@ -81,22 +81,18 @@ exec resource autorequires that user.
 
 <pre><code>exec { 'resource title':
   <a href="#exec-attribute-command">command</a>     =&gt; <em># <strong>(namevar)</strong> The actual command to execute.  Must either be...</em>
-  <a href="#exec-attribute-creates">creates</a>     =&gt; <em># A file to look for before running the command...</em>
   <a href="#exec-attribute-cwd">cwd</a>         =&gt; <em># The directory from which to run the command.  If </em>
   <a href="#exec-attribute-environment">environment</a> =&gt; <em># An array of any additional environment variables </em>
   <a href="#exec-attribute-group">group</a>       =&gt; <em># The group to run the command as.  This seems to...</em>
   <a href="#exec-attribute-logoutput">logoutput</a>   =&gt; <em># Whether to log command output in addition to...</em>
-  <a href="#exec-attribute-onlyif">onlyif</a>      =&gt; <em># A test command that checks the state of the...</em>
   <a href="#exec-attribute-path">path</a>        =&gt; <em># The search path used for command execution...</em>
   <a href="#exec-attribute-provider">provider</a>    =&gt; <em># The specific backend to use for this `exec...</em>
   <a href="#exec-attribute-refresh">refresh</a>     =&gt; <em># An alternate command to run when the `exec...</em>
-  <a href="#exec-attribute-refreshonly">refreshonly</a> =&gt; <em># The command should only be run as a refresh...</em>
   <a href="#exec-attribute-returns">returns</a>     =&gt; <em># The expected exit code(s).  An error will be...</em>
   <a href="#exec-attribute-timeout">timeout</a>     =&gt; <em># The maximum time the command should take.  If...</em>
   <a href="#exec-attribute-tries">tries</a>       =&gt; <em># The number of times execution of the command...</em>
   <a href="#exec-attribute-try_sleep">try_sleep</a>   =&gt; <em># The time to sleep in seconds between 'tries'....</em>
   <a href="#exec-attribute-umask">umask</a>       =&gt; <em># Sets the umask to be used while executing this...</em>
-  <a href="#exec-attribute-unless">unless</a>      =&gt; <em># A test command that checks the state of the...</em>
   <a href="#exec-attribute-user">user</a>        =&gt; <em># The user to run the command as.  > **Note:*...</em>
   # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
@@ -114,28 +110,6 @@ any output is logged at the `err` log level.
 
 Multiple `exec` resources can use the same `command` value; Puppet
 only uses the resource title to ensure `exec`s are unique.
-
-([↑ Back to exec attributes](#exec-attributes))
-
-<h4 id="exec-attribute-creates">creates</h4>
-
-A file to look for before running the command. The command will
-only run if the file **doesn't exist.**
-
-This parameter doesn't cause Puppet to create a file; it is only
-useful if **the command itself** creates a file.
-
-    exec { 'tar -xf /Volumes/nfs02/important.tar':
-      cwd     => '/var/tmp',
-      creates => '/var/tmp/myfile',
-      path    => ['/usr/bin', '/usr/sbin',],
-    }
-
-In this example, `myfile` is assumed to be a file inside
-`important.tar`. If it is ever deleted, the exec will bring it
-back by re-extracting the tarball. If `important.tar` does **not**
-actually contain `myfile`, the exec will keep running every time
-Puppet runs.
 
 ([↑ Back to exec attributes](#exec-attributes))
 
@@ -183,38 +157,11 @@ Allowed values:
 
 ([↑ Back to exec attributes](#exec-attributes))
 
-<h4 id="exec-attribute-onlyif">onlyif</h4>
-
-A test command that checks the state of the target system and restricts
-when the `exec` can run. If present, Puppet runs this test command
-first, and only runs the main command if the test has an exit code of 0
-(success). For example:
-
-    exec { 'logrotate':
-      path     => '/usr/bin:/usr/sbin:/bin',
-      provider => shell,
-      onlyif   => 'test `du /var/log/messages | cut -f1` -gt 100000',
-    }
-
-This would run `logrotate` only if that test returns true.
-
-Note that this test command runs with the same `provider`, `path`, `cwd`, `user`, and `group` as the main command. If the `path` isn't set, you
-must fully qualify the command's name.
-
-This parameter can also take an array of commands. For example:
-
-    onlyif => ['test -f /tmp/file1', 'test -f /tmp/file2'],
-
-This `exec` would only run if every command in the array has an
-exit code of 0 (success).
-
-([↑ Back to exec attributes](#exec-attributes))
-
 <h4 id="exec-attribute-path">path</h4>
 
 The search path used for command execution.
 Commands must be fully qualified if no path is specified.  Paths
-can be specified as an array or as a seperated list.
+can be specified as an array or as a '
 
 ([↑ Back to exec attributes](#exec-attributes))
 
@@ -240,35 +187,6 @@ description for this resource type.
 Note that this alternate command runs with the same `provider`, `path`,
 `user`, and `group` as the main command. If the `path` isn't set, you
 must fully qualify the command's name.
-
-([↑ Back to exec attributes](#exec-attributes))
-
-<h4 id="exec-attribute-refreshonly">refreshonly</h4>
-
-The command should only be run as a
-refresh mechanism for when a dependent object is changed.  It only
-makes sense to use this option when this command depends on some
-other object; it is useful for triggering an action:
-
-    # Pull down the main aliases file
-    file { '/etc/aliases':
-      source => 'puppet://server/module/aliases',
-    }
-
-    # Rebuild the database, but only when the file changes
-    exec { newaliases:
-      path        => ['/usr/bin', '/usr/sbin'],
-      subscribe   => File['/etc/aliases'],
-      refreshonly => true,
-    }
-
-Note that only `subscribe` and `notify` can trigger actions, not `require`,
-so it only makes sense to use `refreshonly` with `subscribe` or `notify`.
-
-Allowed values:
-
-* `true`
-* `false`
 
 ([↑ Back to exec attributes](#exec-attributes))
 
@@ -335,33 +253,6 @@ Default: `0`
 <h4 id="exec-attribute-umask">umask</h4>
 
 Sets the umask to be used while executing this command
-
-([↑ Back to exec attributes](#exec-attributes))
-
-<h4 id="exec-attribute-unless">unless</h4>
-
-A test command that checks the state of the target system and restricts
-when the `exec` can run. If present, Puppet runs this test command
-first, then runs the main command unless the test has an exit code of 0
-(success). For example:
-
-    exec { '/bin/echo root >> /usr/lib/cron/cron.allow':
-      path   => '/usr/bin:/usr/sbin:/bin',
-      unless => 'grep root /usr/lib/cron/cron.allow 2>/dev/null',
-    }
-
-This would add `root` to the cron.allow file (on Solaris) unless
-`grep` determines it's already there.
-
-Note that this test command runs with the same `provider`, `path`, `cwd`, `user`, and `group` as the main command. If the `path` isn't set, you
-must fully qualify the command's name.
-
-This parameter can also take an array of commands. For example:
-
-    unless => ['test -f /tmp/file1', 'test -f /tmp/file2'],
-
-This `exec` runs only if every command in the array has a
-non-zero exit code.
 
 ([↑ Back to exec attributes](#exec-attributes))
 
@@ -439,4 +330,4 @@ command:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2020-09-18 15:51:17 +0100
+> **NOTE:** This page was generated from the Puppet source code on 2020-12-08 17:56:54 +0000

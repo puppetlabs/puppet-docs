@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 383816102aa1e875b85649986158e30bc4c2f184
+built_from_commit: 07afb30deb4ab5a3cbba330556fc3d5722e7a020
 title: 'Resource Type: filebucket'
 canonical: "/puppet/latest/types/filebucket.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2020-09-18 15:51:17 +0100
+> **NOTE:** This page was generated from the Puppet source code on 2020-12-08 17:56:54 +0000
 
 filebucket
 -----
@@ -16,7 +16,7 @@ filebucket
 
 A repository for storing and retrieving file content by MD5 checksum. Can
 be local to each agent node, or centralized on a puppet master server. All
-puppet masters provide a filebucket service that agent nodes can access
+puppet servers provide a filebucket service that agent nodes can access
 via HTTP, but you must declare a filebucket resource before any agents
 will do so.
 
@@ -41,9 +41,9 @@ in site.pp:
 
     File { backup => main, }
 
-Puppet master servers automatically provide the filebucket service, so
+Puppet Servers automatically provide the filebucket service, so
 this will work in a default configuration. If you have a heavily
-restricted `auth.conf` file, you may need to allow access to the
+restricted Puppet Server `auth.conf` file, you may need to allow access to the
 `file_bucket_file` endpoint.
 
 <h3 id="filebucket-attributes">Attributes</h3>
@@ -79,7 +79,7 @@ The port on which the remote server is listening.
 This setting is _only_ consulted if the `path` attribute is set to `false`.
 
 If this attribute is not specified, the first entry in the `server_list`
-configuration setting is used, followed by the value of the `masterport`
+configuration setting is used, followed by the value of the `serverport`
 setting if `server_list` is not set.
 
 ([↑ Back to filebucket attributes](#filebucket-attributes))
@@ -100,4 +100,4 @@ if `server_list` is not set.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2020-09-18 15:51:17 +0100
+> **NOTE:** This page was generated from the Puppet source code on 2020-12-08 17:56:54 +0000
