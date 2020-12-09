@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 383816102aa1e875b85649986158e30bc4c2f184
+built_from_commit: 07afb30deb4ab5a3cbba330556fc3d5722e7a020
 title: Puppet Man Pages
 canonical: "/puppet/latest/man/index.html"
 ---
@@ -50,9 +50,6 @@ Most users can ignore these subcommands. They're only useful for certain niche w
 - [puppet catalog](./catalog.html)
 - [puppet facts](./facts.html)
 - [puppet filebucket](./filebucket.html)
-- [puppet key](./key.html)
-- [puppet man](./man.html)
 - [puppet report](./report.html)
-- [puppet status](./status.html)
 
 

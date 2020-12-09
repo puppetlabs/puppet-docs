@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 383816102aa1e875b85649986158e30bc4c2f184
+built_from_commit: 07afb30deb4ab5a3cbba330556fc3d5722e7a020
 title: 'Resource Type: group'
 canonical: "/puppet/latest/types/group.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2020-09-18 15:51:17 +0100
+> **NOTE:** This page was generated from the Puppet source code on 2020-12-08 17:56:54 +0000
 
 group
 -----
@@ -230,8 +230,7 @@ Group management for AIX.
 
 * Required binaries: `/usr/sbin/lsgroup`, `/usr/bin/mkgroup`, `/usr/sbin/rmgroup`, `/usr/bin/chgroup`
 * Confined to: `operatingsystem == aix`
-* Default for: `operatingsystem` == `aix`
-* Supported features: `manages_aix_lam`, `manages_members`
+* Default for: `["operatingsystem", "aix"] == `
 
 <h4 id="group-provider-directoryservice">directoryservice</h4>
 
@@ -239,15 +238,13 @@ Group management using DirectoryService on OS X.
 
 * Required binaries: `/usr/bin/dscl`
 * Confined to: `operatingsystem == darwin`
-* Default for: `operatingsystem` == `darwin`
-* Supported features: `manages_members`
+* Default for: `["operatingsystem", "darwin"] == `
 
 <h4 id="group-provider-groupadd">groupadd</h4>
 
 Group management via `groupadd` and its ilk. The default for most platforms.
 
 * Required binaries: `groupadd`, `groupdel`, `groupmod`
-* Supported features: `system_groups`
 
 <h4 id="group-provider-ldap">ldap</h4>
 
@@ -270,8 +267,7 @@ Group management via `pw` on FreeBSD and DragonFly BSD.
 
 * Required binaries: `pw`
 * Confined to: `operatingsystem == [:freebsd, :dragonfly]`
-* Default for `operatingsystem` == `freebsd, dragonfly`.
-* Supported features: `manages_members`.
+* Default for: `["operatingsystem", "[:freebsd, :dragonfly]"] == `
 
 <h4 id="group-provider-windows_adsi">windows_adsi</h4>
 
@@ -279,8 +275,7 @@ Local group management for Windows. Group members can be both users and groups.
 Additionally, local groups can contain domain users.
 
 * Confined to: `operatingsystem == windows`
-* Default for: `operatingsystem` == `windows`
-* Supported features: `manages_members`.
+* Default for: `["operatingsystem", "windows"] == `
 
 <h3 id="group-provider-features">Provider Features</h3>
 
@@ -351,4 +346,4 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2020-09-18 15:51:17 +0100
+> **NOTE:** This page was generated from the Puppet source code on 2020-12-08 17:56:54 +0000
