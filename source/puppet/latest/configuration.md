@@ -288,7 +288,7 @@ A node's certname is available in Puppet manifests as `$trusted['certname']`. (S
 [Facts and Built-In Variables](https://puppet.com/docs/puppet/latest/lang_facts_and_builtin_vars.html)
 for more details.)
 
-* The value of certname must match the regular expression of `/\A[ -.0-~]+\Z/`. For best compatibility, limit the value of `certname` to
+* The value of `certname` must match the regular expression of `/\A[ -.0-~]+\Z/`. For best compatibility, limit the value of `certname` to
   only use lowercase letters, numbers, periods, underscores, and dashes.
 * The special value `ca` is reserved, and can't be used as the certname
   for a normal node.
