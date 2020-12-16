@@ -38,7 +38,7 @@ For platforms supported in Puppet Enterprise, see its [system requirements](http
 
 | Operating system | Tested versions | Untested versions |
 |----|----|----|
-| Red Hat Enterprise Linux (and derivatives) | 5, 6, 7||
+| Red Hat Enterprise Linux (and derivatives) | 5, 6, 7, 8||
 | SUSE Linux Enterprise Server | 11 (5.5.10 and earlier), 12 (5.5.10 and earlier), 15 ||
 | Debian | Jessie (8), Stretch (9) ||
 | Ubuntu | 14.04, 16.04, 18.04 (5.5.2 and later) ||
