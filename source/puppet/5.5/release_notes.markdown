@@ -418,6 +418,8 @@ This is a bug-fix and new feature release.
 
 - This release adds a `puppet-agent` package for macOS 10.14 Mojave. On macOS 10.14 Mojave, you must grant Puppet Full Disk Access to be able to manage users and groups. To give Puppet access on a machine running  10.14, go to `System Preferences > Security & Privacy > Privacy > Full Disk Access`, and add the path to the Puppet executable. Alternatively, set up automatic access using Privacy Preferences Control Profiles and a Mobile Device Management Server. [PA-2226]((https://tickets.puppetlabs.com/browse/PA-2226)), [PA-2227]((https://tickets.puppetlabs.com/browse/PA-2227))
 
+- This release adds support for Red Hat Enterprise Linux 8.
+
 ### Bug fixes
 
 - Augeas 1.11.0 has been released with a number of fixes and improvements. Update the puppet-agent package to get the new version. [PA-2364]((https://tickets.puppetlabs.com/browse/PUP-2364))
