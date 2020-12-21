@@ -117,7 +117,7 @@ GEM
       rgen
       yard (~> 0.9.5)
     rack (2.2.3)
-    rake (13.0.1)
+    rake (13.0.2)
     rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
@@ -172,7 +172,7 @@ DEPENDENCIES
   puppet-strings
   puppet_docs!
   rack (~> 2.2, >= 2.2.3)
-  rake (~> 13.0, >= 13.0.1)
+  rake (~> 13.0)
   rdoc (~> 6.2)
   rgen (~> 0.8)
   ronn (~> 0.7)
