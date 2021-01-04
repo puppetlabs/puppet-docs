@@ -5,7 +5,7 @@ gem 'versionomy', '~> 0.5.0'
 gem 'rake', '~> 13.0', '>= 13.0.1'
 gem 'rack', '~> 2.2', '>= 2.2.3'
 gem 'git', '~> 1.8'
-gem 'json', '~> 2.3', '>= 2.3.1'
+gem 'json', '~> 2.5'
 
 group(:build_site) do
   gem 'jekyll', '~> 4.1' # See https://jekyllrb.com/docs/upgrading/3-to-4/ before going to '~> 4.1'
