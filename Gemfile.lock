@@ -154,7 +154,7 @@ GEM
       open4
       rake (>= 0.8.1)
     vlad-git (2.1.0)
-    yard (0.9.25)
+    yard (0.9.26)
     zeitwerk (2.4.0)
 
 PLATFORMS
