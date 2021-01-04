@@ -10,7 +10,7 @@ gem 'json', '~> 2.3', '>= 2.3.1'
 group(:build_site) do
   gem 'jekyll', '~> 4.1' # See https://jekyllrb.com/docs/upgrading/3-to-4/ before going to '~> 4.1'
   gem 'kramdown', '~> 2.3'
-  gem 'vlad', '~> 1.4'
+  gem 'vlad', '~> 2.7'
   gem 'vlad-git', '~> 2.1'
   gem 'listen', '~> 3.4.0' # Preserve ability to run on Ruby 2.0, since listen 3.1 requires Ruby ~> 2.2.
 end
