@@ -30,3 +30,4 @@ link_report.txt
 .yardoc
 puppet-docs-build.log
 source/.jekyll-cache/
+.ruby-version
