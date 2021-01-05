@@ -130,7 +130,7 @@ GEM
       ffi (~> 1.0)
     rchardet (1.8.0)
     rdiscount (2.2.0.2)
-    rdoc (6.2.1)
+    rdoc (6.3.0)
     rexml (3.2.4)
     rgen (0.8.2)
     ronn (0.7.3)
@@ -180,7 +180,7 @@ DEPENDENCIES
   puppet_docs!
   rack (~> 2.2, >= 2.2.3)
   rake (~> 13.0, >= 13.0.1)
-  rdoc (~> 6.2)
+  rdoc (~> 6.3)
   rgen (~> 0.8)
   ronn (~> 0.7)
   versionomy (~> 0.5.0)

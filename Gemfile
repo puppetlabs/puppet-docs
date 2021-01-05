@@ -18,7 +18,7 @@ end
 group(:generate_references) do
   gem 'ronn', '~> 0.7'
   gem 'yard', '~> 0.9'
-  gem 'rdoc', '~> 6.2'
+  gem 'rdoc', '~> 6.3'
   gem 'rgen', '~> 0.8'
   gem 'puppet-strings'
   gem 'puppet', '~> 6'
