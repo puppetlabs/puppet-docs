@@ -129,7 +129,7 @@ GEM
     rb-inotify (0.10.1)
       ffi (~> 1.0)
     rchardet (1.8.0)
-    rdiscount (2.2.0.1)
+    rdiscount (2.2.0.2)
     rdoc (6.2.1)
     rexml (3.2.4)
     rgen (0.8.2)
