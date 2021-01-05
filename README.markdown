@@ -22,4 +22,4 @@ If something in the documentation doesn't seem right, or if you think something 
 
 ## Copyright
 
-Copyright (c) 2009-2020 Puppet, Inc. See LICENSE for details.
+Copyright (c) 2009-2021 Puppet, Inc. See LICENSE for details.
