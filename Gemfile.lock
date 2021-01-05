@@ -156,7 +156,8 @@ GEM
     vlad (2.7.1)
       rake (>= 0.8, < 15.0)
       rake-remote_task (~> 2.3)
-    vlad-git (2.1.0)
+    vlad-git (2.2.0)
+      vlad (>= 2.1.0)
     yard (0.9.26)
     zeitwerk (2.4.0)
 
@@ -185,5 +186,5 @@ DEPENDENCIES
   ronn (~> 0.7)
   versionomy (~> 0.5.0)
   vlad (~> 2.7)
-  vlad-git (~> 2.1)
+  vlad-git (~> 2.2)
   yard (~> 0.9)
