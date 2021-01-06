@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 383816102aa1e875b85649986158e30bc4c2f184
+built_from_commit: 62ced6453b078afa90f35c28f898390cf44ceb79
 title: 'Resource Type: filebucket'
 canonical: "/puppet/latest/types/filebucket.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2020-09-18 15:51:17 +0100
+> **NOTE:** This page was generated from the Puppet source code on 2021-01-06 15:37:37 +0000
 
 filebucket
 -----
@@ -79,7 +79,7 @@ The port on which the remote server is listening.
 This setting is _only_ consulted if the `path` attribute is set to `false`.
 
 If this attribute is not specified, the first entry in the `server_list`
-configuration setting is used, followed by the value of the `masterport`
+configuration setting is used, followed by the value of the `serverport`
 setting if `server_list` is not set.
 
 ([↑ Back to filebucket attributes](#filebucket-attributes))
@@ -100,4 +100,4 @@ if `server_list` is not set.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2020-09-18 15:51:17 +0100
+> **NOTE:** This page was generated from the Puppet source code on 2021-01-06 15:37:37 +0000

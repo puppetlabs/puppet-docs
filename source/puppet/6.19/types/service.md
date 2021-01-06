@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 2959aff838fdb13a35943fa8a83581fc3c1f0707
+built_from_commit: 62ced6453b078afa90f35c28f898390cf44ceb79
 title: 'Resource Type: service'
 canonical: "/puppet/latest/types/service.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2020-06-30 08:58:23 +0100
+> **NOTE:** This page was generated from the Puppet source code on 2021-01-06 15:37:37 +0000
 
 service
 -----
@@ -215,9 +215,7 @@ be quoted without enclosing slashes).
 
 <h4 id="service-attribute-provider">provider</h4>
 
-The specific backend to use for this `service`
-resource. You will seldom need to specify this --- Puppet will usually
-discover the appropriate provider for your platform.
+The specific backend to use for this `service` resource. You will seldom need to specify this --- Puppet will usually discover the appropriate provider for your platform.
 
 Available providers are:
 
@@ -820,4 +818,4 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2020-06-30 08:58:23 +0100
+> **NOTE:** This page was generated from the Puppet source code on 2021-01-06 15:37:37 +0000

@@ -363,15 +363,13 @@ exit code of 0 (success).
 
 The search path used for command execution.
 Commands must be fully qualified if no path is specified.  Paths
-can be specified as an array or as a ':' separated list.
+can be specified as an array or as a seperated list.
 
 ([↑ Back to exec attributes](#exec-attributes))
 
 <h4 id="exec-attribute-provider">provider</h4>
 
-The specific backend to use for this `exec`
-resource. You will seldom need to specify this --- Puppet will usually
-discover the appropriate provider for your platform.
+The specific backend to use for this `exec` resource. You will seldom need to specify this --- Puppet will usually discover the appropriate provider for your platform.
 
 Available providers are:
 
@@ -543,7 +541,7 @@ to execute most commands, but prevents the use of globbing and shell
 built-ins (including control logic like "for" and "if" statements).
 
 * Confined to: `feature == posix`
-* Default for: `feature` == `posix`
+* Default for: `["feature", "posix"] == `
 
 <h4 id="exec-provider-shell">shell</h4>
 
@@ -762,14 +760,15 @@ masters.
   filebucket resource, requires appropriate planning and management to ensure
   that sufficient disk space is available for the file backups. Generally, you
   can implement this using one of the following two options:
-  
-- Restrict the directory to a maximum size after which the oldest items are removed.
-- Use a `find` command and `crontab` entry to retain only the last X days of file backups. For example:
+  - Use a `find` command and `crontab` entry to retain only the last X days
+  of file backups. For example:
 
-```
-find /opt/puppetlabs/server/data/puppetserver/bucket -type f -mtime +45 -atime +45 -print0 | xargs -0 rm
-```
-  
+  ```
+  find /opt/puppetlabs/server/data/puppetserver/bucket -type f -mtime +45 -atime +45 -print0 | xargs -0 rm
+  ```
+
+  - Restrict the directory to a maximum size after which the oldest items are removed.
+
 Default: `puppet`
 
 ([↑ Back to file attributes](#file-attributes))
@@ -782,16 +781,7 @@ The default checksum type is md5.
 
 Allowed values:
 
-* `md5`
-* `md5lite`
-* `sha224`
-* `sha256`
-* `sha256lite`
-* `sha384`
-* `sha512`
-* `mtime`
-* `ctime`
-* `none`
+* `Puppet::Util::Checksums.known_checksum_types`
 
 ([↑ Back to file attributes](#file-attributes))
 
@@ -1005,9 +995,7 @@ will always appear out of sync.)
 
 <h4 id="file-attribute-provider">provider</h4>
 
-The specific backend to use for this `file`
-resource. You will seldom need to specify this --- Puppet will usually
-discover the appropriate provider for your platform.
+The specific backend to use for this `file` resource. You will seldom need to specify this --- Puppet will usually discover the appropriate provider for your platform.
 
 Available providers are:
 
@@ -1243,17 +1231,31 @@ directories if the `recurse` attribute is set to `true` or `remote`. If
 a source directory contains symlinks, use the `links` attribute to
 specify whether to recreate links or follow them.
 
-HTTP URIs cannot be used to recursively synchronize whole directory
+_HTTP_ URIs cannot be used to recursively synchronize whole directory
 trees. You cannot use `source_permissions` values other than `ignore`
 because HTTP servers do not transfer any metadata that translates to
 ownership or permission details.
 
-Puppet determines if file content is synchronized by computing a checksum for the local file and comparing it against the `checksum_value` parameter. If the `checksum_value` parameter is not specified for `puppet` and `file` sources, Puppet computes a checksum based on its `Puppet[:digest_algorithm]`. For `http(s)` sources, Puppet uses the
-first HTTP header it recognizes out of the following list: `X-Checksum-Sha256`, `X-Checksum-Sha1`, `X-Checksum-Md5` or `Content-MD5`. If the server response does not include one of these headers, Puppet defaults to using the `Last-Modified` header. Puppet updates the localfile if the header is newer than the modified time (mtime) of the local file. 
+Puppet determines if file content is synchronized by computing a checksum
+for the local file and comparing it against the `checksum_value`
+parameter. If the `checksum_value` parameter is not specified for
+`puppet` and `file` sources, Puppet computes a checksum based on its
+`Puppet[:digest_algorithm]`. For `http(s)` sources, Puppet uses the
+first HTTP header it recognizes out of the following list:
+`X-Checksum-Sha256`, `X-Checksum-Sha1`, `X-Checksum-Md5` or `Content-MD5`.
+If the server response does not include one of these headers, Puppet
+defaults to using the `Last-Modified` header. Puppet updates the local
+file if the header is newer than the modified time (mtime) of the local
+file.
 
-HTTP URIs can include a user information component so that Puppet can retrieve file metadata and content from HTTP servers that require HTTP Basic authentication. For example `https://<user>:<pass>@<server>:<port>/path/to/file.` 
+_HTTP_ URIs can include a user information component so that Puppet can
+retrieve file metadata and content from HTTP servers that require HTTP Basic
+authentication. For example `https://<user>:<pass>@<server>:<port>/path/to/file.`
 
-When connecting to HTTPS servers, Puppet trusts CA certificates in the `puppet-agent` certificate bundle and the Puppet CA. You can configure Puppet to trust additional CA certificates using the `Puppet[:ssl_trust_store]` setting.
+When connecting to _HTTPS_ servers, Puppet trusts CA certificates in the
+puppet-agent certificate bundle and the Puppet CA. You can configure Puppet
+to trust additional CA certificates using the `Puppet[:ssl_trust_store]`
+setting.
 
 Multiple `source` values can be specified as an array, and Puppet will
 use the first source that exists. This can be used to serve different
@@ -1518,7 +1520,7 @@ The port on which the remote server is listening.
 This setting is _only_ consulted if the `path` attribute is set to `false`.
 
 If this attribute is not specified, the first entry in the `server_list`
-configuration setting is used, followed by the value of the `masterport`
+configuration setting is used, followed by the value of the `serverport`
 setting if `server_list` is not set.
 
 ([↑ Back to filebucket attributes](#filebucket-attributes))
@@ -1721,9 +1723,7 @@ Requires features manages_members.
 
 <h4 id="group-attribute-provider">provider</h4>
 
-The specific backend to use for this `group`
-resource. You will seldom need to specify this --- Puppet will usually
-discover the appropriate provider for your platform.
+The specific backend to use for this `group` resource. You will seldom need to specify this --- Puppet will usually discover the appropriate provider for your platform.
 
 Available providers are:
 
@@ -1892,7 +1892,7 @@ Sends an arbitrary message, specified as a string, to the agent run-time log. It
 
 <pre><code>notify { 'resource title':
   <a href="#notify-attribute-name">name</a>     =&gt; <em># <strong>(namevar)</strong> An arbitrary tag for your own reference; the...</em>
-  <a href="#notify-attribute-message">message</a>  =&gt; <em># The message to be sent to the...</em>
+  <a href="#notify-attribute-message">message</a>  =&gt; <em># The message to be sent to the log. Note that the </em>
   <a href="#notify-attribute-withpath">withpath</a> =&gt; <em># Whether to show the full object path.  Default...</em>
   # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
@@ -2652,14 +2652,19 @@ Python packages via `pip`.
 This provider supports the `install_options` attribute, which allows command-line flags to be passed to pip.
 These options should be specified as an array where each element is either a string or a hash.
 
+<h4 id="package-provider-pip2">pip2</h4>
+
+Python packages via `pip2`.
+
+This provider supports the `install_options` attribute, which allows command-line flags to be passed to pip2.
+These options should be specified as an array where each element is either a string or a hash.
+
 <h4 id="package-provider-pip3">pip3</h4>
 
 Python packages via `pip3`.
 
 This provider supports the `install_options` attribute, which allows command-line flags to be passed to pip3.
 These options should be specified as an array where each element is either a string or a hash.
-
-* Supported features: `install_options`, `installable`, `uninstallable`, `upgradeable`, `versionable`
 
 <h4 id="package-provider-pkg">pkg</h4>
 
@@ -2761,15 +2766,24 @@ for the portupgrade port.
 Puppet Ruby Gem support. This provider is useful for managing
 gems needed by the ruby provided in the puppet-agent package.
 
-* Required binaries: `/opt/puppetlabs/puppet/bin/gem`
-* Supported features: `install_options`, `installable`, `uninstall_options`, `uninstallable`, `upgradeable`, `versionable`
+<h4 id="package-provider-puppetserver_gem">puppetserver_gem</h4>
+
+Puppet Server Ruby Gem support. If a URL is passed via `source`, then
+that URL is appended to the list of remote gem repositories which by default
+contains rubygems.org; To ensure that only the specified source is used also
+pass `--clear-sources` in via `install_options`; if a source is present but
+is not a valid URL, it will be interpreted as the path to a local gem file.
+If source is not present at all, the gem will be installed from the default
+gem repositories.
+
+* Confined to: `feature == hocon`, `fips_enabled == false`
 
 <h4 id="package-provider-rpm">rpm</h4>
 
 RPM packaging support; should work anywhere with a working `rpm` binary.
 
-    This provider supports the `install_options` and `uninstall_options`
-    attributes, which allow command-line flags to be passed to rpm.
+This provider supports the `install_options` and `uninstall_options`
+attributes, which allow command-line flags to be passed to rpm.
 These options should be specified as an array where each element is either a string or a hash.
 
 * Required binaries: `rpm`
@@ -4096,9 +4110,7 @@ be quoted without enclosing slashes).
 
 <h4 id="service-attribute-provider">provider</h4>
 
-The specific backend to use for this `service`
-resource. You will seldom need to specify this --- Puppet will usually
-discover the appropriate provider for your platform.
+The specific backend to use for this `service` resource. You will seldom need to specify this --- Puppet will usually discover the appropriate provider for your platform.
 
 Available providers are:
 
@@ -5363,9 +5375,7 @@ Requires features manages_solaris_rbac.
 
 <h4 id="user-attribute-provider">provider</h4>
 
-The specific backend to use for this `user`
-resource. You will seldom need to specify this --- Puppet will usually
-discover the appropriate provider for your platform.
+The specific backend to use for this `user` resource. You will seldom need to specify this --- Puppet will usually discover the appropriate provider for your platform.
 
 Available providers are:
 
@@ -5429,7 +5439,7 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 The roles the user has.  Multiple roles should be
 specified as an array.
 
-Requires features manages_solaris_rbac.
+Requires features manages_roles.
 
 ([↑ Back to user attributes](#user-attributes))
 
@@ -5501,8 +5511,7 @@ User management for AIX.
 
 * Required binaries: `/usr/sbin/lsuser`, `/usr/bin/mkuser`, `/usr/sbin/rmuser`, `/usr/bin/chuser`, `/bin/chpasswd`
 * Confined to: `operatingsystem == aix`
-* Default for `operatingsystem` == `aix`.
-* Supported features: `manages_aix_lam`, `manages_expiry`, `manages_homedir`, `manages_password_age`, `manages_passwords`, `manages_shell`.
+* Default for: `["operatingsystem", "aix"] == `
 
 <h4 id="user-provider-directoryservice">directoryservice</h4>
 
@@ -5510,8 +5519,7 @@ User management on OS X.
 
 * Required binaries: `/usr/bin/uuidgen`, `/usr/bin/dsimport`, `/usr/bin/dscl`, `/usr/bin/dscacheutil`
 * Confined to: `operatingsystem == darwin`, `feature == cfpropertylist`
-* Default for `operatingsystem` == `darwin`.
-* Supported features: `manages_password_salt`, `manages_passwords`, `manages_shell`.
+* Default for: `["operatingsystem", "darwin"] == `
 
 <h4 id="user-provider-hpuxuseradd">hpuxuseradd</h4>
 
@@ -5523,8 +5531,7 @@ resetting password expirations under trusted computing.
 
 * Required binaries: `/usr/sam/lbin/usermod.sam`, `/usr/sam/lbin/userdel.sam`, `/usr/sam/lbin/useradd.sam`
 * Confined to: `operatingsystem == hp-ux`
-* Default for `operatingsystem` == `hp-ux`.
-* Supported features: `allows_duplicates`, `manages_homedir`, `manages_passwords`.
+* Default for: `["operatingsystem", "hp-ux"] == `
 
 <h4 id="user-provider-ldap">ldap</h4>
 
@@ -5540,7 +5547,6 @@ you do not specify one, but it is a potentially expensive operation,
 as it iterates across all existing users to pick the appropriate next one.
 
 * Confined to: `feature == ldap`, `false == (Puppet[:ldapuser] == "")`
-* Supported features: `manages_passwords`, `manages_shell`.
 
 <h4 id="user-provider-openbsd">openbsd</h4>
 
@@ -5550,8 +5556,7 @@ will need to install Ruby's shadow password library (package known as
 
 * Required binaries: `useradd`, `userdel`, `usermod`, `passwd`
 * Confined to: `operatingsystem == openbsd`
-* Default for `operatingsystem` == `openbsd`.
-* Supported features: `manages_expiry`, `manages_homedir`, `manages_shell`, `system_users`.
+* Default for: `["operatingsystem", "openbsd"] == `
 
 <h4 id="user-provider-pw">pw</h4>
 
@@ -5559,16 +5564,14 @@ User management via `pw` on FreeBSD and DragonFly BSD.
 
 * Required binaries: `pw`
 * Confined to: `operatingsystem == [:freebsd, :dragonfly]`
-* Default for `operatingsystem` == `freebsd, dragonfly`.
-* Supported features: `allows_duplicates`, `manages_expiry`, `manages_homedir`, `manages_passwords`, `manages_shell`.
+* Default for: `["operatingsystem", "[:freebsd, :dragonfly]"] == `
 
 <h4 id="user-provider-user_role_add">user_role_add</h4>
 
 User and role management on Solaris, via `useradd` and `roleadd`.
 
 * Required binaries: `useradd`, `userdel`, `usermod`, `passwd`, `roleadd`, `roledel`, `rolemod`
-* Default for `osfamily` == `solaris`.
-* Supported features: `allows_duplicates`, `manages_homedir`, `manages_password_age`, `manages_passwords`, `manages_shell`, `manages_solaris_rbac`.
+* Default for: `["osfamily", "solaris"] == `
 
 <h4 id="user-provider-useradd">useradd</h4>
 
@@ -5577,15 +5580,13 @@ install Ruby's shadow password library (often known as `ruby-libshadow`)
 if you wish to manage user passwords.
 
 * Required binaries: `useradd`, `userdel`, `usermod`, `chage`
-* Supported features: `allows_duplicates`, `manages_expiry`, `manages_homedir`, `manages_shell`, `system_users`.
 
 <h4 id="user-provider-windows_adsi">windows_adsi</h4>
 
 Local user management for Windows.
 
 * Confined to: `operatingsystem == windows`
-* Default for `operatingsystem` == `windows`.
-* Supported features: `manages_homedir`, `manages_passwords`.
+* Default for: `["operatingsystem", "windows"] == `
 
 <h3 id="user-provider-features">Provider Features</h3>
 
@@ -5600,8 +5601,9 @@ Available features:
 * `manages_password_age` --- The provider can set age requirements and restrictions for passwords.
 * `manages_password_salt` --- The provider can set a password salt. This is for providers that implement PBKDF2 passwords with salt properties.
 * `manages_passwords` --- The provider can modify user passwords, by accepting a password hash.
+* `manages_roles` --- The provider can manage roles
 * `manages_shell` --- The provider allows for setting shell and validates if possible
-* `manages_solaris_rbac` --- The provider can manage roles and normal users
+* `manages_solaris_rbac` --- The provider can manage normal users
 * `system_users` --- The provider allows you to create system users with lower UIDs.
 
 Provider support:
@@ -5619,6 +5621,7 @@ Provider support:
       <th>manages password age</th>
       <th>manages password salt</th>
       <th>manages passwords</th>
+      <th>manages roles</th>
       <th>manages shell</th>
       <th>manages solaris rbac</th>
       <th>system users</th>
@@ -5762,3 +5765,7 @@ Provider support:
     </tr>
   </tbody>
 </table>
+
+
+
+> **NOTE:** This page was generated from the Puppet source code on 2021-01-06 15:37:37 +0000

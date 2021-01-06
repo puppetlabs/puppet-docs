@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 383816102aa1e875b85649986158e30bc4c2f184
+built_from_commit: 62ced6453b078afa90f35c28f898390cf44ceb79
 title: 'Man Page: puppet agent'
 canonical: "/puppet/latest/man/agent.html"
 ---
@@ -24,7 +24,7 @@ similar), or run interactively for testing purposes.</p>
 <p>puppet agent [--certname <var>NAME</var>] [-D|--daemonize|--no-daemonize]
   [-d|--debug] [--detailed-exitcodes] [--digest <var>DIGEST</var>] [--disable [MESSAGE]] [--enable]
   [--fingerprint] [-h|--help] [-l|--logdest syslog|eventlog|<var>ABS FILEPATH</var>|console]
-  [--masterport <var>PORT</var>] [--noop] [-o|--onetime] [--sourceaddress <var>IP_ADDRESS</var>] [-t|--test]
+  [--serverport <var>PORT</var>] [--noop] [-o|--onetime] [--sourceaddress <var>IP_ADDRESS</var>] [-t|--test]
   [-v|--verbose] [-V|--version] [-w|--waitforcert <var>SECONDS</var>]</p>
 
 <h2 id="DESCRIPTION">DESCRIPTION</h2>
@@ -185,8 +185,9 @@ valid JSON.</p>
 <p>A path ending with '.jsonl' will receive structured output in JSON Lines
 format.</p></li>
 <li><p>--masterport:
-The port on which to contact the puppet master.
-(This is a Puppet setting, and can go in puppet.conf.)</p></li>
+The port on which to contact the Puppet Server.
+(This is a Puppet setting, and can go in puppet.conf.
+Deprecated in favor of the 'serverport' setting.)</p></li>
 <li><p>--noop:
 Use 'noop' mode where the daemon runs in a no-op or dry-run mode. This
 is useful for seeing what changes Puppet would make without actually
@@ -199,6 +200,9 @@ run. Useful for interactively running puppet agent when used in
 conjunction with the --no-daemonize option.
 (This is a Puppet setting, and can go in puppet.conf. Note the special 'no-'
 prefix for boolean settings on the command line.)</p></li>
+<li><p>--serverport:
+The port on which to contact the Puppet Server.
+(This is a Puppet setting, and can go in puppet.conf.)</p></li>
 <li><p>--sourceaddress:
 Set the source IP address for transactions. This defaults to automatically selected.
 (This is a Puppet setting, and can go in puppet.conf.)</p></li>

@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 383816102aa1e875b85649986158e30bc4c2f184
+built_from_commit: 62ced6453b078afa90f35c28f898390cf44ceb79
 title: 'Resource Type: package'
 canonical: "/puppet/latest/types/package.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2020-09-18 15:51:17 +0100
+> **NOTE:** This page was generated from the Puppet source code on 2021-01-06 15:37:37 +0000
 
 package
 -----
@@ -733,14 +733,19 @@ Python packages via `pip`.
 This provider supports the `install_options` attribute, which allows command-line flags to be passed to pip.
 These options should be specified as an array where each element is either a string or a hash.
 
+<h4 id="package-provider-pip2">pip2</h4>
+
+Python packages via `pip2`.
+
+This provider supports the `install_options` attribute, which allows command-line flags to be passed to pip2.
+These options should be specified as an array where each element is either a string or a hash.
+
 <h4 id="package-provider-pip3">pip3</h4>
 
 Python packages via `pip3`.
 
 This provider supports the `install_options` attribute, which allows command-line flags to be passed to pip3.
 These options should be specified as an array where each element is either a string or a hash.
-
-* Supported features: `install_options`, `installable`, `uninstallable`, `upgradeable`, `versionable`
 
 <h4 id="package-provider-pkg">pkg</h4>
 
@@ -842,8 +847,17 @@ for the portupgrade port.
 Puppet Ruby Gem support. This provider is useful for managing
 gems needed by the ruby provided in the puppet-agent package.
 
-* Required binaries: `/opt/puppetlabs/puppet/bin/gem`
-* Supported features: `install_options`, `installable`, `uninstall_options`, `uninstallable`, `upgradeable`, `versionable`
+<h4 id="package-provider-puppetserver_gem">puppetserver_gem</h4>
+
+Puppet Server Ruby Gem support. If a URL is passed via `source`, then
+that URL is appended to the list of remote gem repositories which by default
+contains rubygems.org; To ensure that only the specified source is used also
+pass `--clear-sources` in via `install_options`; if a source is present but
+is not a valid URL, it will be interpreted as the path to a local gem file.
+If source is not present at all, the gem will be installed from the default
+gem repositories.
+
+* Confined to: `feature == hocon`, `fips_enabled == false`
 
 <h4 id="package-provider-rpm">rpm</h4>
 
@@ -1698,4 +1712,4 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2020-06-30 08:58:23 +0100
+> **NOTE:** This page was generated from the Puppet source code on 2021-01-06 15:37:37 +0000

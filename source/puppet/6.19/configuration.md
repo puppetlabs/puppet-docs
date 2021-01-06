@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 383816102aa1e875b85649986158e30bc4c2f184
+built_from_commit: 62ced6453b078afa90f35c28f898390cf44ceb79
 title: Configuration Reference
 toc: columns
 canonical: "/puppet/latest/configuration.html"
@@ -174,7 +174,7 @@ The name to use the Certificate Authority certificate.
 
 The port to use for the certificate authority.
 
-- *Default*: $masterport
+- *Default*: $serverport
 
 ### ca_server
 
@@ -288,8 +288,9 @@ A node's certname is available in Puppet manifests as `$trusted['certname']`. (S
 [Facts and Built-In Variables](https://puppet.com/docs/puppet/latest/lang_facts_and_builtin_vars.html)
 for more details.)
 
-* The value of `certname` must match the regular expression of `/\A[ -.0-~]+\Z/`. For best compatibility, limit the value of `certname` to
-  only use lowercase letters, numbers, periods, underscores, and dashes.
+* For best compatibility, you should limit the value of `certname` to
+  only use lowercase letters, numbers, periods, underscores, and dashes. (That is,
+  it should match `/A[a-z0-9._-]+Z/`.)
 * The special value `ca` is reserved, and can't be used as the certname
   for a normal node.
 
@@ -649,31 +650,47 @@ custom data providers see the respective module documentation. This setting is d
 
 ### environment_timeout
 
-How long the Puppet master should cache data it loads from an
+How long the Puppet server should cache data it loads from an
 environment.
 
 A value of `0` will disable caching. This setting can also be set to
-`unlimited`, which will cache environments until the master is restarted
-or told to refresh the cache.
+`unlimited`, which will cache environments until the server is restarted
+or told to refresh the cache. All other values will result in Puppet
+server evicting expired environments. The expiration time is computed
+based on either when the environment was created or last accessed, see
+`environment_timeout_mode`.
 
 You should change this setting once your Puppet deployment is doing
 non-trivial work. We chose the default value of `0` because it lets new
 users update their code without any extra steps, but it lowers the
-performance of your Puppet master.
+performance of your Puppet server. We recommend either:
 
-We recommend setting this to `unlimited` and explicitly refreshing your
-Puppet master as part of your code deployment process.
+* Setting this to `unlimited` and explicitly refreshing your Puppet server
+  as part of your code deployment process.
 
-* With Puppet Server, you should refresh environments by calling the
-  `environment-cache` API endpoint. See the docs for the Puppet Server
-  [administrative API](https://puppet.com/docs/puppetserver/latest/admin-api/v1/environment-cache.html).
+* Setting this to a number that will keep your most actively used
+  environments cached, but allow testing environments to fall out of the
+  cache and reduce memory usage. A value of 3 minutes (3m) is a reasonable
+  value. This option requires setting `environment_timeout_mode` to
+  `from_last_used`.
 
-Any value other than `0` or `unlimited` is deprecated, since most Puppet
-servers use a pool of Ruby interpreters which all have their own cache
-timers. When these timers drift out of sync, agents can be served
-inconsistent catalogs.
+Once you set `environment_timeout` to a non-zero value, you need to tell
+Puppet server to read new code from disk using the `environment-cache` API
+endpoint after you deploy new code. See the docs for the Puppet Server
+[administrative API](https://puppet.com/docs/puppetserver/latest/admin-api/v1/environment-cache.html).
 
 - *Default*: 0
+
+### environment_timeout_mode
+
+How Puppet interprets the `environment_timeout` setting when
+`environment_timeout` is neither `0` nor `unlimited`. If set to
+`from_created`, then the environment will be evicted `environment_timeout`
+seconds from when it was created. If set to `from_last_used` then the
+environment will be evicted `environment_timeout` seconds from when it
+was last used.
+
+- *Default*: from_created
 
 ### environmentpath
 
@@ -845,7 +862,7 @@ directories readable by Puppet Server when necessary.
 
 ### hiera_config
 
-The hiera configuration file. Puppet only reads this file on startup, so you must restart the puppet master every time you edit it.
+The hiera configuration file. Puppet only reads this file on startup, so you must restart the puppet server every time you edit it.
 
 - *Default*: $confdir/hiera.yaml. However, for backwards compatibility, if a file exists at $codedir/hiera.yaml, Puppet uses that instead.
 
@@ -952,7 +969,7 @@ This setting can be a time interval in seconds (30 or 30s), minutes (30m), hours
 
 The HTTP User-Agent string to send when making network requests.
 
-- *Default*: Puppet/6.18.0 Ruby/2.5.1-p57 (x86_64-darwin18)
+- *Default*: Puppet/6.19.0 Ruby/2.5.1-p57 (x86_64-darwin18)
 
 ### ignore_plugin_errors
 
@@ -1410,7 +1427,7 @@ The shell search path.  Defaults to whatever is inherited
 from the parent process.
 
 This setting can only be set in the `[main]` section of puppet.conf; it cannot
-be set in `[master]`, `[agent]`, or an environment config section.
+be set in `[server]`, `[agent]`, or an environment config section.
 
 - *Default*: none
 
@@ -1571,7 +1588,7 @@ certificate store.
 
 The port to communicate with the report_server.
 
-- *Default*: $masterport
+- *Default*: $serverport
 
 ### report_server
 
@@ -1706,10 +1723,18 @@ The directory in which serialized data is stored, usually in a subdirectory.
 
 ### server_list
 
-The list of Puppet master servers to which the Puppet agent should connect,
-in the order that they will be tried. Each value should be a fully qualified domain name, followed by an optional `:` and port number. If a port is omitted, Puppet uses masterport for that host.
+The list of puppet master servers to which the puppet agent should connect,
+in the order that they will be tried.
 
 - *Default*: []
+
+### serverport
+
+The default port puppet subcommands use to communicate
+with Puppet Server. (eg `puppet facts upload`, `puppet agent`). May be
+overridden by more specific settings (see `ca_port`, `report_port`).
+
+- *Default*: 8140
 
 ### show_diff
 
