@@ -160,8 +160,7 @@ Allowed values:
 <h4 id="exec-attribute-path">path</h4>
 
 The search path used for command execution.
-Commands must be fully qualified if no path is specified.  Paths
-can be specified as an array or as a '
+Commands must be fully qualified if no path is specified. Paths can be specified as an array or as a seperated list.
 
 ([↑ Back to exec attributes](#exec-attributes))
 
