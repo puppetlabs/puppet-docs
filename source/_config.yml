@@ -131,9 +131,9 @@ documents:
     nav: ./_puppet_toc.html
   
   # Puppet 6.19
-  /puppet/6.19:
+  /puppet/6.y:
     doc: puppet
-    version: "6.19"
+    version: "6.y"
     nav: ./_puppet_toc.html
 
   # Puppet 5.5
