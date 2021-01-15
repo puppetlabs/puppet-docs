@@ -130,11 +130,17 @@ documents:
     version: "latest"
     nav: ./_puppet_toc.html
   
-  # Puppet 6.19
+  # Puppet 6.y
   /puppet/6.y:
     doc: puppet
     version: "6.y"
     nav: ./_puppet_toc.html
+
+  # Delete once 6.20 goes live
+  /puppet/6.19:
+    doc: puppet
+    version: "6.19"
+    nav: ./_puppet_toc.html  
 
   # Puppet 5.5
   /docs/puppet/5.5:
