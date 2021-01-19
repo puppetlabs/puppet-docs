@@ -116,7 +116,7 @@ GEM
       semantic_puppet (~> 1.0)
     puppet-resource_api (1.8.13)
       hocon (>= 1.0)
-    puppet-strings (2.5.0)
+    puppet-strings (2.6.0)
       rgen
       yard (~> 0.9.5)
     racc (1.5.2)
