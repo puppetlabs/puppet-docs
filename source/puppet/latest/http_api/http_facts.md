@@ -34,7 +34,8 @@ None
 * Note: list of facts was shortened for readability.
 * Note: JSON was formatted for readability.
 
-    PUT /puppet/v3/facts/elmo.mydomain.com?environment=env
+    PUT /puppet/v3/facts/elmo.mydomain.com?environment=:environment
+    
     Content-Type: application/json
 
     {
@@ -54,6 +55,7 @@ None
     }
 
     HTTP/1.1 200 OK
+    
     Content-Type: application/json
 
 Schema
@@ -61,3 +63,5 @@ Schema
 
 The representation of facts contained in a PUT body, should adhere to
 [the facts schema.](../schemas/facts.json)
+
+The body of the PUT request can be generated using `puppet facts find > facts.json`.
