@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 07afb30deb4ab5a3cbba330556fc3d5722e7a020
+built_from_commit: eab773ebdad48a4587f1a650aa01334fbc154dbc
 title: Configuration Reference
 toc: columns
 canonical: "/puppet/latest/configuration.html"
@@ -17,11 +17,12 @@ canonical: "/puppet/latest/configuration.html"
 * Each of these settings can be specified in `puppet.conf` or on the
   command line.
 * Puppet Enterprise (PE) and open source Puppet share the configuration settings
-  that are documented here. However, PE defaults for some settings differ from
-  the open source Puppet defaults. Some examples of settings that have different
-  PE defaults include `disable18n`, `environment_timeout`, `always_retry_plugins`,
-  and the Puppet Server JRuby `max-active-instances` setting. To verify PE
-  configuration defaults, check the `puppet.conf` file after installation.
+  documented here. However, PE defaults differ from open source defaults for some
+  settings, such as `node_terminus`, `storeconfigs`, `always_retry_plugins`,
+  `disable18n`, `environment_timeout` (when Code Manager is enabled), and the
+  Puppet Server JRuby `max-active-instances` setting. To verify PE configuration
+  defaults, check the `puppet.conf` or `pe-puppet-server.conf` file after
+  installation.
 * When using boolean settings on the command line, use `--setting` and
   `--no-setting` instead of `--setting (true|false)`. (Using `--setting false`
   results in "Error: Could not parse application options: needless argument".)
@@ -288,8 +289,9 @@ A node's certname is available in Puppet manifests as `$trusted['certname']`. (S
 [Facts and Built-In Variables](https://puppet.com/docs/puppet/latest/lang_facts_and_builtin_vars.html)
 for more details.)
 
-* The value of `certname` must match the regular expression of `/\A[ -.0-~]+\Z/`. For best compatibility, limit the value of `certname` to
-  only use lowercase letters, numbers, periods, underscores, and dashes.
+* For best compatibility, you should limit the value of `certname` to
+  only use lowercase letters, numbers, periods, underscores, and dashes. (That is,
+  it should match `/A[a-z0-9._-]+Z/`.)
 * The special value `ca` is reserved, and can't be used as the certname
   for a normal node.
 
@@ -931,7 +933,7 @@ This setting can be a time interval in seconds (30 or 30s), minutes (30m), hours
 
 The HTTP User-Agent string to send when making network requests.
 
-- *Default*: Puppet/7.0.0 Ruby/2.5.1-p57 (x86_64-darwin18)
+- *Default*: Puppet/7.3.0 Ruby/2.5.1-p57 (x86_64-darwin18)
 
 ### ignore_plugin_errors
 
@@ -1117,7 +1119,7 @@ Default logging level for messages from Puppet. Allowed values are:
 
 Where to send log messages. Choose between 'syslog' (the POSIX syslog
 service), 'eventlog' (the Windows Event Log), 'console', or the path to a log
-file.
+file. Multiple destinations can be set using a comma separated list (eg: `/path/file1,console,/path/file2`)
 
 - *Default*: 
 
@@ -1155,7 +1157,7 @@ The default port puppet subcommands use to communicate
 with Puppet Server. (eg `puppet facts upload`, `puppet agent`). May be
 overridden by more specific settings (see `ca_port`, `report_port`).
 
-- *Default*: $serverport
+- *Default*: 8140
 
 ### max_deprecations
 
