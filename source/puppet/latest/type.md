@@ -230,22 +230,18 @@ exec resource autorequires that user.
 
 <pre><code>exec { 'resource title':
   <a href="#exec-attribute-command">command</a>     =&gt; <em># <strong>(namevar)</strong> The actual command to execute.  Must either be...</em>
-  <a href="#exec-attribute-creates">creates</a>     =&gt; <em># A file to look for before running the command...</em>
   <a href="#exec-attribute-cwd">cwd</a>         =&gt; <em># The directory from which to run the command.  If </em>
   <a href="#exec-attribute-environment">environment</a> =&gt; <em># An array of any additional environment variables </em>
   <a href="#exec-attribute-group">group</a>       =&gt; <em># The group to run the command as.  This seems to...</em>
   <a href="#exec-attribute-logoutput">logoutput</a>   =&gt; <em># Whether to log command output in addition to...</em>
-  <a href="#exec-attribute-onlyif">onlyif</a>      =&gt; <em># A test command that checks the state of the...</em>
   <a href="#exec-attribute-path">path</a>        =&gt; <em># The search path used for command execution...</em>
   <a href="#exec-attribute-provider">provider</a>    =&gt; <em># The specific backend to use for this `exec...</em>
   <a href="#exec-attribute-refresh">refresh</a>     =&gt; <em># An alternate command to run when the `exec...</em>
-  <a href="#exec-attribute-refreshonly">refreshonly</a> =&gt; <em># The command should only be run as a refresh...</em>
   <a href="#exec-attribute-returns">returns</a>     =&gt; <em># The expected exit code(s).  An error will be...</em>
   <a href="#exec-attribute-timeout">timeout</a>     =&gt; <em># The maximum time the command should take.  If...</em>
   <a href="#exec-attribute-tries">tries</a>       =&gt; <em># The number of times execution of the command...</em>
   <a href="#exec-attribute-try_sleep">try_sleep</a>   =&gt; <em># The time to sleep in seconds between 'tries'....</em>
   <a href="#exec-attribute-umask">umask</a>       =&gt; <em># Sets the umask to be used while executing this...</em>
-  <a href="#exec-attribute-unless">unless</a>      =&gt; <em># A test command that checks the state of the...</em>
   <a href="#exec-attribute-user">user</a>        =&gt; <em># The user to run the command as.  > **Note:*...</em>
   # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
@@ -263,28 +259,6 @@ any output is logged at the `err` log level.
 
 Multiple `exec` resources can use the same `command` value; Puppet
 only uses the resource title to ensure `exec`s are unique.
-
-([↑ Back to exec attributes](#exec-attributes))
-
-<h4 id="exec-attribute-creates">creates</h4>
-
-A file to look for before running the command. The command will
-only run if the file **doesn't exist.**
-
-This parameter doesn't cause Puppet to create a file; it is only
-useful if **the command itself** creates a file.
-
-    exec { 'tar -xf /Volumes/nfs02/important.tar':
-      cwd     => '/var/tmp',
-      creates => '/var/tmp/myfile',
-      path    => ['/usr/bin', '/usr/sbin',],
-    }
-
-In this example, `myfile` is assumed to be a file inside
-`important.tar`. If it is ever deleted, the exec will bring it
-back by re-extracting the tarball. If `important.tar` does **not**
-actually contain `myfile`, the exec will keep running every time
-Puppet runs.
 
 ([↑ Back to exec attributes](#exec-attributes))
 
@@ -332,38 +306,10 @@ Allowed values:
 
 ([↑ Back to exec attributes](#exec-attributes))
 
-<h4 id="exec-attribute-onlyif">onlyif</h4>
-
-A test command that checks the state of the target system and restricts
-when the `exec` can run. If present, Puppet runs this test command
-first, and only runs the main command if the test has an exit code of 0
-(success). For example:
-
-    exec { 'logrotate':
-      path     => '/usr/bin:/usr/sbin:/bin',
-      provider => shell,
-      onlyif   => 'test `du /var/log/messages | cut -f1` -gt 100000',
-    }
-
-This would run `logrotate` only if that test returns true.
-
-Note that this test command runs with the same `provider`, `path`, `cwd`, `user`, and `group` as the main command. If the `path` isn't set, you
-must fully qualify the command's name.
-
-This parameter can also take an array of commands. For example:
-
-    onlyif => ['test -f /tmp/file1', 'test -f /tmp/file2'],
-
-This `exec` would only run if every command in the array has an
-exit code of 0 (success).
-
-([↑ Back to exec attributes](#exec-attributes))
-
 <h4 id="exec-attribute-path">path</h4>
 
 The search path used for command execution.
-Commands must be fully qualified if no path is specified.  Paths
-can be specified as an array or as a seperated list.
+Commands must be fully qualified if no path is specified. Paths can be specified as an array or as a seperated list.
 
 ([↑ Back to exec attributes](#exec-attributes))
 
@@ -389,35 +335,6 @@ description for this resource type.
 Note that this alternate command runs with the same `provider`, `path`,
 `user`, and `group` as the main command. If the `path` isn't set, you
 must fully qualify the command's name.
-
-([↑ Back to exec attributes](#exec-attributes))
-
-<h4 id="exec-attribute-refreshonly">refreshonly</h4>
-
-The command should only be run as a
-refresh mechanism for when a dependent object is changed.  It only
-makes sense to use this option when this command depends on some
-other object; it is useful for triggering an action:
-
-    # Pull down the main aliases file
-    file { '/etc/aliases':
-      source => 'puppet://server/module/aliases',
-    }
-
-    # Rebuild the database, but only when the file changes
-    exec { newaliases:
-      path        => ['/usr/bin', '/usr/sbin'],
-      subscribe   => File['/etc/aliases'],
-      refreshonly => true,
-    }
-
-Note that only `subscribe` and `notify` can trigger actions, not `require`,
-so it only makes sense to use `refreshonly` with `subscribe` or `notify`.
-
-Allowed values:
-
-* `true`
-* `false`
 
 ([↑ Back to exec attributes](#exec-attributes))
 
@@ -484,33 +401,6 @@ Default: `0`
 <h4 id="exec-attribute-umask">umask</h4>
 
 Sets the umask to be used while executing this command
-
-([↑ Back to exec attributes](#exec-attributes))
-
-<h4 id="exec-attribute-unless">unless</h4>
-
-A test command that checks the state of the target system and restricts
-when the `exec` can run. If present, Puppet runs this test command
-first, then runs the main command unless the test has an exit code of 0
-(success). For example:
-
-    exec { '/bin/echo root >> /usr/lib/cron/cron.allow':
-      path   => '/usr/bin:/usr/sbin:/bin',
-      unless => 'grep root /usr/lib/cron/cron.allow 2>/dev/null',
-    }
-
-This would add `root` to the cron.allow file (on Solaris) unless
-`grep` determines it's already there.
-
-Note that this test command runs with the same `provider`, `path`, `cwd`, `user`, and `group` as the main command. If the `path` isn't set, you
-must fully qualify the command's name.
-
-This parameter can also take an array of commands. For example:
-
-    unless => ['test -f /tmp/file1', 'test -f /tmp/file2'],
-
-This `exec` runs only if every command in the array has a
-non-zero exit code.
 
 ([↑ Back to exec attributes](#exec-attributes))
 
@@ -619,7 +509,6 @@ consider using alternative methods such as the `chmod_r`, `chown_r`,
 
 <pre><code>file { 'resource title':
   <a href="#file-attribute-path">path</a>                    =&gt; <em># <strong>(namevar)</strong> The path to the file to manage.  Must be fully...</em>
-  <a href="#file-attribute-ensure">ensure</a>                  =&gt; <em># Whether the file should exist, and if so what...</em>
   <a href="#file-attribute-backup">backup</a>                  =&gt; <em># Whether (and how) file content should be backed...</em>
   <a href="#file-attribute-checksum">checksum</a>                =&gt; <em># The checksum type to use when determining...</em>
   <a href="#file-attribute-checksum_value">checksum_value</a>          =&gt; <em># The checksum of the source contents. Only md5...</em>
@@ -665,58 +554,6 @@ the separator character (rather than `\\`).
 
 ([↑ Back to file attributes](#file-attributes))
 
-<h4 id="file-attribute-ensure">ensure</h4>
-
-_(**Property:** This attribute represents concrete state on the target system.)_
-
-Whether the file should exist, and if so what kind of file it should be.
-Possible values are `present`, `absent`, `file`, `directory`, and `link`.
-
-* `present` accepts any form of file existence, and creates a
-  normal file if the file is missing. (The file will have no content
-  unless the `content` or `source` attribute is used.)
-* `absent` ensures the file doesn't exist, and deletes it if necessary.
-* `file` ensures it's a normal file, and enables use of the `content` or
-  `source` attribute.
-* `directory` ensures it's a directory, and enables use of the `source`,
-  `recurse`, `recurselimit`, `ignore`, and `purge` attributes.
-* `link` ensures the file is a symlink, and **requires** that you also
-  set the `target` attribute. Symlinks are supported on all Posix
-  systems and on Windows Vista / 2008 and higher. On Windows, managing
-  symlinks requires Puppet agent's user account to have the "Create
-  Symbolic Links" privilege; this can be configured in the "User Rights
-  Assignment" section in the Windows policy editor. By default, Puppet
-  agent runs as the Administrator account, which has this privilege.
-
-Puppet avoids destroying directories unless the `force` attribute is set
-to `true`. This means that if a file is currently a directory, setting
-`ensure` to anything but `directory` or `present` will cause Puppet to
-skip managing the resource and log either a notice or an error.
-
-There is one other non-standard value for `ensure`. If you specify the
-path to another file as the ensure value, it is equivalent to specifying
-`link` and using that path as the `target`:
-
-    # Equivalent resources:
-
-    file { '/etc/inetd.conf':
-      ensure => '/etc/inet/inetd.conf',
-    }
-
-    file { '/etc/inetd.conf':
-      ensure => link,
-      target => '/etc/inet/inetd.conf',
-    }
-
-However, we recommend using `link` and `target` explicitly, since this
-behavior can be harder to read and is
-[deprecated](https://docs.puppet.com/puppet/4.3/deprecated_language.html)
-as of Puppet 4.3.0.
-
-Valid values are `absent` (also called `false`), `file`, `present`, `directory`, `link`. Values can match `/./`.
-
-([↑ Back to file attributes](#file-attributes))
-
 <h4 id="file-attribute-backup">backup</h4>
 
 Whether (and how) file content should be backed up before being replaced.
@@ -728,13 +565,11 @@ This attribute works best as a resource default in the site manifest
   use copy the file in the same directory with that value as the extension
   of the backup. (A value of `true` is a synonym for `.puppet-bak`.)
 * If set to any other string, Puppet will try to back up to a filebucket
-  with that title. See the `filebucket` resource type for more details.
-  (This is the preferred method for backup, since it can be centralized
-  and queried.)
+  with that title. Puppet automatically creates a **local** filebucket
+  named `puppet` if one doesn't already exist. See the `filebucket` resource
+  type for more details.
 
-Default value: `puppet`, which backs up to a filebucket of the same name.
-(Puppet automatically creates a **local** filebucket named `puppet` if one
-doesn't already exist.)
+Default value: `false`
 
 Backing up to a local filebucket isn't particularly useful. If you want
 to make organized use of backups, you will generally want to use the
@@ -769,7 +604,7 @@ masters.
 
   - Restrict the directory to a maximum size after which the oldest items are removed.
 
-Default: `puppet`
+Default: `false`
 
 ([↑ Back to file attributes](#file-attributes))
 
@@ -777,7 +612,7 @@ Default: `puppet`
 
 The checksum type to use when determining whether to replace a file's contents.
 
-The default checksum type is md5.
+The default checksum type is
 
 Allowed values:
 
@@ -1332,7 +1167,6 @@ location is on the same filesystem as the final location.
 
 ([↑ Back to file attributes](#file-attributes))
 
-
 <h4 id="file-attribute-target">target</h4>
 
 _(**Property:** This attribute represents concrete state on the target system.)_
@@ -1412,14 +1246,12 @@ Default: `%`
 Uses POSIX functionality to manage file ownership and permissions.
 
 * Confined to: `feature == posix`
-* Supported features: `manages_symlinks`
 
 <h4 id="file-provider-windows">windows</h4>
 
 Uses Microsoft Windows functionality to manage file ownership and permissions.
 
 * Confined to: `operatingsystem == windows`
-* Supported features: `manages_symlinks`
 
 <h3 id="file-provider-features">Provider Features</h3>
 
@@ -1457,7 +1289,7 @@ filebucket
 
 A repository for storing and retrieving file content by MD5 checksum. Can
 be local to each agent node, or centralized on a puppet master server. All
-puppet masters provide a filebucket service that agent nodes can access
+puppet servers provide a filebucket service that agent nodes can access
 via HTTP, but you must declare a filebucket resource before any agents
 will do so.
 
@@ -1482,9 +1314,9 @@ in site.pp:
 
     File { backup => main, }
 
-Puppet master servers automatically provide the filebucket service, so
+Puppet Servers automatically provide the filebucket service, so
 this will work in a default configuration. If you have a heavily
-restricted `auth.conf` file, you may need to allow access to the
+restricted Puppet Server `auth.conf` file, you may need to allow access to the
 `file_bucket_file` endpoint.
 
 <h3 id="filebucket-attributes">Attributes</h3>
@@ -1520,7 +1352,7 @@ The port on which the remote server is listening.
 This setting is _only_ consulted if the `path` attribute is set to `false`.
 
 If this attribute is not specified, the first entry in the `server_list`
-configuration setting is used, followed by the value of the `masterport`
+configuration setting is used, followed by the value of the `serverport`
 setting if `server_list` is not set.
 
 ([↑ Back to filebucket attributes](#filebucket-attributes))
@@ -1760,8 +1592,7 @@ Group management for AIX.
 
 * Required binaries: `/usr/sbin/lsgroup`, `/usr/bin/mkgroup`, `/usr/sbin/rmgroup`, `/usr/bin/chgroup`
 * Confined to: `operatingsystem == aix`
-* Default for: `operatingsystem` == `aix`
-* Supported features: `manages_aix_lam`, `manages_members`
+* Default for: `["operatingsystem", "aix"] == `
 
 <h4 id="group-provider-directoryservice">directoryservice</h4>
 
@@ -1769,15 +1600,13 @@ Group management using DirectoryService on OS X.
 
 * Required binaries: `/usr/bin/dscl`
 * Confined to: `operatingsystem == darwin`
-* Default for: `operatingsystem` == `darwin`
-* Supported features: `manages_members`
+* Default for: `["operatingsystem", "darwin"] == `
 
 <h4 id="group-provider-groupadd">groupadd</h4>
 
 Group management via `groupadd` and its ilk. The default for most platforms.
 
 * Required binaries: `groupadd`, `groupdel`, `groupmod`
-* Supported features: `system_groups`
 
 <h4 id="group-provider-ldap">ldap</h4>
 
@@ -1800,8 +1629,7 @@ Group management via `pw` on FreeBSD and DragonFly BSD.
 
 * Required binaries: `pw`
 * Confined to: `operatingsystem == [:freebsd, :dragonfly]`
-* Default for `operatingsystem` == `freebsd, dragonfly`.
-* Supported features: `manages_members`.
+* Default for: `["operatingsystem", "[:freebsd, :dragonfly]"] == `
 
 <h4 id="group-provider-windows_adsi">windows_adsi</h4>
 
@@ -1809,8 +1637,7 @@ Local group management for Windows. Group members can be both users and groups.
 Additionally, local groups can contain domain users.
 
 * Confined to: `operatingsystem == windows`
-* Default for: `operatingsystem` == `windows`
-* Supported features: `manages_members`.
+* Default for: `["operatingsystem", "windows"] == `
 
 <h3 id="group-provider-features">Provider Features</h3>
 
@@ -1963,8 +1790,6 @@ resource will autorequire those files.
 <pre><code>package { 'resource title':
   <a href="#package-attribute-name">name</a>                 =&gt; <em># <strong>(namevar)</strong> The package name.  This is the name that the...</em>
   <a href="#package-attribute-command">command</a>              =&gt; <em># <strong>(namevar)</strong> The targeted command to use when managing a...</em>
-  <a href="#package-attribute-name">name</a>                 =&gt; <em># <strong>(namevar)</strong> The package name.  This is the name that the...</em>
-  <a href="#package-attribute-provider">provider</a>             =&gt; <em># <strong>(namevar)</strong> The specific backend to use for this `package...</em>
   <a href="#package-attribute-ensure">ensure</a>               =&gt; <em># What state the package should be in. On...</em>
   <a href="#package-attribute-adminfile">adminfile</a>            =&gt; <em># A file containing package defaults for...</em>
   <a href="#package-attribute-allow_virtual">allow_virtual</a>        =&gt; <em># Specifies if virtual package names are allowed...</em>
@@ -1980,6 +1805,7 @@ resource will autorequire those files.
   <a href="#package-attribute-mark">mark</a>                 =&gt; <em># Set to hold to tell Debian apt/Solaris pkg to...</em>
   <a href="#package-attribute-package_settings">package_settings</a>     =&gt; <em># Settings that can change the contents or...</em>
   <a href="#package-attribute-platform">platform</a>             =&gt; <em># A read-only parameter set by the...</em>
+  <a href="#package-attribute-provider">provider</a>             =&gt; <em># The specific backend to use for this `package...</em>
   <a href="#package-attribute-reinstall_on_refresh">reinstall_on_refresh</a> =&gt; <em># Whether this resource should respond to refresh...</em>
   <a href="#package-attribute-responsefile">responsefile</a>         =&gt; <em># A file containing any necessary answers to...</em>
   <a href="#package-attribute-root">root</a>                 =&gt; <em># A read-only parameter set by the...</em>
@@ -2051,51 +1877,7 @@ instances of the command are installed, or the command is not in the PATH.
 
 Default: `default`
 
-The specific backend to use for this `package`
-resource. You will seldom need to specify this --- Puppet will usually
-discover the appropriate provider for your platform.
-
-Available providers are:
-
-* [`aix`](#package-provider-aix)
-* [`appdmg`](#package-provider-appdmg)
-* [`apple`](#package-provider-apple)
-* [`apt`](#package-provider-apt)
-* [`aptitude`](#package-provider-aptitude)
-* [`aptrpm`](#package-provider-aptrpm)
-* [`blastwave`](#package-provider-blastwave)
-* [`dnf`](#package-provider-dnf)
-* [`dpkg`](#package-provider-dpkg)
-* [`fink`](#package-provider-fink)
-* [`freebsd`](#package-provider-freebsd)
-* [`gem`](#package-provider-gem)
-* [`hpux`](#package-provider-hpux)
-* [`macports`](#package-provider-macports)
-* [`nim`](#package-provider-nim)
-* [`openbsd`](#package-provider-openbsd)
-* [`opkg`](#package-provider-opkg)
-* [`pacman`](#package-provider-pacman)
-* [`pip3`](#package-provider-pip3)
-* [`pip`](#package-provider-pip)
-* [`pkg`](#package-provider-pkg)
-* [`pkgdmg`](#package-provider-pkgdmg)
-* [`pkgin`](#package-provider-pkgin)
-* [`pkgng`](#package-provider-pkgng)
-* [`pkgutil`](#package-provider-pkgutil)
-* [`portage`](#package-provider-portage)
-* [`ports`](#package-provider-ports)
-* [`portupgrade`](#package-provider-portupgrade)
-* [`puppet_gem`](#package-provider-puppet_gem)
-* [`rpm`](#package-provider-rpm)
-* [`rug`](#package-provider-rug)
-* [`sun`](#package-provider-sun)
-* [`sunfreeware`](#package-provider-sunfreeware)
-* [`tdnf`](#package-provider-tdnf)
-* [`up2date`](#package-provider-up2date)
-* [`urpmi`](#package-provider-urpmi)
-* [`windows`](#package-provider-windows)
-* [`yum`](#package-provider-yum)
-* [`zypper`](#package-provider-zypper)
+Requires features targetable.
 
 ([↑ Back to package attributes](#package-attributes))
 
@@ -2111,8 +1893,7 @@ from "normal" system files, you can uninstall config files by
 specifying `purged` as the ensure value. This defaults to `installed`.
 
 Version numbers must match the full version to install, including
-release if the provider uses a release moniker. Ranges or semver
-patterns are not accepted except for the `gem` package provider. For
+release if the provider uses a release moniker. For
 example, to install the bash package from the rpm
 `bash-4.1.2-29.el6.x86_64.rpm`, use the string `'4.1.2-29.el6'`.
 
@@ -2126,7 +1907,6 @@ Allowed values:
 * `present`
 * `absent`
 * `purged`
-* `held`
 * `disabled`
 * `installed`
 * `latest`
@@ -2151,8 +1931,6 @@ The value of `adminfile` will be passed directly to the `pkgadd` or
 <h4 id="package-attribute-allow_virtual">allow_virtual</h4>
 
 Specifies if virtual package names are allowed for install and uninstall.
-
-Default: `true`
 
 Allowed values:
 
@@ -2297,7 +2075,7 @@ Set to hold to tell Debian apt/Solaris pkg to hold the package version
 Default is "none". Mark can be specified with or without `ensure`,
 if `ensure` is missing will default to "present".
 
-Mark cannot be specified together with "purged", "absent" or "held"
+Mark cannot be specified together with "purged", or "absent"
 values for `ensure`.
 
 Allowed values:
@@ -2340,6 +2118,57 @@ Requires features package_settings.
 <h4 id="package-attribute-platform">platform</h4>
 
 A read-only parameter set by the package.
+
+([↑ Back to package attributes](#package-attributes))
+
+<h4 id="package-attribute-provider">provider</h4>
+
+The specific backend to use for this `package` resource. You will seldom need to specify this --- Puppet will usually discover the appropriate provider for your platform.
+
+Available providers are:
+
+* [`aix`](#package-provider-aix)
+* [`appdmg`](#package-provider-appdmg)
+* [`apple`](#package-provider-apple)
+* [`apt`](#package-provider-apt)
+* [`aptitude`](#package-provider-aptitude)
+* [`aptrpm`](#package-provider-aptrpm)
+* [`blastwave`](#package-provider-blastwave)
+* [`dnf`](#package-provider-dnf)
+* [`dnfmodule`](#package-provider-dnfmodule)
+* [`dpkg`](#package-provider-dpkg)
+* [`fink`](#package-provider-fink)
+* [`freebsd`](#package-provider-freebsd)
+* [`gem`](#package-provider-gem)
+* [`hpux`](#package-provider-hpux)
+* [`macports`](#package-provider-macports)
+* [`nim`](#package-provider-nim)
+* [`openbsd`](#package-provider-openbsd)
+* [`opkg`](#package-provider-opkg)
+* [`pacman`](#package-provider-pacman)
+* [`pip2`](#package-provider-pip2)
+* [`pip3`](#package-provider-pip3)
+* [`pip`](#package-provider-pip)
+* [`pkg`](#package-provider-pkg)
+* [`pkgdmg`](#package-provider-pkgdmg)
+* [`pkgin`](#package-provider-pkgin)
+* [`pkgng`](#package-provider-pkgng)
+* [`pkgutil`](#package-provider-pkgutil)
+* [`portage`](#package-provider-portage)
+* [`ports`](#package-provider-ports)
+* [`portupgrade`](#package-provider-portupgrade)
+* [`puppet_gem`](#package-provider-puppet_gem)
+* [`puppetserver_gem`](#package-provider-puppetserver_gem)
+* [`rpm`](#package-provider-rpm)
+* [`rug`](#package-provider-rug)
+* [`sun`](#package-provider-sun)
+* [`sunfreeware`](#package-provider-sunfreeware)
+* [`tdnf`](#package-provider-tdnf)
+* [`up2date`](#package-provider-up2date)
+* [`urpmi`](#package-provider-urpmi)
+* [`windows`](#package-provider-windows)
+* [`yum`](#package-provider-yum)
+* [`zypper`](#package-provider-zypper)
 
 ([↑ Back to package attributes](#package-attributes))
 
@@ -2456,8 +2285,7 @@ installed on the machine, the resource will fail with an error message.
 
 * Required binaries: `/usr/bin/lslpp`, `/usr/sbin/installp`
 * Confined to: `operatingsystem == [ :aix ]`
-* Default for: `operatingsystem` == `aix`
-* Supported features: `installable`, `uninstallable`, `upgradeable`, `versionable`
+* Default for: `["operatingsystem", "aix"] == `
 
 <h4 id="package-provider-appdmg">appdmg</h4>
 
@@ -2465,7 +2293,6 @@ Package management which copies application bundles to a target.
 
 * Required binaries: `/usr/bin/hdiutil`, `/usr/bin/curl`, `/usr/bin/ditto`
 * Confined to: `operatingsystem == darwin`, `feature == cfpropertylist`
-* Supported features: `installable`
 
 <h4 id="package-provider-apple">apple</h4>
 
@@ -2477,7 +2304,6 @@ the package name.
 
 * Required binaries: `/usr/sbin/installer`
 * Confined to: `operatingsystem == darwin`
-* Supported features: `installable`
 
 <h4 id="package-provider-apt">apt</h4>
 
@@ -2487,23 +2313,20 @@ This provider supports the `install_options` attribute, which allows command-lin
 These options should be specified as an array where each element is either a
  string or a hash.
 
-* Required binaries: `/usr/bin/apt-get`, `/usr/bin/apt-cache`, `/usr/bin/debconf-set-selections`
-* Default for: `osfamily` == `debian`
-* Supported features: `holdable`, `install_options`, `installable`, `purgeable`, `uninstallable`, `upgradeable`, `versionable`
+* Required binaries: `/usr/bin/apt-get`, `/usr/bin/apt-cache`, `/usr/bin/apt-mark`, `/usr/bin/debconf-set-selections`
+* Default for: `["osfamily", "debian"] == `
 
 <h4 id="package-provider-aptitude">aptitude</h4>
 
 Package management via `aptitude`.
 
 * Required binaries: `/usr/bin/aptitude`, `/usr/bin/apt-cache`
-* Supported features: `holdable`, `installable`, `purgeable`, `uninstallable`, `upgradeable`, `versionable`
 
 <h4 id="package-provider-aptrpm">aptrpm</h4>
 
 Package management via `apt-get` ported to `rpm`.
 
 * Required binaries: `apt-get`, `apt-cache`, `rpm`
-* Supported features: `installable`, `purgeable`, `uninstallable`, `upgradeable`, `versionable`
 
 <h4 id="package-provider-blastwave">blastwave</h4>
 
@@ -2511,7 +2334,6 @@ Package management using Blastwave.org's `pkg-get` command on Solaris.
 
 * Required binaries: `pkgget`
 * Confined to: `osfamily == solaris`
-* Supported features: `installable`, `uninstallable`, `upgradeable`
 
 <h4 id="package-provider-dnf">dnf</h4>
 
@@ -2526,8 +2348,13 @@ These options should be specified as an array where each element is either
  a string or a hash.
 
 * Required binaries: `dnf`, `rpm`
-* Default for `operatingsystem` == `fedora` and `operatingsystemmajrelease` == `22, 23, 24, 25, 26, 27, 28, 29, 30`.
-* Supported features: `install_options`, `installable`, `purgeable`, `uninstallable`, `upgradeable`, `versionable`, `virtual_packages`
+* Default for: `["operatingsystem", "fedora"] == `, `["osfamily", "redhat"] == `
+
+<h4 id="package-provider-dnfmodule">dnfmodule</h4>
+
+
+
+* Required binaries: `/usr/bin/dnf`
 
 <h4 id="package-provider-dpkg">dpkg</h4>
 
@@ -2536,14 +2363,12 @@ and not `apt`, you must specify the source of any packages you want
 to manage.
 
 * Required binaries: `/usr/bin/dpkg`, `/usr/bin/dpkg-deb`, `/usr/bin/dpkg-query`
-* Supported features: `holdable`, `installable`, `purgeable`, `uninstallable`, `upgradeable`
 
 <h4 id="package-provider-fink">fink</h4>
 
 Package management via `fink`.
 
 * Required binaries: `/sw/bin/fink`, `/sw/bin/apt-get`, `/sw/bin/apt-cache`, `/sw/bin/dpkg-query`
-* Supported features: `holdable`, `installable`, `purgeable`, `uninstallable`, `upgradeable`, `versionable`
 
 <h4 id="package-provider-freebsd">freebsd</h4>
 
@@ -2555,7 +2380,6 @@ libraries.
 
 * Required binaries: `/usr/sbin/pkg_info`, `/usr/sbin/pkg_add`, `/usr/sbin/pkg_delete`
 * Confined to: `operatingsystem == freebsd`
-* Supported features: `installable`, `purgeable`, `uninstallable`, `upgradeable`.
 
 <h4 id="package-provider-gem">gem</h4>
 
@@ -2577,8 +2401,7 @@ HP-UX's packaging system.
 
 * Required binaries: `/usr/sbin/swinstall`, `/usr/sbin/swlist`, `/usr/sbin/swremove`
 * Confined to: `operatingsystem == hp-ux`
-* Default for `operatingsystem` == `hp-ux`.
-* Supported features: `installable`, `uninstallable`
+* Default for: `["operatingsystem", "hp-ux"] == `
 
 <h4 id="package-provider-macports">macports</h4>
 
@@ -2591,9 +2414,7 @@ Variant preferences may be specified using
 When specifying a version in the Puppet DSL, only specify the version, not the revision.
 Revisions are only used internally for ensuring the latest version/revision of a port.
 
-* Required binaries: `/opt/local/bin/port`
 * Confined to: `operatingsystem == darwin`
-* Supported features: `installable`, `uninstallable`, `upgradeable`, `versionable`
 
 <h4 id="package-provider-nim">nim</h4>
 
@@ -2608,7 +2429,6 @@ installed on the machine, the resource will fail with an error message.
 
 * Required binaries: `/usr/sbin/nimclient`, `/usr/bin/lslpp`, `rpm`
 * Confined to: `exists == /etc/niminfo`
-* Supported features: `installable`, `uninstallable`, `upgradeable`, `versionable`
 
 <h4 id="package-provider-openbsd">openbsd</h4>
 
@@ -2621,8 +2441,7 @@ These options should be specified as an array where each element is either a
 
 * Required binaries: `pkg_info`, `pkg_add`, `pkg_delete`
 * Confined to: `operatingsystem == openbsd`
-* Default for: `operatingsystem` == `openbsd`
-* Supported features: `install_options`, `installable`, `purgeable`, `uninstall_options`, `uninstallable`, `upgradeable`, `versionable`
+* Default for: `["operatingsystem", "openbsd"] == `
 
 <h4 id="package-provider-opkg">opkg</h4>
 
@@ -2630,8 +2449,7 @@ Opkg packaging support. Common on OpenWrt and OpenEmbedded platforms
 
 * Required binaries: `opkg`
 * Confined to: `operatingsystem == openwrt`
-* Default for `operatingsystem == openwrt`.
-* Supported features: `installable`, `uninstallable`, `upgradeable`
+* Default for: `["operatingsystem", "openwrt"] == `
 
 <h4 id="package-provider-pacman">pacman</h4>
 
@@ -2643,7 +2461,6 @@ These options should be specified as an array where each element is either a str
 * Required binaries: `/usr/bin/pacman`
 * Confined to: `operatingsystem == [:archlinux, :manjarolinux]`
 * Default for: `["operatingsystem", "[:archlinux, :manjarolinux]"] == `
-* Supported features: `install_options`, `installable`, `uninstall_options`, `uninstallable`, `upgradeable`, `virtual_packages`
 
 <h4 id="package-provider-pip">pip</h4>
 
@@ -2652,14 +2469,19 @@ Python packages via `pip`.
 This provider supports the `install_options` attribute, which allows command-line flags to be passed to pip.
 These options should be specified as an array where each element is either a string or a hash.
 
+<h4 id="package-provider-pip2">pip2</h4>
+
+Python packages via `pip2`.
+
+This provider supports the `install_options` attribute, which allows command-line flags to be passed to pip2.
+These options should be specified as an array where each element is either a string or a hash.
+
 <h4 id="package-provider-pip3">pip3</h4>
 
 Python packages via `pip3`.
 
 This provider supports the `install_options` attribute, which allows command-line flags to be passed to pip3.
 These options should be specified as an array where each element is either a string or a hash.
-
-* Supported features: `install_options`, `installable`, `uninstallable`, `upgradeable`, `versionable`
 
 <h4 id="package-provider-pkg">pkg</h4>
 
@@ -2672,7 +2494,6 @@ array where each element is either a string or a hash.
 * Required binaries: `/usr/bin/pkg`
 * Confined to: `osfamily == solaris`
 * Default for: `["osfamily", "solaris"] == ["kernelrelease", "['5.11', '5.12']"]`
-* Supported features: `holdable`, `installable`, `uninstallable`, `upgradeable`, `versionable`
 
 <h4 id="package-provider-pkgdmg">pkgdmg</h4>
 
@@ -2700,16 +2521,14 @@ Notes:
 
 * Required binaries: `/usr/sbin/installer`, `/usr/bin/hdiutil`, `/usr/bin/curl`
 * Confined to: `operatingsystem == darwin`, `feature == cfpropertylist`
-* Default for: `operatingsystem` == `darwin`
-* Supported features: `installable`
+* Default for: `["operatingsystem", "darwin"] == `
 
 <h4 id="package-provider-pkgin">pkgin</h4>
 
 Package management using pkgin, a binary package manager for pkgsrc.
 
 * Required binaries: `pkgin`
-* Default for: `operatingsystem` == `smartos, netbsd`
-* Supported features: `installable`, `uninstallable`, `upgradeable`, `versionable`
+* Default for: `["operatingsystem", "[ :smartos, :netbsd ]"] == `
 
 <h4 id="package-provider-pkgng">pkgng</h4>
 
@@ -2717,16 +2536,13 @@ A PkgNG provider for FreeBSD and DragonFly.
 
 * Required binaries: `/usr/local/sbin/pkg`
 * Confined to: `operatingsystem == [:freebsd, :dragonfly]`
-* Default for: `operatingsystem` == `freebsd, dragonfly`.
-* Supported features: `installable`, `uninstallable`, `upgradeable`, `versionable`.
+* Default for: `["operatingsystem", "[:freebsd, :dragonfly]"] == `
 
 <h4 id="package-provider-pkgutil">pkgutil</h4>
 
 Package management using Peter Bonivart's ``pkgutil`` command on Solaris.
 
-* Required binaries: `pkgutil`
 * Confined to: `osfamily == solaris`
-* Supported features: `installable`, `uninstallable`, `upgradeable`
 
 <h4 id="package-provider-portage">portage</h4>
 
@@ -2735,17 +2551,14 @@ Provides packaging support for Gentoo's portage system.
 This provider supports the `install_options` and `uninstall_options` attributes, which allows command-line
 flags to be passed to emerge. These options should be specified as an array where each element is either a string or a hash.
 
-* Required binaries: `/usr/bin/eix-update`, `/usr/bin/eix`, `/usr/bin/emerge`, `/usr/bin/qatom`
-* Confined to: `operatingsystem == gentoo`
-* Default for: `operatingsystem` == `gentoo`
-* Supported features: `install_options`, `installable`, `purgeable`, `reinstallable`, `uninstall_options`, `uninstallable`, `upgradeable`, `versionable`, `virtual_packages`
+* Confined to: `osfamily == gentoo`
+* Default for: `["osfamily", "gentoo"] == `
 
 <h4 id="package-provider-ports">ports</h4>
 
 Support for FreeBSD's ports.  Note that this, too, mixes packages and ports.
 
 * Required binaries: `/usr/local/sbin/portupgrade`, `/usr/local/sbin/portversion`, `/usr/local/sbin/pkg_deinstall`, `/usr/sbin/pkg_info`
-* Supported features: `installable`, `purgeable`, `uninstallable`, `upgradeable`
 
 <h4 id="package-provider-portupgrade">portupgrade</h4>
 
@@ -2754,26 +2567,34 @@ Use the port's full origin as the resource name. eg (ports-mgmt/portupgrade)
 for the portupgrade port.
 
 * Required binaries: `/usr/local/sbin/portupgrade`, `/usr/local/sbin/portinstall`, `/usr/local/sbin/portversion`, `/usr/local/sbin/pkg_deinstall`, `/usr/sbin/pkg_info`
-* Supported features: `installable`, `uninstallable`, `upgradeable`
 
 <h4 id="package-provider-puppet_gem">puppet_gem</h4>
 
 Puppet Ruby Gem support. This provider is useful for managing
 gems needed by the ruby provided in the puppet-agent package.
 
-* Required binaries: `/opt/puppetlabs/puppet/bin/gem`
-* Supported features: `install_options`, `installable`, `uninstall_options`, `uninstallable`, `upgradeable`, `versionable`
+<h4 id="package-provider-puppetserver_gem">puppetserver_gem</h4>
+
+Puppet Server Ruby Gem support. If a URL is passed via `source`, then
+that URL is appended to the list of remote gem repositories which by default
+contains rubygems.org; To ensure that only the specified source is used also
+pass `--clear-sources` in via `install_options`; if a source is present but
+is not a valid URL, it will be interpreted as the path to a local gem file.
+If source is not present at all, the gem will be installed from the default
+gem repositories.
+
+* Confined to: `feature == hocon`, `fips_enabled == false`
 
 <h4 id="package-provider-rpm">rpm</h4>
 
-RPM packaging support; should work anywhere with a working `rpm` binary.
+RPM packaging support; should work anywhere with a working `rpm`
+binary.
 
 This provider supports the `install_options` and `uninstall_options`
 attributes, which allow command-line flags to be passed to rpm.
 These options should be specified as an array where each element is either a string or a hash.
 
 * Required binaries: `rpm`
-* Supported features: `install_options`, `installable`, `uninstall_options`, `uninstallable`, `upgradeable`, `versionable`, `virtual_packages`
 
 <h4 id="package-provider-rug">rug</h4>
 
@@ -2781,7 +2602,6 @@ Support for suse `rug` package manager.
 
 * Required binaries: `/usr/bin/rug`, `rpm`
 * Confined to: `operatingsystem == [:suse, :sles]`
-* Supported features: `installable`, `uninstallable`, `upgradeable`, `versionable`
 
 <h4 id="package-provider-sun">sun</h4>
 
@@ -2794,8 +2614,7 @@ These options should be specified as an array where each element is either a str
 
 * Required binaries: `/usr/bin/pkginfo`, `/usr/sbin/pkgadd`, `/usr/sbin/pkgrm`
 * Confined to: `osfamily == solaris`
-* Default for: `osfamily` == `solaris`
-* Supported features: `install_options`, `installable`, `uninstallable`, `upgradeable`
+* Default for: `["osfamily", "solaris"] == `
 
 <h4 id="package-provider-sunfreeware">sunfreeware</h4>
 
@@ -2805,7 +2624,6 @@ has not actually been tested.
 
 * Required binaries: `pkg-get`
 * Confined to: `osfamily == solaris`
-* Supported features: `installable`, `uninstallable`, `upgradeable`
 
 <h4 id="package-provider-tdnf">tdnf</h4>
 
@@ -2816,8 +2634,7 @@ These options should be spcified as a string (e.g. '--flag'), a hash (e.g. {'--f
 array where each element is either a string or a hash.
 
 * Required binaries: `tdnf`, `rpm`
-* Default for `operatingsystem` == `PhotonOS`
-* Supported features: `install_options`, `installable`, `purgeable`, `uninstallable`, `upgradeable`, `versionable`, `virtual_packages`
+* Default for: `["operatingsystem", "PhotonOS"] == `
 
 <h4 id="package-provider-up2date">up2date</h4>
 
@@ -2826,16 +2643,14 @@ mechanism.
 
 * Required binaries: `/usr/sbin/up2date-nox`
 * Confined to: `osfamily == redhat`
-* Default for `lsbdistrelease` == `2.1, 3, 4` and `osfamily` == `redhat`
-* Supported features: `installable`, `uninstallable`, `upgradeable`
+* Default for: `["osfamily", "redhat"] == ["lsbdistrelease", "[\"2.1\", \"3\", \"4\"]"]`
 
 <h4 id="package-provider-urpmi">urpmi</h4>
 
 Support via `urpmi`.
 
 * Required binaries: `urpmi`, `urpmq`, `rpm`, `urpme`
-* Default for `operatingsystem` == `mandriva, mandrake`
-* Supported features: `installable`, `purgeable`, `uninstallable`, `upgradeable`, `versionable`
+* Default for: `["operatingsystem", "[:mandriva, :mandrake]"] == `
 
 <h4 id="package-provider-windows">windows</h4>
 
@@ -2857,8 +2672,7 @@ uninstall, then the appropriate arguments should be specified using the
 will automatically quote any option that contains spaces.
 
 * Confined to: `operatingsystem == windows`
-* Default for: `operatingsystem` == `windows`
-* Supported features: `install_options`, `installable`, `uninstall_options`, `uninstallable`, `versionable`
+* Default for: `["operatingsystem", "windows"] == `
 
 <h4 id="package-provider-yum">yum</h4>
 
@@ -2872,8 +2686,7 @@ This provider supports the `install_options` attribute, which allows command-lin
 These options should be specified as an array where each element is either a string or a hash.
 
 * Required binaries: `yum`, `rpm`
-* Default for: `osfamily` == `redhat`
-* Supported features: `install_options`, `installable`, `purgeable`, `uninstallable`, `upgradeable`, `versionable`, `virtual_packages`
+* Default for: `["operatingsystem", "amazon"] == `, `["osfamily", "redhat"] == ["operatingsystemmajrelease", "(4..7).to_a"]`
 
 <h4 id="package-provider-zypper">zypper</h4>
 
@@ -2885,8 +2698,7 @@ string or a hash.
 
 * Required binaries: `/usr/bin/zypper`
 * Confined to: `operatingsystem == [:suse, :sles, :sled, :opensuse]`
-* Default for: `operatingsystem` == `suse, sles, sled, opensuse`
-* Supported features: `install_options`, `installable`, `uninstallable`, `upgradeable`, `versionable`, `virtual_packages`
+* Default for: `["operatingsystem", "[:suse, :sles, :sled, :opensuse]"] == `
 
 <h3 id="package-provider-features">Provider Features</h3>
 
@@ -2915,6 +2727,7 @@ Provider support:
   <thead>
     <tr>
       <th>Provider</th>
+      <th>disableable</th>
       <th>holdable</th>
       <th>install only</th>
       <th>install options</th>
@@ -2927,6 +2740,7 @@ Provider support:
       <th>uninstall options</th>
       <th>uninstallable</th>
       <th>upgradeable</th>
+      <th>version ranges</th>
       <th>versionable</th>
       <th>virtual packages</th>
     </tr>
@@ -3924,23 +3738,25 @@ can be configured:
 <h3 id="service-attributes">Attributes</h3>
 
 <pre><code>service { 'resource title':
-  <a href="#service-attribute-name">name</a>       =&gt; <em># <strong>(namevar)</strong> The name of the service to run.  This name is...</em>
-  <a href="#service-attribute-ensure">ensure</a>     =&gt; <em># Whether a service should be running. Default...</em>
-  <a href="#service-attribute-binary">binary</a>     =&gt; <em># The path to the daemon.  This is only used for...</em>
-  <a href="#service-attribute-control">control</a>    =&gt; <em># The control variable used to manage services...</em>
-  <a href="#service-attribute-enable">enable</a>     =&gt; <em># Whether a service should be enabled to start at...</em>
-  <a href="#service-attribute-flags">flags</a>      =&gt; <em># Specify a string of flags to pass to the startup </em>
-  <a href="#service-attribute-hasrestart">hasrestart</a> =&gt; <em># Specify that an init script has a `restart...</em>
-  <a href="#service-attribute-hasstatus">hasstatus</a>  =&gt; <em># Declare whether the service's init script has a...</em>
-  <a href="#service-attribute-manifest">manifest</a>   =&gt; <em># Specify a command to config a service, or a path </em>
-  <a href="#service-attribute-path">path</a>       =&gt; <em># The search path for finding init scripts....</em>
-  <a href="#service-attribute-pattern">pattern</a>    =&gt; <em># The pattern to search for in the process table...</em>
-  <a href="#service-attribute-provider">provider</a>   =&gt; <em># The specific backend to use for this `service...</em>
-  <a href="#service-attribute-restart">restart</a>    =&gt; <em># Specify a *restart* command manually.  If left...</em>
-  <a href="#service-attribute-start">start</a>      =&gt; <em># Specify a *start* command manually.  Most...</em>
-  <a href="#service-attribute-status">status</a>     =&gt; <em># Specify a *status* command manually.  This...</em>
-  <a href="#service-attribute-stop">stop</a>       =&gt; <em># Specify a *stop* command...</em>
-  <a href="#service-attribute-timeout">timeout</a>    =&gt; <em># Specify an optional minimum timeout (in seconds) </em>
+  <a href="#service-attribute-name">name</a>          =&gt; <em># <strong>(namevar)</strong> The name of the service to run.  This name is...</em>
+  <a href="#service-attribute-ensure">ensure</a>        =&gt; <em># Whether a service should be running. Default...</em>
+  <a href="#service-attribute-binary">binary</a>        =&gt; <em># The path to the daemon.  This is only used for...</em>
+  <a href="#service-attribute-control">control</a>       =&gt; <em># The control variable used to manage services...</em>
+  <a href="#service-attribute-enable">enable</a>        =&gt; <em># Whether a service should be enabled to start at...</em>
+  <a href="#service-attribute-flags">flags</a>         =&gt; <em># Specify a string of flags to pass to the startup </em>
+  <a href="#service-attribute-hasrestart">hasrestart</a>    =&gt; <em># Specify that an init script has a `restart...</em>
+  <a href="#service-attribute-hasstatus">hasstatus</a>     =&gt; <em># Declare whether the service's init script has a...</em>
+  <a href="#service-attribute-logonaccount">logonaccount</a>  =&gt; <em># Specify an account for service...</em>
+  <a href="#service-attribute-logonpassword">logonpassword</a> =&gt; <em># Specify a password for service logon. Default...</em>
+  <a href="#service-attribute-manifest">manifest</a>      =&gt; <em># Specify a command to config a service, or a path </em>
+  <a href="#service-attribute-path">path</a>          =&gt; <em># The search path for finding init scripts....</em>
+  <a href="#service-attribute-pattern">pattern</a>       =&gt; <em># The pattern to search for in the process table...</em>
+  <a href="#service-attribute-provider">provider</a>      =&gt; <em># The specific backend to use for this `service...</em>
+  <a href="#service-attribute-restart">restart</a>       =&gt; <em># Specify a *restart* command manually.  If left...</em>
+  <a href="#service-attribute-start">start</a>         =&gt; <em># Specify a *start* command manually.  Most...</em>
+  <a href="#service-attribute-status">status</a>        =&gt; <em># Specify a *status* command manually.  This...</em>
+  <a href="#service-attribute-stop">stop</a>          =&gt; <em># Specify a *stop* command...</em>
+  <a href="#service-attribute-timeout">timeout</a>       =&gt; <em># Specify an optional minimum timeout (in seconds) </em>
   # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
 
@@ -4030,8 +3846,6 @@ Specify that an init script has a `restart` command.  If this is
 false and you do not specify a command in the `restart` attribute,
 the init script's `stop` and `start` commands will be used.
 
-Defaults to false.
-
 Allowed values:
 
 * `true`
@@ -4067,6 +3881,24 @@ Allowed values:
 
 ([↑ Back to service attributes](#service-attributes))
 
+<h4 id="service-attribute-logonaccount">logonaccount</h4>
+
+_(**Property:** This attribute represents concrete state on the target system.)_
+
+Specify an account for service logon
+
+Requires features manages_logon_credentials.
+
+([↑ Back to service attributes](#service-attributes))
+
+<h4 id="service-attribute-logonpassword">logonpassword</h4>
+
+Specify a password for service logon. Default value is an empty string (when logonaccount is specified).
+
+Requires features manages_logon_credentials.
+
+([↑ Back to service attributes](#service-attributes))
+
 <h4 id="service-attribute-manifest">manifest</h4>
 
 Specify a command to config a service, or a path to a manifest to do so.
@@ -4096,9 +3928,7 @@ be quoted without enclosing slashes).
 
 <h4 id="service-attribute-provider">provider</h4>
 
-The specific backend to use for this `service`
-resource. You will seldom need to specify this --- Puppet will usually
-discover the appropriate provider for your platform.
+The specific backend to use for this `service` resource. You will seldom need to specify this --- Puppet will usually discover the appropriate provider for your platform.
 
 Available providers are:
 
@@ -4185,7 +4015,6 @@ service.  As with `init`-style services, it is preferable to specify start,
 stop, and status commands.
 
 * Required binaries: `kill`
-* Supported features: `refreshable`
 
 <h4 id="service-provider-bsd">bsd</h4>
 
@@ -4194,7 +4023,6 @@ Generic BSD form of `init`-style service management with `rc.d`.
 Uses `rc.conf.d` for service enabling and disabling.
 
 * Confined to: `operatingsystem == [:freebsd, :dragonfly]`
-* Supported features: `enableable`, `refreshable`.
 
 <h4 id="service-provider-daemontools">daemontools</h4>
 
@@ -4233,7 +4061,6 @@ If a service has `ensure => "stopped"`, it will only shut down the service, not
 remove the `/path/to/service` link.
 
 * Required binaries: `/usr/bin/svc`, `/usr/bin/svstat`
-* Supported features: `enableable`, `refreshable`
 
 <h4 id="service-provider-debian">debian</h4>
 
@@ -4245,15 +4072,13 @@ services via `update-rc.d` and the ability to determine enabled status via
 
 * Required binaries: `/usr/sbin/update-rc.d`, `/usr/sbin/invoke-rc.d`, `/usr/sbin/service`
 * Default for: `["operatingsystem", "cumuluslinux"] == ["operatingsystemmajrelease", "['1','2']"]`, `["operatingsystem", "debian"] == ["operatingsystemmajrelease", "['5','6','7']"]`, `["operatingsystem", "devuan"] == `
-* Supported features: `enableable`, `refreshable`.
 
 <h4 id="service-provider-freebsd">freebsd</h4>
 
 Provider for FreeBSD and DragonFly BSD. Uses the `rcvar` argument of init scripts and parses/edits rc files.
 
 * Confined to: `operatingsystem == [:freebsd, :dragonfly]`
-* Default for `operatingsystem` == `freebsd, dragonfly`.
-* Supported features: `enableable`, `refreshable`.
+* Default for: `["operatingsystem", "[:freebsd, :dragonfly]"] == `
 
 <h4 id="service-provider-gentoo">gentoo</h4>
 
@@ -4263,22 +4088,16 @@ Uses `rc-update` for service enabling and disabling.
 
 * Required binaries: `/sbin/rc-update`
 * Confined to: `operatingsystem == gentoo`
-* Supported features: `enableable`, `refreshable`
 
 <h4 id="service-provider-init">init</h4>
 
 Standard `init`-style service management.
 
-* Confined to: 
-
-```
-true == begin
+* Confined to: `true == begin
       os = Facter.value(:operatingsystem).downcase
       family = Facter.value(:osfamily).downcase
       !(os == 'debian' || os == 'ubuntu' || family == 'redhat')
-  end
-```
-* Supported features: `refreshable`
+  end`
 
 <h4 id="service-provider-launchd">launchd</h4>
 
@@ -4319,8 +4138,7 @@ Note that this provider does not support overriding 'restart'
 
 * Required binaries: `/bin/launchctl`
 * Confined to: `operatingsystem == darwin`, `feature == cfpropertylist`
-* Default for `operatingsystem` == `darwin`
-* Supported features: `enableable`, `refreshable`
+* Default for: `["operatingsystem", "darwin"] == `
 
 <h4 id="service-provider-openbsd">openbsd</h4>
 
@@ -4328,8 +4146,7 @@ Provider for OpenBSD's rc.d daemon control scripts
 
 * Required binaries: `/usr/sbin/rcctl`
 * Confined to: `operatingsystem == openbsd`
-* Default for `operatingsystem` == `openbsd`
-* Supported features: `enableable`, `flaggable`, `refreshable`
+* Default for: `["operatingsystem", "openbsd"] == `
 
 <h4 id="service-provider-openrc">openrc</h4>
 
@@ -4338,8 +4155,7 @@ Support for Gentoo's OpenRC initskripts
 Uses rc-update, rc-status and rc-service to manage services.
 
 * Required binaries: `/sbin/rc-service`, `/sbin/rc-update`
-* Default for `operatingsystem` == `gentoo`, `operatingsystem` == `funtoo`.
-* Supported features: `enableable`, `refreshable`
+* Default for: `["operatingsystem", "gentoo"] == `, `["operatingsystem", "funtoo"] == `
 
 <h4 id="service-provider-openwrt">openwrt</h4>
 
@@ -4348,16 +4164,14 @@ Support for OpenWrt flavored init scripts.
 Uses /etc/init.d/service_name enable, disable, and enabled.
 
 * Confined to: `operatingsystem == openwrt`
-* Default for `operatingsystem` == `openwrt`
-* Supported features: `enableable`, `refreshable`
+* Default for: `["operatingsystem", "openwrt"] == `
 
 <h4 id="service-provider-rcng">rcng</h4>
 
 RCng service management with rc.d
 
 * Confined to: `operatingsystem == [:netbsd, :cargos]`
-* Default for `operatingsystem` == `netbsd, cargos`
-* Supported features: `enableable`, `refreshable`
+* Default for: `["operatingsystem", "[:netbsd, :cargos]"] == `
 
 <h4 id="service-provider-redhat">redhat</h4>
 
@@ -4365,8 +4179,7 @@ Red Hat's (and probably many others') form of `init`-style service
 management. Uses `chkconfig` for service enabling and disabling.
 
 * Required binaries: `/sbin/chkconfig`, `/sbin/service`
-* Default for `osfamily` == `redhat`, `operatingsystemmajrelease` == `10, 11` and `osfamily` == `suse`
-* Supported features: `enableable`, `refreshable`
+* Default for: `["osfamily", "redhat"] == `, `["osfamily", "suse"] == ["operatingsystemmajrelease", "[\"10\", \"11\"]"]`
 
 <h4 id="service-provider-runit">runit</h4>
 
@@ -4399,29 +4212,30 @@ This provider supports out of the box:
 * status
 
 * Required binaries: `/usr/bin/sv`
-* Supported features: `enableable`, `refreshable`
 
 <h4 id="service-provider-service">service</h4>
 
 The simplest form of service support.
 
-* Supported features: `refreshable`
-
 <h4 id="service-provider-smf">smf</h4>
 
 Support for Sun's new Service Management Framework.
 
-Starting a service is effectively equivalent to enabling it, so there is
-only support for starting and stopping services, which also enables and
-disables them, respectively.
+When managing the enable property, this provider will try to preserve
+the previous ensure state per the enableable semantics. On Solaris,
+enabling a service starts it up while disabling a service stops it. Thus,
+there's a chance for this provider to execute two operations when managing
+the enable property. For example, if enable is set to true and the ensure
+state is stopped, this provider will manage the service using two operations:
+one to enable the service which will start it up, and another to stop the
+service (without affecting its enabled status).
 
 By specifying `manifest => "/path/to/service.xml"`, the SMF manifest will
 be imported if it does not exist.
 
 * Required binaries: `/usr/sbin/svcadm`, `/usr/bin/svcs`, `/usr/sbin/svccfg`
 * Confined to: `osfamily == solaris`
-* Default for `osfamily` == `solaris`
-* Supported features: `enableable`, `refreshable`
+* Default for: `["osfamily", "solaris"] == `
 
 <h4 id="service-provider-src">src</h4>
 
@@ -4434,10 +4248,8 @@ Enabling and disabling services is not supported, as it requires
 modifications to `/etc/inittab`. Starting and stopping groups of subsystems
 is not yet supported.
 
-* Required binaries: `/usr/bin/lssrc`, `/usr/bin/refresh`, `/usr/bin/startsrc`, `/usr/bin/stopsrc`, `/usr/sbin/chitab`, `/usr/sbin/lsitab`, `/usr/sbin/mkitab`, `/usr/sbin/rmitab`
 * Confined to: `operatingsystem == aix`
-* Default for `operatingsystem` == `aix`
-* Supported features: `enableable`, `refreshable`
+* Default for: `["operatingsystem", "aix"] == `
 
 <h4 id="service-provider-systemd">systemd</h4>
 
@@ -4459,24 +4271,13 @@ This provider manages `upstart` jobs on Ubuntu. For `upstart` documentation,
 see <http://upstart.ubuntu.com/>.
 
 * Required binaries: `/sbin/start`, `/sbin/stop`, `/sbin/restart`, `/sbin/status`, `/sbin/initctl`
-* Confined to:
-
-  ```
-  any == [
+* Confined to: `any == [
     Facter.value(:operatingsystem) == 'Ubuntu',
     (Facter.value(:osfamily) == 'RedHat' and Facter.value(:operatingsystemrelease) =~ /^6\./),
     (Facter.value(:operatingsystem) == 'Amazon' and Facter.value(:operatingsystemmajrelease) =~ /\d{4}/),
     Facter.value(:operatingsystem) == 'LinuxMint',
-  ]`, `true == lambda { has_initctl? }
-  ```
-
-  ```
-  exists == /var/run/upstart-socket-bridge.pid
-  ```
-  
+  ]`, `true == lambda { has_initctl? }`
 * Default for: `["operatingsystem", "ubuntu"] == ["operatingsystemmajrelease", "[\"10.04\", \"12.04\", \"14.04\", \"14.10\"]"]`, `["operatingsystem", "LinuxMint"] == ["operatingsystemmajrelease", "[\"10\", \"11\", \"12\", \"13\", \"14\", \"15\", \"16\", \"17\"]"]`
-
-* Supported features: `enableable`, `refreshable`
 
 <h4 id="service-provider-windows">windows</h4>
 
@@ -4487,10 +4288,8 @@ status methods for all services.
 Control of service groups (dependencies) is not yet supported, nor is running
 services as a specific user.
 
-* Required binaries: `net.exe`
 * Confined to: `operatingsystem == windows`
-* Default for `operatingsystem` == `windows`
-* Supported features: `enableable`, `refreshable`
+* Default for: `["operatingsystem", "windows"] == `
 
 <h3 id="service-provider-features">Provider Features</h3>
 
@@ -4500,6 +4299,7 @@ Available features:
 * `controllable` --- The provider uses a control variable.
 * `enableable` --- The provider can enable and disable the service.
 * `flaggable` --- The provider can pass flags to the service.
+* `manages_logon_credentials` --- The provider can specify the logon credentials used for a service
 * `maskable` --- The provider can 'mask' the service.
 * `refreshable` --- The provider can restart the service.
 
@@ -4513,6 +4313,7 @@ Provider support:
       <th>controllable</th>
       <th>enableable</th>
       <th>flaggable</th>
+      <th>manages logon credentials</th>
       <th>maskable</th>
       <th>refreshable</th>
     </tr>
@@ -5363,9 +5164,7 @@ Requires features manages_solaris_rbac.
 
 <h4 id="user-attribute-provider">provider</h4>
 
-The specific backend to use for this `user`
-resource. You will seldom need to specify this --- Puppet will usually
-discover the appropriate provider for your platform.
+The specific backend to use for this `user` resource. You will seldom need to specify this --- Puppet will usually discover the appropriate provider for your platform.
 
 Available providers are:
 
@@ -5611,6 +5410,7 @@ Provider support:
       <th>manages password age</th>
       <th>manages password salt</th>
       <th>manages passwords</th>
+      <th>manages roles</th>
       <th>manages shell</th>
       <th>manages solaris rbac</th>
       <th>system users</th>
@@ -5628,6 +5428,7 @@ Provider support:
       <td><em>X</em> </td>
       <td> </td>
       <td><em>X</em> </td>
+      <td> </td>
       <td><em>X</em> </td>
       <td> </td>
       <td> </td>
@@ -5754,3 +5555,5 @@ Provider support:
     </tr>
   </tbody>
 </table>
+
+> **NOTE:** This page was generated from the Puppet source code on 2021-01-22 10:27:38 +0000

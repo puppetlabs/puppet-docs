@@ -5,7 +5,7 @@ title: 'Resource Type: service'
 canonical: "/puppet/latest/types/service.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2020-12-08 17:56:54 +0000
+> **NOTE:** This page was generated from the Puppet source code on 2021-01-22 10:27:38 +0000
 
 service
 -----
@@ -807,4 +807,4 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2020-12-08 17:56:54 +0000
+> **NOTE:** This page was generated from the Puppet source code on 2021-01-22 10:27:38 +0000
