@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 62ced6453b078afa90f35c28f898390cf44ceb79
+built_from_commit: 7ee979c756ae4213067b12f9af7971ef380d60c4
 title: 'Resource Type: stage'
 canonical: "/puppet/latest/types/stage.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2021-01-06 15:37:37 +0000
+> **NOTE:** This page was generated from the Puppet source code on 2021-01-22 11:06:24 +0000
 
 stage
 -----
@@ -55,4 +55,4 @@ when assigning classes to this stage.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2021-01-06 15:37:37 +0000
+> **NOTE:** This page was generated from the Puppet source code on 2021-01-22 11:06:24 +0000

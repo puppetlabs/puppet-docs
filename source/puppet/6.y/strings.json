@@ -9681,7 +9681,7 @@
                 "tag_name": "return",
                 "text": "",
                 "types": [
-                  "Any"
+                  "Variant[String, Sensitive[String]]"
                 ]
               }
             ]
@@ -9711,7 +9711,7 @@
             "tag_name": "return",
             "text": "",
             "types": [
-              "Any"
+              "Variant[String, Sensitive[String]]"
             ]
           },
           {
@@ -9720,7 +9720,7 @@
           }
         ]
       },
-      "source": "Puppet::Functions.create_function(:epp, Puppet::Functions::InternalFunction) do\n\n  dispatch :epp do\n    scope_param\n    param 'String', :path\n    optional_param 'Hash[Pattern[/^\\w+$/], Any]', :parameters\n  end\n\n  def epp(scope, path, parameters = nil)\n    Puppet::Pops::Evaluator::EppEvaluator.epp(scope, path, scope.compiler.environment, parameters)\n  end\nend"
+      "source": "Puppet::Functions.create_function(:epp, Puppet::Functions::InternalFunction) do\n\n  dispatch :epp do\n    scope_param\n    param 'String', :path\n    optional_param 'Hash[Pattern[/^\\w+$/], Any]', :parameters\n    return_type 'Variant[String, Sensitive[String]]'\n  end\n\n  def epp(scope, path, parameters = nil)\n    Puppet::Pops::Evaluator::EppEvaluator.epp(scope, path, scope.compiler.environment, parameters)\n  end\nend"
     },
     {
       "name": "err",
@@ -12423,7 +12423,7 @@
                 "tag_name": "return",
                 "text": "",
                 "types": [
-                  "Any"
+                  "Variant[String, Sensitive[String]]"
                 ]
               }
             ]
@@ -12453,7 +12453,7 @@
             "tag_name": "return",
             "text": "",
             "types": [
-              "Any"
+              "Variant[String, Sensitive[String]]"
             ]
           },
           {
@@ -12462,7 +12462,7 @@
           }
         ]
       },
-      "source": "Puppet::Functions.create_function(:inline_epp, Puppet::Functions::InternalFunction) do\n\n  dispatch :inline_epp do\n    scope_param()\n    param 'String', :template\n    optional_param 'Hash[Pattern[/^\\w+$/], Any]', :parameters\n  end\n\n  def inline_epp(scope, template, parameters = nil)\n    Puppet::Pops::Evaluator::EppEvaluator.inline_epp(scope, template, parameters)\n  end\nend"
+      "source": "Puppet::Functions.create_function(:inline_epp, Puppet::Functions::InternalFunction) do\n\n  dispatch :inline_epp do\n    scope_param()\n    param 'String', :template\n    optional_param 'Hash[Pattern[/^\\w+$/], Any]', :parameters\n    return_type 'Variant[String, Sensitive[String]]'\n  end\n\n  def inline_epp(scope, template, parameters = nil)\n    Puppet::Pops::Evaluator::EppEvaluator.inline_epp(scope, template, parameters)\n  end\nend"
     },
     {
       "name": "inline_epp",

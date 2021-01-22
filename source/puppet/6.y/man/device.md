@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 62ced6453b078afa90f35c28f898390cf44ceb79
+built_from_commit: 7ee979c756ae4213067b12f9af7971ef380d60c4
 title: 'Man Page: puppet device'
 canonical: "/puppet/latest/man/device.html"
 ---
@@ -66,7 +66,8 @@ you can specify '--server <var>servername</var>' as an argument.</p>
 <dt>--debug, -d</dt><dd><p>Enable full debugging.</p></dd>
 <dt>--logdest, -l</dt><dd><p>Where to send log messages. Choose between 'syslog' (the POSIX syslog
 service), 'console', or the path to a log file. If debugging or verbosity is
-enabled, this defaults to 'console'. Otherwise, it defaults to 'syslog'.</p>
+enabled, this defaults to 'console'. Otherwise, it defaults to 'syslog'.
+Multiple destinations can be set using a comma separated list (eg: <code>/path/file1,console,/path/file2</code>)"</p>
 
 <p>A path ending with '.json' will receive structured output in JSON format. The
 log file will not have an ending ']' automatically written to it due to the

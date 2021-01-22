@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 62ced6453b078afa90f35c28f898390cf44ceb79
+built_from_commit: 7ee979c756ae4213067b12f9af7971ef380d60c4
 title: 'Man Page: puppet report'
 canonical: "/puppet/latest/man/report.html"
 ---
@@ -23,7 +23,7 @@ canonical: "/puppet/latest/man/report.html"
   save      API only: submit a report.
   submit    API only: submit a report with error handling.</p>
 
-<p>TERMINI: msgpack, processor, rest, yaml</p>
+<p>TERMINI: json, msgpack, processor, rest, yaml</p>
 
 <p>See 'puppet help report' or 'man puppet-report' for full help.</p>
 

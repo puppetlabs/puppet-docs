@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 62ced6453b078afa90f35c28f898390cf44ceb79
+built_from_commit: 7ee979c756ae4213067b12f9af7971ef380d60c4
 title: 'Man Page: puppet apply'
 canonical: "/puppet/latest/man/apply.html"
 ---
@@ -76,7 +76,8 @@ all of those classes to be set in your puppet manifest.</p></li>
 <li><p>--logdest:
 Where to send log messages. Choose between 'syslog' (the POSIX syslog
 service), 'eventlog' (the Windows Event Log), 'console', or the path to a log
-file. Defaults to 'console'.</p>
+file. Defaults to 'console'.
+Multiple destinations can be set using a comma separated list (eg: <code>/path/file1,console,/path/file2</code>)"</p>
 
 <p>A path ending with '.json' will receive structured output in JSON format. The
 log file will not have an ending ']' automatically written to it due to the

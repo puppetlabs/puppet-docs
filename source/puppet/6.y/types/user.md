@@ -5,7 +5,7 @@ title: 'Resource Type: user'
 canonical: "/puppet/latest/types/user.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2021-01-06 15:37:37 +0000
+> **NOTE:** This page was generated from the Puppet source code on 2021-01-22 11:06:24 +0000
 
 user
 -----
@@ -874,4 +874,4 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2021-01-06 15:37:37 +0000
+> **NOTE:** This page was generated from the Puppet source code on 2021-01-22 11:06:24 +0000

@@ -3938,23 +3938,25 @@ can be configured:
 <h3 id="service-attributes">Attributes</h3>
 
 <pre><code>service { 'resource title':
-  <a href="#service-attribute-name">name</a>       =&gt; <em># <strong>(namevar)</strong> The name of the service to run.  This name is...</em>
-  <a href="#service-attribute-ensure">ensure</a>     =&gt; <em># Whether a service should be running. Default...</em>
-  <a href="#service-attribute-binary">binary</a>     =&gt; <em># The path to the daemon.  This is only used for...</em>
-  <a href="#service-attribute-control">control</a>    =&gt; <em># The control variable used to manage services...</em>
-  <a href="#service-attribute-enable">enable</a>     =&gt; <em># Whether a service should be enabled to start at...</em>
-  <a href="#service-attribute-flags">flags</a>      =&gt; <em># Specify a string of flags to pass to the startup </em>
-  <a href="#service-attribute-hasrestart">hasrestart</a> =&gt; <em># Specify that an init script has a `restart...</em>
-  <a href="#service-attribute-hasstatus">hasstatus</a>  =&gt; <em># Declare whether the service's init script has a...</em>
-  <a href="#service-attribute-manifest">manifest</a>   =&gt; <em># Specify a command to config a service, or a path </em>
-  <a href="#service-attribute-path">path</a>       =&gt; <em># The search path for finding init scripts....</em>
-  <a href="#service-attribute-pattern">pattern</a>    =&gt; <em># The pattern to search for in the process table...</em>
-  <a href="#service-attribute-provider">provider</a>   =&gt; <em># The specific backend to use for this `service...</em>
-  <a href="#service-attribute-restart">restart</a>    =&gt; <em># Specify a *restart* command manually.  If left...</em>
-  <a href="#service-attribute-start">start</a>      =&gt; <em># Specify a *start* command manually.  Most...</em>
-  <a href="#service-attribute-status">status</a>     =&gt; <em># Specify a *status* command manually.  This...</em>
-  <a href="#service-attribute-stop">stop</a>       =&gt; <em># Specify a *stop* command...</em>
-  <a href="#service-attribute-timeout">timeout</a>    =&gt; <em># Specify an optional minimum timeout (in seconds) </em>
+  <a href="#service-attribute-name">name</a>          =&gt; <em># <strong>(namevar)</strong> The name of the service to run.  This name is...</em>
+  <a href="#service-attribute-ensure">ensure</a>        =&gt; <em># Whether a service should be running. Default...</em>
+  <a href="#service-attribute-binary">binary</a>        =&gt; <em># The path to the daemon.  This is only used for...</em>
+  <a href="#service-attribute-control">control</a>       =&gt; <em># The control variable used to manage services...</em>
+  <a href="#service-attribute-enable">enable</a>        =&gt; <em># Whether a service should be enabled to start at...</em>
+  <a href="#service-attribute-flags">flags</a>         =&gt; <em># Specify a string of flags to pass to the startup </em>
+  <a href="#service-attribute-hasrestart">hasrestart</a>    =&gt; <em># Specify that an init script has a `restart...</em>
+  <a href="#service-attribute-hasstatus">hasstatus</a>     =&gt; <em># Declare whether the service's init script has a...</em>
+  <a href="#service-attribute-logonaccount">logonaccount</a>  =&gt; <em># Specify an account for service...</em>
+  <a href="#service-attribute-logonpassword">logonpassword</a> =&gt; <em># Specify a password for service logon. Default...</em>
+  <a href="#service-attribute-manifest">manifest</a>      =&gt; <em># Specify a command to config a service, or a path </em>
+  <a href="#service-attribute-path">path</a>          =&gt; <em># The search path for finding init scripts....</em>
+  <a href="#service-attribute-pattern">pattern</a>       =&gt; <em># The pattern to search for in the process table...</em>
+  <a href="#service-attribute-provider">provider</a>      =&gt; <em># The specific backend to use for this `service...</em>
+  <a href="#service-attribute-restart">restart</a>       =&gt; <em># Specify a *restart* command manually.  If left...</em>
+  <a href="#service-attribute-start">start</a>         =&gt; <em># Specify a *start* command manually.  Most...</em>
+  <a href="#service-attribute-status">status</a>        =&gt; <em># Specify a *status* command manually.  This...</em>
+  <a href="#service-attribute-stop">stop</a>          =&gt; <em># Specify a *stop* command...</em>
+  <a href="#service-attribute-timeout">timeout</a>       =&gt; <em># Specify an optional minimum timeout (in seconds) </em>
   # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
 
@@ -4078,6 +4080,24 @@ Allowed values:
 
 * `true`
 * `false`
+
+([↑ Back to service attributes](#service-attributes))
+
+<h4 id="service-attribute-logonaccount">logonaccount</h4>
+
+_(**Property:** This attribute represents concrete state on the target system.)_
+
+Specify an account for service logon
+
+Requires features manages_logon_credentials.
+
+([↑ Back to service attributes](#service-attributes))
+
+<h4 id="service-attribute-logonpassword">logonpassword</h4>
+
+Specify a password for service logon. Default value is an empty string (when logonaccount is specified).
+
+Requires features manages_logon_credentials.
 
 ([↑ Back to service attributes](#service-attributes))
 
@@ -4512,6 +4532,7 @@ Available features:
 * `controllable` --- The provider uses a control variable.
 * `enableable` --- The provider can enable and disable the service.
 * `flaggable` --- The provider can pass flags to the service.
+* `manages_logon_credentials` --- The provider can specify the logon credentials used for a service
 * `maskable` --- The provider can 'mask' the service.
 * `refreshable` --- The provider can restart the service.
 
@@ -4525,6 +4546,7 @@ Provider support:
       <th>controllable</th>
       <th>enableable</th>
       <th>flaggable</th>
+      <th>manages logon credentials</th>
       <th>maskable</th>
       <th>refreshable</th>
     </tr>
@@ -5766,6 +5788,4 @@ Provider support:
   </tbody>
 </table>
 
-
-
-> **NOTE:** This page was generated from the Puppet source code on 2021-01-06 15:37:37 +0000
+> **NOTE:** This page was generated from the Puppet source code on 2021-01-22 11:06:24 +0000
