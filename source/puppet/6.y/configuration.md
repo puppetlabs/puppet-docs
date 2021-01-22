@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 62ced6453b078afa90f35c28f898390cf44ceb79
+built_from_commit: 7ee979c756ae4213067b12f9af7971ef380d60c4
 title: Configuration Reference
 toc: columns
 canonical: "/puppet/latest/configuration.html"
@@ -17,11 +17,12 @@ canonical: "/puppet/latest/configuration.html"
 * Each of these settings can be specified in `puppet.conf` or on the
   command line.
 * Puppet Enterprise (PE) and open source Puppet share the configuration settings
-  that are documented here. However, PE defaults for some settings differ from
-  the open source Puppet defaults. Some examples of settings that have different
-  PE defaults include `disable18n`, `environment_timeout`, `always_retry_plugins`,
-  and the Puppet Server JRuby `max-active-instances` setting. To verify PE
-  configuration defaults, check the `puppet.conf` file after installation.
+  documented here. However, PE defaults differ from open source defaults for some 
+  settings, such as `node_terminus`, `storeconfigs`, `always_retry_plugins`, 
+  `disable18n`, `environment_timeout` (when Code Manager is enabled), and the 
+  Puppet Server JRuby `max-active-instances` setting. To verify PE configuration 
+  defaults, check the `puppet.conf` or `pe-puppet-server.conf` file after 
+  installation.
 * When using boolean settings on the command line, use `--setting` and
   `--no-setting` instead of `--setting (true|false)`. (Using `--setting false`
   results in "Error: Could not parse application options: needless argument".)
@@ -969,7 +970,7 @@ This setting can be a time interval in seconds (30 or 30s), minutes (30m), hours
 
 The HTTP User-Agent string to send when making network requests.
 
-- *Default*: Puppet/6.19.0 Ruby/2.5.1-p57 (x86_64-darwin18)
+- *Default*: Puppet/6.20.0 Ruby/2.5.1-p57 (x86_64-darwin18)
 
 ### ignore_plugin_errors
 
@@ -1014,7 +1015,11 @@ Where puppet agent stores the last run report summary in yaml format.
 
 ### lastrunreport
 
-Where puppet agent stores the last run report in yaml format.
+Where Puppet Agent stores the last run report, by default, in yaml format.
+The format of the report can be changed by setting the `cache` key of the `report` terminus
+in the [routes.yaml](https://puppet.com/docs/puppet/latest/config_file_routes.html) file.
+To avoid mismatches between content and file extension, this setting needs to be
+manually updated to reflect the terminus changes.
 
 - *Default*: $statedir/last_run_report.yaml
 
@@ -1151,7 +1156,7 @@ Default logging level for messages from Puppet. Allowed values are:
 
 Where to send log messages. Choose between 'syslog' (the POSIX syslog
 service), 'eventlog' (the Windows Event Log), 'console', or the path to a log
-file.
+file. Multiple destinations can be set using a comma separated list (eg: `/path/file1,console,/path/file2`)
 
 - *Default*: 
 

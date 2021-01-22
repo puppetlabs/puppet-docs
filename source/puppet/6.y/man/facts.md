@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 62ced6453b078afa90f35c28f898390cf44ceb79
+built_from_commit: 7ee979c756ae4213067b12f9af7971ef380d60c4
 title: 'Man Page: puppet facts'
 canonical: "/puppet/latest/man/facts.html"
 ---
@@ -21,12 +21,13 @@ information used by Puppet. It can read facts directly from the local system
   --terminus _TERMINUS           - The indirector terminus to use.</p>
 
 <p>ACTIONS:
+  diff      Compare Facter 3 output with Facter 4 output
   find      Retrieve a node's facts.
   info      Print the default terminus class for this face.
   save      API only: create or overwrite an object.
   upload    Upload local facts to the puppet master.</p>
 
-<p>TERMINI: facter, memory, network_device, rest, store_configs, yaml</p>
+<p>TERMINI: facter, json, memory, network_device, rest, store_configs, yaml</p>
 
 <p>See 'puppet help facts' or 'man puppet-facts' for full help.</p>
 

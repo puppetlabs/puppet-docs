@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 62ced6453b078afa90f35c28f898390cf44ceb79
+built_from_commit: 7ee979c756ae4213067b12f9af7971ef380d60c4
 title: 'Man Page: puppet node'
 canonical: "/puppet/latest/man/node.html"
 ---
@@ -26,7 +26,7 @@ node parameters (exposed in the parser as top-scope variables), and classes.</p>
   find     Retrieve a node object.
   info     Print the default terminus class for this face.</p>
 
-<p>TERMINI: exec, memory, msgpack, plain, rest, store_configs, yaml</p>
+<p>TERMINI: exec, json, memory, msgpack, plain, rest, store_configs, yaml</p>
 
 <p>See 'puppet help node' or 'man puppet-node' for full help.</p>
 
