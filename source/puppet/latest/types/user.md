@@ -601,7 +601,7 @@ automatically. This will likely result in the same user having
 different UIDs on different systems, which is not recommended. This is
 especially noteworthy when managing the same user on both Darwin and
 other platforms, since Puppet does UID generation on Darwin, but
-the underlying tools do so on other platforms.
+the underlying tools (such as *useradd*) generate the UID on other platforms.
 
 On Windows, this property is read-only and will return the user's
 security identifier (SID).
