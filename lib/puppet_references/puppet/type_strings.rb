@@ -38,6 +38,9 @@ module PuppetReferences
                 if provider['defaults']
                   description = description + "\n* Default for: `#{provider['defaults'].map{|fact,val| "#{fact} == #{val}"}.join('`, `')}`"
                 end
+                if provider['features']
+                  description = description + "\n* Supported features: `#{provider['features'].join('`, `')}`"
+                end
                 memo[provider['name']] = {
                     'features' => (provider['features'] || []),
                     'description' => description
