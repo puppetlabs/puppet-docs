@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: eab773ebdad48a4587f1a650aa01334fbc154dbc
+built_from_commit: abe39259f7c9eb3e129c6dcda93bab904bf68910
 title: 'Resource Type: package'
 canonical: "/puppet/latest/types/package.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2021-01-22 10:27:38 +0000
+> **NOTE:** This page was generated from the Puppet source code on 2021-02-10 10:04:33 +0000
 
 package
 -----
@@ -63,7 +63,7 @@ resource will autorequire those files.
   <a href="#package-attribute-reinstall_on_refresh">reinstall_on_refresh</a> =&gt; <em># Whether this resource should respond to refresh...</em>
   <a href="#package-attribute-responsefile">responsefile</a>         =&gt; <em># A file containing any necessary answers to...</em>
   <a href="#package-attribute-root">root</a>                 =&gt; <em># A read-only parameter set by the...</em>
-  <a href="#package-attribute-source">source</a>               =&gt; <em># Where to find the package file. This is only...</em>
+  <a href="#package-attribute-source">source</a>               =&gt; <em># Where to find the package file. This is mostly...</em>
   <a href="#package-attribute-status">status</a>               =&gt; <em># A read-only parameter set by the...</em>
   <a href="#package-attribute-uninstall_options">uninstall_options</a>    =&gt; <em># An array of additional options to pass when...</em>
   <a href="#package-attribute-vendor">vendor</a>               =&gt; <em># A read-only parameter set by the...</em>
@@ -465,10 +465,10 @@ A read-only parameter set by the package.
 
 <h4 id="package-attribute-source">source</h4>
 
-Where to find the package file. This is only used by providers that don't
+Where to find the package file. This is mostly used by providers that don't
 automatically download packages from a central repository. (For example:
-the `yum` and `apt` providers ignore this attribute, but the `rpm` and
-`dpkg` providers require it.)
+the `yum` provider ignores this attribute, `apt` provider uses it if present
+and the `rpm` and `dpkg` providers require it.)
 
 Different providers accept different values for `source`. Most providers
 accept paths to local files stored on the target system. Some providers
@@ -540,6 +540,7 @@ installed on the machine, the resource will fail with an error message.
 * Required binaries: `/usr/bin/lslpp`, `/usr/sbin/installp`
 * Confined to: `operatingsystem == [ :aix ]`
 * Default for: `["operatingsystem", "aix"] == `
+* Supported features: `versionable`
 
 <h4 id="package-provider-appdmg">appdmg</h4>
 
@@ -569,18 +570,21 @@ These options should be specified as an array where each element is either a
 
 * Required binaries: `/usr/bin/apt-get`, `/usr/bin/apt-cache`, `/usr/bin/apt-mark`, `/usr/bin/debconf-set-selections`
 * Default for: `["osfamily", "debian"] == `
+* Supported features: `versionable`, `install_options`, `virtual_packages`
 
 <h4 id="package-provider-aptitude">aptitude</h4>
 
 Package management via `aptitude`.
 
 * Required binaries: `/usr/bin/aptitude`, `/usr/bin/apt-cache`
+* Supported features: `versionable`
 
 <h4 id="package-provider-aptrpm">aptrpm</h4>
 
 Package management via `apt-get` ported to `rpm`.
 
 * Required binaries: `apt-get`, `apt-cache`, `rpm`
+* Supported features: `versionable`
 
 <h4 id="package-provider-blastwave">blastwave</h4>
 
@@ -603,12 +607,14 @@ These options should be specified as an array where each element is either
 
 * Required binaries: `dnf`, `rpm`
 * Default for: `["operatingsystem", "fedora"] == `, `["osfamily", "redhat"] == `
+* Supported features: `install_options`, `versionable`, `virtual_packages`, `install_only`
 
 <h4 id="package-provider-dnfmodule">dnfmodule</h4>
 
 
 
 * Required binaries: `/usr/bin/dnf`
+* Supported features: `installable`, `uninstallable`, `versionable`, `supports_flavors`, `disableable`
 
 <h4 id="package-provider-dpkg">dpkg</h4>
 
@@ -617,12 +623,14 @@ and not `apt`, you must specify the source of any packages you want
 to manage.
 
 * Required binaries: `/usr/bin/dpkg`, `/usr/bin/dpkg-deb`, `/usr/bin/dpkg-query`
+* Supported features: `holdable`, `virtual_packages`
 
 <h4 id="package-provider-fink">fink</h4>
 
 Package management via `fink`.
 
 * Required binaries: `/sw/bin/fink`, `/sw/bin/apt-get`, `/sw/bin/apt-cache`, `/sw/bin/dpkg-query`
+* Supported features: `versionable`
 
 <h4 id="package-provider-freebsd">freebsd</h4>
 
@@ -648,6 +656,7 @@ This provider supports the `install_options` and `uninstall_options` attributes,
 which allow command-line flags to be passed to the gem command.
 These options should be specified as an array where each element is either a
 string or a hash.
+* Supported features: `versionable`, `install_options`, `uninstall_options`, `targetable`, `version_ranges`
 
 <h4 id="package-provider-hpux">hpux</h4>
 
@@ -669,6 +678,7 @@ When specifying a version in the Puppet DSL, only specify the version, not the r
 Revisions are only used internally for ensuring the latest version/revision of a port.
 
 * Confined to: `operatingsystem == darwin`
+* Supported features: `installable`, `uninstallable`, `upgradeable`, `versionable`
 
 <h4 id="package-provider-nim">nim</h4>
 
@@ -683,6 +693,7 @@ installed on the machine, the resource will fail with an error message.
 
 * Required binaries: `/usr/sbin/nimclient`, `/usr/bin/lslpp`, `rpm`
 * Confined to: `exists == /etc/niminfo`
+* Supported features: `versionable`
 
 <h4 id="package-provider-openbsd">openbsd</h4>
 
@@ -696,6 +707,7 @@ These options should be specified as an array where each element is either a
 * Required binaries: `pkg_info`, `pkg_add`, `pkg_delete`
 * Confined to: `operatingsystem == openbsd`
 * Default for: `["operatingsystem", "openbsd"] == `
+* Supported features: `versionable`, `install_options`, `uninstall_options`, `upgradeable`, `supports_flavors`
 
 <h4 id="package-provider-opkg">opkg</h4>
 
@@ -715,6 +727,7 @@ These options should be specified as an array where each element is either a str
 * Required binaries: `/usr/bin/pacman`
 * Confined to: `operatingsystem == [:archlinux, :manjarolinux]`
 * Default for: `["operatingsystem", "[:archlinux, :manjarolinux]"] == `
+* Supported features: `install_options`, `uninstall_options`, `upgradeable`, `virtual_packages`
 
 <h4 id="package-provider-pip">pip</h4>
 
@@ -722,6 +735,7 @@ Python packages via `pip`.
 
 This provider supports the `install_options` attribute, which allows command-line flags to be passed to pip.
 These options should be specified as an array where each element is either a string or a hash.
+* Supported features: `installable`, `uninstallable`, `upgradeable`, `versionable`, `version_ranges`, `install_options`, `targetable`
 
 <h4 id="package-provider-pip2">pip2</h4>
 
@@ -729,6 +743,7 @@ Python packages via `pip2`.
 
 This provider supports the `install_options` attribute, which allows command-line flags to be passed to pip2.
 These options should be specified as an array where each element is either a string or a hash.
+* Supported features: `installable`, `uninstallable`, `upgradeable`, `versionable`, `install_options`, `targetable`
 
 <h4 id="package-provider-pip3">pip3</h4>
 
@@ -736,6 +751,7 @@ Python packages via `pip3`.
 
 This provider supports the `install_options` attribute, which allows command-line flags to be passed to pip3.
 These options should be specified as an array where each element is either a string or a hash.
+* Supported features: `installable`, `uninstallable`, `upgradeable`, `versionable`, `install_options`, `targetable`
 
 <h4 id="package-provider-pkg">pkg</h4>
 
@@ -748,6 +764,7 @@ array where each element is either a string or a hash.
 * Required binaries: `/usr/bin/pkg`
 * Confined to: `osfamily == solaris`
 * Default for: `["osfamily", "solaris"] == ["kernelrelease", "['5.11', '5.12']"]`
+* Supported features: `versionable`, `upgradable`, `holdable`, `install_options`
 
 <h4 id="package-provider-pkgdmg">pkgdmg</h4>
 
@@ -783,6 +800,7 @@ Package management using pkgin, a binary package manager for pkgsrc.
 
 * Required binaries: `pkgin`
 * Default for: `["operatingsystem", "[ :smartos, :netbsd ]"] == `
+* Supported features: `installable`, `uninstallable`, `upgradeable`, `versionable`
 
 <h4 id="package-provider-pkgng">pkgng</h4>
 
@@ -791,6 +809,7 @@ A PkgNG provider for FreeBSD and DragonFly.
 * Required binaries: `/usr/local/sbin/pkg`
 * Confined to: `operatingsystem == [:freebsd, :dragonfly]`
 * Default for: `["operatingsystem", "[:freebsd, :dragonfly]"] == `
+* Supported features: `versionable`, `upgradeable`, `install_options`
 
 <h4 id="package-provider-pkgutil">pkgutil</h4>
 
@@ -807,6 +826,7 @@ flags to be passed to emerge. These options should be specified as an array wher
 
 * Confined to: `osfamily == gentoo`
 * Default for: `["osfamily", "gentoo"] == `
+* Supported features: `install_options`, `purgeable`, `reinstallable`, `uninstall_options`, `versionable`, `virtual_packages`
 
 <h4 id="package-provider-ports">ports</h4>
 
@@ -826,6 +846,7 @@ for the portupgrade port.
 
 Puppet Ruby Gem support. This provider is useful for managing
 gems needed by the ruby provided in the puppet-agent package.
+* Supported features: `versionable`, `install_options`, `uninstall_options`
 
 <h4 id="package-provider-puppetserver_gem">puppetserver_gem</h4>
 
@@ -838,6 +859,7 @@ If source is not present at all, the gem will be installed from the default
 gem repositories.
 
 * Confined to: `feature == hocon`, `fips_enabled == false`
+* Supported features: `versionable`, `install_options`, `uninstall_options`
 
 <h4 id="package-provider-rpm">rpm</h4>
 
@@ -849,6 +871,7 @@ attributes, which allow command-line flags to be passed to rpm.
 These options should be specified as an array where each element is either a string or a hash.
 
 * Required binaries: `rpm`
+* Supported features: `versionable`, `install_options`, `uninstall_options`, `virtual_packages`, `install_only`
 
 <h4 id="package-provider-rug">rug</h4>
 
@@ -856,6 +879,7 @@ Support for suse `rug` package manager.
 
 * Required binaries: `/usr/bin/rug`, `rpm`
 * Confined to: `operatingsystem == [:suse, :sles]`
+* Supported features: `versionable`
 
 <h4 id="package-provider-sun">sun</h4>
 
@@ -869,6 +893,7 @@ These options should be specified as an array where each element is either a str
 * Required binaries: `/usr/bin/pkginfo`, `/usr/sbin/pkgadd`, `/usr/sbin/pkgrm`
 * Confined to: `osfamily == solaris`
 * Default for: `["osfamily", "solaris"] == `
+* Supported features: `install_options`
 
 <h4 id="package-provider-sunfreeware">sunfreeware</h4>
 
@@ -889,6 +914,7 @@ array where each element is either a string or a hash.
 
 * Required binaries: `tdnf`, `rpm`
 * Default for: `["operatingsystem", "PhotonOS"] == `
+* Supported features: `install_options`, `versionable`, `virtual_packages`
 
 <h4 id="package-provider-up2date">up2date</h4>
 
@@ -905,6 +931,7 @@ Support via `urpmi`.
 
 * Required binaries: `urpmi`, `urpmq`, `rpm`, `urpme`
 * Default for: `["operatingsystem", "[:mandriva, :mandrake]"] == `
+* Supported features: `versionable`
 
 <h4 id="package-provider-windows">windows</h4>
 
@@ -927,6 +954,7 @@ will automatically quote any option that contains spaces.
 
 * Confined to: `operatingsystem == windows`
 * Default for: `["operatingsystem", "windows"] == `
+* Supported features: `installable`, `uninstallable`, `install_options`, `uninstall_options`, `versionable`
 
 <h4 id="package-provider-yum">yum</h4>
 
@@ -941,6 +969,7 @@ These options should be specified as an array where each element is either a str
 
 * Required binaries: `yum`, `rpm`
 * Default for: `["operatingsystem", "amazon"] == `, `["osfamily", "redhat"] == ["operatingsystemmajrelease", "(4..7).to_a"]`
+* Supported features: `install_options`, `versionable`, `virtual_packages`, `install_only`
 
 <h4 id="package-provider-zypper">zypper</h4>
 
@@ -953,6 +982,7 @@ string or a hash.
 * Required binaries: `/usr/bin/zypper`
 * Confined to: `operatingsystem == [:suse, :sles, :sled, :opensuse]`
 * Default for: `["operatingsystem", "[:suse, :sles, :sled, :opensuse]"] == `
+* Supported features: `versionable`, `install_options`, `virtual_packages`
 
 <h3 id="package-provider-features">Provider Features</h3>
 
@@ -1002,6 +1032,8 @@ Provider support:
   <tbody>
     <tr>
       <td>aix</td>
+      <td> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -1685,4 +1717,4 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2021-01-22 10:27:38 +0000
+> **NOTE:** This page was generated from the Puppet source code on 2021-02-10 10:04:33 +0000

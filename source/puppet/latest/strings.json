@@ -957,7 +957,7 @@
         },
         {
           "name": "source",
-          "description": "Where to find the package file. This is only used by providers that don't\nautomatically download packages from a central repository. (For example:\nthe `yum` and `apt` providers ignore this attribute, but the `rpm` and\n`dpkg` providers require it.)\n\nDifferent providers accept different values for `source`. Most providers\naccept paths to local files stored on the target system. Some providers\nmay also accept URLs or network drive paths. Puppet will not\nautomatically retrieve source files for you, and usually just passes the\nvalue of `source` to the package installation command.\n\nYou can use a `file` resource if you need to manually copy package files\nto the target system."
+          "description": "Where to find the package file. This is mostly used by providers that don't\nautomatically download packages from a central repository. (For example:\nthe `yum` provider ignores this attribute, `apt` provider uses it if present\nand the `rpm` and `dpkg` providers require it.)\n\nDifferent providers accept different values for `source`. Most providers\naccept paths to local files stored on the target system. Some providers\nmay also accept URLs or network drive paths. Puppet will not\nautomatically retrieve source files for you, and usually just passes the\nvalue of `source` to the package installation command.\n\nYou can use a `file` resource if you need to manually copy package files\nto the target system."
         },
         {
           "name": "status",
@@ -2247,6 +2247,9 @@
           "line": 3,
           "docstring": {
             "text": "Debian's form of `init`-style management.\n\nThe only differences from `init` are support for enabling and disabling\nservices via `update-rc.d` and the ability to determine enabled status via\n`invoke-rc.d`."
+          },
+          "confines": {
+            "false": "Puppet::FileSystem.exist?('/proc/1/comm') && Puppet::FileSystem.read('/proc/1/comm').include?('systemd')"
           },
           "defaults": [
             [
@@ -3617,6 +3620,9 @@
       "line": 3,
       "docstring": {
         "text": "Debian's form of `init`-style management.\n\nThe only differences from `init` are support for enabling and disabling\nservices via `update-rc.d` and the ability to determine enabled status via\n`invoke-rc.d`."
+      },
+      "confines": {
+        "false": "Puppet::FileSystem.exist?('/proc/1/comm') && Puppet::FileSystem.read('/proc/1/comm').include?('systemd')"
       },
       "defaults": [
         [

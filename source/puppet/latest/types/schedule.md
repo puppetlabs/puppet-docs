@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: eab773ebdad48a4587f1a650aa01334fbc154dbc
+built_from_commit: abe39259f7c9eb3e129c6dcda93bab904bf68910
 title: 'Resource Type: schedule'
 canonical: "/puppet/latest/types/schedule.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2021-01-22 10:27:38 +0000
+> **NOTE:** This page was generated from the Puppet source code on 2021-02-10 10:04:33 +0000
 
 schedule
 -----
@@ -213,4 +213,4 @@ at 2 AM on Saturday.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2021-01-22 10:27:38 +0000
+> **NOTE:** This page was generated from the Puppet source code on 2021-02-10 10:04:33 +0000
