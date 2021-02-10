@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: eab773ebdad48a4587f1a650aa01334fbc154dbc
+built_from_commit: abe39259f7c9eb3e129c6dcda93bab904bf68910
 title: 'Man Page: puppet catalog'
 canonical: "/puppet/latest/man/catalog.html"
 ---

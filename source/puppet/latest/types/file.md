@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: eab773ebdad48a4587f1a650aa01334fbc154dbc
+built_from_commit: abe39259f7c9eb3e129c6dcda93bab904bf68910
 title: 'Resource Type: file'
 canonical: "/puppet/latest/types/file.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2021-01-22 10:27:38 +0000
+> **NOTE:** This page was generated from the Puppet source code on 2021-02-10 10:04:33 +0000
 
 file
 -----
@@ -778,6 +778,7 @@ Default: `%`
 Uses POSIX functionality to manage file ownership and permissions.
 
 * Confined to: `feature == posix`
+* Supported features: `manages_symlinks`
 
 <h4 id="file-provider-windows">windows</h4>
 
@@ -814,4 +815,4 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2021-01-22 10:27:38 +0000
+> **NOTE:** This page was generated from the Puppet source code on 2021-02-10 10:04:33 +0000

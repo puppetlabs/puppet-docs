@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: eab773ebdad48a4587f1a650aa01334fbc154dbc
+built_from_commit: abe39259f7c9eb3e129c6dcda93bab904bf68910
 title: 'Resource Type: filebucket'
 canonical: "/puppet/latest/types/filebucket.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2021-01-22 10:27:38 +0000
+> **NOTE:** This page was generated from the Puppet source code on 2021-02-10 10:04:33 +0000
 
 filebucket
 -----
@@ -100,4 +100,4 @@ if `server_list` is not set.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2021-01-22 10:27:38 +0000
+> **NOTE:** This page was generated from the Puppet source code on 2021-02-10 10:04:33 +0000

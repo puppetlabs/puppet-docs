@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: eab773ebdad48a4587f1a650aa01334fbc154dbc
+built_from_commit: abe39259f7c9eb3e129c6dcda93bab904bf68910
 title: 'Resource Type: group'
 canonical: "/puppet/latest/types/group.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2021-01-22 10:27:38 +0000
+> **NOTE:** This page was generated from the Puppet source code on 2021-02-10 10:04:33 +0000
 
 group
 -----
@@ -231,6 +231,7 @@ Group management for AIX.
 * Required binaries: `/usr/sbin/lsgroup`, `/usr/bin/mkgroup`, `/usr/sbin/rmgroup`, `/usr/bin/chgroup`
 * Confined to: `operatingsystem == aix`
 * Default for: `["operatingsystem", "aix"] == `
+* Supported features: `manages_aix_lam`, `manages_members`, `manages_local_users_and_groups`
 
 <h4 id="group-provider-directoryservice">directoryservice</h4>
 
@@ -239,6 +240,7 @@ Group management using DirectoryService on OS X.
 * Required binaries: `/usr/bin/dscl`
 * Confined to: `operatingsystem == darwin`
 * Default for: `["operatingsystem", "darwin"] == `
+* Supported features: `manages_members`
 
 <h4 id="group-provider-groupadd">groupadd</h4>
 
@@ -268,6 +270,7 @@ Group management via `pw` on FreeBSD and DragonFly BSD.
 * Required binaries: `pw`
 * Confined to: `operatingsystem == [:freebsd, :dragonfly]`
 * Default for: `["operatingsystem", "[:freebsd, :dragonfly]"] == `
+* Supported features: `manages_members`
 
 <h4 id="group-provider-windows_adsi">windows_adsi</h4>
 
@@ -276,6 +279,7 @@ Additionally, local groups can contain domain users.
 
 * Confined to: `operatingsystem == windows`
 * Default for: `["operatingsystem", "windows"] == `
+* Supported features: `manages_members`
 
 <h3 id="group-provider-features">Provider Features</h3>
 
@@ -346,4 +350,4 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2021-01-22 10:27:38 +0000
+> **NOTE:** This page was generated from the Puppet source code on 2021-02-10 10:04:33 +0000

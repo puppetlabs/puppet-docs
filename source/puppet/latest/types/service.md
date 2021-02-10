@@ -5,7 +5,7 @@ title: 'Resource Type: service'
 canonical: "/puppet/latest/types/service.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2021-01-22 10:27:38 +0000
+> **NOTE:** This page was generated from the Puppet source code on 2021-02-10 10:04:33 +0000
 
 service
 -----
@@ -376,6 +376,7 @@ services via `update-rc.d` and the ability to determine enabled status via
 `invoke-rc.d`.
 
 * Required binaries: `/usr/sbin/update-rc.d`, `/usr/sbin/invoke-rc.d`, `/usr/sbin/service`
+* Confined to: `false == Puppet::FileSystem.exist?('/proc/1/comm') && Puppet::FileSystem.read('/proc/1/comm').include?('systemd')`
 * Default for: `["operatingsystem", "cumuluslinux"] == ["operatingsystemmajrelease", "['1','2']"]`, `["operatingsystem", "debian"] == ["operatingsystemmajrelease", "['5','6','7']"]`, `["operatingsystem", "devuan"] == `
 
 <h4 id="service-provider-freebsd">freebsd</h4>
@@ -444,6 +445,7 @@ Note that this provider does not support overriding 'restart'
 * Required binaries: `/bin/launchctl`
 * Confined to: `operatingsystem == darwin`, `feature == cfpropertylist`
 * Default for: `["operatingsystem", "darwin"] == `
+* Supported features: `enableable`, `refreshable`
 
 <h4 id="service-provider-openbsd">openbsd</h4>
 
@@ -452,6 +454,7 @@ Provider for OpenBSD's rc.d daemon control scripts
 * Required binaries: `/usr/sbin/rcctl`
 * Confined to: `operatingsystem == openbsd`
 * Default for: `["operatingsystem", "openbsd"] == `
+* Supported features: `flaggable`
 
 <h4 id="service-provider-openrc">openrc</h4>
 
@@ -470,6 +473,7 @@ Uses /etc/init.d/service_name enable, disable, and enabled.
 
 * Confined to: `operatingsystem == openwrt`
 * Default for: `["operatingsystem", "openwrt"] == `
+* Supported features: `enableable`
 
 <h4 id="service-provider-rcng">rcng</h4>
 
@@ -541,6 +545,7 @@ be imported if it does not exist.
 * Required binaries: `/usr/sbin/svcadm`, `/usr/bin/svcs`, `/usr/sbin/svccfg`
 * Confined to: `osfamily == solaris`
 * Default for: `["osfamily", "solaris"] == `
+* Supported features: `refreshable`
 
 <h4 id="service-provider-src">src</h4>
 
@@ -555,6 +560,7 @@ is not yet supported.
 
 * Confined to: `operatingsystem == aix`
 * Default for: `["operatingsystem", "aix"] == `
+* Supported features: `refreshable`
 
 <h4 id="service-provider-systemd">systemd</h4>
 
@@ -583,6 +589,7 @@ see <http://upstart.ubuntu.com/>.
     Facter.value(:operatingsystem) == 'LinuxMint',
   ]`, `true == lambda { has_initctl? }`
 * Default for: `["operatingsystem", "ubuntu"] == ["operatingsystemmajrelease", "[\"10.04\", \"12.04\", \"14.04\", \"14.10\"]"]`, `["operatingsystem", "LinuxMint"] == ["operatingsystemmajrelease", "[\"10\", \"11\", \"12\", \"13\", \"14\", \"15\", \"16\", \"17\"]"]`
+* Supported features: `enableable`
 
 <h4 id="service-provider-windows">windows</h4>
 
@@ -595,6 +602,7 @@ services as a specific user.
 
 * Confined to: `operatingsystem == windows`
 * Default for: `["operatingsystem", "windows"] == `
+* Supported features: `refreshable`, `configurable_timeout`, `manages_logon_credentials`
 
 <h3 id="service-provider-features">Provider Features</h3>
 
@@ -807,4 +815,4 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2021-01-22 10:27:38 +0000
+> **NOTE:** This page was generated from the Puppet source code on 2021-02-10 10:04:33 +0000

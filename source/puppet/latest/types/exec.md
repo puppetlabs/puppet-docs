@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: eab773ebdad48a4587f1a650aa01334fbc154dbc
+built_from_commit: abe39259f7c9eb3e129c6dcda93bab904bf68910
 title: 'Resource Type: exec'
 canonical: "/puppet/latest/types/exec.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2021-01-22 10:27:38 +0000
+> **NOTE:** This page was generated from the Puppet source code on 2021-02-10 10:04:33 +0000
 
 exec
 -----
@@ -283,6 +283,7 @@ built-ins (including control logic like "for" and "if" statements).
 
 * Confined to: `feature == posix`
 * Default for: `["feature", "posix"] == `
+* Supported features: `umask`
 
 <h4 id="exec-provider-shell">shell</h4>
 
@@ -329,4 +330,4 @@ command:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2021-01-22 10:27:38 +0000
+> **NOTE:** This page was generated from the Puppet source code on 2021-02-10 10:04:33 +0000

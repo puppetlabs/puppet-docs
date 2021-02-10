@@ -1,13 +1,13 @@
 ---
 layout: default
-built_from_commit: eab773ebdad48a4587f1a650aa01334fbc154dbc
+built_from_commit: abe39259f7c9eb3e129c6dcda93bab904bf68910
 title: Built-in function reference
 canonical: "/puppet/latest/function.html"
 toc_levels: 2
 toc: columns
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2021-01-22 10:27:38 +0000
+> **NOTE:** This page was generated from the Puppet source code on 2021-02-10 10:04:33 +0000
 
 This page is a list of Puppet's built-in functions, with descriptions of what they do and how to use them.
 
@@ -5397,4 +5397,4 @@ how to use this function.
 
 `yaml_data(Struct[{path=>String[1]}] $options, Puppet::LookupContext $context)`
 
-> **NOTE:** This page was generated from the Puppet source code on 2021-01-22 10:27:38 +0000
+> **NOTE:** This page was generated from the Puppet source code on 2021-02-10 10:04:33 +0000

@@ -432,6 +432,7 @@ built-ins (including control logic like "for" and "if" statements).
 
 * Confined to: `feature == posix`
 * Default for: `["feature", "posix"] == `
+* Supported features: `umask`
 
 <h4 id="exec-provider-shell">shell</h4>
 
@@ -1246,6 +1247,7 @@ Default: `%`
 Uses POSIX functionality to manage file ownership and permissions.
 
 * Confined to: `feature == posix`
+* Supported features: `manages_symlinks`
 
 <h4 id="file-provider-windows">windows</h4>
 
@@ -1593,6 +1595,7 @@ Group management for AIX.
 * Required binaries: `/usr/sbin/lsgroup`, `/usr/bin/mkgroup`, `/usr/sbin/rmgroup`, `/usr/bin/chgroup`
 * Confined to: `operatingsystem == aix`
 * Default for: `["operatingsystem", "aix"] == `
+* Supported features: `manages_aix_lam`, `manages_members`, `manages_local_users_and_groups`
 
 <h4 id="group-provider-directoryservice">directoryservice</h4>
 
@@ -1601,6 +1604,7 @@ Group management using DirectoryService on OS X.
 * Required binaries: `/usr/bin/dscl`
 * Confined to: `operatingsystem == darwin`
 * Default for: `["operatingsystem", "darwin"] == `
+* Supported features: `manages_members`
 
 <h4 id="group-provider-groupadd">groupadd</h4>
 
@@ -1630,6 +1634,7 @@ Group management via `pw` on FreeBSD and DragonFly BSD.
 * Required binaries: `pw`
 * Confined to: `operatingsystem == [:freebsd, :dragonfly]`
 * Default for: `["operatingsystem", "[:freebsd, :dragonfly]"] == `
+* Supported features: `manages_members`
 
 <h4 id="group-provider-windows_adsi">windows_adsi</h4>
 
@@ -1638,6 +1643,7 @@ Additionally, local groups can contain domain users.
 
 * Confined to: `operatingsystem == windows`
 * Default for: `["operatingsystem", "windows"] == `
+* Supported features: `manages_members`
 
 <h3 id="group-provider-features">Provider Features</h3>
 
@@ -1809,7 +1815,7 @@ resource will autorequire those files.
   <a href="#package-attribute-reinstall_on_refresh">reinstall_on_refresh</a> =&gt; <em># Whether this resource should respond to refresh...</em>
   <a href="#package-attribute-responsefile">responsefile</a>         =&gt; <em># A file containing any necessary answers to...</em>
   <a href="#package-attribute-root">root</a>                 =&gt; <em># A read-only parameter set by the...</em>
-  <a href="#package-attribute-source">source</a>               =&gt; <em># Where to find the package file. This is only...</em>
+  <a href="#package-attribute-source">source</a>               =&gt; <em># Where to find the package file. This is mostly...</em>
   <a href="#package-attribute-status">status</a>               =&gt; <em># A read-only parameter set by the...</em>
   <a href="#package-attribute-uninstall_options">uninstall_options</a>    =&gt; <em># An array of additional options to pass when...</em>
   <a href="#package-attribute-vendor">vendor</a>               =&gt; <em># A read-only parameter set by the...</em>
@@ -2211,10 +2217,10 @@ A read-only parameter set by the package.
 
 <h4 id="package-attribute-source">source</h4>
 
-Where to find the package file. This is only used by providers that don't
+Where to find the package file. This is mostly used by providers that don't
 automatically download packages from a central repository. (For example:
-the `yum` and `apt` providers ignore this attribute, but the `rpm` and
-`dpkg` providers require it.)
+the `yum` provider ignores this attribute, `apt` provider uses it if present
+and the `rpm` and `dpkg` providers require it.)
 
 Different providers accept different values for `source`. Most providers
 accept paths to local files stored on the target system. Some providers
@@ -2286,6 +2292,7 @@ installed on the machine, the resource will fail with an error message.
 * Required binaries: `/usr/bin/lslpp`, `/usr/sbin/installp`
 * Confined to: `operatingsystem == [ :aix ]`
 * Default for: `["operatingsystem", "aix"] == `
+* Supported features: `versionable`
 
 <h4 id="package-provider-appdmg">appdmg</h4>
 
@@ -2315,18 +2322,21 @@ These options should be specified as an array where each element is either a
 
 * Required binaries: `/usr/bin/apt-get`, `/usr/bin/apt-cache`, `/usr/bin/apt-mark`, `/usr/bin/debconf-set-selections`
 * Default for: `["osfamily", "debian"] == `
+* Supported features: `versionable`, `install_options`, `virtual_packages`
 
 <h4 id="package-provider-aptitude">aptitude</h4>
 
 Package management via `aptitude`.
 
 * Required binaries: `/usr/bin/aptitude`, `/usr/bin/apt-cache`
+* Supported features: `versionable`
 
 <h4 id="package-provider-aptrpm">aptrpm</h4>
 
 Package management via `apt-get` ported to `rpm`.
 
 * Required binaries: `apt-get`, `apt-cache`, `rpm`
+* Supported features: `versionable`
 
 <h4 id="package-provider-blastwave">blastwave</h4>
 
@@ -2349,12 +2359,14 @@ These options should be specified as an array where each element is either
 
 * Required binaries: `dnf`, `rpm`
 * Default for: `["operatingsystem", "fedora"] == `, `["osfamily", "redhat"] == `
+* Supported features: `install_options`, `versionable`, `virtual_packages`, `install_only`
 
 <h4 id="package-provider-dnfmodule">dnfmodule</h4>
 
 
 
 * Required binaries: `/usr/bin/dnf`
+* Supported features: `installable`, `uninstallable`, `versionable`, `supports_flavors`, `disableable`
 
 <h4 id="package-provider-dpkg">dpkg</h4>
 
@@ -2363,12 +2375,14 @@ and not `apt`, you must specify the source of any packages you want
 to manage.
 
 * Required binaries: `/usr/bin/dpkg`, `/usr/bin/dpkg-deb`, `/usr/bin/dpkg-query`
+* Supported features: `holdable`, `virtual_packages`
 
 <h4 id="package-provider-fink">fink</h4>
 
 Package management via `fink`.
 
 * Required binaries: `/sw/bin/fink`, `/sw/bin/apt-get`, `/sw/bin/apt-cache`, `/sw/bin/dpkg-query`
+* Supported features: `versionable`
 
 <h4 id="package-provider-freebsd">freebsd</h4>
 
@@ -2394,6 +2408,7 @@ This provider supports the `install_options` and `uninstall_options` attributes,
 which allow command-line flags to be passed to the gem command.
 These options should be specified as an array where each element is either a
 string or a hash.
+* Supported features: `versionable`, `install_options`, `uninstall_options`, `targetable`, `version_ranges`
 
 <h4 id="package-provider-hpux">hpux</h4>
 
@@ -2415,6 +2430,7 @@ When specifying a version in the Puppet DSL, only specify the version, not the r
 Revisions are only used internally for ensuring the latest version/revision of a port.
 
 * Confined to: `operatingsystem == darwin`
+* Supported features: `installable`, `uninstallable`, `upgradeable`, `versionable`
 
 <h4 id="package-provider-nim">nim</h4>
 
@@ -2429,6 +2445,7 @@ installed on the machine, the resource will fail with an error message.
 
 * Required binaries: `/usr/sbin/nimclient`, `/usr/bin/lslpp`, `rpm`
 * Confined to: `exists == /etc/niminfo`
+* Supported features: `versionable`
 
 <h4 id="package-provider-openbsd">openbsd</h4>
 
@@ -2442,6 +2459,7 @@ These options should be specified as an array where each element is either a
 * Required binaries: `pkg_info`, `pkg_add`, `pkg_delete`
 * Confined to: `operatingsystem == openbsd`
 * Default for: `["operatingsystem", "openbsd"] == `
+* Supported features: `versionable`, `install_options`, `uninstall_options`, `upgradeable`, `supports_flavors`
 
 <h4 id="package-provider-opkg">opkg</h4>
 
@@ -2461,6 +2479,7 @@ These options should be specified as an array where each element is either a str
 * Required binaries: `/usr/bin/pacman`
 * Confined to: `operatingsystem == [:archlinux, :manjarolinux]`
 * Default for: `["operatingsystem", "[:archlinux, :manjarolinux]"] == `
+* Supported features: `install_options`, `uninstall_options`, `upgradeable`, `virtual_packages`
 
 <h4 id="package-provider-pip">pip</h4>
 
@@ -2468,6 +2487,7 @@ Python packages via `pip`.
 
 This provider supports the `install_options` attribute, which allows command-line flags to be passed to pip.
 These options should be specified as an array where each element is either a string or a hash.
+* Supported features: `installable`, `uninstallable`, `upgradeable`, `versionable`, `version_ranges`, `install_options`, `targetable`
 
 <h4 id="package-provider-pip2">pip2</h4>
 
@@ -2475,6 +2495,7 @@ Python packages via `pip2`.
 
 This provider supports the `install_options` attribute, which allows command-line flags to be passed to pip2.
 These options should be specified as an array where each element is either a string or a hash.
+* Supported features: `installable`, `uninstallable`, `upgradeable`, `versionable`, `install_options`, `targetable`
 
 <h4 id="package-provider-pip3">pip3</h4>
 
@@ -2482,6 +2503,7 @@ Python packages via `pip3`.
 
 This provider supports the `install_options` attribute, which allows command-line flags to be passed to pip3.
 These options should be specified as an array where each element is either a string or a hash.
+* Supported features: `installable`, `uninstallable`, `upgradeable`, `versionable`, `install_options`, `targetable`
 
 <h4 id="package-provider-pkg">pkg</h4>
 
@@ -2494,6 +2516,7 @@ array where each element is either a string or a hash.
 * Required binaries: `/usr/bin/pkg`
 * Confined to: `osfamily == solaris`
 * Default for: `["osfamily", "solaris"] == ["kernelrelease", "['5.11', '5.12']"]`
+* Supported features: `versionable`, `upgradable`, `holdable`, `install_options`
 
 <h4 id="package-provider-pkgdmg">pkgdmg</h4>
 
@@ -2529,6 +2552,7 @@ Package management using pkgin, a binary package manager for pkgsrc.
 
 * Required binaries: `pkgin`
 * Default for: `["operatingsystem", "[ :smartos, :netbsd ]"] == `
+* Supported features: `installable`, `uninstallable`, `upgradeable`, `versionable`
 
 <h4 id="package-provider-pkgng">pkgng</h4>
 
@@ -2537,6 +2561,7 @@ A PkgNG provider for FreeBSD and DragonFly.
 * Required binaries: `/usr/local/sbin/pkg`
 * Confined to: `operatingsystem == [:freebsd, :dragonfly]`
 * Default for: `["operatingsystem", "[:freebsd, :dragonfly]"] == `
+* Supported features: `versionable`, `upgradeable`, `install_options`
 
 <h4 id="package-provider-pkgutil">pkgutil</h4>
 
@@ -2553,6 +2578,7 @@ flags to be passed to emerge. These options should be specified as an array wher
 
 * Confined to: `osfamily == gentoo`
 * Default for: `["osfamily", "gentoo"] == `
+* Supported features: `install_options`, `purgeable`, `reinstallable`, `uninstall_options`, `versionable`, `virtual_packages`
 
 <h4 id="package-provider-ports">ports</h4>
 
@@ -2572,6 +2598,7 @@ for the portupgrade port.
 
 Puppet Ruby Gem support. This provider is useful for managing
 gems needed by the ruby provided in the puppet-agent package.
+* Supported features: `versionable`, `install_options`, `uninstall_options`
 
 <h4 id="package-provider-puppetserver_gem">puppetserver_gem</h4>
 
@@ -2584,6 +2611,7 @@ If source is not present at all, the gem will be installed from the default
 gem repositories.
 
 * Confined to: `feature == hocon`, `fips_enabled == false`
+* Supported features: `versionable`, `install_options`, `uninstall_options`
 
 <h4 id="package-provider-rpm">rpm</h4>
 
@@ -2595,6 +2623,7 @@ attributes, which allow command-line flags to be passed to rpm.
 These options should be specified as an array where each element is either a string or a hash.
 
 * Required binaries: `rpm`
+* Supported features: `versionable`, `install_options`, `uninstall_options`, `virtual_packages`, `install_only`
 
 <h4 id="package-provider-rug">rug</h4>
 
@@ -2602,6 +2631,7 @@ Support for suse `rug` package manager.
 
 * Required binaries: `/usr/bin/rug`, `rpm`
 * Confined to: `operatingsystem == [:suse, :sles]`
+* Supported features: `versionable`
 
 <h4 id="package-provider-sun">sun</h4>
 
@@ -2615,6 +2645,7 @@ These options should be specified as an array where each element is either a str
 * Required binaries: `/usr/bin/pkginfo`, `/usr/sbin/pkgadd`, `/usr/sbin/pkgrm`
 * Confined to: `osfamily == solaris`
 * Default for: `["osfamily", "solaris"] == `
+* Supported features: `install_options`
 
 <h4 id="package-provider-sunfreeware">sunfreeware</h4>
 
@@ -2635,6 +2666,7 @@ array where each element is either a string or a hash.
 
 * Required binaries: `tdnf`, `rpm`
 * Default for: `["operatingsystem", "PhotonOS"] == `
+* Supported features: `install_options`, `versionable`, `virtual_packages`
 
 <h4 id="package-provider-up2date">up2date</h4>
 
@@ -2651,6 +2683,7 @@ Support via `urpmi`.
 
 * Required binaries: `urpmi`, `urpmq`, `rpm`, `urpme`
 * Default for: `["operatingsystem", "[:mandriva, :mandrake]"] == `
+* Supported features: `versionable`
 
 <h4 id="package-provider-windows">windows</h4>
 
@@ -2673,6 +2706,7 @@ will automatically quote any option that contains spaces.
 
 * Confined to: `operatingsystem == windows`
 * Default for: `["operatingsystem", "windows"] == `
+* Supported features: `installable`, `uninstallable`, `install_options`, `uninstall_options`, `versionable`
 
 <h4 id="package-provider-yum">yum</h4>
 
@@ -2687,6 +2721,7 @@ These options should be specified as an array where each element is either a str
 
 * Required binaries: `yum`, `rpm`
 * Default for: `["operatingsystem", "amazon"] == `, `["osfamily", "redhat"] == ["operatingsystemmajrelease", "(4..7).to_a"]`
+* Supported features: `install_options`, `versionable`, `virtual_packages`, `install_only`
 
 <h4 id="package-provider-zypper">zypper</h4>
 
@@ -2699,6 +2734,7 @@ string or a hash.
 * Required binaries: `/usr/bin/zypper`
 * Confined to: `operatingsystem == [:suse, :sles, :sled, :opensuse]`
 * Default for: `["operatingsystem", "[:suse, :sles, :sled, :opensuse]"] == `
+* Supported features: `versionable`, `install_options`, `virtual_packages`
 
 <h3 id="package-provider-features">Provider Features</h3>
 
@@ -2748,6 +2784,8 @@ Provider support:
   <tbody>
     <tr>
       <td>aix</td>
+      <td> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -3500,7 +3538,7 @@ To specify a range of uids, consider using the range() function from stdlib.
 
 ([↑ Back to resources attributes](#resources-attributes))
 
-schedule
+
 -----
 
 * [Attributes](#schedule-attributes)
@@ -4071,6 +4109,7 @@ services via `update-rc.d` and the ability to determine enabled status via
 `invoke-rc.d`.
 
 * Required binaries: `/usr/sbin/update-rc.d`, `/usr/sbin/invoke-rc.d`, `/usr/sbin/service`
+* Confined to: `false == Puppet::FileSystem.exist?('/proc/1/comm') && Puppet::FileSystem.read('/proc/1/comm').include?('systemd')`
 * Default for: `["operatingsystem", "cumuluslinux"] == ["operatingsystemmajrelease", "['1','2']"]`, `["operatingsystem", "debian"] == ["operatingsystemmajrelease", "['5','6','7']"]`, `["operatingsystem", "devuan"] == `
 
 <h4 id="service-provider-freebsd">freebsd</h4>
@@ -4139,6 +4178,7 @@ Note that this provider does not support overriding 'restart'
 * Required binaries: `/bin/launchctl`
 * Confined to: `operatingsystem == darwin`, `feature == cfpropertylist`
 * Default for: `["operatingsystem", "darwin"] == `
+* Supported features: `enableable`, `refreshable`
 
 <h4 id="service-provider-openbsd">openbsd</h4>
 
@@ -4147,6 +4187,7 @@ Provider for OpenBSD's rc.d daemon control scripts
 * Required binaries: `/usr/sbin/rcctl`
 * Confined to: `operatingsystem == openbsd`
 * Default for: `["operatingsystem", "openbsd"] == `
+* Supported features: `flaggable`
 
 <h4 id="service-provider-openrc">openrc</h4>
 
@@ -4165,6 +4206,7 @@ Uses /etc/init.d/service_name enable, disable, and enabled.
 
 * Confined to: `operatingsystem == openwrt`
 * Default for: `["operatingsystem", "openwrt"] == `
+* Supported features: `enableable`
 
 <h4 id="service-provider-rcng">rcng</h4>
 
@@ -4236,6 +4278,7 @@ be imported if it does not exist.
 * Required binaries: `/usr/sbin/svcadm`, `/usr/bin/svcs`, `/usr/sbin/svccfg`
 * Confined to: `osfamily == solaris`
 * Default for: `["osfamily", "solaris"] == `
+* Supported features: `refreshable`
 
 <h4 id="service-provider-src">src</h4>
 
@@ -4250,6 +4293,7 @@ is not yet supported.
 
 * Confined to: `operatingsystem == aix`
 * Default for: `["operatingsystem", "aix"] == `
+* Supported features: `refreshable`
 
 <h4 id="service-provider-systemd">systemd</h4>
 
@@ -4278,6 +4322,7 @@ see <http://upstart.ubuntu.com/>.
     Facter.value(:operatingsystem) == 'LinuxMint',
   ]`, `true == lambda { has_initctl? }`
 * Default for: `["operatingsystem", "ubuntu"] == ["operatingsystemmajrelease", "[\"10.04\", \"12.04\", \"14.04\", \"14.10\"]"]`, `["operatingsystem", "LinuxMint"] == ["operatingsystemmajrelease", "[\"10\", \"11\", \"12\", \"13\", \"14\", \"15\", \"16\", \"17\"]"]`
+* Supported features: `enableable`
 
 <h4 id="service-provider-windows">windows</h4>
 
@@ -4290,6 +4335,7 @@ services as a specific user.
 
 * Confined to: `operatingsystem == windows`
 * Default for: `["operatingsystem", "windows"] == `
+* Supported features: `refreshable`, `configurable_timeout`, `manages_logon_credentials`
 
 <h3 id="service-provider-features">Provider Features</h3>
 
@@ -5283,7 +5329,8 @@ specified when creating a new user, then one will be chosen
 automatically. This will likely result in the same user having
 different UIDs on different systems, which is not recommended. This is
 especially noteworthy when managing the same user on both Darwin and
-other platforms, since Puppet does UID generation on Darwin, but the underlying tools (such as *useradd*) generate the UID on other platforms.
+other platforms, since Puppet does UID generation on Darwin, but
+the underlying tools (such as *useradd*) generate the UID on other platforms.
 
 On Windows, this property is read-only and will return the user's
 security identifier (SID).
@@ -5300,6 +5347,7 @@ User management for AIX.
 * Required binaries: `/usr/sbin/lsuser`, `/usr/bin/mkuser`, `/usr/sbin/rmuser`, `/usr/bin/chuser`, `/bin/chpasswd`
 * Confined to: `operatingsystem == aix`
 * Default for: `["operatingsystem", "aix"] == `
+* Supported features: `manages_aix_lam`, `manages_homedir`, `manages_passwords`, `manages_shell`, `manages_expiry`, `manages_password_age`, `manages_local_users_and_groups`
 
 <h4 id="user-provider-directoryservice">directoryservice</h4>
 
@@ -5308,6 +5356,7 @@ User management on OS X.
 * Required binaries: `/usr/bin/uuidgen`, `/usr/bin/dsimport`, `/usr/bin/dscl`, `/usr/bin/dscacheutil`
 * Confined to: `operatingsystem == darwin`, `feature == cfpropertylist`
 * Default for: `["operatingsystem", "darwin"] == `
+* Supported features: `manages_passwords`, `manages_password_salt`, `manages_shell`
 
 <h4 id="user-provider-hpuxuseradd">hpuxuseradd</h4>
 
@@ -5320,6 +5369,7 @@ resetting password expirations under trusted computing.
 * Required binaries: `/usr/sam/lbin/usermod.sam`, `/usr/sam/lbin/userdel.sam`, `/usr/sam/lbin/useradd.sam`
 * Confined to: `operatingsystem == hp-ux`
 * Default for: `["operatingsystem", "hp-ux"] == `
+* Supported features: `manages_homedir`, `allows_duplicates`, `manages_passwords`
 
 <h4 id="user-provider-ldap">ldap</h4>
 
@@ -5335,6 +5385,7 @@ you do not specify one, but it is a potentially expensive operation,
 as it iterates across all existing users to pick the appropriate next one.
 
 * Confined to: `feature == ldap`, `false == (Puppet[:ldapuser] == "")`
+* Supported features: `manages_passwords`, `manages_shell`
 
 <h4 id="user-provider-openbsd">openbsd</h4>
 
@@ -5345,6 +5396,7 @@ will need to install Ruby's shadow password library (package known as
 * Required binaries: `useradd`, `userdel`, `usermod`, `passwd`
 * Confined to: `operatingsystem == openbsd`
 * Default for: `["operatingsystem", "openbsd"] == `
+* Supported features: `manages_homedir`, `manages_expiry`, `system_users`, `manages_shell`
 
 <h4 id="user-provider-pw">pw</h4>
 
@@ -5353,6 +5405,7 @@ User management via `pw` on FreeBSD and DragonFly BSD.
 * Required binaries: `pw`
 * Confined to: `operatingsystem == [:freebsd, :dragonfly]`
 * Default for: `["operatingsystem", "[:freebsd, :dragonfly]"] == `
+* Supported features: `manages_homedir`, `allows_duplicates`, `manages_passwords`, `manages_expiry`, `manages_shell`
 
 <h4 id="user-provider-user_role_add">user_role_add</h4>
 
@@ -5360,6 +5413,7 @@ User and role management on Solaris, via `useradd` and `roleadd`.
 
 * Required binaries: `useradd`, `userdel`, `usermod`, `passwd`, `roleadd`, `roledel`, `rolemod`
 * Default for: `["osfamily", "solaris"] == `
+* Supported features: `manages_homedir`, `allows_duplicates`, `manages_solaris_rbac`, `manages_roles`, `manages_passwords`, `manages_password_age`, `manages_shell`
 
 <h4 id="user-provider-useradd">useradd</h4>
 
@@ -5368,6 +5422,7 @@ install Ruby's shadow password library (often known as `ruby-libshadow`)
 if you wish to manage user passwords.
 
 * Required binaries: `useradd`, `userdel`, `usermod`, `chage`
+* Supported features: `manages_homedir`, `allows_duplicates`, `manages_expiry`, `manages_shell`
 
 <h4 id="user-provider-windows_adsi">windows_adsi</h4>
 
@@ -5375,6 +5430,7 @@ Local user management for Windows.
 
 * Confined to: `operatingsystem == windows`
 * Default for: `["operatingsystem", "windows"] == `
+* Supported features: `manages_homedir`, `manages_passwords`, `manages_roles`
 
 <h3 id="user-provider-features">Provider Features</h3>
 
@@ -5555,4 +5611,4 @@ Provider support:
   </tbody>
 </table>
 
-> **NOTE:** This page was generated from the Puppet source code on 2021-01-22 10:27:38 +0000
+> **NOTE:** This page was generated from the Puppet source code on 2021-02-10 10:04:33 +0000
