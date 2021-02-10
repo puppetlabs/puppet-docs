@@ -22,6 +22,7 @@ module PuppetReferences
   require 'puppet_references/puppet/type_strings'
   require 'puppet_references/puppet/functions'
   require 'puppet_references/facter/core_facts'
+  require 'puppet_references/facter/facter_cli'
   require 'puppet_references/version_tables/config'
   require 'puppet_references/version_tables/data/pe'
   require 'puppet_references/version_tables/data/agent'
@@ -44,7 +45,8 @@ module PuppetReferences
 
   def self.build_facter_references(commit)
     references = [
-        PuppetReferences::Facter::CoreFacts
+        PuppetReferences::Facter::CoreFacts,
+        PuppetReferences::Facter::FacterCli
     ]
     repo = PuppetReferences::Repo.new('facter', FACTER_DIR)
     real_commit = repo.checkout(commit)
