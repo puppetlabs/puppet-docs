@@ -542,6 +542,7 @@ built-ins (including control logic like "for" and "if" statements).
 
 * Confined to: `feature == posix`
 * Default for: `["feature", "posix"] == `
+* Supported features: `umask`
 
 <h4 id="exec-provider-shell">shell</h4>
 
@@ -2382,10 +2383,10 @@ A read-only parameter set by the package.
 
 <h4 id="package-attribute-source">source</h4>
 
-Where to find the package file. This is only used by providers that don't
+Where to find the package file. This is mostly used by providers that don't
 automatically download packages from a central repository. (For example:
-the `yum` and `apt` providers ignore this attribute, but the `rpm` and
-`dpkg` providers require it.)
+the `yum` provider ignores this attribute, `apt` provider uses it if present
+and the `rpm` and `dpkg` providers require it.)
 
 Different providers accept different values for `source`. Most providers
 accept paths to local files stored on the target system. Some providers
@@ -2651,6 +2652,7 @@ Python packages via `pip`.
 
 This provider supports the `install_options` attribute, which allows command-line flags to be passed to pip.
 These options should be specified as an array where each element is either a string or a hash.
+* Supported features: `installable`, `uninstallable`, `upgradeable`, `versionable`, `version_ranges`, `install_options`, `targetable`
 
 <h4 id="package-provider-pip2">pip2</h4>
 
@@ -2658,6 +2660,7 @@ Python packages via `pip2`.
 
 This provider supports the `install_options` attribute, which allows command-line flags to be passed to pip2.
 These options should be specified as an array where each element is either a string or a hash.
+* Supported features: `installable`, `uninstallable`, `upgradeable`, `versionable`, `install_options`, `targetable`
 
 <h4 id="package-provider-pip3">pip3</h4>
 
@@ -2665,6 +2668,7 @@ Python packages via `pip3`.
 
 This provider supports the `install_options` attribute, which allows command-line flags to be passed to pip3.
 These options should be specified as an array where each element is either a string or a hash.
+* Supported features: `installable`, `uninstallable`, `upgradeable`, `versionable`, `install_options`, `targetable`
 
 <h4 id="package-provider-pkg">pkg</h4>
 
@@ -2765,6 +2769,7 @@ for the portupgrade port.
 
 Puppet Ruby Gem support. This provider is useful for managing
 gems needed by the ruby provided in the puppet-agent package.
+* Supported features: `versionable`, `install_options`, `uninstall_options`
 
 <h4 id="package-provider-puppetserver_gem">puppetserver_gem</h4>
 
@@ -2777,6 +2782,7 @@ If source is not present at all, the gem will be installed from the default
 gem repositories.
 
 * Confined to: `feature == hocon`, `fips_enabled == false`
+* Supported features: `versionable`, `install_options`, `uninstall_options`
 
 <h4 id="package-provider-rpm">rpm</h4>
 
@@ -4276,6 +4282,7 @@ services via `update-rc.d` and the ability to determine enabled status via
 `invoke-rc.d`.
 
 * Required binaries: `/usr/sbin/update-rc.d`, `/usr/sbin/invoke-rc.d`, `/usr/sbin/service`
+* Confined to: `false == Puppet::FileSystem.exist?('/proc/1/comm') && Puppet::FileSystem.read('/proc/1/comm').include?('systemd')`
 * Default for: `["operatingsystem", "cumuluslinux"] == ["operatingsystemmajrelease", "['1','2']"]`, `["operatingsystem", "debian"] == ["operatingsystemmajrelease", "['5','6','7']"]`, `["operatingsystem", "devuan"] == `
 * Supported features: `enableable`, `refreshable`.
 
@@ -5534,6 +5541,7 @@ User management for AIX.
 * Required binaries: `/usr/sbin/lsuser`, `/usr/bin/mkuser`, `/usr/sbin/rmuser`, `/usr/bin/chuser`, `/bin/chpasswd`
 * Confined to: `operatingsystem == aix`
 * Default for: `["operatingsystem", "aix"] == `
+* Supported features: `manages_aix_lam`, `manages_homedir`, `manages_passwords`, `manages_shell`, `manages_expiry`, `manages_password_age`, `manages_local_users_and_groups`
 
 <h4 id="user-provider-directoryservice">directoryservice</h4>
 
@@ -5542,6 +5550,7 @@ User management on OS X.
 * Required binaries: `/usr/bin/uuidgen`, `/usr/bin/dsimport`, `/usr/bin/dscl`, `/usr/bin/dscacheutil`
 * Confined to: `operatingsystem == darwin`, `feature == cfpropertylist`
 * Default for: `["operatingsystem", "darwin"] == `
+* Supported features: `manages_passwords`, `manages_password_salt`, `manages_shell`
 
 <h4 id="user-provider-hpuxuseradd">hpuxuseradd</h4>
 
@@ -5554,6 +5563,7 @@ resetting password expirations under trusted computing.
 * Required binaries: `/usr/sam/lbin/usermod.sam`, `/usr/sam/lbin/userdel.sam`, `/usr/sam/lbin/useradd.sam`
 * Confined to: `operatingsystem == hp-ux`
 * Default for: `["operatingsystem", "hp-ux"] == `
+* Supported features: `manages_homedir`, `allows_duplicates`, `manages_passwords`
 
 <h4 id="user-provider-ldap">ldap</h4>
 
@@ -5569,6 +5579,7 @@ you do not specify one, but it is a potentially expensive operation,
 as it iterates across all existing users to pick the appropriate next one.
 
 * Confined to: `feature == ldap`, `false == (Puppet[:ldapuser] == "")`
+* Supported features: `manages_passwords`, `manages_shell`
 
 <h4 id="user-provider-openbsd">openbsd</h4>
 
@@ -5579,6 +5590,7 @@ will need to install Ruby's shadow password library (package known as
 * Required binaries: `useradd`, `userdel`, `usermod`, `passwd`
 * Confined to: `operatingsystem == openbsd`
 * Default for: `["operatingsystem", "openbsd"] == `
+* Supported features: `manages_homedir`, `manages_expiry`, `system_users`, `manages_shell`
 
 <h4 id="user-provider-pw">pw</h4>
 
@@ -5587,6 +5599,7 @@ User management via `pw` on FreeBSD and DragonFly BSD.
 * Required binaries: `pw`
 * Confined to: `operatingsystem == [:freebsd, :dragonfly]`
 * Default for: `["operatingsystem", "[:freebsd, :dragonfly]"] == `
+* Supported features: `manages_homedir`, `allows_duplicates`, `manages_passwords`, `manages_expiry`, `manages_shell`
 
 <h4 id="user-provider-user_role_add">user_role_add</h4>
 
@@ -5594,6 +5607,7 @@ User and role management on Solaris, via `useradd` and `roleadd`.
 
 * Required binaries: `useradd`, `userdel`, `usermod`, `passwd`, `roleadd`, `roledel`, `rolemod`
 * Default for: `["osfamily", "solaris"] == `
+* Supported features: `manages_homedir`, `allows_duplicates`, `manages_solaris_rbac`, `manages_roles`, `manages_passwords`, `manages_password_age`, `manages_shell`
 
 <h4 id="user-provider-useradd">useradd</h4>
 
@@ -5602,6 +5616,7 @@ install Ruby's shadow password library (often known as `ruby-libshadow`)
 if you wish to manage user passwords.
 
 * Required binaries: `useradd`, `userdel`, `usermod`, `chage`
+* Supported features: `manages_homedir`, `allows_duplicates`, `manages_expiry`, `manages_shell`
 
 <h4 id="user-provider-windows_adsi">windows_adsi</h4>
 
@@ -5609,6 +5624,7 @@ Local user management for Windows.
 
 * Confined to: `operatingsystem == windows`
 * Default for: `["operatingsystem", "windows"] == `
+* Supported features: `manages_homedir`, `manages_passwords`, `manages_roles`
 
 <h3 id="user-provider-features">Provider Features</h3>
 
@@ -5788,4 +5804,4 @@ Provider support:
   </tbody>
 </table>
 
-> **NOTE:** This page was generated from the Puppet source code on 2021-01-22 11:06:24 +0000
+> **NOTE:** This page was generated from the Puppet source code on 2021-02-10 14:37:29 +0000

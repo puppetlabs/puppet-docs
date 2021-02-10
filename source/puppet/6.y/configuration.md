@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 7ee979c756ae4213067b12f9af7971ef380d60c4
+built_from_commit: 6988b84f7eb7f5bb89766a9ca36b0b431685b03b
 title: Configuration Reference
 toc: columns
 canonical: "/puppet/latest/configuration.html"
@@ -970,7 +970,7 @@ This setting can be a time interval in seconds (30 or 30s), minutes (30m), hours
 
 The HTTP User-Agent string to send when making network requests.
 
-- *Default*: Puppet/6.20.0 Ruby/2.5.1-p57 (x86_64-darwin18)
+- *Default*: Puppet/6.21.0 Ruby/2.5.1-p57 (x86_64-darwin18)
 
 ### ignore_plugin_errors
 

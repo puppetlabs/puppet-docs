@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 7ee979c756ae4213067b12f9af7971ef380d60c4
+built_from_commit: 6988b84f7eb7f5bb89766a9ca36b0b431685b03b
 title: 'Resource Type: package'
 canonical: "/puppet/latest/types/package.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2021-01-22 11:06:24 +0000
+> **NOTE:** This page was generated from the Puppet source code on 2021-02-10 14:37:29 +0000
 
 package
 -----
@@ -463,10 +463,10 @@ A read-only parameter set by the package.
 
 <h4 id="package-attribute-source">source</h4>
 
-Where to find the package file. This is only used by providers that don't
+Where to find the package file. This is mostly used by providers that don't
 automatically download packages from a central repository. (For example:
-the `yum` and `apt` providers ignore this attribute, but the `rpm` and
-`dpkg` providers require it.)
+the `yum` provider ignores this attribute, `apt` provider uses it if present
+and the `rpm` and `dpkg` providers require it.)
 
 Different providers accept different values for `source`. Most providers
 accept paths to local files stored on the target system. Some providers
@@ -732,6 +732,7 @@ Python packages via `pip`.
 
 This provider supports the `install_options` attribute, which allows command-line flags to be passed to pip.
 These options should be specified as an array where each element is either a string or a hash.
+* Supported features: `installable`, `uninstallable`, `upgradeable`, `versionable`, `version_ranges`, `install_options`, `targetable`
 
 <h4 id="package-provider-pip2">pip2</h4>
 
@@ -739,6 +740,7 @@ Python packages via `pip2`.
 
 This provider supports the `install_options` attribute, which allows command-line flags to be passed to pip2.
 These options should be specified as an array where each element is either a string or a hash.
+* Supported features: `installable`, `uninstallable`, `upgradeable`, `versionable`, `install_options`, `targetable`
 
 <h4 id="package-provider-pip3">pip3</h4>
 
@@ -746,6 +748,7 @@ Python packages via `pip3`.
 
 This provider supports the `install_options` attribute, which allows command-line flags to be passed to pip3.
 These options should be specified as an array where each element is either a string or a hash.
+* Supported features: `installable`, `uninstallable`, `upgradeable`, `versionable`, `install_options`, `targetable`
 
 <h4 id="package-provider-pkg">pkg</h4>
 
@@ -846,6 +849,7 @@ for the portupgrade port.
 
 Puppet Ruby Gem support. This provider is useful for managing
 gems needed by the ruby provided in the puppet-agent package.
+* Supported features: `versionable`, `install_options`, `uninstall_options`
 
 <h4 id="package-provider-puppetserver_gem">puppetserver_gem</h4>
 
@@ -858,6 +862,7 @@ If source is not present at all, the gem will be installed from the default
 gem repositories.
 
 * Confined to: `feature == hocon`, `fips_enabled == false`
+* Supported features: `versionable`, `install_options`, `uninstall_options`
 
 <h4 id="package-provider-rpm">rpm</h4>
 
@@ -1712,4 +1717,4 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2021-01-22 11:06:24 +0000
+> **NOTE:** This page was generated from the Puppet source code on 2021-02-10 14:37:29 +0000
