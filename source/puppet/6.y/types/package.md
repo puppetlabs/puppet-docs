@@ -1011,7 +1011,7 @@ Available features:
 
 Provider support:
 
-<table style="width: 80%;">
+<table style="overflow-x:hidden;">
   <thead>
     <tr>
       <th>Provider</th>
