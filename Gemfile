@@ -21,7 +21,7 @@ group(:generate_references) do
   gem 'rdoc', '~> 6.2'
   gem 'rgen', '~> 0.8'
   gem 'puppet-strings'
-  gem 'puppet', '~> 6'
+  gem 'puppet', '~> 7'
   gem 'nokogiri', '~> 1.11'
   gem 'pragmatic_segmenter', '~> 0.3'
   gem 'punkt-segmenter', '~> 0.9'
