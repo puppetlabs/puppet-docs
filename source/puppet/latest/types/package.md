@@ -1007,7 +1007,7 @@ Available features:
 
 Provider support:
 
-<table style="width: 80%">
+<table style="display: table; border-collapse: collapse; width: 100%; table-layout: fixed;">
   <thead>
     <tr>
       <th>Provider</th>
