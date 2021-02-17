@@ -1011,10 +1011,11 @@ Available features:
 
 Provider support:
 
-<table width="80%">
+<table>
   <thead>
     <tr>
       <th>Provider</th>
+      <th>disableable</th>
       <th>holdable</th>
       <th>install only</th>
       <th>install options</th>
@@ -1027,6 +1028,7 @@ Provider support:
       <th>uninstall options</th>
       <th>uninstallable</th>
       <th>upgradeable</th>
+      <th>version ranges</th>
       <th>versionable</th>
       <th>virtual packages</th>
     </tr>
@@ -1034,6 +1036,8 @@ Provider support:
   <tbody>
     <tr>
       <td>aix</td>
+      <td> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -1065,9 +1069,13 @@ Provider support:
       <td> </td>
       <td> </td>
       <td> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>apple</td>
+      <td> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -1099,6 +1107,8 @@ Provider support:
       <td> </td>
       <td><em>X</em> </td>
       <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>aptitude</td>
@@ -1116,6 +1126,8 @@ Provider support:
       <td> </td>
       <td><em>X</em> </td>
       <td> </td>
+      <td> </td>
+      <td> </td>        
     </tr>
     <tr>
       <td>aptrpm</td>
@@ -1133,9 +1145,13 @@ Provider support:
       <td> </td>
       <td><em>X</em> </td>
       <td> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>blastwave</td>
+      <td> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -1167,6 +1183,8 @@ Provider support:
       <td> </td>
       <td><em>X</em> </td>
       <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>dnfmodule</td>
@@ -1183,6 +1201,8 @@ Provider support:
       <td><em>X</em> </td>
       <td> </td>
       <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
       <td> </td>
     </tr>
     <tr>
@@ -1201,6 +1221,8 @@ Provider support:
       <td> </td>
       <td> </td>
       <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>fink</td>
@@ -1218,9 +1240,13 @@ Provider support:
       <td> </td>
       <td><em>X</em> </td>
       <td> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>freebsd</td>
+      <td> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -1252,9 +1278,13 @@ Provider support:
       <td> </td>
       <td><em>X</em> </td>
       <td> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>hpux</td>
+      <td> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -1286,6 +1316,8 @@ Provider support:
       <td><em>X</em> </td>
       <td><em>X</em> </td>
       <td> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>nim</td>
@@ -1302,6 +1334,8 @@ Provider support:
       <td> </td>
       <td> </td>
       <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
       <td> </td>
     </tr>
     <tr>
@@ -1320,9 +1354,13 @@ Provider support:
       <td><em>X</em> </td>
       <td><em>X</em> </td>
       <td> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>opkg</td>
+      <td> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -1354,6 +1392,8 @@ Provider support:
       <td><em>X</em> </td>
       <td> </td>
       <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>pip</td>
@@ -1370,6 +1410,8 @@ Provider support:
       <td><em>X</em> </td>
       <td><em>X</em> </td>
       <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
       <td> </td>
     </tr>
     <tr>
@@ -1388,6 +1430,8 @@ Provider support:
       <td><em>X</em> </td>
       <td><em>X</em> </td>
       <td> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>pkg</td>
@@ -1405,9 +1449,13 @@ Provider support:
       <td> </td>
       <td><em>X</em> </td>
       <td> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>pkgdmg</td>
+      <td> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -1439,6 +1487,8 @@ Provider support:
       <td><em>X</em> </td>
       <td><em>X</em> </td>
       <td> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>pkgng</td>
@@ -1456,9 +1506,13 @@ Provider support:
       <td><em>X</em> </td>
       <td><em>X</em> </td>
       <td> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>pkgutil</td>
+      <td> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -1490,9 +1544,13 @@ Provider support:
       <td> </td>
       <td><em>X</em> </td>
       <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>ports</td>
+      <td> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -1524,6 +1582,8 @@ Provider support:
       <td> </td>
       <td> </td>
       <td> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>puppet_gem</td>
@@ -1540,6 +1600,8 @@ Provider support:
       <td> </td>
       <td> </td>
       <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
       <td> </td>
     </tr>
     <tr>
@@ -1558,6 +1620,8 @@ Provider support:
       <td> </td>
       <td><em>X</em> </td>
       <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>rug</td>
@@ -1574,6 +1638,8 @@ Provider support:
       <td> </td>
       <td> </td>
       <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
       <td> </td>
     </tr>
     <tr>
@@ -1592,9 +1658,13 @@ Provider support:
       <td> </td>
       <td> </td>
       <td> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>sunfreeware</td>
+      <td> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -1626,9 +1696,13 @@ Provider support:
       <td> </td>
       <td><em>X</em> </td>
       <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>up2date</td>
+      <td> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -1660,6 +1734,8 @@ Provider support:
       <td> </td>
       <td><em>X</em> </td>
       <td> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>windows</td>
@@ -1676,6 +1752,8 @@ Provider support:
       <td><em>X</em> </td>
       <td> </td>
       <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
       <td> </td>
     </tr>
     <tr>
@@ -1694,6 +1772,8 @@ Provider support:
       <td> </td>
       <td><em>X</em> </td>
       <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>zypper</td>
@@ -1711,6 +1791,8 @@ Provider support:
       <td> </td>
       <td><em>X</em> </td>
       <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
     </tr>
   </tbody>
 </table>
