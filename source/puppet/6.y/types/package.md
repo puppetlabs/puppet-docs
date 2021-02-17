@@ -1011,7 +1011,7 @@ Available features:
 
 Provider support:
 
-<table style="display: table; border-collapse: collapse; width: 100%; table-layout: fixed;">
+<table width="80%">
   <thead>
     <tr>
       <th>Provider</th>
