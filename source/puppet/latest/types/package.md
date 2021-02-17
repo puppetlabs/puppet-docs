@@ -1007,7 +1007,7 @@ Available features:
 
 Provider support:
 
-<table>
+<table style="width: 80%;">
   <thead>
     <tr>
       <th>Provider</th>
