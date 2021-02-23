@@ -698,6 +698,8 @@ be combined by setting the `sourceselect` attribute to `all`.
 
 <h4 id="file-attribute-source_permissions">source_permissions</h4>
 
+**Note**: *The is attribute is currently deprecated*.
+
 Whether (and how) Puppet should copy owner, group, and mode permissions from
 the `source` to `file` resources when the permissions are not explicitly
 specified. (In all cases, explicit permissions will take precedence.)
