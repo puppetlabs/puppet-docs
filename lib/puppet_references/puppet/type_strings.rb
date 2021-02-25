@@ -15,6 +15,7 @@ module PuppetReferences
         # 2. Munge it to match the old format I threw together, which the template uses.
         # 3. Dump result to JSON.
         strings_data = PuppetReferences::Puppet::Strings.new
+        File.write('references_output/puppet/raw_strings_data_output.json', strings_data)
         type_hash = strings_data['resource_types'].reduce(Hash.new) do |memo, type|
           memo[ type['name'] ] = {
               'description' => type['docstring']['text'],
@@ -77,7 +78,22 @@ module PuppetReferences
                     'required_features' => attribute['required_features'],
                 }
                 memo
-              } )
+              }).merge( (type['checks'] || []).reduce(Hash.new) {|memo, attribute|
+                description = attribute['description'] || ''
+                if attribute['default']
+                  description = description + "\n\nDefault: `#{attribute['default']}`"
+                end
+                if attribute['values']
+                  description = description + "\n\nAllowed values:\n\n" + attribute['values'].map{|val| "* `#{val}`"}.join("\n")
+                end
+                memo[attribute['name']] = {
+                    'description' => description,
+                    'kind' => 'check',
+                    'namevar' => false,
+                    'required_features' => attribute['required_features'],
+                }
+                memo
+              })
           }
           memo
         end
