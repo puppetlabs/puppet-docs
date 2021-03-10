@@ -140,35 +140,7 @@ documents:
   /puppet/6.19:
     doc: puppet
     version: "6.19"
-    nav: ./_puppet_toc.html  
-
-  # Puppet 5.5
-  /docs/puppet/5.5:
-    doc: puppet
-    version: "5.5"
     nav: ./_puppet_toc.html
-    my_versions:
-      facter: "3.11"
-      puppetserver: "5.3"
-    hide: true
-  # 5.5 dependencies  
-  /facter/3.11:
-    doc: facter
-    version: "3.11"
-    nav: ./_facter_toc.html
-    hide: true
-  /puppetserver/5.3:
-    doc: puppetserver
-    version: "5.3"
-    nav: /puppet/5.5/_puppet_toc.html
-    external_source:
-      repo: git://github.com/puppetlabs/puppetserver.git
-      commit: origin/5.3.x
-      subdirectory: documentation
-    my_versions:
-      puppet: "5.5"
-      facter: "3.11"
-    hide: true
   
   # Other PuppetDB versions (on the site, but not a Puppet dependency)  
   /puppetdb/6.3:
