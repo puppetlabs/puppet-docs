@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: abe39259f7c9eb3e129c6dcda93bab904bf68910
+built_from_commit: 959c82533074efbcc06e5755def1ff829abd53fa
 title: 'Man Page: puppet ssl'
 canonical: "/puppet/latest/man/ssl.html"
 ---
@@ -59,6 +59,7 @@ certificate is issued by a trusted CA, and check revocation status.</p></dd>
 <code>--localca</code> is specified, then also remove this host's local copy of the
 CA certificate(s) and CRL bundle. if <code>--target CERTNAME</code> is specified, then
 remove the files for the specified device on this host instead of this host.</p></dd>
+<dt class="flush">show</dt><dd><p>Print the full-text version of this host's certificate.</p></dd>
 </dl>
 
 
