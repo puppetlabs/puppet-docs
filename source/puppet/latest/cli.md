@@ -6,7 +6,7 @@ toc: columns
 canonical: "/puppet/latest/cli.html"
 ---
 
-# TEST PREABLE
+# Facter CLI
 
 ---
 SYNOPSIS
