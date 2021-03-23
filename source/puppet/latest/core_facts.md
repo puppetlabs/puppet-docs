@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: e5a0e36b2e88e8a7c1603f2b9b468ed3e3b4a06c
+built_from_commit: d3ee2f44b7cb0cadbb6fc9495f2eb093c4d6e148
 title: 'Facter: Core Facts'
 toc: columns
 canonical: "/puppet/latest/core_facts.html"
@@ -40,13 +40,24 @@ Return information about augeas.
 * `version` (string) --- The version of augparse.
 
 
+### `az_metadata`
+
+**Type:** map
+
+**Purpose:**
+
+Return the Microsoft Azure instance metadata.
+Please see the [Microsoft Azure instance metadata documentation](http://https://docs.microsoft.com/en-us/azure/virtual-machines/windows/instance-metadata-service) for the contents of this fact.
+
+
+
 ### `cloud`
 
 **Type:** map
 
 **Purpose:**
 
-Information about the cloud instance of the node. This is currently only populated on Linux nodes running in Microsoft Azure.
+Information about the cloud instance of the node. This is currently only populated on nodes running in Microsoft Azure.
 
 **Elements:**
 
@@ -671,6 +682,7 @@ Tells if the node is master or standalone inside an AIX Nim environment.
 **Details:**
 
 Is Available only on AIX.
+
 ## Legacy Facts
 
 ### `architecture`

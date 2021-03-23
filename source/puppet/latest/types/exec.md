@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: abe39259f7c9eb3e129c6dcda93bab904bf68910
+built_from_commit: 959c82533074efbcc06e5755def1ff829abd53fa
 title: 'Resource Type: exec'
 canonical: "/puppet/latest/types/exec.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2021-02-25 14:37:25 -0800
+> **NOTE:** This page was generated from the Puppet source code on 2021-03-18 10:01:29 +0000
 
 exec
 -----
@@ -442,4 +442,4 @@ command:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2021-02-25 14:37:25 -0800
+> **NOTE:** This page was generated from the Puppet source code on 2021-03-18 10:01:29 +0000

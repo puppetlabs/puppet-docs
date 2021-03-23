@@ -44,7 +44,6 @@
           }
         ]
       },
-      "source": null,
       "functions": [
         {
           "name": "message",
