@@ -634,181 +634,203 @@ Provider support:
   <tbody>
     <tr>
       <td>base</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
+     <td></td>
+     <td></td>
+     <td></td>
+     <td></td>
+     <td></td>
+     <td></td>
+     <td></td>
     </tr>
     <tr>
       <td>bsd</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
+     <td></td>
+     <td></td>
+     <td></td>
+     <td></td>
+     <td></td>
+     <td></td>
+     <td></td>
     </tr>
     <tr>
       <td>daemontools</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
+     <td></td>
+     <td></td>
+     <td></td>
+     <td></td>
+     <td></td>
+     <td></td>
+     <td></td>
     </tr>
     <tr>
       <td>debian</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
+     <td></td>
+     <td></td>
+     <td></td>
+     <td></td>
+     <td></td>
+     <td></td>
+     <td></td>
     </tr>
     <tr>
       <td>freebsd</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
+     <td></td>
+     <td></td>
+     <td></td>
+     <td></td>
+     <td></td>
+     <td></td>
+     <td></td>
     </tr>
     <tr>
       <td>gentoo</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
+     <td></td>
+     <td></td>
+     <td></td>
+     <td></td>
+     <td></td>
+     <td></td>
+     <td></td>
     </tr>
     <tr>
       <td>init</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
+     <td></td>
+     <td></td>
+     <td></td>
+     <td></td>
+     <td></td>
+     <td></td>
+     <td></td>
     </tr>
     <tr>
       <td>launchd</td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
+     <td></td>
+     <td></td>
+     <td><em>X</em></td>
+     <td></td>
+     <td></td>
+     <td><em>X</em></td>
+     <td></td>
     </tr>
     <tr>
       <td>openbsd</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td> </td>
+     <td></td>
+     <td></td>
+     <td></td>
+      <td><em>X</em></td>
+     <td></td>
+     <td></td>
+     <td></td>
     </tr>
     <tr>
       <td>openrc</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
+     <td></td>
+     <td></td>
+     <td></td>
+     <td></td>
+     <td></td>
+     <td></td>
+     <td></td>
     </tr>
     <tr>
       <td>openwrt</td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
+     <td></td>
+     <td></td>
+      <td><em>X</em></td>
+     <td></td>
+     <td></td>
+     <td></td>
+     <td></td>
     </tr>
     <tr>
       <td>rcng</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
+     <td></td>
+     <td></td>
+     <td></td>
+     <td></td>
+     <td></td>
+     <td></td>
+     <td></td>
     </tr>
     <tr>
       <td>redhat</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
+     <td></td>
+     <td></td>
+     <td></td>
+     <td></td>
+     <td></td>
+     <td></td>
+     <td></td>
     </tr>
     <tr>
       <td>runit</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
+     <td></td>
+     <td></td>
+     <td></td>
+     <td><em>X</em></td>
+     <td></td>
+     <td></td>
+     <td></td>
     </tr>
     <tr>
       <td>service</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
+     <td></td>
+     <td></td>
+     <td></td>
+     <td></td>
+     <td></td>
+     <td></td>
+     <td></td>
     </tr>
     <tr>
       <td>smf</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
+     <td></td>
+     <td></td>
+     <td></td>
+     <td></td>
+     <td></td>
+     <td><em>X</em></td>
+     <td></td>
     </tr>
     <tr>
       <td>src</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
+     <td></td>
+     <td></td>
+     <td></td>
+     <td></td>
+     <td></td>
+     <td><em>X</em></td>
+     <td></td>
     </tr>
     <tr>
       <td>systemd</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
+     <td></td>
+     <td></td>
+     <td></td>
+     <td></td>
+     <td></td>
+     <td></td>
+     <td></td>
     </tr>
     <tr>
       <td>upstart</td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
+     <td></td>
+     <td></td>
+     <td><em>X</em></td>
+     <td></td>
+     <td></td>
+     <td></td>
+     <td></td>
     </tr>
     <tr>
       <td>windows</td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
+      <td><em>X</em></td>
+     <td></td>
+     <td></td>
+     <td></td>
+     <td></td>
+     <td><em>X</em></td>
+     <td></td>
     </tr>
   </tbody>
 </table>

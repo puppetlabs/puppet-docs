@@ -745,139 +745,147 @@ Provider support:
   <tbody>
     <tr>
       <td>aix</td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td> </td>
+      <td></td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td></td>
+      <td></td>
     </tr>
     <tr>
       <td>directoryservice</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td> </td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+      <td></td>
+      <td></td>
+      <td></td>
     </tr>
     <tr>
       <td>hpuxuseradd</td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
+      <td><em>X</em></td>
+      <td></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
     </tr>
     <tr>
       <td>ldap</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td> </td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+      <td></td>
+      <td></td>
+      <td></td>
     </tr>
     <tr>
       <td>openbsd</td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td><em>X</em> </td>
+      <td></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td></td>
     </tr>
     <tr>
       <td>pw</td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td> </td>
+      <td><em>X</em></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+      <td></td>
+      <td></td>
+      <td></td>
     </tr>
     <tr>
       <td>user_role_add</td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
-      <td> </td>
+      <td><em>X</em></td>
+      <td></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+      <td></td>
+      <td></td>
     </tr>
     <tr>
       <td>useradd</td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td> </td>
+      <td><em>X</em></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td></td>
+      <td></td>
+      <td></td>
     </tr>
     <tr>
       <td>windows_adsi</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
     </tr>
   </tbody>
 </table>

@@ -1032,801 +1032,801 @@ Provider support:
   <tbody>
     <tr>
       <td>aix</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td></td>
     </tr>
     <tr>
       <td>appdmg</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
     </tr>
     <tr>
       <td>apple</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
     </tr>
     <tr>
       <td>apt</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
     </tr>
     <tr>
       <td>aptitude</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td></td>
     </tr>
     <tr>
       <td>aptrpm</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td></td>
     </tr>
     <tr>
       <td>blastwave</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
     </tr>
     <tr>
       <td>dnf</td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
+      <td></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
     </tr>
     <tr>
       <td>dnfmodule</td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
+      <td><em>X</em></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td></td>
     </tr>
     <tr>
       <td>dpkg</td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
+      <td></td>
+      <td><em>X</em></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><em>X</em></td>
     </tr>
     <tr>
       <td>fink</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td></td>
     </tr>
     <tr>
       <td>freebsd</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
     </tr>
     <tr>
       <td>gem</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
-      <td> </td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+      <td></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+      <td></td>
     </tr>
     <tr>
       <td>hpux</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
     </tr>
     <tr>
       <td>macports</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td></td>
     </tr>
     <tr>
       <td>nim</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td></td>
     </tr>
     <tr>
       <td>openbsd</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td></td>
     </tr>
     <tr>
       <td>opkg</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
     </tr>
     <tr>
       <td>pacman</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td></td>
+      <td></td>
+      <td><em>X</em></td>
     </tr>
     <tr>
       <td>pip</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
-      <td> </td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+      <td></td>
     </tr>
     <tr>
       <td>pip2</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td></td>
     </tr>
     <tr>
       <td>pip3</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td></td>
     </tr>
     <tr>
       <td>pkg</td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
+      <td></td>
+      <td><em>X</em></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td></td>
     </tr>
     <tr>
       <td>pkgdmg</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
     </tr>
     <tr>
       <td>pkgin</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td></td>
     </tr>
     <tr>
       <td>pkgng</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td></td>
     </tr>
     <tr>
       <td>pkgutil</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
     </tr>
     <tr>
       <td>portage</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+      <td></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
     </tr>
     <tr>
       <td>ports</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
     </tr>
     <tr>
       <td>portupgrade</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
     </tr>
     <tr>
       <td>puppet_gem</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td></td>
     </tr>
     <tr>
       <td>puppetserver_gem</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td></td>
     </tr>
     <tr>
       <td>rpm</td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
+      <td></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
     </tr>
     <tr>
       <td>rug</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td></td>
     </tr>
     <tr>
       <td>sun</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
     </tr>
     <tr>
       <td>sunfreeware</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
     </tr>
     <tr>
       <td>tdnf</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
     </tr>
     <tr>
       <td>up2date</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
     </tr>
     <tr>
       <td>urpmi</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td></td>
     </tr>
     <tr>
       <td>windows</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+      <td></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td></td>
     </tr>
     <tr>
       <td>yum</td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
+      <td></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
     </tr>
     <tr>
       <td>zypper</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><em>X</em></td>
+      <td><em>X</em></td>
     </tr>
   </tbody>
 </table>
