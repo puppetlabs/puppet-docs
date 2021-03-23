@@ -1,7 +1,7 @@
 ---
 layout: default
 built_from_commit: 959c82533074efbcc06e5755def1ff829abd53fa
-title: Puppet Man Pages
+title: Puppet CLI
 canonical: "/puppet/latest/man/index.html"
 ---
 
