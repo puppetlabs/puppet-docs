@@ -154,7 +154,7 @@ FILES
 -----
 <em>/etc/puppetlabs/facter/facter.conf</em>
 
-A HOCON config file that can be used to specify directories for custom and external facts, set various command line options, and specify facts to block. See example below for details, or visit the GitHub README.
+A HOCON config file that can be used to specify directories for custom and external facts, set various command line options, and specify facts to block. See example below for details, or visit the [GitHub README](https://github.com/puppetlabs/puppetlabs-hocon#overview).
 
 EXAMPLES
 --------
@@ -241,7 +241,7 @@ cli : {
     verbose   : false,
     log-level : "info"
 }
-# always loaded, fact-sepcific configuration
+# always loaded, fact-specific configuration
 facts : {
     # for valid blocklist entries, use --list-block-groups
     blocklist : [ "file system", "EC2" ],
