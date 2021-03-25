@@ -177,7 +177,6 @@ dmi => {
     version => "6.00"
   }
 }
-[\.\.\.]
 ```
 
 Display a single structured fact:
@@ -213,7 +212,7 @@ $ facter processorcount
 Format facts as JSON:
 
 ```
-$ facter \-\-json os.name os.release.major processors.isa
+$ facter json os.name os.release.major processors.isa
 {
   "os.name": "Ubuntu",
   "os.release.major": "14.04",
