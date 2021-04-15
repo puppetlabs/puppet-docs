@@ -65,26 +65,12 @@ Available features:
 <% if !this_type['providers'].empty? -%>
 Provider support:
 
-<table>
-  <thead>
-    <tr>
-      <th>Provider</th>
-      <%- sorted_feature_list.each do |feature| -%>
-      <th><%= feature.gsub('_', ' ') %></th>
-      <%- end -%>
-    </tr>
-  </thead>
-  <tbody>
-    <%- this_type['providers'].keys.sort.each do |provider_name| -%>
-    <tr>
-      <td><%= provider_name %></td>
-      <%- sorted_feature_list.each do |feature| -%>
-      <td><% if this_type['providers'][provider_name]['features'].include?(feature) %><em>X</em><% end %> </td>
-      <%- end -%>
-    </tr>
-    <%- end -%>
-  </tbody>
-</table>
+<%- this_type['providers'].keys.sort.each do |provider_name| -%>
+* **<%= provider_name %>** - <% if !this_type['providers'][provider_name]['features'].empty? -%>
+_<%=this_type['providers'][provider_name]['features'].join(', ').gsub('_', ' ') %>_
+<% else %>No supported Provider features
+<% end %><%- end -%>  
+
 <% end # provider support table
 -%>
 <% end # features section
