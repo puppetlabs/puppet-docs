@@ -1,13 +1,13 @@
 ---
 layout: default
-built_from_commit: 959c82533074efbcc06e5755def1ff829abd53fa
+built_from_commit: 221ddc1eb591dc76585f70699c4f5848396204fb
 title: Built-in function reference
 canonical: "/puppet/latest/function.html"
 toc_levels: 2
 toc: columns
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2021-03-18 10:01:29 +0000
+> **NOTE:** This page was generated from the Puppet source code on 2021-04-28 09:57:01 +0100
 
 This page is a list of Puppet's built-in functions, with descriptions of what they do and how to use them.
 
@@ -3927,19 +3927,27 @@ Return type(s): `Tuple[Array, Array]`.
 
 Partition array of empty strings, results in e.g. [[''], [b, c]]
 
+```puppet
 ['', b, c].partition |$s| { $s.empty }
+```
 
 Partition array of strings using index, results in e.g. [['', 'ab'], ['b']]
 
+```puppet
 ['', b, ab].partition |$i, $s| { $i == 2 or $s.empty }
+```
 
 Partition hash of strings by key-value pair, results in e.g. [[['b', []]], [['a', [1, 2]]]]
 
+```puppet
 { a => [1, 2], b => [] }.partition |$kv| { $kv[1].empty }
+```
 
 Partition hash of strings by key and value, results in e.g. [[['b', []]], [['a', [1, 2]]]]
 
+```puppet
 { a => [1, 2], b => [] }.partition |$k, $v| { $v.empty }
+```
 
 
 Signature 2
@@ -5397,4 +5405,4 @@ how to use this function.
 
 `yaml_data(Struct[{path=>String[1]}] $options, Puppet::LookupContext $context)`
 
-> **NOTE:** This page was generated from the Puppet source code on 2021-03-18 10:01:29 +0000
+> **NOTE:** This page was generated from the Puppet source code on 2021-04-28 09:57:01 +0100

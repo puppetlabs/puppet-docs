@@ -1687,6 +1687,9 @@
           "docstring": {
             "text": "Puppet Ruby Gem support. This provider is useful for managing\ngems needed by the ruby provided in the puppet-agent package."
           },
+          "confines": {
+            "true": "Facter.value(:aio_agent_version)"
+          },
           "features": [
             "versionable",
             "install_options",
@@ -4521,6 +4524,9 @@
       "line": 1,
       "docstring": {
         "text": "Puppet Ruby Gem support. This provider is useful for managing\ngems needed by the ruby provided in the puppet-agent package."
+      },
+      "confines": {
+        "true": "Facter.value(:aio_agent_version)"
       },
       "features": [
         "versionable",
@@ -15711,22 +15717,22 @@
             "tags": [
               {
                 "tag_name": "example",
-                "text": "['', b, c].partition |$s| { $s.empty }",
+                "text": "```puppet\n['', b, c].partition |$s| { $s.empty }\n```",
                 "name": "Partition array of empty strings, results in e.g. [[''], [b, c]]"
               },
               {
                 "tag_name": "example",
-                "text": "['', b, ab].partition |$i, $s| { $i == 2 or $s.empty }",
+                "text": "```puppet\n['', b, ab].partition |$i, $s| { $i == 2 or $s.empty }\n```",
                 "name": "Partition array of strings using index, results in e.g. [['', 'ab'], ['b']]"
               },
               {
                 "tag_name": "example",
-                "text": "{ a => [1, 2], b => [] }.partition |$kv| { $kv[1].empty }",
+                "text": "```puppet\n{ a => [1, 2], b => [] }.partition |$kv| { $kv[1].empty }\n```",
                 "name": "Partition hash of strings by key-value pair, results in e.g. [[['b', []]], [['a', [1, 2]]]]"
               },
               {
                 "tag_name": "example",
-                "text": "{ a => [1, 2], b => [] }.partition |$k, $v| { $v.empty }",
+                "text": "```puppet\n{ a => [1, 2], b => [] }.partition |$k, $v| { $v.empty }\n```",
                 "name": "Partition hash of strings by key and value, results in e.g. [[['b', []]], [['a', [1, 2]]]]"
               },
               {
@@ -15829,22 +15835,22 @@
               "tags": [
                 {
                   "tag_name": "example",
-                  "text": "['', b, c].partition |$s| { $s.empty }",
+                  "text": "```puppet\n['', b, c].partition |$s| { $s.empty }\n```",
                   "name": "Partition array of empty strings, results in e.g. [[''], [b, c]]"
                 },
                 {
                   "tag_name": "example",
-                  "text": "['', b, ab].partition |$i, $s| { $i == 2 or $s.empty }",
+                  "text": "```puppet\n['', b, ab].partition |$i, $s| { $i == 2 or $s.empty }\n```",
                   "name": "Partition array of strings using index, results in e.g. [['', 'ab'], ['b']]"
                 },
                 {
                   "tag_name": "example",
-                  "text": "{ a => [1, 2], b => [] }.partition |$kv| { $kv[1].empty }",
+                  "text": "```puppet\n{ a => [1, 2], b => [] }.partition |$kv| { $kv[1].empty }\n```",
                   "name": "Partition hash of strings by key-value pair, results in e.g. [[['b', []]], [['a', [1, 2]]]]"
                 },
                 {
                   "tag_name": "example",
-                  "text": "{ a => [1, 2], b => [] }.partition |$k, $v| { $v.empty }",
+                  "text": "```puppet\n{ a => [1, 2], b => [] }.partition |$k, $v| { $v.empty }\n```",
                   "name": "Partition hash of strings by key and value, results in e.g. [[['b', []]], [['a', [1, 2]]]]"
                 },
                 {
@@ -15942,7 +15948,7 @@
           }
         ]
       },
-      "source": "Puppet::Functions.create_function(:partition) do\n  # @param collection A collection of things to partition.\n  # @example Partition array of empty strings, results in e.g. [[''], [b, c]]\n  #   ['', b, c].partition |$s| { $s.empty }\n  # @example Partition array of strings using index, results in e.g. [['', 'ab'], ['b']]\n  #   ['', b, ab].partition |$i, $s| { $i == 2 or $s.empty }\n  # @example Partition hash of strings by key-value pair, results in e.g. [[['b', []]], [['a', [1, 2]]]]\n  #   { a => [1, 2], b => [] }.partition |$kv| { $kv[1].empty }\n  # @example Partition hash of strings by key and value, results in e.g. [[['b', []]], [['a', [1, 2]]]]\n  #   { a => [1, 2], b => [] }.partition |$k, $v| { $v.empty }\n  dispatch :partition_1 do\n    required_param 'Collection', :collection\n    block_param 'Callable[1,1]', :block\n    return_type 'Tuple[Array, Array]'\n  end\n\n  dispatch :partition_2a do\n    required_param 'Array', :array\n    block_param 'Callable[2,2]', :block\n    return_type 'Tuple[Array, Array]'\n  end\n\n  dispatch :partition_2 do\n    required_param 'Collection', :collection\n    block_param 'Callable[2,2]', :block\n    return_type 'Tuple[Array, Array]'\n  end\n\n  def partition_1(collection)\n    collection.partition do |item|\n      yield(item)\n    end.freeze\n  end\n\n  def partition_2a(array)\n    partitioned = array.size.times.zip(array).partition do |k, v|\n      yield(k, v)\n    end\n\n    partitioned.map do |part|\n      part.map { |item| item[1] }\n    end.freeze\n  end\n\n  def partition_2(collection)\n    collection.partition do |k, v|\n      yield(k, v)\n    end.freeze\n  end\nend"
+      "source": "Puppet::Functions.create_function(:partition) do\n  # @param collection A collection of things to partition.\n  # @example Partition array of empty strings, results in e.g. [[''], [b, c]]\n  #   ```puppet\n  #   ['', b, c].partition |$s| { $s.empty }\n  #   ```\n  # @example Partition array of strings using index, results in e.g. [['', 'ab'], ['b']]\n  #   ```puppet\n  #   ['', b, ab].partition |$i, $s| { $i == 2 or $s.empty }\n  #   ```\n  # @example Partition hash of strings by key-value pair, results in e.g. [[['b', []]], [['a', [1, 2]]]]\n  #   ```puppet\n  #   { a => [1, 2], b => [] }.partition |$kv| { $kv[1].empty }\n  #   ```\n  # @example Partition hash of strings by key and value, results in e.g. [[['b', []]], [['a', [1, 2]]]]\n  #   ```puppet\n  #   { a => [1, 2], b => [] }.partition |$k, $v| { $v.empty }\n  #   ```\n  dispatch :partition_1 do\n    required_param 'Collection', :collection\n    block_param 'Callable[1,1]', :block\n    return_type 'Tuple[Array, Array]'\n  end\n\n  dispatch :partition_2a do\n    required_param 'Array', :array\n    block_param 'Callable[2,2]', :block\n    return_type 'Tuple[Array, Array]'\n  end\n\n  dispatch :partition_2 do\n    required_param 'Collection', :collection\n    block_param 'Callable[2,2]', :block\n    return_type 'Tuple[Array, Array]'\n  end\n\n  def partition_1(collection)\n    collection.partition do |item|\n      yield(item)\n    end.freeze\n  end\n\n  def partition_2a(array)\n    partitioned = array.size.times.zip(array).partition do |k, v|\n      yield(k, v)\n    end\n\n    partitioned.map do |part|\n      part.map { |item| item[1] }\n    end.freeze\n  end\n\n  def partition_2(collection)\n    collection.partition do |k, v|\n      yield(k, v)\n    end.freeze\n  end\nend"
     },
     {
       "name": "realize",

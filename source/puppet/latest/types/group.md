@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 959c82533074efbcc06e5755def1ff829abd53fa
+built_from_commit: 221ddc1eb591dc76585f70699c4f5848396204fb
 title: 'Resource Type: group'
 canonical: "/puppet/latest/types/group.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2021-03-18 10:01:29 +0000
+> **NOTE:** This page was generated from the Puppet source code on 2021-04-28 09:56:39 +0100
 
 group
 -----
@@ -28,8 +28,8 @@ a group record.
 
 <pre><code>group { 'resource title':
   <a href="#group-attribute-name">name</a>                 =&gt; <em># <strong>(namevar)</strong> The group name. While naming limitations vary by </em>
-  <a href="#group-attribute-ensure">ensure</a>               =&gt; <em># Create or remove the group.  Default: `present`  </em>
-  <a href="#group-attribute-allowdupe">allowdupe</a>            =&gt; <em># Whether to allow duplicate GIDs.  Default...</em>
+  <a href="#group-attribute-ensure">ensure</a>               =&gt; <em># Create or remove the group.  Valid values are...</em>
+  <a href="#group-attribute-allowdupe">allowdupe</a>            =&gt; <em># Whether to allow duplicate GIDs.  Valid values...</em>
   <a href="#group-attribute-attribute_membership">attribute_membership</a> =&gt; <em># AIX only. Configures the behavior of the...</em>
   <a href="#group-attribute-attributes">attributes</a>           =&gt; <em># Specify group AIX attributes, as an array of...</em>
   <a href="#group-attribute-auth_membership">auth_membership</a>      =&gt; <em># Configures the behavior of the `members...</em>
@@ -62,12 +62,7 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 Create or remove the group.
 
-Default: `present`
-
-Allowed values:
-
-* `present`
-* `absent`
+Valid values are `present`, `absent`.
 
 ([↑ Back to group attributes](#group-attributes))
 
@@ -75,14 +70,7 @@ Allowed values:
 
 Whether to allow duplicate GIDs.
 
-Default: `false`
-
-Allowed values:
-
-* `true`
-* `false`
-* `yes`
-* `no`
+Valid values are `true`, `false`, `yes`, `no`.
 
 ([↑ Back to group attributes](#group-attributes))
 
@@ -95,12 +83,7 @@ AIX only. Configures the behavior of the `attributes` parameter.
 * `inclusive` --- The provided list of attributes is comprehensive, and
   Puppet **purges** any attributes that aren't listed there.
 
-Default: `minimum`
-
-Allowed values:
-
-* `inclusive`
-* `minimum`
+Valid values are `inclusive`, `minimum`.
 
 ([↑ Back to group attributes](#group-attributes))
 
@@ -110,6 +93,8 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 Specify group AIX attributes, as an array of `'key=value'` strings. This
 parameter's behavior can be configured with `attribute_membership`.
+
+
 
 Requires features manages_aix_lam.
 
@@ -124,14 +109,7 @@ Configures the behavior of the `members` parameter.
 * `true` --- The provided list of of group members is comprehensive, and
   Puppet **purges** any members that aren't listed there.
 
-Default: `false`
-
-Allowed values:
-
-* `true`
-* `false`
-* `yes`
-* `no`
+Valid values are `true`, `false`, `yes`, `no`.
 
 ([↑ Back to group attributes](#group-attributes))
 
@@ -142,14 +120,7 @@ being managed by some other Name Switch Service (NSS). For AIX, refer to the `ia
 
 This option relies on your operating system's implementation of `luser*` commands, such as `luseradd` , `lgroupadd`, and `lusermod`. The `forcelocal` option could behave unpredictably in some circumstances. If the tools it depends on are not available, it might have no effect at all.
 
-Default: `false`
-
-Allowed values:
-
-* `true`
-* `false`
-* `yes`
-* `no`
+Valid values are `true`, `false`, `yes`, `no`.
 
 Requires features manages_local_users_and_groups.
 
@@ -175,6 +146,8 @@ identifier (SID).
 The name of the I&A module to use to manage this group.
 This should be set to `files` if managing local groups.
 
+
+
 Requires features manages_aix_lam.
 
 ([↑ Back to group attributes](#group-attributes))
@@ -187,13 +160,17 @@ The members of the group. For platforms or directory services where group
 membership is stored in the group objects, not the users. This parameter's
 behavior can be configured with `auth_membership`.
 
+
+
 Requires features manages_members.
 
 ([↑ Back to group attributes](#group-attributes))
 
 <h4 id="group-attribute-provider">provider</h4>
 
-The specific backend to use for this `group` resource. You will seldom need to specify this --- Puppet will usually discover the appropriate provider for your platform.
+The specific backend to use for this `group`
+resource. You will seldom need to specify this --- Puppet will usually
+discover the appropriate provider for your platform.
 
 Available providers are:
 
@@ -210,14 +187,7 @@ Available providers are:
 
 Whether the group is a system group with lower GID.
 
-Default: `false`
-
-Allowed values:
-
-* `true`
-* `false`
-* `yes`
-* `no`
+Valid values are `true`, `false`, `yes`, `no`.
 
 ([↑ Back to group attributes](#group-attributes))
 
@@ -228,25 +198,24 @@ Allowed values:
 
 Group management for AIX.
 
-* Required binaries: `/usr/sbin/lsgroup`, `/usr/bin/mkgroup`, `/usr/sbin/rmgroup`, `/usr/bin/chgroup`
-* Confined to: `operatingsystem == aix`
-* Default for: `["operatingsystem", "aix"] == `
-* Supported features: `manages_aix_lam`, `manages_members`, `manages_local_users_and_groups`
+* Required binaries: `/usr/bin/chgroup`, `/usr/bin/mkgroup`, `/usr/sbin/lsgroup`, `/usr/sbin/rmgroup`.
+* Default for `operatingsystem` == `aix`.
+* Supported features: `manages_aix_lam`, `manages_local_users_and_groups`, `manages_members`.
 
 <h4 id="group-provider-directoryservice">directoryservice</h4>
 
 Group management using DirectoryService on OS X.
 
-* Required binaries: `/usr/bin/dscl`
-* Confined to: `operatingsystem == darwin`
-* Default for: `["operatingsystem", "darwin"] == `
-* Supported features: `manages_members`
+* Required binaries: `/usr/bin/dscl`.
+* Default for `operatingsystem` == `darwin`.
+* Supported features: `manages_members`.
 
 <h4 id="group-provider-groupadd">groupadd</h4>
 
 Group management via `groupadd` and its ilk. The default for most platforms.
 
-* Required binaries: `groupadd`, `groupdel`, `groupmod`
+* Required binaries: `groupadd`, `groupdel`, `groupmod`, `lgroupadd`, `lgroupdel`, `lgroupmod`.
+* Supported features: `system_groups`.
 
 <h4 id="group-provider-ldap">ldap</h4>
 
@@ -261,25 +230,21 @@ Note that this provider will automatically generate a GID for you if you do
 not specify one, but it is a potentially expensive operation, as it
 iterates across all existing groups to pick the appropriate next one.
 
-* Confined to: `feature == ldap`, `false == (Puppet[:ldapuser] == "")`
-
 <h4 id="group-provider-pw">pw</h4>
 
 Group management via `pw` on FreeBSD and DragonFly BSD.
 
-* Required binaries: `pw`
-* Confined to: `operatingsystem == [:freebsd, :dragonfly]`
-* Default for: `["operatingsystem", "[:freebsd, :dragonfly]"] == `
-* Supported features: `manages_members`
+* Required binaries: `pw`.
+* Default for `operatingsystem` == `freebsd, dragonfly`.
+* Supported features: `manages_members`.
 
 <h4 id="group-provider-windows_adsi">windows_adsi</h4>
 
 Local group management for Windows. Group members can be both users and groups.
 Additionally, local groups can contain domain users.
 
-* Confined to: `operatingsystem == windows`
-* Default for: `["operatingsystem", "windows"] == `
-* Supported features: `manages_members`
+* Default for `operatingsystem` == `windows`.
+* Supported features: `manages_members`.
 
 <h3 id="group-provider-features">Provider Features</h3>
 
@@ -292,62 +257,15 @@ Available features:
 
 Provider support:
 
-<table>
-  <thead>
-    <tr>
-      <th>Provider</th>
-      <th>manages aix lam</th>
-      <th>manages local users and groups</th>
-      <th>manages members</th>
-      <th>system groups</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>aix</td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>directoryservice</td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>groupadd</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>ldap</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>pw</td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>windows_adsi</td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-    </tr>
-  </tbody>
-</table>
+* **aix** - _manages aix lam, manages local users and groups, manages members_
+* **directoryservice** - _manages members_
+* **groupadd** - _system groups, libuser_
+* **ldap** - No supported Provider features
+* **pw** - _manages members_
+* **windows_adsi** - _manages members_
+  
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2021-03-18 10:01:29 +0000
+
+> **NOTE:** This page was generated from the Puppet source code on 2021-04-28 09:56:39 +0100

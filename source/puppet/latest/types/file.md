@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 959c82533074efbcc06e5755def1ff829abd53fa
+built_from_commit: 221ddc1eb591dc76585f70699c4f5848396204fb
 title: 'Resource Type: file'
 canonical: "/puppet/latest/types/file.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2021-03-18 10:01:29 +0000
+> **NOTE:** This page was generated from the Puppet source code on 2021-04-28 09:56:39 +0100
 
 file
 -----
@@ -41,6 +41,7 @@ consider using alternative methods such as the `chmod_r`, `chown_r`,
 
 <pre><code>file { 'resource title':
   <a href="#file-attribute-path">path</a>                    =&gt; <em># <strong>(namevar)</strong> The path to the file to manage.  Must be fully...</em>
+  <a href="#file-attribute-ensure">ensure</a>                  =&gt; <em># Whether the file should exist, and if so what...</em>
   <a href="#file-attribute-backup">backup</a>                  =&gt; <em># Whether (and how) file content should be backed...</em>
   <a href="#file-attribute-checksum">checksum</a>                =&gt; <em># The checksum type to use when determining...</em>
   <a href="#file-attribute-checksum_value">checksum_value</a>          =&gt; <em># The checksum of the source contents. Only md5...</em>
@@ -83,6 +84,58 @@ The path to the file to manage.  Must be fully qualified.
 
 On Windows, the path should include the drive letter and should use `/` as
 the separator character (rather than `\\`).
+
+([↑ Back to file attributes](#file-attributes))
+
+<h4 id="file-attribute-ensure">ensure</h4>
+
+_(**Property:** This attribute represents concrete state on the target system.)_
+
+Whether the file should exist, and if so what kind of file it should be.
+Possible values are `present`, `absent`, `file`, `directory`, and `link`.
+
+* `present` accepts any form of file existence, and creates a
+  normal file if the file is missing. (The file will have no content
+  unless the `content` or `source` attribute is used.)
+* `absent` ensures the file doesn't exist, and deletes it if necessary.
+* `file` ensures it's a normal file, and enables use of the `content` or
+  `source` attribute.
+* `directory` ensures it's a directory, and enables use of the `source`,
+  `recurse`, `recurselimit`, `ignore`, and `purge` attributes.
+* `link` ensures the file is a symlink, and **requires** that you also
+  set the `target` attribute. Symlinks are supported on all Posix
+  systems and on Windows Vista / 2008 and higher. On Windows, managing
+  symlinks requires Puppet agent's user account to have the "Create
+  Symbolic Links" privilege; this can be configured in the "User Rights
+  Assignment" section in the Windows policy editor. By default, Puppet
+  agent runs as the Administrator account, which has this privilege.
+
+Puppet avoids destroying directories unless the `force` attribute is set
+to `true`. This means that if a file is currently a directory, setting
+`ensure` to anything but `directory` or `present` will cause Puppet to
+skip managing the resource and log either a notice or an error.
+
+There is one other non-standard value for `ensure`. If you specify the
+path to another file as the ensure value, it is equivalent to specifying
+`link` and using that path as the `target`:
+
+    # Equivalent resources:
+
+    file { '/etc/inetd.conf':
+      ensure => '/etc/inet/inetd.conf',
+    }
+
+    file { '/etc/inetd.conf':
+      ensure => link,
+      target => '/etc/inet/inetd.conf',
+    }
+
+However, we recommend using `link` and `target` explicitly, since this
+behavior can be harder to read and is
+[deprecated](https://docs.puppet.com/puppet/4.3/deprecated_language.html)
+as of Puppet 4.3.0.
+
+Valid values are `absent` (also called `false`), `file`, `present`, `directory`, `link`. Values can match `/./`.
 
 ([↑ Back to file attributes](#file-attributes))
 
@@ -136,19 +189,15 @@ masters.
 
   - Restrict the directory to a maximum size after which the oldest items are removed.
 
-Default: `false`
-
 ([↑ Back to file attributes](#file-attributes))
 
 <h4 id="file-attribute-checksum">checksum</h4>
 
 The checksum type to use when determining whether to replace a file's contents.
 
-The default checksum type is
+The default checksum type is sha256.
 
-Allowed values:
-
-* `Puppet::Util::Checksums.known_checksum_types`
+Valid values are `sha256`, `sha256lite`, `md5`, `md5lite`, `sha1`, `sha1lite`, `sha512`, `sha384`, `sha224`, `mtime`, `ctime`, `none`.
 
 ([↑ Back to file attributes](#file-attributes))
 
@@ -214,14 +263,7 @@ You must use `force` in order to:
 * Replace directories with files or links
 * Remove a directory when `ensure => absent`
 
-Default: `false`
-
-Allowed values:
-
-* `true`
-* `false`
-* `yes`
-* `no`
+Valid values are `true`, `false`, `yes`, `no`.
 
 ([↑ Back to file attributes](#file-attributes))
 
@@ -257,12 +299,7 @@ How to handle links during file actions.  During file copying,
 will copy the link itself. When not copying, `manage` will manage
 the link, and `follow` will manage the file to which the link points.
 
-Default: `manage`
-
-Allowed values:
-
-* `follow`
-* `manage`
+Valid values are `follow`, `manage`.
 
 ([↑ Back to file attributes](#file-attributes))
 
@@ -362,7 +399,9 @@ will always appear out of sync.)
 
 <h4 id="file-attribute-provider">provider</h4>
 
-The specific backend to use for this `file` resource. You will seldom need to specify this --- Puppet will usually discover the appropriate provider for your platform.
+The specific backend to use for this `file`
+resource. You will seldom need to specify this --- Puppet will usually
+discover the appropriate provider for your platform.
 
 Available providers are:
 
@@ -393,14 +432,7 @@ If `recurselimit` is set and you aren't using `force => true`, purging
 will obey the recursion limit; files in any subdirectories deeper than the
 limit will be treated as unmanaged and left alone.
 
-Default: `false`
-
-Allowed values:
-
-* `true`
-* `false`
-* `yes`
-* `no`
+Valid values are `true`, `false`, `yes`, `no`.
 
 ([↑ Back to file attributes](#file-attributes))
 
@@ -429,15 +461,11 @@ is only used when `ensure => directory` is set. The allowed values are:
   The `source` attribute is not mandatory when using `recurse => true`, so you
   can enable purging in directories where all files are managed individually.
 
-By default, setting recurse to `remote` or `true` manages _all_
+By default, setting recurse to `remote` or `true` will manage _all_
 subdirectories. You can use the `recurselimit` attribute to limit the
 recursion depth.
 
-Allowed values:
-
-* `true`
-* `false`
-* `remote`
+Valid values are `true`, `false`, `remote`.
 
 ([↑ Back to file attributes](#file-attributes))
 
@@ -461,9 +489,7 @@ directory, as well as the contents of the _first_ level of subdirectories.
 
 This pattern continues for each incremental value of `recurselimit`.
 
-Allowed values:
-
-* `/^[0-9]+$/`
+Values can match `/^[0-9]+$/`.
 
 ([↑ Back to file attributes](#file-attributes))
 
@@ -475,14 +501,7 @@ specifies.  Setting this to false allows file resources to initialize files
 without overwriting future changes.  Note that this only affects content;
 Puppet will still manage ownership and permissions.
 
-Default: `true`
-
-Allowed values:
-
-* `true`
-* `false`
-* `yes`
-* `no`
+Valid values are `true`, `false`, `yes`, `no`.
 
 ([↑ Back to file attributes](#file-attributes))
 
@@ -494,12 +513,7 @@ seltype, and selrange). In general, you should leave this set at its
 default and only set it to true when you need Puppet to not try to fix
 SELinux labels automatically.
 
-Default: `false`
-
-Allowed values:
-
-* `true`
-* `false`
+Valid values are `true`, `false`.
 
 ([↑ Back to file attributes](#file-attributes))
 
@@ -560,14 +574,7 @@ other secret data, which might otherwise be included in Puppet reports or
 other insecure outputs.  If the global `show_diff` setting
 is false, then no diffs will be shown even if this parameter is true.
 
-Default: `true`
-
-Allowed values:
-
-* `true`
-* `false`
-* `yes`
-* `no`
+Valid values are `true`, `false`, `yes`, `no`.
 
 ([↑ Back to file attributes](#file-attributes))
 
@@ -643,8 +650,6 @@ be combined by setting the `sourceselect` attribute to `all`.
 
 <h4 id="file-attribute-source_permissions">source_permissions</h4>
 
-**Note**: *The is attribute is currently deprecated*.
-
 Whether (and how) Puppet should copy owner, group, and mode permissions from
 the `source` to `file` resources when the permissions are not explicitly
 specified. (In all cases, explicit permissions will take precedence.)
@@ -662,13 +667,7 @@ Valid values are `use`, `use_when_creating`, and `ignore`:
   `source` when creating a file; existing files will not have their permissions
   overwritten.
 
-Default: `ignore`
-
-Allowed values:
-
-* `use`
-* `use_when_creating`
-* `ignore`
+Valid values are `use`, `use_when_creating`, `ignore`.
 
 ([↑ Back to file attributes](#file-attributes))
 
@@ -681,12 +680,7 @@ all valid sources will have all of their contents copied to the local
 system. If a given file exists in more than one source, the version from
 the earliest source in the list will be used.
 
-Default: `first`
-
-Allowed values:
-
-* `first`
-* `all`
+Valid values are `first`, `all`.
 
 ([↑ Back to file attributes](#file-attributes))
 
@@ -721,10 +715,7 @@ Directories of symlinks can be served recursively by instead using the
 `source` attribute, setting `ensure` to `directory`, and setting the
 `links` attribute to `manage`.
 
-Allowed values:
-
-* `notlink`
-* `/./`
+Valid values are `notlink`. Values can match `/./`.
 
 ([↑ Back to file attributes](#file-attributes))
 
@@ -768,8 +759,6 @@ you can specify a different placeholder token with the
 The replacement string in a `validate_cmd` that will be replaced
 with an input file name.
 
-Default: `%`
-
 ([↑ Back to file attributes](#file-attributes))
 
 
@@ -779,14 +768,13 @@ Default: `%`
 
 Uses POSIX functionality to manage file ownership and permissions.
 
-* Confined to: `feature == posix`
-* Supported features: `manages_symlinks`
+* Supported features: `manages_symlinks`.
 
 <h4 id="file-provider-windows">windows</h4>
 
 Uses Microsoft Windows functionality to manage file ownership and permissions.
 
-* Confined to: `operatingsystem == windows`
+* Supported features: `manages_symlinks`.
 
 <h3 id="file-provider-features">Provider Features</h3>
 
@@ -796,25 +784,11 @@ Available features:
 
 Provider support:
 
-<table>
-  <thead>
-    <tr>
-      <th>Provider</th>
-      <th>manages symlinks</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>posix</td>
-      <td><em>X</em> </td>
-    </tr>
-    <tr>
-      <td>windows</td>
-      <td> </td>
-    </tr>
-  </tbody>
-</table>
+* **posix** - _manages symlinks_
+* **windows** - _manages symlinks_
+  
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2021-03-18 10:01:29 +0000
+
+> **NOTE:** This page was generated from the Puppet source code on 2021-04-28 09:56:39 +0100

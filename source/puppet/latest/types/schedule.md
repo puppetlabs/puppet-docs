@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 959c82533074efbcc06e5755def1ff829abd53fa
+built_from_commit: 221ddc1eb591dc76585f70699c4f5848396204fb
 title: 'Resource Type: schedule'
 canonical: "/puppet/latest/types/schedule.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2021-03-18 10:01:29 +0000
+> **NOTE:** This page was generated from the Puppet source code on 2021-04-28 09:56:39 +0100
 
 schedule
 -----
@@ -132,13 +132,7 @@ times by their distance apart or by their specific value.
 in the given `range`. This is useful if you need to create a blackout window to
 perform sensitive operations without interruption.
 
-Allowed values:
-
-* `hourly`
-* `daily`
-* `weekly`
-* `monthly`
-* `never`
+Valid values are `hourly`, `daily`, `weekly`, `monthly`, `never`.
 
 ([↑ Back to schedule attributes](#schedule-attributes))
 
@@ -148,12 +142,7 @@ Whether periods should be matched by a numeric value (for instance,
 whether two times are in the same hour) or by their chronological
 distance apart (whether two times are 60 minutes apart).
 
-Default: `distance`
-
-Allowed values:
-
-* `number`
-* `distance`
+Valid values are `number`, `distance`.
 
 ([↑ Back to schedule attributes](#schedule-attributes))
 
@@ -180,8 +169,6 @@ ranges, you can cross midnight (for example, `range => "22:00 - 04:00"`).
 
 How often a given resource may be applied in this schedule's `period`.
 Must be an integer.
-
-Default: `1`
 
 ([↑ Back to schedule attributes](#schedule-attributes))
 
@@ -213,4 +200,4 @@ at 2 AM on Saturday.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2021-03-18 10:01:29 +0000
+> **NOTE:** This page was generated from the Puppet source code on 2021-04-28 09:56:39 +0100
