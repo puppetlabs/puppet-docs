@@ -1,3 +1,3 @@
-# TEST PREABLE
+# Facter CLI
 
 ---
