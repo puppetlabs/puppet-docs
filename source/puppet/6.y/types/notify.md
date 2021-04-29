@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 6988b84f7eb7f5bb89766a9ca36b0b431685b03b
+built_from_commit: 40229a5d238c1fae86d2a4acfe88860091f3728a
 title: 'Resource Type: notify'
 canonical: "/puppet/latest/types/notify.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2021-02-10 14:37:29 +0000
+> **NOTE:** This page was generated from the Puppet source code on 2021-04-29 10:06:42 +0100
 
 notify
 -----
@@ -21,7 +21,7 @@ Sends an arbitrary message, specified as a string, to the agent run-time log. It
 <pre><code>notify { 'resource title':
   <a href="#notify-attribute-name">name</a>     =&gt; <em># <strong>(namevar)</strong> An arbitrary tag for your own reference; the...</em>
   <a href="#notify-attribute-message">message</a>  =&gt; <em># The message to be sent to the log. Note that the </em>
-  <a href="#notify-attribute-withpath">withpath</a> =&gt; <em># Whether to show the full object path.  Default...</em>
+  <a href="#notify-attribute-withpath">withpath</a> =&gt; <em># Whether to show the full object path.  Valid...</em>
   # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
 
@@ -45,12 +45,7 @@ The message to be sent to the log. Note that the value specified must be a strin
 
 Whether to show the full object path.
 
-Default: `false`
-
-Allowed values:
-
-* `true`
-* `false`
+Valid values are `true`, `false`.
 
 ([↑ Back to notify attributes](#notify-attributes))
 
@@ -58,4 +53,4 @@ Allowed values:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2021-02-10 14:37:29 +0000
+> **NOTE:** This page was generated from the Puppet source code on 2021-04-29 10:06:42 +0100

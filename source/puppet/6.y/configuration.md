@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 6988b84f7eb7f5bb89766a9ca36b0b431685b03b
+built_from_commit: 40229a5d238c1fae86d2a4acfe88860091f3728a
 title: Configuration Reference
 toc: columns
 canonical: "/puppet/latest/configuration.html"
@@ -208,7 +208,7 @@ The certificate revocation list (CRL) for the CA.
 
 The root directory for the certificate authority.
 
-- *Default*: $ssldir/ca
+- *Default*: /Users/clairecadman/.puppetlabs/etc/puppet/ssl/ca
 
 ### cakey
 
@@ -300,6 +300,15 @@ for more details.)
 Defaults to the node's fully qualified domain name.
 
 - *Default*: the Host's fully qualified domain name, as determined by Facter
+
+### ciphers
+
+The list of ciphersuites for TLS connections initiated by puppet. The
+default value is chosen to support TLS 1.0 and up, but can be made
+more restrictive if needed. The ciphersuites must be specified in OpenSSL
+format, not IANA.
+
+- *Default*: ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384:DHE-RSA-CHACHA20-POLY1305:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA256:ECDHE-ECDSA-AES128-SHA:ECDHE-RSA-AES128-SHA:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA384:ECDHE-ECDSA-AES256-SHA:ECDHE-RSA-AES256-SHA:DHE-RSA-AES128-SHA256:DHE-RSA-AES256-SHA256:AES128-GCM-SHA256:AES256-GCM-SHA384:AES128-SHA256:AES256-SHA256
 
 ### classfile
 
@@ -970,7 +979,7 @@ This setting can be a time interval in seconds (30 or 30s), minutes (30m), hours
 
 The HTTP User-Agent string to send when making network requests.
 
-- *Default*: Puppet/6.21.0 Ruby/2.5.1-p57 (x86_64-darwin18)
+- *Default*: Puppet/6.22.1 Ruby/2.5.1-p57 (x86_64-darwin18)
 
 ### ignore_plugin_errors
 
