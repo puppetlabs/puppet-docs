@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 7ee979c756ae4213067b12f9af7971ef380d60c4
+built_from_commit: 40229a5d238c1fae86d2a4acfe88860091f3728a
 title: 'Resource Type: service'
 canonical: "/puppet/latest/types/service.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2021-02-10 14:37:29 +0000
+> **NOTE:** This page was generated from the Puppet source code on 2021-04-29 10:06:42 +0100
 
 service
 -----
@@ -51,7 +51,7 @@ can be configured:
   <a href="#service-attribute-flags">flags</a>         =&gt; <em># Specify a string of flags to pass to the startup </em>
   <a href="#service-attribute-hasrestart">hasrestart</a>    =&gt; <em># Specify that an init script has a `restart...</em>
   <a href="#service-attribute-hasstatus">hasstatus</a>     =&gt; <em># Declare whether the service's init script has a...</em>
-  <a href="#service-attribute-logonaccount">logonaccount</a>  =&gt; <em># Specify an account for service...</em>
+  <a href="#service-attribute-logonaccount">logonaccount</a>  =&gt; <em># Specify an account for service logon    Requires </em>
   <a href="#service-attribute-logonpassword">logonpassword</a> =&gt; <em># Specify a password for service logon. Default...</em>
   <a href="#service-attribute-manifest">manifest</a>      =&gt; <em># Specify a command to config a service, or a path </em>
   <a href="#service-attribute-path">path</a>          =&gt; <em># The search path for finding init scripts....</em>
@@ -84,12 +84,7 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 Whether a service should be running. Default values depend on the platform.
 
-Allowed values:
-
-* `stopped`
-* `running`
-* `false`
-* `true`
+Valid values are `stopped` (also called `false`), `running` (also called `true`).
 
 ([↑ Back to service attributes](#service-attributes))
 
@@ -123,13 +118,7 @@ If you don't specify a value for the `enable` attribute, Puppet leaves
 that aspect of the service alone and your operating system determines
 the behavior.
 
-Allowed values:
-
-* `true`
-* `false`
-* `manual`
-* `mask`
-* `delayed`
+Valid values are `true`, `false`, `manual`, `mask`, `delayed`.
 
 Requires features enableable.
 
@@ -141,6 +130,8 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 Specify a string of flags to pass to the startup script.
 
+
+
 Requires features flaggable.
 
 ([↑ Back to service attributes](#service-attributes))
@@ -151,12 +142,7 @@ Specify that an init script has a `restart` command.  If this is
 false and you do not specify a command in the `restart` attribute,
 the init script's `stop` and `start` commands will be used.
 
-Defaults to false.
-
-Allowed values:
-
-* `true`
-* `false`
+Valid values are `true`, `false`.
 
 ([↑ Back to service attributes](#service-attributes))
 
@@ -179,12 +165,7 @@ scripts (like 'network' under Red Hat systems) will respond poorly to
 refresh events from other resources if you override the default behavior
 without providing a status command.
 
-Default: `true`
-
-Allowed values:
-
-* `true`
-* `false`
+Valid values are `true`, `false`.
 
 ([↑ Back to service attributes](#service-attributes))
 
@@ -194,6 +175,8 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 Specify an account for service logon
 
+
+
 Requires features manages_logon_credentials.
 
 ([↑ Back to service attributes](#service-attributes))
@@ -201,6 +184,8 @@ Requires features manages_logon_credentials.
 <h4 id="service-attribute-logonpassword">logonpassword</h4>
 
 Specify a password for service logon. Default value is an empty string (when logonaccount is specified).
+
+
 
 Requires features manages_logon_credentials.
 
@@ -235,7 +220,9 @@ be quoted without enclosing slashes).
 
 <h4 id="service-attribute-provider">provider</h4>
 
-The specific backend to use for this `service` resource. You will seldom need to specify this --- Puppet will usually discover the appropriate provider for your platform.
+The specific backend to use for this `service`
+resource. You will seldom need to specify this --- Puppet will usually
+discover the appropriate provider for your platform.
 
 Available providers are:
 
@@ -304,6 +291,8 @@ Specify a *stop* command manually.
 
 Specify an optional minimum timeout (in seconds) for puppet to wait when syncing service properties
 
+
+
 Requires features configurable_timeout.
 
 ([↑ Back to service attributes](#service-attributes))
@@ -321,8 +310,8 @@ same binary will be searched for in the process table to stop the
 service.  As with `init`-style services, it is preferable to specify start,
 stop, and status commands.
 
-* Required binaries: `kill`
-* Supported features: `refreshable`
+* Required binaries: `kill`.
+* Supported features: `refreshable`.
 
 <h4 id="service-provider-bsd">bsd</h4>
 
@@ -330,7 +319,6 @@ Generic BSD form of `init`-style service management with `rc.d`.
 
 Uses `rc.conf.d` for service enabling and disabling.
 
-* Confined to: `operatingsystem == [:freebsd, :dragonfly]`
 * Supported features: `enableable`, `refreshable`.
 
 <h4 id="service-provider-daemontools">daemontools</h4>
@@ -369,8 +357,8 @@ If a service has `ensure => "running"`, it will link /path/to/daemon to
 If a service has `ensure => "stopped"`, it will only shut down the service, not
 remove the `/path/to/service` link.
 
-* Required binaries: `/usr/bin/svc`, `/usr/bin/svstat`
-* Supported features: `enableable`, `refreshable`
+* Required binaries: `/usr/bin/svc`, `/usr/bin/svstat`.
+* Supported features: `enableable`, `refreshable`.
 
 <h4 id="service-provider-debian">debian</h4>
 
@@ -380,16 +368,14 @@ The only differences from `init` are support for enabling and disabling
 services via `update-rc.d` and the ability to determine enabled status via
 `invoke-rc.d`.
 
-* Required binaries: `/usr/sbin/update-rc.d`, `/usr/sbin/invoke-rc.d`, `/usr/sbin/service`
-* Confined to: `false == Puppet::FileSystem.exist?('/proc/1/comm') && Puppet::FileSystem.read('/proc/1/comm').include?('systemd')`
-* Default for: `["operatingsystem", "cumuluslinux"] == ["operatingsystemmajrelease", "['1','2']"]`, `["operatingsystem", "debian"] == ["operatingsystemmajrelease", "['5','6','7']"]`, `["operatingsystem", "devuan"] == `
+* Required binaries: `/usr/sbin/invoke-rc.d`, `/usr/sbin/service`, `/usr/sbin/update-rc.d`.
+* Default for `operatingsystem` == `cumuluslinux` and `operatingsystemmajrelease` == `1, 2`. Default for `operatingsystem` == `debian` and `operatingsystemmajrelease` == `5, 6, 7`. Default for `operatingsystem` == `devuan`.
 * Supported features: `enableable`, `refreshable`.
 
 <h4 id="service-provider-freebsd">freebsd</h4>
 
 Provider for FreeBSD and DragonFly BSD. Uses the `rcvar` argument of init scripts and parses/edits rc files.
 
-* Confined to: `operatingsystem == [:freebsd, :dragonfly]`
 * Default for `operatingsystem` == `freebsd, dragonfly`.
 * Supported features: `enableable`, `refreshable`.
 
@@ -399,24 +385,14 @@ Gentoo's form of `init`-style service management.
 
 Uses `rc-update` for service enabling and disabling.
 
-* Required binaries: `/sbin/rc-update`
-* Confined to: `operatingsystem == gentoo`
-* Supported features: `enableable`, `refreshable`
+* Required binaries: `/sbin/rc-update`.
+* Supported features: `enableable`, `refreshable`.
 
 <h4 id="service-provider-init">init</h4>
 
 Standard `init`-style service management.
 
-* Confined to: 
-
-```
-true == begin
-      os = Facter.value(:operatingsystem).downcase
-      family = Facter.value(:osfamily).downcase
-      !(os == 'debian' || os == 'ubuntu' || family == 'redhat')
-  end
-```
-* Supported features: `refreshable`
+* Supported features: `refreshable`.
 
 <h4 id="service-provider-launchd">launchd</h4>
 
@@ -455,19 +431,17 @@ be in a state of "stopped/enabled" or "running/disabled".
 
 Note that this provider does not support overriding 'restart'
 
-* Required binaries: `/bin/launchctl`
-* Confined to: `operatingsystem == darwin`, `feature == cfpropertylist`
-* Default for `operatingsystem` == `darwin`
-* Supported features: `enableable`, `refreshable`
+* Required binaries: `/bin/launchctl`.
+* Default for `operatingsystem` == `darwin`.
+* Supported features: `enableable`, `refreshable`.
 
 <h4 id="service-provider-openbsd">openbsd</h4>
 
 Provider for OpenBSD's rc.d daemon control scripts
 
-* Required binaries: `/usr/sbin/rcctl`
-* Confined to: `operatingsystem == openbsd`
-* Default for `operatingsystem` == `openbsd`
-* Supported features: `enableable`, `flaggable`, `refreshable`
+* Required binaries: `/usr/sbin/rcctl`.
+* Default for `operatingsystem` == `openbsd`.
+* Supported features: `enableable`, `flaggable`, `refreshable`.
 
 <h4 id="service-provider-openrc">openrc</h4>
 
@@ -475,9 +449,9 @@ Support for Gentoo's OpenRC initskripts
 
 Uses rc-update, rc-status and rc-service to manage services.
 
-* Required binaries: `/sbin/rc-service`, `/sbin/rc-update`
-* Default for `operatingsystem` == `gentoo`, `operatingsystem` == `funtoo`.
-* Supported features: `enableable`, `refreshable`
+* Required binaries: `/bin/rc-status`, `/sbin/rc-service`, `/sbin/rc-update`.
+* Default for `operatingsystem` == `gentoo`. Default for `operatingsystem` == `funtoo`.
+* Supported features: `enableable`, `refreshable`.
 
 <h4 id="service-provider-openwrt">openwrt</h4>
 
@@ -485,26 +459,24 @@ Support for OpenWrt flavored init scripts.
 
 Uses /etc/init.d/service_name enable, disable, and enabled.
 
-* Confined to: `operatingsystem == openwrt`
-* Default for `operatingsystem` == `openwrt`
-* Supported features: `enableable`, `refreshable`
+* Default for `operatingsystem` == `openwrt`.
+* Supported features: `enableable`, `refreshable`.
 
 <h4 id="service-provider-rcng">rcng</h4>
 
 RCng service management with rc.d
 
-* Confined to: `operatingsystem == [:netbsd, :cargos]`
-* Default for `operatingsystem` == `netbsd, cargos`
-* Supported features: `enableable`, `refreshable`
+* Default for `operatingsystem` == `netbsd, cargos`.
+* Supported features: `enableable`, `refreshable`.
 
 <h4 id="service-provider-redhat">redhat</h4>
 
 Red Hat's (and probably many others') form of `init`-style service
 management. Uses `chkconfig` for service enabling and disabling.
 
-* Required binaries: `/sbin/chkconfig`, `/sbin/service`
-* Default for `osfamily` == `redhat`, `operatingsystemmajrelease` == `10, 11` and `osfamily` == `suse`
-* Supported features: `enableable`, `refreshable`
+* Required binaries: `/sbin/chkconfig`, `/sbin/service`.
+* Default for `osfamily` == `redhat`. Default for `operatingsystemmajrelease` == `10, 11` and `osfamily` == `suse`.
+* Supported features: `enableable`, `refreshable`.
 
 <h4 id="service-provider-runit">runit</h4>
 
@@ -536,14 +508,14 @@ This provider supports out of the box:
 * restart
 * status
 
-* Required binaries: `/usr/bin/sv`
-* Supported features: `enableable`, `refreshable`
+* Required binaries: `/usr/bin/sv`.
+* Supported features: `enableable`, `refreshable`.
 
 <h4 id="service-provider-service">service</h4>
 
 The simplest form of service support.
 
-* Supported features: `refreshable`
+* Supported features: `refreshable`.
 
 <h4 id="service-provider-smf">smf</h4>
 
@@ -556,10 +528,9 @@ disables them, respectively.
 By specifying `manifest => "/path/to/service.xml"`, the SMF manifest will
 be imported if it does not exist.
 
-* Required binaries: `/usr/sbin/svcadm`, `/usr/bin/svcs`, `/usr/sbin/svccfg`
-* Confined to: `osfamily == solaris`
-* Default for `osfamily` == `solaris`
-* Supported features: `enableable`, `refreshable`
+* Required binaries: `/usr/bin/svcs`, `/usr/sbin/svcadm`, `/usr/sbin/svccfg`.
+* Default for `osfamily` == `solaris`.
+* Supported features: `enableable`, `refreshable`.
 
 <h4 id="service-provider-src">src</h4>
 
@@ -572,10 +543,9 @@ Enabling and disabling services is not supported, as it requires
 modifications to `/etc/inittab`. Starting and stopping groups of subsystems
 is not yet supported.
 
-* Required binaries: `/usr/bin/lssrc`, `/usr/bin/refresh`, `/usr/bin/startsrc`, `/usr/bin/stopsrc`, `/usr/sbin/chitab`, `/usr/sbin/lsitab`, `/usr/sbin/mkitab`, `/usr/sbin/rmitab`
-* Confined to: `operatingsystem == aix`
-* Default for `operatingsystem` == `aix`
-* Supported features: `enableable`, `refreshable`
+* Required binaries: `/usr/bin/lssrc`, `/usr/bin/refresh`, `/usr/bin/startsrc`, `/usr/bin/stopsrc`, `/usr/sbin/chitab`, `/usr/sbin/lsitab`, `/usr/sbin/mkitab`, `/usr/sbin/rmitab`.
+* Default for `operatingsystem` == `aix`.
+* Supported features: `enableable`, `refreshable`.
 
 <h4 id="service-provider-systemd">systemd</h4>
 
@@ -585,9 +555,9 @@ Because `systemd` defaults to assuming the `.service` unit type, the suffix
 may be omitted.  Other unit types (such as `.path`) may be managed by
 providing the proper suffix.
 
-* Required binaries: `systemctl`
-* Confined to: `true == Puppet::FileSystem.exist?('/proc/1/comm') && Puppet::FileSystem.read('/proc/1/comm').include?('systemd')`
-* Default for: `["osfamily", "[:archlinux]"] == `, `["osfamily", "redhat"] == ["operatingsystemmajrelease", "[\"7\", \"8\"]"]`, `["osfamily", "redhat"] == ["operatingsystem", "fedora"]`, `["osfamily", "suse"] == `, `["osfamily", "coreos"] == `, `["operatingsystem", "amazon"] == ["operatingsystemmajrelease", "[\"2\"]"]`, `["operatingsystem", "debian"] == `, `["operatingsystem", "LinuxMint"] == `, `["operatingsystem", "ubuntu"] == `, `["operatingsystem", "cumuluslinux"] == ["operatingsystemmajrelease", "[\"3\", \"4\"]"]`
+* Required binaries: `systemctl`.
+* Default for `osfamily` == `archlinux`. Default for `operatingsystemmajrelease` == `7, 8` and `osfamily` == `redhat`. Default for `operatingsystem` == `fedora` and `osfamily` == `redhat`. Default for `osfamily` == `suse`. Default for `osfamily` == `coreos`. Default for `operatingsystem` == `amazon` and `operatingsystemmajrelease` == `2`. Default for `operatingsystem` == `debian`. Default for `operatingsystem` == `LinuxMint`. Default for `operatingsystem` == `ubuntu`. Default for `operatingsystem` == `cumuluslinux` and `operatingsystemmajrelease` == `3, 4`.
+* Supported features: `enableable`, `maskable`, `refreshable`.
 
 <h4 id="service-provider-upstart">upstart</h4>
 
@@ -596,25 +566,9 @@ Ubuntu service management with `upstart`.
 This provider manages `upstart` jobs on Ubuntu. For `upstart` documentation,
 see <http://upstart.ubuntu.com/>.
 
-* Required binaries: `/sbin/start`, `/sbin/stop`, `/sbin/restart`, `/sbin/status`, `/sbin/initctl`
-* Confined to:
-
-  ```
-  any == [
-    Facter.value(:operatingsystem) == 'Ubuntu',
-    (Facter.value(:osfamily) == 'RedHat' and Facter.value(:operatingsystemrelease) =~ /^6\./),
-    (Facter.value(:operatingsystem) == 'Amazon' and Facter.value(:operatingsystemmajrelease) =~ /\d{4}/),
-    Facter.value(:operatingsystem) == 'LinuxMint',
-  ]`, `true == lambda { has_initctl? }
-  ```
-
-  ```
-  exists == /var/run/upstart-socket-bridge.pid
-  ```
-  
-* Default for: `["operatingsystem", "ubuntu"] == ["operatingsystemmajrelease", "[\"10.04\", \"12.04\", \"14.04\", \"14.10\"]"]`, `["operatingsystem", "LinuxMint"] == ["operatingsystemmajrelease", "[\"10\", \"11\", \"12\", \"13\", \"14\", \"15\", \"16\", \"17\"]"]`
-
-* Supported features: `enableable`, `refreshable`
+* Required binaries: `/sbin/initctl`, `/sbin/restart`, `/sbin/start`, `/sbin/status`, `/sbin/stop`.
+* Default for `operatingsystem` == `ubuntu` and `operatingsystemmajrelease` == `10.04, 12.04, 14.04, 14.10`. Default for `operatingsystem` == `LinuxMint` and `operatingsystemmajrelease` == `10, 11, 12, 13, 14, 15, 16, 17`.
+* Supported features: `enableable`, `refreshable`.
 
 <h4 id="service-provider-windows">windows</h4>
 
@@ -625,10 +579,8 @@ status methods for all services.
 Control of service groups (dependencies) is not yet supported, nor is running
 services as a specific user.
 
-* Required binaries: `net.exe`
-* Confined to: `operatingsystem == windows`
-* Default for `operatingsystem` == `windows`
-* Supported features: `enableable`, `refreshable`
+* Default for `operatingsystem` == `windows`.
+* Supported features: `configurable_timeout`, `enableable`, `manages_logon_credentials`, `refreshable`.
 
 <h3 id="service-provider-features">Provider Features</h3>
 
@@ -644,201 +596,29 @@ Available features:
 
 Provider support:
 
-<table>
-  <thead>
-    <tr>
-      <th>Provider</th>
-      <th>configurable timeout</th>
-      <th>controllable</th>
-      <th>enableable</th>
-      <th>flaggable</th>
-      <th>manages logon credentials</th>
-      <th>maskable</th>
-      <th>refreshable</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>base</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>bsd</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>daemontools</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>debian</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>freebsd</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>gentoo</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>init</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>launchd</td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-    </tr>
-    <tr>
-      <td>openbsd</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>openrc</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>openwrt</td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>rcng</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>redhat</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>runit</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-    </tr>
-    <tr>
-      <td>service</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>smf</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-    </tr>
-    <tr>
-      <td>src</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-    </tr>
-    <tr>
-      <td>systemd</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>upstart</td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>windows</td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-    </tr>
-  </tbody>
-</table>
+* **base** - _refreshable_
+* **bsd** - _enableable, refreshable_
+* **daemontools** - _enableable, refreshable_
+* **debian** - _enableable, refreshable_
+* **freebsd** - _enableable, refreshable_
+* **gentoo** - _enableable, refreshable_
+* **init** - _refreshable_
+* **launchd** - _enableable, refreshable_
+* **openbsd** - _enableable, flaggable, refreshable_
+* **openrc** - _enableable, refreshable_
+* **openwrt** - _enableable, refreshable_
+* **rcng** - _enableable, refreshable_
+* **redhat** - _enableable, refreshable_
+* **runit** - _enableable, refreshable_
+* **service** - _refreshable_
+* **smf** - _enableable, refreshable_
+* **src** - _enableable, refreshable_
+* **systemd** - _enableable, maskable, refreshable_
+* **upstart** - _enableable, refreshable_
+* **windows** - _configurable timeout, enableable, manages logon credentials, refreshable_
+  
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2021-02-10 14:37:29 +0000
+
+> **NOTE:** This page was generated from the Puppet source code on 2021-04-29 10:06:42 +0100

@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 6988b84f7eb7f5bb89766a9ca36b0b431685b03b
+built_from_commit: 40229a5d238c1fae86d2a4acfe88860091f3728a
 title: 'Resource Type: exec'
 canonical: "/puppet/latest/types/exec.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2021-02-10 14:37:29 +0000
+> **NOTE:** This page was generated from the Puppet source code on 2021-04-29 10:06:42 +0100
 
 exec
 -----
@@ -94,7 +94,7 @@ exec resource autorequires that user.
   <a href="#exec-attribute-returns">returns</a>     =&gt; <em># The expected exit code(s).  An error will be...</em>
   <a href="#exec-attribute-timeout">timeout</a>     =&gt; <em># The maximum time the command should take.  If...</em>
   <a href="#exec-attribute-tries">tries</a>       =&gt; <em># The number of times execution of the command...</em>
-  <a href="#exec-attribute-try_sleep">try_sleep</a>   =&gt; <em># The time to sleep in seconds between 'tries'....</em>
+  <a href="#exec-attribute-try_sleep">try_sleep</a>   =&gt; <em># The time to sleep in seconds between...</em>
   <a href="#exec-attribute-umask">umask</a>       =&gt; <em># Sets the umask to be used while executing this...</em>
   <a href="#exec-attribute-unless">unless</a>      =&gt; <em># A test command that checks the state of the...</em>
   <a href="#exec-attribute-user">user</a>        =&gt; <em># The user to run the command as.  > **Note:*...</em>
@@ -173,13 +173,7 @@ when the command has an exit code that does not match any value
 specified by the `returns` attribute. As with any resource type,
 the log level can be controlled with the `loglevel` metaparameter.
 
-Default: `on_failure`
-
-Allowed values:
-
-* `true`
-* `false`
-* `on_failure`
+Valid values are `true`, `false`, `on_failure`.
 
 ([↑ Back to exec attributes](#exec-attributes))
 
@@ -198,7 +192,8 @@ first, and only runs the main command if the test has an exit code of 0
 
 This would run `logrotate` only if that test returns true.
 
-Note that this test command runs with the same `provider`, `path`, `cwd`, `user`, and `group` as the main command. If the `path` isn't set, you
+Note that this test command runs with the same `provider`, `path`,
+`user`, `cwd`, and `group` as the main command. If the `path` isn't set, you
 must fully qualify the command's name.
 
 This parameter can also take an array of commands. For example:
@@ -214,13 +209,15 @@ exit code of 0 (success).
 
 The search path used for command execution.
 Commands must be fully qualified if no path is specified.  Paths
-can be specified as an array or as a seperated list.
+can be specified as an array or as a ':' separated list.
 
 ([↑ Back to exec attributes](#exec-attributes))
 
 <h4 id="exec-attribute-provider">provider</h4>
 
-The specific backend to use for this `exec` resource. You will seldom need to specify this --- Puppet will usually discover the appropriate provider for your platform.
+The specific backend to use for this `exec`
+resource. You will seldom need to specify this --- Puppet will usually
+discover the appropriate provider for your platform.
 
 Available providers are:
 
@@ -265,10 +262,7 @@ other object; it is useful for triggering an action:
 Note that only `subscribe` and `notify` can trigger actions, not `require`,
 so it only makes sense to use `refreshonly` with `subscribe` or `notify`.
 
-Allowed values:
-
-* `true`
-* `false`
+Valid values are `true`, `false`.
 
 ([↑ Back to exec attributes](#exec-attributes))
 
@@ -298,8 +292,6 @@ Microsoft recommends against using negative/very large exit codes, and
 you should avoid them when possible. To convert a negative exit code to
 the positive one Puppet will use, add it to 4294967296.
 
-Default: `0`
-
 ([↑ Back to exec attributes](#exec-attributes))
 
 <h4 id="exec-attribute-timeout">timeout</h4>
@@ -308,8 +300,6 @@ The maximum time the command should take.  If the command takes
 longer than the timeout, the command is considered to have failed
 and will be stopped. The timeout is specified in seconds. The default
 timeout is 300 seconds and you can set it to 0 to disable the timeout.
-
-Default: `300`
 
 ([↑ Back to exec attributes](#exec-attributes))
 
@@ -320,15 +310,11 @@ This many attempts will be made to execute the command until an
 acceptable return code is returned. Note that the timeout parameter
 applies to each try rather than to the complete set of tries.
 
-Default: `1`
-
 ([↑ Back to exec attributes](#exec-attributes))
 
 <h4 id="exec-attribute-try_sleep">try_sleep</h4>
 
 The time to sleep in seconds between 'tries'.
-
-Default: `0`
 
 ([↑ Back to exec attributes](#exec-attributes))
 
@@ -353,14 +339,15 @@ first, then runs the main command unless the test has an exit code of 0
 This would add `root` to the cron.allow file (on Solaris) unless
 `grep` determines it's already there.
 
-Note that this test command runs with the same `provider`, `path`, `cwd`, `user`, and `group` as the main command. If the `path` isn't set, you
+Note that this test command runs with the same `provider`, `path`,
+`user`, `cwd`, and `group` as the main command. If the `path` isn't set, you
 must fully qualify the command's name.
 
 This parameter can also take an array of commands. For example:
 
     unless => ['test -f /tmp/file1', 'test -f /tmp/file2'],
 
-This `exec` runs only if every command in the array has a
+This `exec` would only run if every command in the array has a
 non-zero exit code.
 
 ([↑ Back to exec attributes](#exec-attributes))
@@ -391,9 +378,7 @@ performing any interpolation. This is a safer and more predictable way
 to execute most commands, but prevents the use of globbing and shell
 built-ins (including control logic like "for" and "if" statements).
 
-* Confined to: `feature == posix`
-* Default for: `["feature", "posix"] == `
-* Supported features: `umask`
+* Default for `feature` == `posix`.
 
 <h4 id="exec-provider-shell">shell</h4>
 
@@ -406,8 +391,6 @@ etc. etc.
 
 This provider closely resembles the behavior of the `exec` type
 in Puppet 0.25.x.
-
-* Confined to: `feature == posix`
 
 <h4 id="exec-provider-windows">windows</h4>
 
@@ -434,10 +417,9 @@ command:
       command => 'powershell -executionpolicy remotesigned -file C:/test.ps1',
     }
 
-* Confined to: `operatingsystem == windows`
-* Default for: `["operatingsystem", "windows"] == `
+* Default for `operatingsystem` == `windows`.
 
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2021-02-10 14:37:29 +0000
+> **NOTE:** This page was generated from the Puppet source code on 2021-04-29 10:06:42 +0100

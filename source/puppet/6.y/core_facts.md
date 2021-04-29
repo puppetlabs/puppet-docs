@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 85f1c78b08ee5ed6acf22df1de08637b6661005d
+built_from_commit: c89c376a7603920d1f6e0f67334d078630394120
 title: 'Facter: Core Facts'
 toc: columns
 canonical: "/puppet/latest/core_facts.html"
@@ -60,7 +60,7 @@ Return information about augeas.
 
 **Purpose:**
 
-Information about the cloud instance of the node. This is currently only populated on Linux nodes running in Microsoft Azure.
+Information about the cloud instance of the node. This is currently only populated on nodes running in Microsoft Azure.
 
 **Elements:**
 
@@ -141,6 +141,27 @@ Return the system management information.
 **Caveats:**
 
 * Linux: kernel 2.6+ is required due to the reliance on sysfs.
+
+([↑ Back to top](#page-nav))
+
+### `az_metadata`
+
+**Type:** map
+
+**Purpose:**
+
+Return the Microsoft Azure instance metadata.
+Please see the [Microsoft Azure instance metadata documentation](http://https://docs.microsoft.com/en-us/azure/virtual-machines/windows/instance-metadata-service) for the contents of this fact.
+
+
+
+**Resolution:**
+
+* Azure: query the Azure metadata endpoint and parse the response.
+
+**Caveats:**
+
+* All platforms: `libfacter` must be built with `libcurl` support.
 
 ([↑ Back to top](#page-nav))
 

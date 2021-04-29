@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 6988b84f7eb7f5bb89766a9ca36b0b431685b03b
+built_from_commit: 40229a5d238c1fae86d2a4acfe88860091f3728a
 title: 'Resource Type: tidy'
 canonical: "/puppet/latest/types/tidy.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2021-02-10 14:37:29 +0000
+> **NOTE:** This page was generated from the Puppet source code on 2021-04-29 10:06:42 +0100
 
 tidy
 -----
@@ -35,7 +35,7 @@ actual deletion.
   <a href="#tidy-attribute-recurse">recurse</a> =&gt; <em># If target is a directory, recursively descend...</em>
   <a href="#tidy-attribute-rmdirs">rmdirs</a>  =&gt; <em># Tidy directories in addition to files; that is...</em>
   <a href="#tidy-attribute-size">size</a>    =&gt; <em># Tidy files whose size is equal to or greater...</em>
-  <a href="#tidy-attribute-type">type</a>    =&gt; <em># Set the mechanism for determining age.  Default: </em>
+  <a href="#tidy-attribute-type">type</a>    =&gt; <em># Set the mechanism for determining age.  Valid...</em>
   # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
 
@@ -103,12 +103,7 @@ up a common source of confusion.
 If target is a directory, recursively descend
 into the directory looking for files to tidy.
 
-Allowed values:
-
-* `true`
-* `false`
-* `inf`
-* `/^[0-9]+$/`
+Valid values are `true`, `false`, `inf`. Values can match `/^[0-9]+$/`.
 
 ([↑ Back to tidy attributes](#tidy-attributes))
 
@@ -119,12 +114,7 @@ directories whose age is older than the specified criteria.
 This will only remove empty directories, so all contained
 files must also be tidied before a directory gets removed.
 
-Allowed values:
-
-* `true`
-* `false`
-* `yes`
-* `no`
+Valid values are `true`, `false`, `yes`, `no`.
 
 ([↑ Back to tidy attributes](#tidy-attributes))
 
@@ -143,13 +133,7 @@ be used.
 
 Set the mechanism for determining age.
 
-Default: `atime`
-
-Allowed values:
-
-* `atime`
-* `mtime`
-* `ctime`
+Valid values are `atime`, `mtime`, `ctime`.
 
 ([↑ Back to tidy attributes](#tidy-attributes))
 
@@ -157,4 +141,4 @@ Allowed values:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2021-02-10 14:37:29 +0000
+> **NOTE:** This page was generated from the Puppet source code on 2021-04-29 10:06:42 +0100
