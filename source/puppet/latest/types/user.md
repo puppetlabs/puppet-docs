@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 2959aff838fdb13a35943fa8a83581fc3c1f0707
+built_from_commit: 221ddc1eb591dc76585f70699c4f5848396204fb
 title: 'Resource Type: user'
 canonical: "/puppet/latest/types/user.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2021-03-18 10:01:29 +0000
+> **NOTE:** This page was generated from the Puppet source code on 2021-04-28 09:56:39 +0100
 
 user
 -----
@@ -35,7 +35,7 @@ user resource will autorequire those role accounts.
 <pre><code>user { 'resource title':
   <a href="#user-attribute-name">name</a>                 =&gt; <em># <strong>(namevar)</strong> The user name. While naming limitations vary by...</em>
   <a href="#user-attribute-ensure">ensure</a>               =&gt; <em># The basic state that the object should be in....</em>
-  <a href="#user-attribute-allowdupe">allowdupe</a>            =&gt; <em># Whether to allow duplicate UIDs.  Default...</em>
+  <a href="#user-attribute-allowdupe">allowdupe</a>            =&gt; <em># Whether to allow duplicate UIDs.  Valid values...</em>
   <a href="#user-attribute-attribute_membership">attribute_membership</a> =&gt; <em># Whether specified attribute value pairs should...</em>
   <a href="#user-attribute-attributes">attributes</a>           =&gt; <em># Specify AIX attributes for the user in an array...</em>
   <a href="#user-attribute-auth_membership">auth_membership</a>      =&gt; <em># Whether specified auths should be considered the </em>
@@ -91,11 +91,7 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 The basic state that the object should be in.
 
-Allowed values:
-
-* `present`
-* `absent`
-* `role`
+Valid values are `present`, `absent`, `role`.
 
 ([↑ Back to user attributes](#user-attributes))
 
@@ -103,14 +99,7 @@ Allowed values:
 
 Whether to allow duplicate UIDs.
 
-Default: `false`
-
-Allowed values:
-
-* `true`
-* `false`
-* `yes`
-* `no`
+Valid values are `true`, `false`, `yes`, `no`.
 
 ([↑ Back to user attributes](#user-attributes))
 
@@ -120,12 +109,7 @@ Whether specified attribute value pairs should be treated as the
 **complete list** (`inclusive`) or the **minimum list** (`minimum`) of
 attribute/value pairs for the user.
 
-Default: `minimum`
-
-Allowed values:
-
-* `inclusive`
-* `minimum`
+Valid values are `inclusive`, `minimum`.
 
 ([↑ Back to user attributes](#user-attributes))
 
@@ -147,6 +131,8 @@ Specify AIX attributes for the user in an array or hash of attribute = value pai
 attributes => { 'minage' => '0', 'maxage' => '5', 'SYSTEM' => 'compat' }
 ```
 
+
+
 Requires features manages_aix_lam.
 
 ([↑ Back to user attributes](#user-attributes))
@@ -157,12 +143,7 @@ Whether specified auths should be considered the **complete list**
 (`inclusive`) or the **minimum list** (`minimum`) of auths the user
 has. This setting is specific to managing Solaris authorizations.
 
-Default: `minimum`
-
-Allowed values:
-
-* `inclusive`
-* `minimum`
+Valid values are `inclusive`, `minimum`.
 
 ([↑ Back to user attributes](#user-attributes))
 
@@ -172,6 +153,8 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 The auths the user has.  Multiple auths should be
 specified as an array.
+
+
 
 Requires features manages_solaris_rbac.
 
@@ -193,10 +176,7 @@ The expiry date for this user. Provide as either the special
 value `absent` to ensure that the account never expires, or as
 a zero-padded YYYY-MM-DD format -- for example, 2010-02-19.
 
-Allowed values:
-
-* `absent`
-* `/^\d{4}-\d{2}-\d{2}$/`
+Valid values are `absent`. Values can match `/^\d{4}-\d{2}-\d{2}$/`.
 
 Requires features manages_expiry.
 
@@ -209,14 +189,7 @@ being managed by some other Name Service Switch (NSS). For AIX, refer to the `ia
 
 This option relies on your operating system's implementation of `luser*` commands, such as `luseradd` , and `lgroupadd`, `lusermod`. The `forcelocal` option could behave unpredictably in some circumstances. If the tools it depends on are not available, it might have no effect at all.
 
-Default: `false`
-
-Allowed values:
-
-* `true`
-* `false`
-* `yes`
-* `no`
+Valid values are `true`, `false`, `yes`, `no`.
 
 Requires features manages_local_users_and_groups.
 
@@ -258,6 +231,8 @@ separately and is not currently checked for existence.
 The name of the I&A module to use to manage this user.
 This should be set to `files` if managing local users.
 
+
+
 Requires features manages_aix_lam.
 
 ([↑ Back to user attributes](#user-attributes))
@@ -271,6 +246,8 @@ This is the number of iterations of a chained computation of the
 is used in OS X, and is required for managing passwords on OS X 10.8 and
 newer.
 
+
+
 Requires features manages_password_salt.
 
 ([↑ Back to user attributes](#user-attributes))
@@ -281,12 +258,7 @@ Whether specified key/value pairs should be considered the
 **complete list** (`inclusive`) or the **minimum list** (`minimum`) of
 the user's attributes.
 
-Default: `minimum`
-
-Allowed values:
-
-* `inclusive`
-* `minimum`
+Valid values are `inclusive`, `minimum`.
 
 ([↑ Back to user attributes](#user-attributes))
 
@@ -295,6 +267,8 @@ Allowed values:
 _(**Property:** This attribute represents concrete state on the target system.)_
 
 Specify user attributes in an array of key = value pairs.
+
+
 
 Requires features manages_solaris_rbac.
 
@@ -305,6 +279,8 @@ Requires features manages_solaris_rbac.
 _(**Property:** This attribute represents concrete state on the target system.)_
 
 The name of login class to which the user belongs.
+
+
 
 Requires features manages_loginclass.
 
@@ -323,16 +299,9 @@ If the home directory is then deleted manually, Puppet will not recreate it on t
 run.
 
 Note that on Windows, this manages creation/deletion of the user profile instead of the
-home directory. The user profile is stored in the `C:\Users\<username>` directory.
+home directory. The user profile is stored in the `C:Users<username>` directory.
 
-Default: `false`
-
-Allowed values:
-
-* `true`
-* `false`
-* `yes`
-* `no`
+Valid values are `true`, `false`, `yes`, `no`.
 
 ([↑ Back to user attributes](#user-attributes))
 
@@ -345,12 +314,7 @@ that the user is a part of.
 If `inclusive` is specified, Puppet will ensure that the user is a
 member of **only** specified groups.
 
-Default: `minimum`
-
-Allowed values:
-
-* `inclusive`
-* `minimum`
+Valid values are `inclusive`, `minimum`.
 
 ([↑ Back to user attributes](#user-attributes))
 
@@ -409,6 +373,8 @@ This results in the password being redacted from the report, as in the
     corrective_change: false
 ```
 
+
+
 Requires features manages_passwords.
 
 ([↑ Back to user attributes](#user-attributes))
@@ -418,6 +384,8 @@ Requires features manages_passwords.
 _(**Property:** This attribute represents concrete state on the target system.)_
 
 The maximum number of days a password may be used before it must be changed.
+
+
 
 Requires features manages_password_age.
 
@@ -429,6 +397,8 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 The minimum number of days a password must be used before it may be changed.
 
+
+
 Requires features manages_password_age.
 
 ([↑ Back to user attributes](#user-attributes))
@@ -438,6 +408,8 @@ Requires features manages_password_age.
 _(**Property:** This attribute represents concrete state on the target system.)_
 
 The number of days before a password is going to expire (see the maximum password age) during which the user should be warned.
+
+
 
 Requires features manages_password_age.
 
@@ -449,12 +421,7 @@ Whether specified roles should be treated as the **complete list**
 (`inclusive`) or the **minimum list** (`minimum`) of roles
 of which the user is a member.
 
-Default: `minimum`
-
-Allowed values:
-
-* `inclusive`
-* `minimum`
+Valid values are `inclusive`, `minimum`.
 
 ([↑ Back to user attributes](#user-attributes))
 
@@ -464,6 +431,8 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 The profiles the user has.  Multiple profiles should be
 specified as an array.
+
+
 
 Requires features manages_solaris_rbac.
 
@@ -475,13 +444,17 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 The name of the project associated with a user.
 
+
+
 Requires features manages_solaris_rbac.
 
 ([↑ Back to user attributes](#user-attributes))
 
 <h4 id="user-attribute-provider">provider</h4>
 
-The specific backend to use for this `user` resource. You will seldom need to specify this --- Puppet will usually discover the appropriate provider for your platform.
+The specific backend to use for this `user`
+resource. You will seldom need to specify this --- Puppet will usually
+discover the appropriate provider for your platform.
 
 Available providers are:
 
@@ -514,12 +487,7 @@ Allowed values are:
   these paths starts with `~` or `%h`, that token will be replaced with
   the user's home directory.
 
-Default: `false`
-
-Allowed values:
-
-* `true`
-* `false`
+Valid values are `true`, `false`.
 
 ([↑ Back to user attributes](#user-attributes))
 
@@ -529,12 +497,7 @@ Whether specified roles should be considered the **complete list**
 (`inclusive`) or the **minimum list** (`minimum`) of roles the user
 has.
 
-Default: `minimum`
-
-Allowed values:
-
-* `inclusive`
-* `minimum`
+Valid values are `inclusive`, `minimum`.
 
 ([↑ Back to user attributes](#user-attributes))
 
@@ -544,6 +507,8 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 The roles the user has.  Multiple roles should be
 specified as an array.
+
+
 
 Requires features manages_roles.
 
@@ -555,6 +520,8 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 This is the 32-byte salt used to generate the PBKDF2 password used in
 OS X. This field is required for managing passwords on OS X >= 10.8.
+
+
 
 Requires features manages_password_salt.
 
@@ -569,6 +536,8 @@ executable.
 
 This attribute cannot be managed on Windows systems.
 
+
+
 Requires features manages_shell.
 
 ([↑ Back to user attributes](#user-attributes))
@@ -580,14 +549,7 @@ on most platforms, a UID less than or equal to 500 indicates a system
 user. This parameter is only used when the resource is created and will
 not affect the UID when the user is present.
 
-Default: `false`
-
-Allowed values:
-
-* `true`
-* `false`
-* `yes`
-* `no`
+Valid values are `true`, `false`, `yes`, `no`.
 
 ([↑ Back to user attributes](#user-attributes))
 
@@ -601,7 +563,7 @@ automatically. This will likely result in the same user having
 different UIDs on different systems, which is not recommended. This is
 especially noteworthy when managing the same user on both Darwin and
 other platforms, since Puppet does UID generation on Darwin, but
-the underlying tools (such as *useradd*) generate the UID on other platforms.
+the underlying tools do so on other platforms.
 
 On Windows, this property is read-only and will return the user's
 security identifier (SID).
@@ -615,19 +577,17 @@ security identifier (SID).
 
 User management for AIX.
 
-* Required binaries: `/usr/sbin/lsuser`, `/usr/bin/mkuser`, `/usr/sbin/rmuser`, `/usr/bin/chuser`, `/bin/chpasswd`
-* Confined to: `operatingsystem == aix`
-* Default for: `["operatingsystem", "aix"] == `
-* Supported features: `manages_aix_lam`, `manages_homedir`, `manages_passwords`, `manages_shell`, `manages_expiry`, `manages_password_age`, `manages_local_users_and_groups`
+* Required binaries: `/bin/chpasswd`, `/usr/bin/chuser`, `/usr/bin/mkuser`, `/usr/sbin/lsuser`, `/usr/sbin/rmuser`.
+* Default for `operatingsystem` == `aix`.
+* Supported features: `manages_aix_lam`, `manages_expiry`, `manages_homedir`, `manages_local_users_and_groups`, `manages_password_age`, `manages_passwords`, `manages_shell`.
 
 <h4 id="user-provider-directoryservice">directoryservice</h4>
 
 User management on OS X.
 
-* Required binaries: `/usr/bin/uuidgen`, `/usr/bin/dsimport`, `/usr/bin/dscl`, `/usr/bin/dscacheutil`
-* Confined to: `operatingsystem == darwin`, `feature == cfpropertylist`
-* Default for: `["operatingsystem", "darwin"] == `
-* Supported features: `manages_passwords`, `manages_password_salt`, `manages_shell`
+* Required binaries: `/usr/bin/dscacheutil`, `/usr/bin/dscl`, `/usr/bin/dsimport`, `/usr/bin/uuidgen`.
+* Default for `operatingsystem` == `darwin`.
+* Supported features: `manages_password_salt`, `manages_passwords`, `manages_shell`.
 
 <h4 id="user-provider-hpuxuseradd">hpuxuseradd</h4>
 
@@ -637,10 +597,9 @@ its standard `usermod` cannot make changes while the user is logged in.
 New functionality provides for changing trusted computing passwords and
 resetting password expirations under trusted computing.
 
-* Required binaries: `/usr/sam/lbin/usermod.sam`, `/usr/sam/lbin/userdel.sam`, `/usr/sam/lbin/useradd.sam`
-* Confined to: `operatingsystem == hp-ux`
-* Default for: `["operatingsystem", "hp-ux"] == `
-* Supported features: `manages_homedir`, `allows_duplicates`, `manages_passwords`
+* Required binaries: `/usr/sam/lbin/useradd.sam`, `/usr/sam/lbin/userdel.sam`, `/usr/sam/lbin/usermod.sam`.
+* Default for `operatingsystem` == `hp-ux`.
+* Supported features: `allows_duplicates`, `manages_homedir`, `manages_passwords`.
 
 <h4 id="user-provider-ldap">ldap</h4>
 
@@ -655,8 +614,7 @@ Note that this provider will automatically generate a UID for you if
 you do not specify one, but it is a potentially expensive operation,
 as it iterates across all existing users to pick the appropriate next one.
 
-* Confined to: `feature == ldap`, `false == (Puppet[:ldapuser] == "")`
-* Supported features: `manages_passwords`, `manages_shell`
+* Supported features: `manages_passwords`, `manages_shell`.
 
 <h4 id="user-provider-openbsd">openbsd</h4>
 
@@ -664,27 +622,25 @@ User management via `useradd` and its ilk for OpenBSD. Note that you
 will need to install Ruby's shadow password library (package known as
 `ruby-shadow`) if you wish to manage user passwords.
 
-* Required binaries: `useradd`, `userdel`, `usermod`, `passwd`
-* Confined to: `operatingsystem == openbsd`
-* Default for: `["operatingsystem", "openbsd"] == `
-* Supported features: `manages_homedir`, `manages_expiry`, `system_users`, `manages_shell`
+* Required binaries: `passwd`, `useradd`, `userdel`, `usermod`.
+* Default for `operatingsystem` == `openbsd`.
+* Supported features: `manages_expiry`, `manages_homedir`, `manages_shell`, `system_users`.
 
 <h4 id="user-provider-pw">pw</h4>
 
 User management via `pw` on FreeBSD and DragonFly BSD.
 
-* Required binaries: `pw`
-* Confined to: `operatingsystem == [:freebsd, :dragonfly]`
-* Default for: `["operatingsystem", "[:freebsd, :dragonfly]"] == `
-* Supported features: `manages_homedir`, `allows_duplicates`, `manages_passwords`, `manages_expiry`, `manages_shell`
+* Required binaries: `pw`.
+* Default for `operatingsystem` == `freebsd, dragonfly`.
+* Supported features: `allows_duplicates`, `manages_expiry`, `manages_homedir`, `manages_passwords`, `manages_shell`.
 
 <h4 id="user-provider-user_role_add">user_role_add</h4>
 
 User and role management on Solaris, via `useradd` and `roleadd`.
 
-* Required binaries: `useradd`, `userdel`, `usermod`, `passwd`, `roleadd`, `roledel`, `rolemod`
-* Default for: `["osfamily", "solaris"] == `
-* Supported features: `manages_homedir`, `allows_duplicates`, `manages_solaris_rbac`, `manages_roles`, `manages_passwords`, `manages_password_age`, `manages_shell`
+* Required binaries: `passwd`, `roleadd`, `roledel`, `rolemod`, `useradd`, `userdel`, `usermod`.
+* Default for `osfamily` == `solaris`.
+* Supported features: `allows_duplicates`, `manages_homedir`, `manages_password_age`, `manages_passwords`, `manages_roles`, `manages_shell`, `manages_solaris_rbac`.
 
 <h4 id="user-provider-useradd">useradd</h4>
 
@@ -692,16 +648,15 @@ User management via `useradd` and its ilk.  Note that you will need to
 install Ruby's shadow password library (often known as `ruby-libshadow`)
 if you wish to manage user passwords.
 
-* Required binaries: `useradd`, `userdel`, `usermod`, `chage`
-* Supported features: `manages_homedir`, `allows_duplicates`, `manages_expiry`, `manages_shell`
+* Required binaries: `chage`, `lchage`, `luseradd`, `luserdel`, `lusermod`, `useradd`, `userdel`, `usermod`.
+* Supported features: `allows_duplicates`, `manages_expiry`, `manages_homedir`, `manages_shell`, `system_users`.
 
 <h4 id="user-provider-windows_adsi">windows_adsi</h4>
 
 Local user management for Windows.
 
-* Confined to: `operatingsystem == windows`
-* Default for: `["operatingsystem", "windows"] == `
-* Supported features: `manages_homedir`, `manages_passwords`, `manages_roles`
+* Default for `operatingsystem` == `windows`.
+* Supported features: `manages_homedir`, `manages_passwords`, `manages_roles`.
 
 <h3 id="user-provider-features">Provider Features</h3>
 
@@ -723,173 +678,18 @@ Available features:
 
 Provider support:
 
-<table>
-  <thead>
-    <tr>
-      <th>Provider</th>
-      <th>allows duplicates</th>
-      <th>manages aix lam</th>
-      <th>manages expiry</th>
-      <th>manages homedir</th>
-      <th>manages local users and groups</th>
-      <th>manages loginclass</th>
-      <th>manages password age</th>
-      <th>manages password salt</th>
-      <th>manages passwords</th>
-      <th>manages roles</th>
-      <th>manages shell</th>
-      <th>manages solaris rbac</th>
-      <th>system users</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>aix</td>
-      <td></td>
-      <td><em>X</em></td>
-      <td><em>X</em></td>
-      <td><em>X</em></td>
-      <td><em>X</em></td>
-      <td></td>
-      <td><em>X</em></td>
-      <td></td>
-      <td><em>X</em></td>
-      <td></td>
-      <td><em>X</em></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>directoryservice</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td><em>X</em></td>
-      <td><em>X</em></td>
-      <td><em>X</em></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>hpuxuseradd</td>
-      <td><em>X</em></td>
-      <td></td>
-      <td></td>
-      <td><em>X</em></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td><em>X</em></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>ldap</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td><em>X</em></td>
-      <td><em>X</em></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>openbsd</td>
-      <td></td>
-      <td></td>
-      <td><em>X</em></td>
-      <td><em>X</em></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td><em>X</em></td>
-      <td></td>
-      <td><em>X</em></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>pw</td>
-      <td><em>X</em></td>
-      <td></td>
-      <td><em>X</em></td>
-      <td><em>X</em></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td><em>X</em></td>
-      <td><em>X</em></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>user_role_add</td>
-      <td><em>X</em></td>
-      <td></td>
-      <td></td>
-      <td><em>X</em></td>
-      <td></td>
-      <td></td>
-      <td><em>X</em></td>
-      <td></td>
-      <td><em>X</em></td>
-      <td><em>X</em></td>
-      <td><em>X</em></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>useradd</td>
-      <td><em>X</em></td>
-      <td></td>
-      <td><em>X</em></td>
-      <td><em>X</em></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td><em>X</em></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>windows_adsi</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td><em>X</em></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td><em>X</em></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-  </tbody>
-</table>
+* **aix** - _manages aix lam, manages expiry, manages homedir, manages local users and groups, manages password age, manages passwords, manages shell_
+* **directoryservice** - _manages password salt, manages passwords, manages shell_
+* **hpuxuseradd** - _allows duplicates, manages homedir, manages passwords_
+* **ldap** - _manages passwords, manages shell_
+* **openbsd** - _manages expiry, manages homedir, manages shell, system users, manages passwords, manages loginclass_
+* **pw** - _allows duplicates, manages expiry, manages homedir, manages passwords, manages shell_
+* **user_role_add** - _allows duplicates, manages homedir, manages password age, manages passwords, manages roles, manages shell, manages solaris rbac_
+* **useradd** - _allows duplicates, manages expiry, manages homedir, manages shell, system users, manages passwords, manages password age, libuser_
+* **windows_adsi** - _manages homedir, manages passwords, manages roles_
+  
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2021-03-18 10:01:29 +0000
+
+> **NOTE:** This page was generated from the Puppet source code on 2021-04-28 09:56:39 +0100

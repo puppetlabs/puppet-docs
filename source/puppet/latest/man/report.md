@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 959c82533074efbcc06e5755def1ff829abd53fa
+built_from_commit: 221ddc1eb591dc76585f70699c4f5848396204fb
 title: 'Man Page: puppet report'
 canonical: "/puppet/latest/man/report.html"
 ---

@@ -1,13 +1,12 @@
 ---
 layout: default
-built_from_commit: 959c82533074efbcc06e5755def1ff829abd53fa
+built_from_commit: 221ddc1eb591dc76585f70699c4f5848396204fb
 title: 'Resource Types: Index'
 canonical: "/puppet/latest/types/index.html"
 ---
 
 ## List of Resource Types
 
-* [component](./component.html)
 * [exec](./exec.html)
 * [file](./file.html)
 * [filebucket](./filebucket.html)
@@ -20,7 +19,6 @@ canonical: "/puppet/latest/types/index.html"
 * [stage](./stage.html)
 * [tidy](./tidy.html)
 * [user](./user.html)
-* [whit](./whit.html)
 
 ## About resource types
 
