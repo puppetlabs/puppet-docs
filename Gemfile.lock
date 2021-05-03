@@ -86,7 +86,7 @@ GEM
     open4 (1.3.4)
     pathutil (0.16.2)
       forwardable-extended (~> 2.6)
-    pragmatic_segmenter (0.3.22)
+    pragmatic_segmenter (0.3.23)
       unicode
     public_suffix (4.0.6)
     punkt-segmenter (0.9.1)
