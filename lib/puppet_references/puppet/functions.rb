@@ -26,7 +26,6 @@ module PuppetReferences
         puts "Functions ref (#{filename}): Building"
         strings_data = PuppetReferences::Puppet::Strings.new
         functions = strings_data['puppet_functions']
-        generated_at = "> **NOTE:** This page was generated from the Puppet source code on #{Time.now.to_s}"
         header_data = {title: 'Built-in function reference',
                        canonical: "#{@latest}/function.html",
                        toc_levels: 2,
@@ -46,7 +45,10 @@ module PuppetReferences
         template_binding = OpenStruct.new({ functions: functions }).instance_eval {binding}
 
         body = ERB.new(File.read(TEMPLATE_FILE), nil, '-').result(template_binding)
-        content = make_header(header_data) + generated_at + "\n\n" + PREAMBLE + "\n\n" + body + generated_at
+        # This substitution could potentially make things a bit brittle, but it has to be done because the jump
+        # From H2s to H4s is causing issues with the DITA-OT, which sees this as a rule violation. If it 
+        # Does become an issue, we should return to this and figure out a better way to generate the functions doc.  
+        content = make_header(header_data) + "\n\n" + PREAMBLE + "\n\n" + body.gsub(/#####\s(.*?:)/,'**\1**').gsub(/####\s/,'###\s')
         output_path = OUTPUT_DIR + filename
         output_path.open('w') {|f| f.write(content)}
         puts "Functions ref (#{filename}): Done!"
@@ -54,4 +56,3 @@ module PuppetReferences
     end
   end
 end
-

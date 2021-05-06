@@ -43,11 +43,18 @@ module PuppetReferences
     build_from_list_of_classes(references, real_commit)
   end
 
+  def self.is_semantic?(string)
+    Gem::Version.correct?(string)
+  end
+
   def self.build_facter_references(commit)
     references = [
-        PuppetReferences::Facter::CoreFacts,
-        PuppetReferences::Facter::FacterCli
+        PuppetReferences::Facter::CoreFacts
     ]
+    # Adding this workaround so the build doesn't fail for 3.y. Check with Claire to see if
+    # we need the CLI docs for 3.y. We can remove this when we stop building 3.y.
+    version_4 = Gem::Version.create('4.0.0')
+    references << PuppetReferences::Facter::FacterCli if !is_semantic?(commit) || !is_semantic?(commit) && Gem::Version.create(commit) >= version_4
     repo = PuppetReferences::Repo.new('facter', FACTER_DIR)
     real_commit = repo.checkout(commit)
     build_from_list_of_classes(references, real_commit)

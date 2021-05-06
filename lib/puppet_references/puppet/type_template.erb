@@ -1,5 +1,4 @@
-<%= name %>
------
+## <%= name %>
 
 * [Attributes](#<%= name %>-attributes)
 <% if !this_type['providers'].empty? -%>
@@ -9,21 +8,22 @@
 * [Provider Features](#<%= name %>-provider-features)
 <% end -%>
 
-<h3 id="<%= name %>-description">Description</h3>
+### [Description](#<%= name %>-description)
 
 <%= this_type['description'] %>
 
-<h3 id="<%= name %>-attributes">Attributes</h3>
+### [Attributes](#<%= name %>-attributes)
 
 <pre><code><%= name %> { 'resource title':
 <% sorted_attribute_list.each do |attribute_name| -%>
   <a href="#<%= name %>-attribute-<%= attribute_name %>"><%= attribute_name %></a><%= ' ' * (longest_attribute_name - attribute_name.length) %> =&gt; <em># <% if this_type['attributes'][attribute_name]['namevar'] %><strong>(namevar)</strong> <% end %><%= this_type['attributes'][attribute_name]['description'][0,49].gsub("\n", ' ').gsub('<', '&lt;').sub(/\W? \S+$/, '...') %></em>
 <% end -%>
-  # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
+  # ...plus any applicable <a href="https://puppet.com/docs/puppet/latest/metaparameter.html">metaparameters</a>.
 }</code></pre>
 
 <% sorted_attribute_list.each do |attribute_name| -%>
-<h4 id="<%= name %>-attribute-<%= attribute_name %>"><%= attribute_name %></h4>
+
+#### [<%= attribute_name %>](#<%= name %>-attribute-<%= attribute_name %>)
 
 <% if this_type['attributes'][attribute_name]['namevar'] -%>
 <% if attribute_name != 'provider' %>_(**Namevar:** If omitted, this attribute's value defaults to the resource's title.)_<%= "\n\n" -%>
@@ -44,17 +44,17 @@ Requires features <%= this_type['attributes'][attribute_name]['required_features
 -%>
 
 <% if !this_type['providers'].empty? -%>
-<h3 id="<%= name %>-providers">Providers</h3>
+### [Providers](#<%= name %>-providers)
 
 <% end -%>
 <% this_type['providers'].keys.sort.each do |provider_name| -%>
-<h4 id="<%= name %>-provider-<%= provider_name %>"><%= provider_name %></h4>
+#### [<%= provider_name %>](#<%= name %>-provider-<%= provider_name %>)
 
 <%= this_type['providers'][provider_name]['description'] %>
 
 <% end -%>
 <% if !this_type['features'].empty? -%>
-<h3 id="<%= name %>-provider-features">Provider Features</h3>
+### [Provider Features](#<%= name %>-provider-features)
 
 Available features:
 

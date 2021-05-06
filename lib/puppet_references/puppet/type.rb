@@ -38,9 +38,9 @@ module PuppetReferences
 
       def build_index(names)
         header_data = {title: 'Resource Types: Index',
-                       canonical: "#{@latest}/types/index.html"}
+                       canonical: "#{@latest}/types/index.md"}
         links = names.map {|name|
-          "* [#{name}](./#{name}.html)"
+          "* [#{name}](./#{name}.md)" unless name == 'component' || name == 'whit'
         }
         content = make_header(header_data) + "## List of Resource Types\n\n" + links.join("\n") + "\n\n" + PREAMBLE
         filename = @output_dir_individual + 'index.md'
@@ -58,14 +58,13 @@ module PuppetReferences
                        canonical: "#{@latest}/type.html",
                        toc_levels: 2,
                        toc: 'columns'}
-        generated_at = "> **NOTE:** This page was generated from the Puppet source code on #{Time.now.to_s}"
 
         sorted_type_list = typedocs.keys.sort
         all_type_docs = sorted_type_list.collect{|name|
           text_for_type(name, typedocs[name])
         }.join("\n\n---------\n\n")
 
-        content = make_header(header_data) + generated_at + "\n\n" + PREAMBLE + all_type_docs + "\n\n" + generated_at
+        content = make_header(header_data) + "\n\n" + PREAMBLE + all_type_docs + "\n\n"
         filename = @output_dir_unified + "#{@base_filename}.md"
         filename.open('w') {|f| f.write(content)}
       end
@@ -80,8 +79,7 @@ module PuppetReferences
         puts "Type ref: Building #{name}"
         header_data = {title: "Resource Type: #{name}",
                        canonical: "#{@latest}/types/#{name}.html"}
-        generated_at = "> **NOTE:** This page was generated from the Puppet source code on #{Time.now.to_s}"
-        content = make_header(header_data) + generated_at + "\n\n" + text_for_type(name, data) + "\n\n" + generated_at
+        content = make_header(header_data) + "\n\n" + text_for_type(name, data) + "\n\n"
         filename = @output_dir_individual + "#{name}.md"
         filename.open('w') {|f| f.write(content)}
       end

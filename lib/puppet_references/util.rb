@@ -6,11 +6,12 @@ module PuppetReferences
     # Given a hash of data, return YAML frontmatter suitable for the docs site.
     def self.make_header(data)
       # clean out any symbols:
+      generated_at = "> **NOTE:** This page was generated from the Puppet source code on #{Time.now.to_s}"
       clean_data = data.reduce( {} ) do |result, (key,val)|
         result[key.to_s]=val
         result
       end
-      YAML.dump(clean_data) + "---\n\n"
+      YAML.dump(clean_data) + "---\n\n" + "# #{clean_data['title']}" + "\n\n" + generated_at + "\n\n"
     end
 
     # Run a command that can't cope with a contaminated shell environment.

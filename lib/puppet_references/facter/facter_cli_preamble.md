@@ -1,3 +1,2 @@
-# Facter CLI
 
 ---
