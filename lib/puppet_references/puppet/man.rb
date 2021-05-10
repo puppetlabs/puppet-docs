@@ -1,4 +1,5 @@
 require 'puppet_references'
+
 module PuppetReferences
   module Puppet
     class Man < PuppetReferences::Reference
@@ -82,7 +83,7 @@ Core Tools
 
 These subcommands form the core of Puppet's tool set, and every user should understand what they do.
 
-#{ categories[:core].reduce('') {|memo, item| memo << "- [puppet #{item}](./#{item}.html)\n"} }
+#{ categories[:core].reduce('') {|memo, item| memo << "- [puppet #{item}](#{item}.md)\n"} }
 
 > Note: The `puppet cert` command is available only in Puppet versions prior to 6.0. For 6.0 and later, use the [`puppetserver cert`command](https://puppet.com/docs/puppet/6.0/puppet_server_ca_cli.html).
 
@@ -91,14 +92,14 @@ Secondary subcommands
 
 Many or most users need to use these subcommands at some point, but they aren't needed for daily use the way the core tools are.
 
-#{ categories[:occasional].reduce('') {|memo, item| memo << "- [puppet #{item}](./#{item}.html)\n"} }
+#{ categories[:occasional].reduce('') {|memo, item| memo << "- [puppet #{item}](#{item}.md)\n"} }
 
 Niche subcommands
 -----
 
 Most users can ignore these subcommands. They're only useful for certain niche workflows, and most of them are interfaces to Puppet's internal subsystems.
 
-#{ categories[:weird].reduce('') {|memo, item| memo << "- [puppet #{item}](./#{item}.html)\n"} }
+#{ categories[:weird].reduce('') {|memo, item| memo << "- [puppet #{item}](#{item}.md)\n"} }
 
 EOT
         # write index
@@ -114,16 +115,8 @@ EOT
         applications
       end
 
-      def render_with_ronn(raw_text)
-        rendered_html = ''
-        Dir.chdir(PuppetReferences::BASE_DIR) do
-          ronn = IO.popen("bundle exec ronn --pipe -f", "r+")
-          ronn.write(raw_text)
-          ronn.close_write
-          rendered_html = ronn.read
-          ronn.close
-        end
-        rendered_html
+      def code_wrap(raw_text)
+        "<pre><code>" + raw_text.gsub('<','❮').gsub('>','❯') + "</code></pre>"
       end
 
       def build_manpage(subcommand)
@@ -131,7 +124,7 @@ EOT
         header_data = {title: "Man Page: puppet #{subcommand}",
                        canonical: "#{@latest}/#{subcommand}.html"}
         raw_text = PuppetReferences::ManCommand.new(subcommand).get
-        content = make_header(header_data) + render_with_ronn(raw_text)
+        content = make_header(header_data) + code_wrap(raw_text)
         filename = OUTPUT_DIR + "#{subcommand}.md"
         filename.open('w') {|f| f.write(content)}
       end

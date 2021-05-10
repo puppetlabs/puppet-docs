@@ -16,7 +16,6 @@ group(:build_site) do
 end
 
 group(:generate_references) do
-  gem 'ronn', '~> 0.7'
   gem 'yard', '~> 0.9'
   gem 'rdoc', '~> 6.2'
   gem 'rgen', '~> 0.8'
