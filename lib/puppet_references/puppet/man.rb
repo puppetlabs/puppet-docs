@@ -116,7 +116,7 @@ EOT
       end
 
       def code_wrap(raw_text)
-        "<pre><code>" + raw_text.gsub('<','❮').gsub('>','❯') + "</code></pre>"
+        "<pre><code>" + raw_text.gsub('<','&lt;').gsub('>','&gt;') + "</code></pre>"
       end
 
       def build_manpage(subcommand)
