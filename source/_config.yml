@@ -96,6 +96,15 @@ documents:
       commit: doc-latest
       subdirectory: documentation
     hide: true
+  /puppetdb/docs-refactor:
+    doc: puppetdb
+    version: "docs-refactor"
+    nav: ./_puppetdb_nav.html
+    external_source:
+      repo: git://github.com/hestonhoffman/puppetdb.git
+      commit: docs-refactor
+      subdirectory: documentation
+    hide: true
   /puppetdb/6.y:
     doc: puppetdb
     version: "6.13"
