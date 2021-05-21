@@ -11,6 +11,14 @@ module PuppetReferences
         super(*args)
       end
 
+
+      def header_data
+        {title: 'Facter: CLI',
+         toc: 'columns',
+         canonical: "#{@latest}/cli.html"}
+      end
+
+
       def build_all
         require 'open3'
         puts 'Building CLI documentation page for facter.'
@@ -23,15 +31,20 @@ module PuppetReferences
           puts "Encountered an error while building the facter cli docs, will abort: #{err}"
           return
         end
-
-        header_data = {title: 'Facter: CLI',
-                       toc: 'columns',
-                       canonical: "#{@latest}/cli.html"}
         content = make_header(header_data) + PREAMBLE + raw_text
         filename = OUTPUT_DIR + 'cli.md'
         filename.open('w') {|f| f.write(content)}
         puts 'CLI documentation is done!'
       end
-    end
+
+      def build_v3_cli
+        filename = OUTPUT_DIR + 'cli.md'
+        man_filepath = PuppetReferences::FACTER_DIR + 'man/man8/facter.8'
+        raw_text = PuppetReferences::Util.convert_man(man_filepath)
+        content = make_header(header_data) + raw_text
+        filename.open('w') {|f| f.write(content)}
+      end 
+
+    end 
   end
 end
