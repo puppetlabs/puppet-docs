@@ -115,16 +115,13 @@ EOT
         applications
       end
 
-      def code_wrap(raw_text)
-        "<pre><code>" + raw_text.gsub('<','&lt;').gsub('>','&gt;') + "</code></pre>"
-      end
-
       def build_manpage(subcommand)
         puts "Man pages: Building #{subcommand}"
         header_data = {title: "Man Page: puppet #{subcommand}",
                        canonical: "#{@latest}/#{subcommand}.html"}
-        raw_text = PuppetReferences::ManCommand.new(subcommand).get
-        content = make_header(header_data) + code_wrap(raw_text)
+        # raw_text = PuppetReferences::ManCommand.new(subcommand).get
+        man_filepath = "#{PuppetReferences::PUPPET_DIR}" + "/man/man8/puppet-#{subcommand}.8"
+        content = make_header(header_data) + PuppetReferences::Util.convert_man(man_filepath)
         filename = OUTPUT_DIR + "#{subcommand}.md"
         filename.open('w') {|f| f.write(content)}
       end

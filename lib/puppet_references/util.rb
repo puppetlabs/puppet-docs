@@ -120,5 +120,13 @@ EOT
       end
     end
 
+    def self.convert_man(man_filepath)
+      require 'pandoc-ruby'
+      PandocRuby.convert([man_filepath], from: :man, to: :markdown)
+        .gsub(/#(.*?)\n/, '##\1')
+        .gsub(/:\s\s\s\n\n```\{=html\}\n<!--\s-->\n```/, '')
+        .gsub(/\n:\s\s\s\s/, '')
+    end
+
   end
 end
