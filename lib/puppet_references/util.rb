@@ -16,7 +16,7 @@ module PuppetReferences
 
     # Run a command that can't cope with a contaminated shell environment.
     def self.run_dirty_command(command)
-      result = Bundler.with_clean_env do
+      result = Bundler.with_unbundled_env do
         # Bundler replaces the entire environment once this block is finished.
         ENV.delete('RUBYLIB')
         %x( #{command} )

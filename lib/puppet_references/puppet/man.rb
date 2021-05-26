@@ -85,7 +85,7 @@ These subcommands form the core of Puppet's tool set, and every user should unde
 
 #{ categories[:core].reduce('') {|memo, item| memo << "- [puppet #{item}](#{item}.md)\n"} }
 
-> Note: The `puppet cert` command is available only in Puppet versions prior to 6.0. For 6.0 and later, use the [`puppetserver cert`command](https://puppet.com/docs/puppet/6.0/puppet_server_ca_cli.html).
+> Note: The `puppet cert` command is available only in Puppet versions prior to 6.0. For 6.0 and later, use the [`puppetserver cert`command](https://puppet.com/docs/puppet/6/puppet_server_ca_cli.html).
 
 Secondary subcommands
 -----
@@ -112,6 +112,7 @@ EOT
         applications = application_files.map {|f| f.basename('.rb').to_s}
         applications.delete('face_base')
         applications.delete('indirection_base')
+        applications.delete('cert')
         applications
       end
 
