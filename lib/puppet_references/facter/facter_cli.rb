@@ -38,6 +38,7 @@ module PuppetReferences
       end
 
       def build_v3_cli
+        OUTPUT_DIR.mkpath
         filename = OUTPUT_DIR + 'cli.md'
         man_filepath = PuppetReferences::FACTER_DIR + 'man/man8/facter.8'
         raw_text = PuppetReferences::Util.convert_man(man_filepath)
