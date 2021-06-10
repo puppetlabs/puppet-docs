@@ -31,7 +31,8 @@ module PuppetReferences
           puts "Encountered an error while building the facter cli docs, will abort: #{err}"
           return
         end
-        content = make_header(header_data) + PREAMBLE + raw_text
+        content = make_header(header_data) + PREAMBLE + 
+          raw_text.gsub(/SYNOPSIS\n--------\n\s\s(.*?)$/, "SYNOPSIS\n--------\n" + "\s\s\s\s" + '\1')
         filename = OUTPUT_DIR + 'cli.md'
         filename.open('w') {|f| f.write(content)}
         puts 'CLI documentation is done!'
