@@ -22,7 +22,7 @@ module PuppetReferences
       end
 
       def build_index(commands)
-        puts 'Man pages: Building index page'
+        puts 'Man pages: Building overview page'
         # Categorize subcommands
         categories = {
             core: %w(
@@ -72,7 +72,7 @@ module PuppetReferences
           list.reject! {|sub| !commands.include?(sub)}
         end
         header_data = {title: 'Puppet Man Pages',
-                       canonical: "#{@latest}/index.html"}
+                       canonical: "#{@latest}/overview.html"}
         index_text = <<EOT
 #{ make_header(header_data) }
 
@@ -103,7 +103,7 @@ Most users can ignore these subcommands. They're only useful for certain niche w
 
 EOT
         # write index
-        filename = OUTPUT_DIR + 'index.md'
+        filename = OUTPUT_DIR + 'overview.md'
         filename.open('w') {|f| f.write(index_text)}
       end
 
