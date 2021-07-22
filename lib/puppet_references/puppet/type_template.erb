@@ -8,11 +8,11 @@
 * [Provider Features](#<%= name %>-provider-features)
 <% end -%>
 
-### [Description](#<%= name %>-description)
+### Description {#<%= name %>-description}
 
 <%= this_type['description'] %>
 
-### [Attributes](#<%= name %>-attributes)
+### Attributes {#<%= name %>-attributes}
 
 <pre><code><%= name %> { 'resource title':
 <% sorted_attribute_list.each do |attribute_name| -%>
@@ -23,7 +23,7 @@
 
 <% sorted_attribute_list.each do |attribute_name| -%>
 
-#### [<%= attribute_name %>](#<%= name %>-attribute-<%= attribute_name %>)
+#### <%= attribute_name %> {#<%= name %>-attribute-<%= attribute_name %>}
 
 <% if this_type['attributes'][attribute_name]['namevar'] -%>
 <% if attribute_name != 'provider' %>_(**Namevar:** If omitted, this attribute's value defaults to the resource's title.)_<%= "\n\n" -%>
@@ -44,17 +44,17 @@ Requires features <%= this_type['attributes'][attribute_name]['required_features
 -%>
 
 <% if !this_type['providers'].empty? -%>
-### [Providers](#<%= name %>-providers)
+### Providers {#<%= name %>-providers}
 
 <% end -%>
 <% this_type['providers'].keys.sort.each do |provider_name| -%>
-#### [<%= provider_name %>](#<%= name %>-provider-<%= provider_name %>)
+#### <%= provider_name %> {#<%= name %>-provider-<%= provider_name %>}
 
 <%= this_type['providers'][provider_name]['description'] %>
 
 <% end -%>
 <% if !this_type['features'].empty? -%>
-### [Provider Features](#<%= name %>-provider-features)
+### Provider Features {#<%= name %>-provider-features}
 
 Available features:
 
