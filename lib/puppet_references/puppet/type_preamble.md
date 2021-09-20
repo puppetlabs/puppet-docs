@@ -141,9 +141,6 @@ The following types were deprecated with Puppet 6.0.0. They are available in mod
 - [`router`](https://github.com/puppetlabs/puppetlabs-network_device_core) (Use the updated [`cisco_ios module`](https://forge.puppet.com/puppetlabs/cisco_ios/readme) instead.
 - [`vlan`](https://github.com/puppetlabs/puppetlabs-network_device_core) (Use the updated [`cisco_ios module`](https://forge.puppet.com/puppetlabs/cisco_ios/readme) instead.
 
-
-
 ## Puppet core types
 
-The following types are located in the core Puppet code base.
-
+For a list of core Puppet types, see the [core types cheat sheet](cheatsheet_core_types.md#cheatsheet_core_types).
