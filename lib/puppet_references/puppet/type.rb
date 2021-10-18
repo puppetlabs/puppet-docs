@@ -37,13 +37,13 @@ module PuppetReferences
       end
 
       def build_index(names)
-        header_data = {title: 'Resource Types: Index',
-                       canonical: "#{@latest}/types/index.md"}
+        header_data = {title: 'Resource types overview',
+                       canonical: "#{@latest}/types/overview.md"}
         links = names.map {|name|
           "* [#{name}](./#{name}.md)" unless name == 'component' || name == 'whit'
         }
-        content = make_header(header_data) + "## List of Resource Types\n\n" + links.join("\n") + "\n\n" + PREAMBLE
-        filename = @output_dir_individual + 'index.md'
+        content = make_header(header_data) + "## List of resource types\n\n" + links.join("\n") + "\n\n" + PREAMBLE
+        filename = @output_dir_individual + 'overview.md'
         filename.open('w') {|f| f.write(content)}
       end
 
