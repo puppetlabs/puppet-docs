@@ -166,7 +166,7 @@ DEPENDENCIES
   kramdown (~> 2.3)
   listen (~> 3.5.1)
   maruku (~> 0.7)
-  nokogiri (~> 1.11)
+  nokogiri (>= 1.12.5)
   pandoc-ruby
   pragmatic_segmenter (~> 0.3)
   punkt-segmenter (~> 0.9)
