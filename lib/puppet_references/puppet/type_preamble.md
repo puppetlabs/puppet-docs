@@ -143,4 +143,4 @@ The following types were deprecated with Puppet 6.0.0. They are available in mod
 
 ## Puppet core types
 
-For a list of core Puppet types, see the [core types cheat sheet](../cheatsheet_core_types.dita#cheatsheet_core_types).
+For a list of core Puppet types, see the [core types cheat sheet][core-types-cheatsheet].
