@@ -17,7 +17,7 @@ end
 
 group(:generate_references) do
   gem 'yard', '~> 0.9'
-  gem 'rdoc', '~> 6.2'
+  gem 'rdoc', '~> 6.4'
   gem 'rgen', '~> 0.8'
   gem 'pandoc-ruby'
   gem 'puppet-strings'
