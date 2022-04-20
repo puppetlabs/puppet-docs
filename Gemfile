@@ -12,7 +12,7 @@ group(:build_site) do
   gem 'kramdown', '~> 2.3'
   gem 'vlad', '~> 2.7'
   gem 'vlad-git', '~> 2.1'
-  gem 'listen', '~> 3.5.1' # Preserve ability to run on Ruby 2.0, since listen 3.1 requires Ruby ~> 2.2.
+  gem 'listen', '~> 3.7.1' # Preserve ability to run on Ruby 2.0, since listen 3.1 requires Ruby ~> 2.2.
 end
 
 group(:generate_references) do
