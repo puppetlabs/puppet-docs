@@ -7,17 +7,16 @@ GEM
   remote: https://rubygems.org/
   specs:
     CFPropertyList (2.3.6)
-    activemodel (6.1.5)
-      activesupport (= 6.1.5)
-    activerecord (6.1.5)
-      activemodel (= 6.1.5)
-      activesupport (= 6.1.5)
-    activesupport (6.1.5)
+    activemodel (7.0.2.3)
+      activesupport (= 7.0.2.3)
+    activerecord (7.0.2.3)
+      activemodel (= 7.0.2.3)
+      activesupport (= 7.0.2.3)
+    activesupport (7.0.2.3)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (>= 1.6, < 2)
       minitest (>= 5.1)
       tzinfo (~> 2.0)
-      zeitwerk (~> 2.3)
     addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
     blockenspiel (0.5.0)
@@ -158,14 +157,13 @@ GEM
     webrick (1.7.0)
     yard (0.9.27)
       webrick (~> 1.7.0)
-    zeitwerk (2.5.4)
 
 PLATFORMS
   ruby
   x86_64-darwin-18
 
 DEPENDENCIES
-  activerecord (~> 6)
+  activerecord (~> 7)
   git (~> 1.8)
   jekyll (~> 4.1)
   json (~> 2.5)
