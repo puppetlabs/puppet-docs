@@ -9,7 +9,7 @@ gem 'json', '~> 2.5'
 
 group(:build_site) do
   gem 'jekyll', '~> 4.1'
-  gem 'kramdown', '~> 2.3'
+  gem 'kramdown', '~> 2.4'
   gem 'vlad', '~> 2.7'
   gem 'vlad-git', '~> 2.1'
   gem 'listen', '~> 3.5.1' # Preserve ability to run on Ruby 2.0, since listen 3.1 requires Ruby ~> 2.2.

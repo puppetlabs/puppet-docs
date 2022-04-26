@@ -62,7 +62,7 @@ GEM
     jekyll-watch (2.2.1)
       listen (~> 3.0)
     json (2.6.1)
-    kramdown (2.3.2)
+    kramdown (2.4.0)
       rexml
     kramdown-parser-gfm (1.1.0)
       kramdown (~> 2.0)
@@ -169,7 +169,7 @@ DEPENDENCIES
   git (~> 1.8)
   jekyll (~> 4.1)
   json (~> 2.5)
-  kramdown (~> 2.3)
+  kramdown (~> 2.4)
   listen (~> 3.5.1)
   maruku (~> 0.7)
   nokogiri (>= 1.12.5)
