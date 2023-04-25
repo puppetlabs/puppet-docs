@@ -96,6 +96,15 @@ documents:
       commit: doc-latest
       subdirectory: documentation
     hide: true
+  /puppetdb/7:
+    doc: puppetdb
+    version: "7"
+    nav: ./_puppetdb_nav.html
+    external_source:
+      repo: git://github.com/puppetlabs/puppetdb.git
+      commit: doc-7.y
+      subdirectory: documentation
+    hide: true
   /puppetdb/6:
     doc: puppetdb
     version: "6"
