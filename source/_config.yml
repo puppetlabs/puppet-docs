@@ -96,24 +96,6 @@ documents:
       commit: doc-latest
       subdirectory: documentation
     hide: true
-  /puppetdb/docs-refactor:
-    doc: puppetdb
-    version: "docs-refactor"
-    nav: ./_puppetdb_nav.html
-    external_source:
-      repo: git://github.com/hestonhoffman/puppetdb.git
-      commit: docs-refactor
-      subdirectory: documentation
-    hide: true
-  /puppetdb/6.y:
-    doc: puppetdb
-    version: "6.y"
-    nav: ./_puppetdb_nav.html
-    external_source:
-      repo: git://github.com/puppetlabs/puppetdb.git
-      commit: doc-6.y
-      subdirectory: documentation
-    hide: true
   /puppetdb/6:
     doc: puppetdb
     version: "6"
@@ -121,15 +103,6 @@ documents:
     external_source:
       repo: git://github.com/puppetlabs/puppetdb.git
       commit: doc-6.y
-      subdirectory: documentation
-    hide: true
-  /puppetdb/6.0:
-    doc: puppetdb
-    version: "6.0"
-    nav: ./_puppetdb_nav.html
-    external_source:
-      repo: git://github.com/puppetlabs/puppetdb.git
-      commit: doc-6.0
       subdirectory: documentation
     hide: true
   /puppetdb/5.2:
@@ -159,36 +132,5 @@ documents:
     doc: puppet
     version: "6.19"
     nav: ./_puppet_toc.html
-  
-  # Other PuppetDB versions (on the site, but not a Puppet dependency)  
-  /puppetdb/6.3:
-    doc: puppetdb
-    version: "6.3"
-    nav: ./_puppetdb_nav.html
-    external_source:
-      repo: git://github.com/puppetlabs/puppetdb.git
-      commit: doc-6.3
-      subdirectory: documentation
-    hide: true
-
-  /puppetdb/6.2:
-    doc: puppetdb
-    version: "6.2"
-    nav: ./_puppetdb_nav.html
-    external_source:
-      repo: git://github.com/puppetlabs/puppetdb.git
-      commit: doc-6.2
-      subdirectory: documentation
-    hide: true
-
-  /puppetdb/6.1:
-    doc: puppetdb
-    version: "6.1"
-    nav: ./_puppetdb_nav.html
-    external_source:
-      repo: git://github.com/puppetlabs/puppetdb.git
-      commit: doc-6.1
-      subdirectory: documentation
-    hide: true
 
 ---
