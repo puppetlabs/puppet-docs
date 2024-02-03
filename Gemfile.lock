@@ -157,9 +157,8 @@ GEM
       rake-remote_task (~> 2.3)
     vlad-git (2.2.0)
       vlad (>= 2.1.0)
-    webrick (1.7.0)
-    yard (0.9.28)
-      webrick (~> 1.7.0)
+    webrick (1.8.1)
+    yard (0.9.34)
     zeitwerk (2.6.6)
 
 PLATFORMS
