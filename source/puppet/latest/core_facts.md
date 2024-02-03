@@ -47,7 +47,7 @@ Return information about augeas.
 **Purpose:**
 
 Return the Microsoft Azure instance metadata.
-Please see the [Microsoft Azure instance metadata documentation](http://https://docs.microsoft.com/en-us/azure/virtual-machines/windows/instance-metadata-service) for the contents of this fact.
+Please see the [Microsoft Azure instance metadata documentation](https://learn.microsoft.com/en-us/azure/virtual-machines/instance-metadata-service?tabs=windows) for the contents of this fact.
 
 
 
