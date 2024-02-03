@@ -3,7 +3,7 @@ gemspec :name => 'puppet_docs'
 
 gem 'versionomy', '~> 0.5.0'
 gem 'rake', '~> 13.0', '>= 13.0.1'
-gem 'rack', '~> 2.2', '>= 2.2.3'
+gem 'rack', '~> 3.0'
 gem 'git', '~> 1.8'
 gem 'json', '~> 2.5'
 

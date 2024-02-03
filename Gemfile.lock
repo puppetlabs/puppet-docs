@@ -123,7 +123,7 @@ GEM
       rgen
       yard (~> 0.9.5)
     racc (1.6.0)
-    rack (2.2.4)
+    rack (3.0.7)
     rake (13.0.6)
     rake-remote_task (2.4.4)
       open4 (~> 1.0)
@@ -181,7 +181,7 @@ DEPENDENCIES
   puppet (~> 6)
   puppet-strings
   puppet_docs!
-  rack (~> 2.2, >= 2.2.3)
+  rack (~> 3.0)
   rake (~> 13.0, >= 13.0.1)
   rdoc (~> 6.2)
   rgen (~> 0.8)
