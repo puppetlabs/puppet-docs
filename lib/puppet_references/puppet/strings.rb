@@ -23,7 +23,7 @@ module PuppetReferences
       def generate_strings_data
         puts 'Generating Puppet Strings JSON data...'
         rubyfiles = Dir.glob("#{PuppetReferences::PUPPET_DIR}/lib/puppet/**/*.rb")
-        system("bundle exec puppet strings generate --emit-json #{STRINGS_JSON_FILE} #{rubyfiles.join(' ')}")
+        system("bundle exec puppet strings generate --format json --out #{STRINGS_JSON_FILE} #{rubyfiles.join(' ')}")
         puts "Strings data: Done! (#{STRINGS_JSON_FILE})"
         @@strings_data_cached = true
       end
