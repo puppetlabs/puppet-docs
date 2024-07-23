@@ -13,7 +13,7 @@ Signature <%= index+1 %>
 
 <% end -%>
 `<%= signature['signature'] %>`
-<% has_parameters = signature['docstring']['tags'].detect {|tag| tag['tag_name'] == 'param' && tag['text'] != '' && tag['text'] != nil }
+<% has_parameters = signature.dig('docstring', 'tags')&.detect {|tag| tag['tag_name'] == 'param' && tag['text'] != '' && tag['text'] != nil } || false
 if has_parameters -%>
 
 ### Parameters
