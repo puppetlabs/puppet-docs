@@ -31,7 +31,7 @@ module PuppetReferences
                   description = description + "\n"
                 end
                 if provider['commands']
-                  description = description + "\n* Required binaries: `#{provider['commands'].values.join('`, `')}`"
+                  description = description + "\n* Required binaries: `#{provider['commands'].values.sort.join('`, `')}`"
                 end
                 if provider['confines']
                   description = description + "\n* Confined to: `#{provider['confines'].map{|fact,val| "#{fact} == #{val}"}.join('`, `')}`"
@@ -40,7 +40,7 @@ module PuppetReferences
                   description = description + "\n* Default for: `#{provider['defaults'].map{|fact,val| "#{fact} == #{val}"}.join('`, `')}`"
                 end
                 if provider['features']
-                  description = description + "\n* Supported features: `#{provider['features'].join('`, `')}`"
+                  description = description + "\n* Supported features: `#{provider['features'].sort.join('`, `')}`"
                 end
                 memo[provider['name']] = {
                     'features' => (provider['features'] || []),
